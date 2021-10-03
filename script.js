@@ -7,8 +7,10 @@ var lapCount = 0;
 var timer = false;
 
 function start() {
-    timer = true;
-    stopwatch();
+    if (!timer){
+        timer = true;
+        stopwatch();
+    }
 }
 
 function stop() {
@@ -100,4 +102,13 @@ function lap() {
 function clearLap() {
     lapCount = 0;
     document.getElementById('laps').innerHTML = "";
+}
+
+function myFunction() {
+    var element = document.body;
+    element.classList.toggle("darkmode");
+    var elem = document.querySelector(".time");
+    elem.classList.toggle("darkmode_container");
+    var el = document.querySelector("#alter");
+    el.classList.toggle("darkmode_mode");
 }
