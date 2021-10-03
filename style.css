@@ -78,29 +78,63 @@ body {
 }
 
 #record-container {
-    margin-top: 20px;
-    margin-left: 360px;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 #record-table{
+    margin: 0 auto;
     text-align: center;
     overflow-x: auto;
     overflow-y: auto;
-    padding: 10px;
+    padding-bottom: 5%;
     border-collapse: collapse;
     display: inline-block;
-    max-height: 110px;
+    height: 110px;
+    width: 30%;
+    background-color: #333;
+    border-radius: 10px;
 }
+
+/*.laps-title{
+    padding-top: 5%;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+}*/
 
 #record-table th {
     text-align: center;
-    padding-right: 10px;
+    padding: 10px;
 }
 
 #record-table-body:nth-child(n + 7) {
     visibility: hidden;
 }
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #c7c7c7 #333333;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #333333;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #c7c7c7;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
 
 /* Darkmode */
 .darkmode{
