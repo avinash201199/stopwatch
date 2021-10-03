@@ -4,6 +4,7 @@ var sec = 0;
 var count = 0;
 
 var timer = false;
+var counter = 1;
 
 function start() {
     if (!timer){
@@ -15,6 +16,23 @@ function start() {
 function stop() {
     timer = false;
 
+}
+
+function lap() {
+    var lap_time = document.getElementById("hr").innerHTML + ":" 
+                    + document.getElementById("min").innerHTML + ":" 
+                    + document.getElementById("sec").innerHTML + ":" 
+                    + document.getElementById("count").innerHTML;
+
+    const table = document.getElementById("record-table-body");
+    const row = table.insertRow(0);
+    const no_cell = row.insertCell(0);
+    const time_cell = row.insertCell(1);
+
+    no_cell.innerHTML = counter;
+    time_cell.innerHTML = lap_time;
+
+    counter++;
 }
 
 function reset() {
@@ -29,6 +47,10 @@ function reset() {
     document.getElementById("min").innerHTML = "00";
     document.getElementById("sec").innerHTML = "00";
     document.getElementById("count").innerHTML = "00";
+
+    counter = 1;
+
+    document.getElementById("record-table-body").innerHTML="";
 
 }
 

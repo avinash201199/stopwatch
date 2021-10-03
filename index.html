@@ -34,6 +34,7 @@
         <div id="btn-container">
             <button class="btn" id="start" onclick="start()">Start</button>
             <button class="btn" id="stop" onclick="stop()">Stop</button>
+            <button class="btn" id="lap" onclick="lap()">Lap</button>
             <button class="btn" id="reset" onclick="reset()">Reset</button>
             <button class="btn" id="lap" onclick="lap()">Lap</button>
             <button class="btn" id="clearLap" onclick="clearLap()">Clear Laps</button>
@@ -47,6 +48,16 @@
                     <span id="li-count"></span>
                 </li>
             </ul>
+        </div>
+        <div id="record-container">
+            <table id="record-table">
+                <tr>
+                    <th>No</th>
+                    <th>Time</th>
+                </tr>
+                <tbody id="record-table-body">
+                </tbody>
+            </table>
         </div>
     </div>
     <script src="script.js"></script>
