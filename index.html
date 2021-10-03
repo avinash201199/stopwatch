@@ -10,8 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="script.js"></script>
-    <script src=
-"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js">
     </script>
     <script type="text/javascript" src="jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -20,33 +19,39 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png" style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand" href="#"
+            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png"
+                style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-      
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#"> </a>
+                    <a class="nav-link" href="#"> </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"></a>
+                    <a class="nav-link" href="#"></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#"></a>
+                    <a class="nav-link disabled" href="#"></a>
                 </li>
-              </ul>
-         
-          
-            <img class="darkmode" id="light" src="img/light-mode.png" style="height: 2.5rem; width: 2.5rem; cursor: pointer;" alt="">
-            <img class="darkmode" id="dark" src="img/night.png" style="height: 2.5rem; width: 2.5rem; cursor: pointer;" alt="">
-    
+            </ul>
+
+
+            <img class="darkmode" id="light" src="img/light-mode.png"
+                style="height: 2.5rem; width: 2.5rem; cursor: pointer;" alt="">
+            <img class="darkmode" id="dark" src="img/night.png" style="height: 2.5rem; width: 2.5rem; cursor: pointer;"
+                alt="">
+
         </div>
-      </nav>
+    </nav>
     <div class="container-fluid">
         <div id="container">
-        
+
             <div id="time">
                 <span>
                     <span class="digit" id="hr">00</span>
@@ -60,9 +65,11 @@
                     <span class="digit" id="sec">00</span>
                     <span class="txt">Sec</span>
                 </span>
-    
-                <span class="digit" id="count">00</span>
-    
+                <span>
+                    <span class="digit" id="count">00</span>
+                    <span class="txt">Ms</span>
+                </span>
+
             </div>
             <div id="btn-container">
                 <button class="btn" id="start" onclick="start()">Start</button>
@@ -83,7 +90,7 @@
             </div>
         </div>
     </div>
-   
+
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
