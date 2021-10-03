@@ -31,20 +31,23 @@ body {
 }
 
 #btn-container {
-    text-align: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
     margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 .btn {
     padding: 7px 25px;
     font-size: 15px;
-    margin: 0px 10px;
+    margin: 4px 10px;
     color: white;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
+    
 }
-
 #start {
     background-color: #1abc9c;
 }
@@ -60,19 +63,54 @@ body {
 #reset {
     background-color: #0400fc;
 }
+#time{
+    width: 100%;
+}
+@media screen and (max-width:990px){
+    #time .digit{
+        font-size: 4.3rem;
+    }
+    #time .txt{
+        font-size: 2.1rem;
+    }
+}
 
-@media screen and (max-width:800px){
-    #time span{
+@media screen and (max-width:890px){
+    #time .digit{
         font-size: 4rem;
+    }
+    #time .txt{
+        font-size: 1.9rem;
     }
     #time{
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     #container{
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+}
+@media screen and (max-width:590px){
+    #time .digit{
+        font-size: 3rem;
+    }
+    #time .txt{
+        font-size: 1.5rem;
+    }
+    #btn-container{
+        width: 100%;
+        justify-content: space-around;
+    }
+}
+@media screen and (max-width:490px){
+    #time .digit{
+        font-size: 2.6rem;
+    }
+    #time .txt{
+        font-size: 1.2rem;
     }
 }
 
