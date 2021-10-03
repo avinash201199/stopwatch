@@ -54,13 +54,13 @@ body {
 }
 
 @media screen and (max-width:800px){
-    #time .digit{
+    .time .digit{
         font-size: 5rem;
     }
-    #time .txt{
+    .time .txt{
         font-size: 2.5rem;
     }
-    #time{
+    .time{
         display: flex;
         flex-direction: column;
     }
