@@ -73,15 +73,6 @@ function stopwatch() {
     setTimeout("stopwatch()", 10)
 }
 
-function myFunction() {
-    var element = document.body;
-    element.classList.toggle("darkmode");
-    var elem = document.querySelector(".time");
-    elem.classList.toggle("darkmode_container");
-    var el = document.querySelector("#alter");
-    el.classList.toggle("darkmode_mode");
-}
-
 function lap() {
     console.log(hr, min, sec, count)
     var Laps = document.getElementById('laps');
@@ -90,4 +81,13 @@ function lap() {
 
 function clearLap() {
     document.getElementById('laps').remove();
+}
+
+function myFunction() {
+    var element = document.body;
+    element.classList.toggle("darkmode");
+    var elem = document.querySelector(".time");
+    elem.classList.toggle("darkmode_container");
+    var el = document.querySelector("#alter");
+    el.classList.toggle("darkmode_mode");
 }
