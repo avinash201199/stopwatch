@@ -23,7 +23,9 @@ body {
 }
 
 #btn-container {
-    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     margin-top: 40px;
 }
 
@@ -52,22 +54,55 @@ body {
 #reset {
     background-color: #0400fc;
 }
+.time{
+    width: 100%;
+}
+.hr{
+    width: 100%;
+}
 
-@media screen and (max-width:800px){
+@media screen and (max-width:890px){
     .time .digit{
-        font-size: 5rem;
+        font-size: 4rem;
     }
     .time .txt{
-        font-size: 2.5rem;
+        font-size: 1.9rem;
     }
     .time{
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     #container{
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+}
+@media screen and (max-width:590px){
+    .time .digit{
+        font-size: 3rem;
+    }
+    .time .txt{
+        font-size: 1.5rem;
+    }
+    .btn{
+        margin: 0px;
+    }
+    #btn-container{
+        width: 100%;
+        justify-content: space-around;
+    }
+}
+@media screen and (max-width:490px){
+    .time .digit{
+        font-size: 2.8rem;
+    }
+    .time .txt{
+        font-size: 1.3rem;
+    }
+    .btn{
+        margin: 2px;
     }
 }
 /*Lap*/
@@ -79,35 +114,32 @@ body {
 
 #record-container {
     display: flex;
+    width: 100%;
     justify-content: center;
-    margin-top: 5%;
+    margin:20px auto;
     font-family: Arial, Helvetica, sans-serif;
 }
-
 #record-table{
-    margin: 0 auto;
     text-align: center;
     overflow-x: auto;
     overflow-y: auto;
-    padding-bottom: 5%;
+    padding: 10px;
     border-collapse: collapse;
     display: inline-block;
-    height: 110px;
-    width: 30%;
+    max-height: 110px;
+    width: 50%;
     background-color: #333;
     border-radius: 10px;
 }
-
-/*.laps-title{
-    padding-top: 5%;
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
-}*/
-
+@media(max-width:590px){
+    #record-table{
+        width: 80%;
+    }
+}
 #record-table th {
     text-align: center;
     padding: 10px;
+    width: 20%;
 }
 
 #record-table-body:nth-child(n + 7) {
