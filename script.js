@@ -98,5 +98,6 @@ function lap() {
 }
 
 function clearLap() {
-    document.getElementById('laps').remove();
+    lapCount = 0;
+    document.getElementById('laps').innerHTML = "";
 }
