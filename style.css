@@ -73,19 +73,34 @@ body {
 /*Lap*/
 
 #lap {
-    background-color: rgb(166, 17, 211);
+    background-color: #ffffff;
+    color: #000000;
 }
 
-#clearLap {
-    background-color: #ee42a6;
+#record-container {
+    margin-top: 20px;
+    margin-left: 360px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-#laps {
-    margin-top: 100px;
+#record-table{
     text-align: center;
-    color:black;
-    font-size: 25px;
-} 
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 10px;
+    border-collapse: collapse;
+    display: inline-block;
+    max-height: 110px;
+}
+
+#record-table th {
+    text-align: center;
+    padding-right: 10px;
+}
+
+#record-table-body:nth-child(n + 7) {
+    visibility: hidden;
+}
 
 /* Darkmode */
 .darkmode{
