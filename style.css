@@ -1,6 +1,5 @@
 body {
-    background: #43C6AC;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+
     background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     display: flex;
     justify-content: center;
@@ -32,9 +31,10 @@ body {
     padding: 7px 25px;
     font-size: 15px;
     margin: 0px 10px;
-    color: white;
+
     border: 0px;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 #start {
@@ -66,4 +66,26 @@ body {
         flex-direction: column;
         align-items: center;
     }
+}
+
+/* Darkmode */
+.darkmode{
+    background: #d7dfe4;}
+
+.darkmode_container{
+    background-image:linear-gradient(to right, #191654, #43C6AC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+.darkmode_mode{
+    background: linear-gradient(to right, #191654, #43C6AC);
+}
+
+.dark {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

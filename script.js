@@ -72,3 +72,12 @@ function stopwatch() {
     document.getElementById("count").innerHTML = countString;
     setTimeout("stopwatch()", 10)
 }
+
+function myFunction() {
+    var element = document.body;
+    element.classList.toggle("darkmode");
+    var elem = document.querySelector(".time");
+    elem.classList.toggle("darkmode_container");
+    var el = document.querySelector("#alter");
+    el.classList.toggle("darkmode_mode");
+}
