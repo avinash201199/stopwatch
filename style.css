@@ -67,3 +67,17 @@ body {
         align-items: center;
     }
 }
+
+#lap {
+    background-color: rgb(166, 17, 211);
+}
+
+#clearLap {
+    background-color: #ee42a6;
+}
+
+#laps {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 25px;
+}
