@@ -2,6 +2,7 @@ var hr = 0;
 var min = 0;
 var sec = 0;
 var count = 0;
+var lapCount = 0;
 
 var timer = false;
 
@@ -76,7 +77,24 @@ function stopwatch() {
 function lap() {
     console.log(hr, min, sec, count)
     var Laps = document.getElementById('laps');
-    Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
+    var hrString = hr;
+    var minString = min;
+    var secString = sec;
+    var countString = count;
+    lapCount++;
+    if (hr < 10) {
+        hrString = "0" + hrString;
+    }
+    if (min < 10) {
+        minString = "0" + minString;
+    }
+    if (sec < 10) {
+        secString = "0" + secString;
+    }
+    if (count < 10) {
+        countString = "0" + countString;
+    }
+    Laps.innerHTML += "<strong><li>" + "Lap " + lapCount + " - " + hrString + ":" + minString + ":" + secString + ":" + countString + "</li></strong>";
 }
 
 function clearLap() {
