@@ -97,16 +97,6 @@ function stopwatch() {
     setTimeout("stopwatch()", 10)
 }
 
-function lap() {
-    console.log(hr, min, sec, count)
-    var Laps = document.getElementById('laps');
-    Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
-}
-
-function clearLap() {
-    document.getElementById('laps').remove();
-}
-
 function myFunction() {
     var element = document.body;
     element.classList.toggle("darkmode");

@@ -97,22 +97,6 @@ body {
         align-items: center;
     }
 }
-/*Lap*/
-
-#lap {
-    background-color: rgb(166, 17, 211);
-}
-
-#clearLap {
-    background-color: #ee42a6;
-}
-
-#laps {
-    margin-top: 100px;
-    text-align: center;
-    color:black;
-    font-size: 25px;
-} 
 
 /* Darkmode */
 .darkmode{
