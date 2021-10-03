@@ -1,7 +1,4 @@
 # Stop Watch using HTML,CSS and JavaScript
-A Digital Clock which represents the time in DD:HH:MM:SS (day:hour:minute:second) format.
-To enhance the visual appearance it can be viewed in both dark and light modes.
-Facilitates Start,Stop,Reset,Lap and Clear Lap by a mere click of a button.
 
 
  
