@@ -1,0 +1,84 @@
+body {
+    background: #43C6AC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#container {
+    color: #d7dfe4;
+}
+
+.digit {
+    font-size: 150px;
+    font-weight: bold;
+}
+
+.txt {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#btn-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn {
+    padding: 7px 25px;
+    font-size: 15px;
+    margin: 0px 10px;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start {
+    background-color: #1abc9c;
+}
+
+#start :hover {
+    background-color: yellow;
+}
+
+#stop {
+    background-color: #ff0000;
+}
+
+#reset {
+    background-color: #0400fc;
+}
+
+@media screen and (max-width:800px){
+    #time span{
+        font-size: 4rem;
+    }
+    #time{
+        display: flex;
+        flex-direction: column;
+    }
+    #container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+#lap {
+    background-color: rgb(166, 17, 211);
+}
+
+#clearLap {
+    background-color: #ee42a6;
+}
+
+#laps {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 25px;
+}
