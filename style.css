@@ -2,15 +2,22 @@ body {
     background: #43C6AC;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    
     height: 100vh;
-    overflow: hidden;
+   
+}
+
+.container-fluid{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #container {
+    
     color: #d7dfe4;
+    margin-top: 8rem;
 }
 
 .digit {
@@ -81,4 +88,8 @@ body {
     margin-top: 100px;
     text-align: center;
     font-size: 25px;
+}
+.darkmode{
+    background-color:white;
+    border-radius: 25px;
 }

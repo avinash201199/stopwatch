@@ -3,6 +3,7 @@ var min = 0;
 var sec = 0;
 var count = 0;
 
+
 var timer = false;
 
 function start() {
@@ -11,7 +12,7 @@ function start() {
 }
 
 function stop() {
-    timer = false;
+    timer = false
 
 }
 
@@ -74,9 +75,9 @@ function stopwatch() {
 }
 
 function lap() {
-    console.log(hr, min, sec, count)
-    var Laps = document.getElementById('laps');
-    Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
+        var Laps = document.getElementById('laps');
+        Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
+      
 }
 
 function clearLap() {
