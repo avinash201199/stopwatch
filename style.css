@@ -43,7 +43,6 @@ body {
 
 #start :hover {
     background-color: yellow;
-    ;
 }
 
 #stop {
@@ -52,4 +51,19 @@ body {
 
 #reset {
     background-color: #0400fc;
+}
+
+@media screen and (max-width:800px){
+    #time span{
+        font-size: 4rem;
+    }
+    #time{
+        display: flex;
+        flex-direction: column;
+    }
+    #container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
