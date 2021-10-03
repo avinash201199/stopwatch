@@ -93,6 +93,27 @@ body {
 #record-table th {
     text-align: center;
     padding-right: 10px;
+    border: 1px solid #fff;
+}
+
+#record-table tr {
+    border: 1px solid #fff;
+}
+
+#record-table::-webkit-scrollbar {
+    width: 6px;
+}
+
+#record-table::-webkit-scrollbar-track{
+    border-radius: 20px;
+    box-shadow: none;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+#record-table::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    box-shadow: 0in;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 #record-table-body:nth-child(n + 7) {
