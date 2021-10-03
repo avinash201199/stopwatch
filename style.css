@@ -54,8 +54,11 @@ body {
 }
 
 @media screen and (max-width:800px){
-    #time span{
-        font-size: 4rem;
+    #time .digit{
+        font-size: 5rem;
+    }
+    #time .txt{
+        font-size: 2.5rem;
     }
     #time{
         display: flex;
