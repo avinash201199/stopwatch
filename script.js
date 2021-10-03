@@ -81,5 +81,5 @@ function lap() {
 }
 
 function clearLap() {
-    document.getElementById('laps').remove();
+    document.getElementById('laps').innerHTML = '';
 }
