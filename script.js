@@ -6,8 +6,10 @@ var count = 0;
 var timer = false;
 
 function start() {
-    timer = true;
-    stopwatch();
+    if (!timer){
+        timer = true;
+        stopwatch();
+    }
 }
 
 function stop() {
