@@ -4,6 +4,7 @@ var sec = 0;
 var count = 0;
 
 var timer = false;
+var counter = 1;
 
 function start() {
     if (!timer){
@@ -29,6 +30,9 @@ function reset() {
     document.getElementById("min").innerHTML = "00";
     document.getElementById("sec").innerHTML = "00";
     document.getElementById("count").innerHTML = "00";
+
+    document.getElementById("record-table-body").innerHTML = "";
+    counter = 1;
 
 }
 
@@ -76,13 +80,20 @@ function stopwatch() {
 }
 
 function lap() {
-    console.log(hr, min, sec, count)
-    var Laps = document.getElementById('laps');
-    Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
-}
+    var lap_time = document.getElementById("hr").innerHTML + ":" 
+                    + document.getElementById("min").innerHTML + ":" 
+                    + document.getElementById("sec").innerHTML + ":" 
+                    + document.getElementById("count").innerHTML;
 
-function clearLap() {
-    document.getElementById('laps').remove();
+    const table = document.getElementById("record-table-body");
+    const row = table.insertRow(0);
+    const no_cell = row.insertCell(0);
+    const time_cell = row.insertCell(1);
+
+    no_cell.innerHTML = counter;
+    time_cell.innerHTML = lap_time;
+
+    counter++;
 }
 
 function myFunction() {
@@ -92,4 +103,10 @@ function myFunction() {
     elem.classList.toggle("darkmode_container");
     var el = document.querySelector("#alter");
     el.classList.toggle("darkmode_mode");
+    if( document.body.classList.contains("darkmode") ){
+        document.getElementById("record-table").style.color = "#000000";
+    }else{
+        document.getElementById("record-table").style.color = "#ffffff";
+    }
+    
 }
