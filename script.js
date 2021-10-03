@@ -5,10 +5,6 @@ var count = 0;
 
 var timer = false;
 
-let colorStart = false;
-let colorStop = false;
-let colorReset = false;
-
 function start() {
 	document.body.style.setProperty(
 		"background",
@@ -90,6 +86,3 @@ function stopwatch() {
 	setTimeout("stopwatch()", 10);
 }
 
-/*background: #c31432;  /* fallback for old browsers */
-// background: -webkit-linear-gradient(to left, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
-// background: linear-gradient(to left, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
