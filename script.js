@@ -81,3 +81,13 @@ function myFunction() {
     var el = document.querySelector("#alter");
     el.classList.toggle("darkmode_mode");
 }
+
+function lap() {
+    console.log(hr, min, sec, count)
+    var Laps = document.getElementById('laps');
+    Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
+}
+
+function clearLap() {
+    document.getElementById('laps').remove();
+}
