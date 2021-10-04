@@ -26,7 +26,8 @@ hr {
 
 .digit {
     font-size: 150px;
-    font-weight: bold;
+    /*font-weight: bold;*/
+    font-family:'digital-7';
 }
 
 .txt {
@@ -173,4 +174,11 @@ hr {
     border-radius: 20px;
     box-shadow: 0in;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+/*DIGITAL CLOCK FONT*/
+
+@font-face{
+ font-family:'digital-7';
+ src: url('fonts/digital-7.ttf');
 }
