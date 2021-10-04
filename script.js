@@ -5,10 +5,13 @@ var count = 0;
 
 
 var timer = false;
+var lapCounter = 1;
 
 function start() {
-    timer = true;
-    stopwatch();
+    if (!timer){
+        timer = true;
+        stopwatch();
+    }
 }
 
 function stop() {
@@ -28,6 +31,9 @@ function reset() {
     document.getElementById("min").innerHTML = "00";
     document.getElementById("sec").innerHTML = "00";
     document.getElementById("count").innerHTML = "00";
+
+    document.getElementById("record-table-body").innerHTML = "";
+    lapCounter = 1;
 
 }
 
@@ -75,9 +81,20 @@ function stopwatch() {
 }
 
 function lap() {
-        var Laps = document.getElementById('laps');
-        Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
-      
+    var lap_time = document.getElementById("hr").innerHTML + ":" 
+                    + document.getElementById("min").innerHTML + ":" 
+                    + document.getElementById("sec").innerHTML + ":" 
+                    + document.getElementById("count").innerHTML;
+
+    const table = document.getElementById("record-table-body");
+    const row = table.insertRow(0);
+    const no_cell = row.insertCell(0);
+    const time_cell = row.insertCell(1);
+
+    no_cell.innerHTML = lapCounter;
+    time_cell.innerHTML = lap_time;
+
+    lapCounter++;
 }
 
 function clearLap() {
