@@ -15,10 +15,15 @@ function setDarkTheme() {
     $('#light').prop("checked", true);
 }
 
+var prefersDarkThemeMql = window.matchMedia("(prefers-color-scheme: dark)");
+
 $(document).ready(function ()
 {
 
-    if (localStorage.getItem("darkmode") == "true")
+    if (
+        localStorage.getItem("darkmode") == "true" ||
+        (localStorage.getItem("darkmode") === null && prefersDarkThemeMql.matches)
+    )
     {
         setDarkTheme();
     }
