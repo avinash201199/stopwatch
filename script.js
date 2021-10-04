@@ -12,12 +12,16 @@ function start() {
         timer = true;
         stopwatch();
     }
+    else
+    {
+        timer=false;
+    }
 }
 
-function stop() {
+/*function stop() {
     timer = false
 
-}
+}*/
 
 function reset() {
     timer = false;
