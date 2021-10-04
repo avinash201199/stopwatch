@@ -236,3 +236,9 @@ tr {
 .fa-sun {
   color: yellow;
 }
+
+.todayDate {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+}
