@@ -49,7 +49,10 @@ body {
     
 }
 #start {
-    background-color: #1abc9c;
+    color: black;
+    background-color: #bdd4e7;
+background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
+
 }
 
 #start :hover {
@@ -57,11 +60,16 @@ body {
 }
 
 #stop {
-    background-color: #ff0000;
+    color: black;
+    background-color: #90d5ec;
+background-image: linear-gradient(315deg, #90d5ec 0%, #fc575e 74%);
+
 }
 
 #reset {
-    background-color: #0400fc;
+    color: black;
+    background-color: #7f53ac;
+background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
 }
 #time{
     width: 100%;
@@ -115,11 +123,15 @@ body {
 }
 
 #lap {
-    background-color: rgb(166, 17, 211);
+    color: black;
+    background-color: #21d190;
+    background-image: linear-gradient(315deg, #21d190 0%, #d65bca 74%);
 }
 
 #clearLap {
-    background-color: #ee42a6;
+    color: black;
+    background-color: #d8dede;
+background-image: linear-gradient(315deg, #d8dede 0%, #e5bdf6 74%);
 }
 
 #laps {
