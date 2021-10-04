@@ -106,5 +106,5 @@ function clearLap() {
 }
 
 var today = new Date();
-var date=today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear();
+var date=today.toString();
 document.getElementById("d1").innerHTML=date;
