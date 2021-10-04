@@ -17,6 +17,14 @@ function setDarkTheme() {
 
 var prefersDarkThemeMql = window.matchMedia("(prefers-color-scheme: dark)");
 
+prefersDarkThemeMql.addEventListener("change", function(mql) {
+    if (localStorage.getItem("darkmode") === null && mql.matches) {
+        setDarkTheme();
+    } else {
+        setLightTheme();
+    }
+})
+
 $(document).ready(function ()
 {
 
