@@ -22,7 +22,7 @@ body {
 
 .digit {
     font-size: 150px;
-    font-weight: bold;
+    font-family: 'digital-7', sans-serif;
 }
 
 .txt {
@@ -126,4 +126,12 @@ body {
     margin-top: 100px;
     text-align: center;
     font-size: 25px;
+}
+
+
+
+/*DIGITAL CLOCK FONT*/
+@font-face{
+ font-family:'digital-7';
+ src: url('fonts/digital-7.ttf');
 }
