@@ -8,26 +8,33 @@
     <title>Stop Watch</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
+
+    <!-- External CSS File Link -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- External JS File Link -->
     <script type="text/javascript" src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js">
-    </script>
+
+    <!-- Favicon Icon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./stopwatch-main/clock.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./stopwatch-main/clock.png">
+
+    <!-- jquery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="jquery.js"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- FontAwesome CDN-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"
-            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-            <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png"
-                style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
-        <button class="navbar-toggler" style="background-color: beige;" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png" style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
+        <button class="navbar-toggler" style="background-color: beige;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -56,38 +63,35 @@
 
     <div class="container-fluid">
         <div id="container">
-
             <div>
-
                 <div id="time">
                     <span>
                         <span class="digit" id="hr">00</span>
-                        <span class="txt">Hr</span>
+                    <span class="txt">Hr</span>
                     </span>
                     <span>
                         <span class="digit" id="min">00</span>
-                        <span class="txt">Min</span>
+                    <span class="txt">Min</span>
                     </span>
                     <span>
                         <span class="digit" id="sec">00</span>
-                        <span class="txt">Sec</span>
+                    <span class="txt">Sec</span>
                     </span>
                     <span>
                         <span class="digit" id="count">00</span>
-                        <span class="txt">Ms</span>
+                    <span class="txt">Ms</span>
                     </span>
                 </div>
 
                 <span class="todayDate">Day <span id="d1"></span></span>
 
-
             </div>
             <hr />
             <div id="btn-container">
-                <button class="btn" id="start" onclick="start()">Start/Stop</button>
+                <button class="btn btn-sm" id="start" onclick="start()"><i class="far fa-stop-circle"></i> Start/Stop</button>
                 <!--   <button class="btn" id="stop" onclick="stop()">Stop</button> -->
-                <button class="btn" id="reset" onclick="reset()">Reset</button>
-                <button class="btn" id="lap" onclick="lap()">Lap</button>
+                <button class="btn btn-sm" id="reset" onclick="reset()"><i class="fas fa-power-off"></i> Reset</button>
+                <button class="btn btn-sm" id="lap" onclick="lap()"><i class="fas fa-stopwatch"></i> Lap</button>
             </div>
             <div>
                 <div id="record-container">
@@ -106,24 +110,16 @@
     </div>
     <script type="text/javascript">
         // start or stop stopwatch using "spacebar" key
-        document.addEventListener('keyup', event =>
-        {
-            if (event.code === 'Space')
-            {
+        document.addEventListener('keyup', event => {
+            if (event.code === 'Space') {
                 start();
             }
         })
     </script>
     <script src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 
