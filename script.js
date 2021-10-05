@@ -105,6 +105,8 @@ function clearLap() {
     document.getElementById('laps').innerHTML = '';
 }
 
-var today = new Date();
-var date=today.toString();
-document.getElementById("d1").innerHTML=date;
+let date;
+setInterval(() => {
+    date = new Date().toString();
+    document.getElementById('d1').innerHTML = date;
+}, 1000);
