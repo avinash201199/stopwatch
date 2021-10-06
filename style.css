@@ -54,19 +54,38 @@ hr {
 }
 
 #start {
-    background-color: #1abc9c;
+    /* background-color: rgb(166, 17, 211); */
+    background-color: #fbc940;
+    width: 140px;
+    height: 70px;
+    font-size: 20px;
+    box-shadow: 4px 4px 8px #f7dc93;
+    
+    /* color: black; */
 }
 
-#start :hover {
+/* #start :hover {
     background-color: yellow;
-}
+} */
 
-#stop {
-    background-color: #ff0000;
+#lap {
+    /* background-color: #eaec47; */
+    background-color: rgb(166, 17, 211);
+    /* color: black; */
+
+    width: 140px;
+    height: 70px;
+    font-size: 20px;
+    box-shadow: 5px 5px 8px rgb(226, 136, 253);
 }
 
 #reset {
-    background-color: #0400fc;
+    background-color: #f34f4f;
+    /* color: black; */
+    width: 140px;
+    height: 70px;
+    font-size: 20px;
+    box-shadow: 5px 5px 8px #f39a9a;
 }
 
 #time {
@@ -121,10 +140,6 @@ hr {
     #time .txt {
         font-size: 1.2rem;
     }
-}
-
-#lap {
-    background-color: rgb(166, 17, 211);
 }
 
 #clearLap {
