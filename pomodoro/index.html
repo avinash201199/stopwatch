@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU' crossorigin='anonymous'>
+        <link rel='stylesheet' href='index.css'/>
+        <title>Pomodoro timer</title>
+    </head>
+    <body>
+        <nav class='navbar inactive' id='navigation'>
+            <div class='container-fluid py-4 px-5'>
+                <div class='row justify-content-between w-100'>
+                    <div class='col-auto'>
+                        <h3 class='primary p-0 mb-0'>
+                            Pomodoro Timer
+                        </h3>
+                    </div>
+                    <div class='col-auto'>
+                        <button type='button' class='btn btn-outline-primary button-pill px-3' onClick='setPomoTime(25)'>
+                            25min
+                        </button>
+                        <button type='button' class='btn btn-outline-primary button-pill px-3 mx-3' onClick='setPomoTime(40)'>
+                            40min
+                        </button>
+                        <button type='button' class='btn btn-outline-primary button-pill px-3' onClick='setPomoTime(60)'>
+                            60min
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class='row h-100 justify-content-center active' id='counter-background'>
+            <div class='col-12 my-auto'>
+                <div class='row justify-content-center'>
+                    <div class='col-auto my-auto'>
+                        <p class='timer' id='minutes'>
+                                00
+                        </p>
+                    </div>
+                    <div class='col-auto my-auto'>
+                        <p class='timer'>
+                            :
+                        </p>
+                    </div>
+                    <div class='col-auto my-auto'>
+                        <p class='timer' id='seconds'>
+                                00
+                        </p>
+                    </div>
+                </div>
+                <div class='row justify-content-center'>
+                    <div class='col-auto py-5 px-4 hide' id='focus'>
+                        <h1 class='text-center'>
+                            Focus!
+                        </h1>
+                    </div>
+                </div>
+                <div class='row justify-content-center'>
+                    <div class='col-auto bg-dark button-pill py-1 px-4 inactive'  id='timer-control' onClick='startPomoCounter()'>
+                            Play
+                    </div>
+                    <div class='col-auto bg-dark button-pill py-1 px-4 inactive'  id='reset' onClick='reset()'>
+                            Reset
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src='pomo.js'></script>
+    </body>
+</html>

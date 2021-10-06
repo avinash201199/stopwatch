@@ -1,0 +1,39 @@
+body {
+    height: 100vh;
+}
+@font-face {
+    font-family: 'digital-7';
+    src: url('fonts/digital-7.ttf');
+}
+.navigation {
+    transition: background-color 0.5s ease;
+}
+
+.inactive {
+    color: rgb(93, 114, 143);
+    background: rgb(5, 30, 54);
+    transition: background-color 0.5s ease;
+}
+
+.active {
+    color: rgb(6, 66, 66);
+    background: rgb(139, 192, 189);
+    transition: background-color 0.5s ease;
+}
+
+.button-pill {
+    border-radius: 40px;
+}
+
+.timer {
+    font-size: 100px;
+    font-family: 'digital-7';
+}
+
+.counter-background {
+    background: rgb(1, 47, 99)
+}
+
+.hide {
+    color: rgb(137, 192, 189)
+}
