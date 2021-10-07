@@ -18,6 +18,11 @@
                         </h3>
                     </div>
                     <div class='col-auto'>
+                        <h3 class='primary p-0 mb-0'>
+                            <a style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac; text-decoration: none;" href="javascript:history.back()">Stop Watch</a>
+                        </h3>
+                    </div>
+                    <div class='col-auto'>
                         <button type='button' class='btn btn-outline-primary button-pill px-3' onClick='setPomoTime(25)'>
                             25min
                         </button>
@@ -58,12 +63,13 @@
                     </div>
                 </div>
                 <div class='row justify-content-center'>
-                    <div class='col-auto bg-dark button-pill py-1 px-4 inactive'  id='timer-control' onClick='startPomoCounter()'>
+                    <button type="button" class='col-auto bg-dark button-pill py-1 px-4 inactive'  id='timer-control' onClick='startPomoCounter()'>
                             Play
-                    </div>
-                    <div class='col-auto bg-dark button-pill py-1 px-4 inactive'  id='reset' onClick='reset()'>
+                    </button>
+               
+                    <button type="button" class='col-auto bg-dark button-pill py-1 px-4 inactive'  id='reset' onClick='reset()'>
                             Reset
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
