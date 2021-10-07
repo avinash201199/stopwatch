@@ -93,6 +93,7 @@
                 <!--   <button class="btn" id="stop" onclick="stop()">Stop</button> -->
                 <button class="btn btn-sm" id="reset" onclick="reset()"><i class="fas fa-power-off"></i> Reset</button>
                 <button class="btn btn-sm" id="lap" onclick="lap()"><i class="fas fa-stopwatch"></i> Lap</button>
+                <button class="btn btn-sm" id="clearlap" onclick="clearLap()"><i class="fad fa-trash-alt"></i></i>Clear Lap</button>
             </div>
             <div>
                 <div id="record-container">
@@ -124,6 +125,12 @@
         document.addEventListener('keyup', event => {
             if (event.code === 'Enter') {
                 lap();
+            }
+        })
+
+        document.addEventListener('keyup', event => {
+            if (event.code === 'Numpad0') {
+                clearLap();
             }
         })
     </script>

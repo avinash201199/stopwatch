@@ -105,7 +105,8 @@ function lap() {
 }
 
 function clearLap() {
-    document.getElementById('laps').innerHTML = '';
+    document.getElementById('record-table-body').innerHTML = '';
+    lapCounter=1;
 }
 
 let date;
