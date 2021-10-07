@@ -1,259 +1,270 @@
 body {
-    background: #43c6ac;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient( to right, #191654, #43c6ac);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient( to right, #191654, #43c6ac);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    display: block;
-    height: 100vh;
+  background: #43c6ac;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #191654, #43c6ac);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  display: block;
+  height: 100vh;
 }
 
 hr {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .container-fluid {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #container {
-    color: #d7dfe4;
-    margin-top: 8rem;
+  color: #d7dfe4;
+  margin-top: 8rem;
 }
 
 .digit {
-    font-size: 150px;
-    /*font-weight: bold;*/
-    font-family: 'digital-7';
+  font-size: 150px;
+  /*font-weight: bold;*/
+  font-family: "digital-7";
 }
 
 .txt {
-    font-size: 40px;
-    font-weight: bold;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 #btn-container {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 40px;
-    flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
 }
 
 .btn {
-    padding: 7px 25px;
-    font-size: 15px;
-    margin: 4px 10px;
-    color: white;
-    border: 0px;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 7px 25px;
+  font-size: 15px;
+  margin: 4px 10px;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #start {
-    /* background-color: rgb(166, 17, 211); */
-    background-color: #fbc940;
-    width: 140px;
-    height: 70px;
-    font-size: 20px;
-    box-shadow: 4px 4px 8px #f7dc93;
-    
-    /* color: black; */
+  /* background-color: rgb(166, 17, 211); */
+  background-color: #fbc940;
+  width: 140px;
+  height: 70px;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  /* color: black; */
 }
 
 /* #start :hover {
     background-color: yellow;
 } */
-
+#start:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
 #lap {
-    /* background-color: #eaec47; */
-    background-color: rgb(166, 17, 211);
-    /* color: black; */
+  /* background-color: #eaec47; */
+  background-color: rgb(166, 17, 211);
+  /* color: black; */
 
-    width: 140px;
-    height: 70px;
-    font-size: 20px;
-    box-shadow: 5px 5px 8px rgb(226, 136, 253);
+  width: 140px;
+  height: 70px;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#lap:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 #reset {
-    background-color: #f34f4f;
-    /* color: black; */
-    width: 140px;
-    height: 70px;
-    font-size: 20px;
-    box-shadow: 5px 5px 8px #f39a9a;
+  background-color: #f34f4f;
+  /* color: black; */
+  width: 140px;
+  height: 70px;
+  font-size: 20px;
+  /* box-shadow: 5px 5px 8px #f39a9a; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#reset:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 #time {
-    width: 100%;
+  width: 100%;
 }
 
 @media screen and (max-width: 990px) {
-    #time .digit {
-        font-size: 4.3rem;
-    }
-    #time .txt {
-        font-size: 2.1rem;
-    }
+  #time .digit {
+    font-size: 4.3rem;
+  }
+  #time .txt {
+    font-size: 2.1rem;
+  }
 }
 
 @media screen and (max-width: 890px) {
-    #time .digit {
-        font-size: 4rem;
-    }
-    #time .txt {
-        font-size: 1.9rem;
-    }
-    #time {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    #container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  #time .digit {
+    font-size: 4rem;
+  }
+  #time .txt {
+    font-size: 1.9rem;
+  }
+  #time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 590px) {
-    #time .digit {
-        font-size: 3rem;
-    }
-    #time .txt {
-        font-size: 1.5rem;
-    }
-    #btn-container {
-        width: 100%;
-        justify-content: space-around;
-    }
+  #time .digit {
+    font-size: 3rem;
+  }
+  #time .txt {
+    font-size: 1.5rem;
+  }
+  #btn-container {
+    width: 100%;
+    justify-content: space-around;
+  }
 }
 
 @media screen and (max-width: 490px) {
-    #time .digit {
-        font-size: 2.6rem;
-    }
-    #time .txt {
-        font-size: 1.2rem;
-    }
+  #time .digit {
+    font-size: 2.6rem;
+  }
+  #time .txt {
+    font-size: 1.2rem;
+  }
 }
 
 #clearLap {
-    background-color: #ee42a6;
+  background-color: #ee42a6;
 }
 
 #laps {
-    margin-top: 100px;
-    text-align: center;
-    font-size: 25px;
+  margin-top: 100px;
+  text-align: center;
+  font-size: 25px;
 }
 
 #record-container {
-    margin-top: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+  margin-top: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
 #record-table {
-    text-align: center;
-    overflow-x: auto;
-    overflow-y: auto;
-    padding: 10px;
-    border-collapse: collapse;
-    display: inline-block;
-    max-height: 200px;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 10px;
+  border-collapse: collapse;
+  display: inline-block;
+  max-height: 200px;
 }
 
 #record-table th,
 td,
 tr {
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 1px solid #ccc;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid #ccc;
 }
 
 #record-table-body:nth-child(n + 7) {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 #record-table::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
 
 #record-table::-webkit-scrollbar-track {
-    border-radius: 20px;
-    box-shadow: none;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  box-shadow: none;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 #record-table::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    box-shadow: 0in;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  box-shadow: 0in;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
-
 
 /*DIGITAL CLOCK FONT*/
 
 @font-face {
-    font-family: 'digital-7';
-    src: url('fonts/digital-7.ttf');
+  font-family: "digital-7";
+  src: url("fonts/digital-7.ttf");
 }
 
 .checkbox {
-    opacity: 0;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
-    height: 2rem;
-    width: 4rem;
-    cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  height: 2rem;
+  width: 4rem;
+  cursor: pointer;
 }
 
 .label {
-    width: 50px;
-    height: 26px;
-    background-color: #111;
-    display: flex;
-    border-radius: 50px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    position: relative;
-    transform: scale(1);
+  width: 50px;
+  height: 26px;
+  background-color: #111;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1);
 }
 
 .ball {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    border-radius: 50%;
-    transition: transform 0.2s linear;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
 }
 
-.checkbox:checked+.label .ball {
-    transform: translateX(24px);
+.checkbox:checked + .label .ball {
+  transform: translateX(24px);
 }
 
 .fa-moon {
-    color: pink;
+  color: pink;
 }
 
 .fa-sun {
-    color: yellow;
+  color: yellow;
 }
 
 .todayDate {
-    display: block;
-    text-align: center;
-    font-weight: bold;
+  display: block;
+  text-align: center;
+  font-weight: bold;
 }
