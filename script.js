@@ -41,7 +41,10 @@ function reset() {
 
 }
 
+let timeoutId;
 function stopwatch() {
+    clearTimeout(timeoutId);
+
     if (timer == true)
         count = count + 1;
 
@@ -81,7 +84,7 @@ function stopwatch() {
     document.getElementById("min").innerHTML = minString;
     document.getElementById("sec").innerHTML = secString;
     document.getElementById("count").innerHTML = countString;
-    setTimeout("stopwatch()", 10)
+    timeoutId = setTimeout("stopwatch()", 10);
 }
 
 function lap() {
