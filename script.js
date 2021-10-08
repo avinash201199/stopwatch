@@ -10,11 +10,13 @@ var lapCounter = 1;
 function start() {
     if (!timer){
         timer = true;
+		document.getElementById("start").innerHTML = '<i class="far fa-pause-circle"></i> Pause';
         stopwatch();
     }
     else
     {
         timer=false;
+        document.getElementById("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
     }
 }
 
@@ -25,6 +27,7 @@ function start() {
 */
 function reset() {
     timer = false;
+    document.getElementById("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
 
     hr = 0;
     min = 0;
