@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 body {
   background: #43c6ac;
   /* fallback for old browsers */
@@ -53,66 +55,6 @@ hr {
   cursor: pointer;
 }
 
-#start {
-  /* background-color: rgb(166, 17, 211); */
-  background-color: #fbc940;
-  width: 140px;
-  height: 70px;
-  font-size: 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-  /* color: black; */
-}
-
-/* #start :hover {
-    background-color: yellow;
-} */
-#start:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-#lap {
-  /* background-color: #eaec47; */
-  background-color: rgb(166, 17, 211);
-  /* color: black; */
-
-  width: 140px;
-  height: 70px;
-  font-size: 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-#lap:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-
-#clearlap{
-  background-color: rgb(9, 126, 146);
-  /* color: black; */
-
-  width: 140px;
-  height: 70px;
-  font-size: 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-#clearlap:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  }
-
-#reset {
-  background-color: #f34f4f;
-  /* color: black; */
-  width: 140px;
-  height: 70px;
-  font-size: 20px;
-  /* box-shadow: 5px 5px 8px #f39a9a; */
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-#reset:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
 
 #time {
   width: 100%;
@@ -281,4 +223,28 @@ tr {
   display: block;
   text-align: center;
   font-weight: bold;
+}
+
+.buttons {
+  outline: none;
+  height: 50px;
+  text-align: center;
+  width: 150px;
+  border-radius: 40px;
+  background: #fff;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin: 10px;
+  font-family: 'Roboto';
+}
+.buttons:hover {
+  color: white;
+  background: #D8891F;
+}
+.buttons:active {
+  letter-spacing: 2px;
 }
