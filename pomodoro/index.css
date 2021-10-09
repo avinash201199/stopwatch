@@ -10,7 +10,7 @@ body {
 }
 
 .inactive {
-    color: rgb(93, 114, 143);
+    color: rgb(169, 188, 214);
     background: rgb(5, 30, 54);
     transition: background-color 0.5s ease;
 }
@@ -22,6 +22,7 @@ body {
 }
 
 .button-pill {
+    font-size: 1.2em;
     border-radius: 40px;
 }
 
