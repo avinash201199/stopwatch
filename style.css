@@ -248,3 +248,7 @@ tr {
 .buttons:active {
   letter-spacing: 2px;
 }
+
+#disabling{
+  pointer-events: none;
+}
