@@ -83,7 +83,7 @@ function clearLap() {
     document.getElementById('laps').remove();
 }
 
-function getDate(){
+function getLocalTime(){
     const d = new Date().toLocaleTimeString();
     console.log(d);
 }
