@@ -147,7 +147,7 @@ Now, Push your awesome work to your remote repository using
 $ git push -u origin BranchName
 ```
 
-* Finally, go to your repository in the browser and click on compare and pull requests. Then add a title and description to your pull request that explains your precious effor
+* Finally, go to your repository in the browser and click on compare and pull requests. Then add a title and description to your pull request that explains your precious efforts
 
 ### **8. Pull request should have screenshot of the changes you have made.**
 
