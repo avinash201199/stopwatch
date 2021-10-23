@@ -6,8 +6,10 @@ var count = 0;
 
 var timer = false;
 var lapCounter = 1;
-
+const audio = new Audio();
+audio.src = "audio/sound_trim.mp3"
 function start() {
+    audio.play();
     if (!timer){
         timer = true;
 		document.getElementById("start").innerHTML = '<i class="far fa-pause-circle"></i> Pause';
@@ -26,6 +28,7 @@ function start() {
 }
 */
 function reset() {
+    audio.play();
     timer = false;
     document.getElementById("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
 
@@ -91,6 +94,7 @@ function stopwatch() {
 }
 
 function lap() {
+    audio.play();
     var lap_time = document.getElementById("hr").innerHTML + ":" 
                     + document.getElementById("min").innerHTML + ":" 
                     + document.getElementById("sec").innerHTML + ":" 
@@ -108,6 +112,7 @@ function lap() {
 }
 
 function clearLap() {
+    audio.play();
     document.getElementById('record-table-body').innerHTML = '';
     lapCounter=1;
 }
@@ -117,3 +122,4 @@ setInterval(() => {
     date = new Date().toString();
     document.getElementById('d1').innerHTML = date;
 }, 1000);
+
