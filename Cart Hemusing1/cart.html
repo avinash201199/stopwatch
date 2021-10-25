@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fuggles&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&display=swap" rel="stylesheet">
+    <title>CART</title>
+ 
+</head>
+<style>
+
+*{
+		margin: 0;
+		padding: 0;
+		color: #454545;
+	}
+    body{
+        
+       background: black;
+
+
+        
+    }
+	h1{
+		width: 3%;
+	    position: relative;
+	    top: 60px;
+	    left: 90%;
+	    cursor: pointer;
+	}
+	h1:before{
+		content: attr(data-count);
+	    color: white;
+	    position: absolute;
+	    right: 16px;
+	    font-size: 15px;
+	    text-align: center;
+	    top: -12px;
+	    width: 20px;
+	    height: 20px;
+	    background: red;
+	    border-radius: 50%;
+	    opacity: 0;
+	}
+	h1.zero:before{
+		opacity: 1;
+	}
+		section{
+			margin: 100px auto;
+			width: 90%;
+			height: 400px;
+			display: flex;
+			justify-content: space-around;
+		}
+		section div{
+			width: 22%;
+			height: 93%;
+			background:black;
+			padding: 1%;
+			position: relative;
+            
+		}
+		img{
+			width: 300px;
+			height: 186px;
+		}
+
+		p{
+			margin: 5px;
+            font-family: 'Dancing Script', cursive;
+		}
+		h6{
+		    width: 50px;
+		    padding: 5px;
+		    margin: 10px;
+		    font-size: 15px;
+			
+		}
+		button{
+			padding: 15px 50PX;
+		    background:red;
+		    border: none;
+		    outline: none;
+		    font-weight: bold;
+		    color: wheat;
+		    cursor: pointer;
+            border-radius: 10px;
+            margin-left: 45Px;
+            font-size: 25px;
+            font-family: 'Dancing Script', cursive;
+            border-radius: 40PX;
+            
+		}
+		section div span{
+			position: absolute;
+		    top: 14px;
+		    left: 13px;
+		    background: red;
+		    width: 300px;
+		    height: 186px;
+		    display: none;
+		}
+		section div span img{
+			width: 100%;
+			height: 100%;
+		}
+		section div:nth-child(1)>span.active{
+			animation: first 0.5s ease-in;
+			z-index: 2;
+			display: block;
+
+		}
+		section div:nth-child(2)>span.active{
+			animation: second 0.5s ease-in;
+			z-index: 2;
+			display: block;
+
+		}
+		section div:nth-child(3)>span.active{
+			animation: third 0.5s ease-in;
+			z-index: 2;
+			display: block;
+
+		}
+		section div:nth-child(4)>span.active{
+			animation: four 0.5s ease-in;
+			z-index: 2;
+			display: block;
+
+		}
+		@keyframes first{
+			to{
+				width: 30px;
+			    height: 20px;
+			    left: 1290px;
+			    top: -70px;
+			}
+		}
+		@keyframes second{
+			to{
+				width: 30px;
+			    height: 20px;
+			    left: 948px;
+			    top: -70px;
+			}
+		}
+		@keyframes third{
+			to{
+				width: 30px;
+			    height: 20px;
+			    left: 606px;
+			    top: -70px;
+			}
+		}
+		@keyframes four{
+			to{
+				width: 30px;
+			    height: 20px;
+			    left: 265px;
+			    top: -70px;
+			}
+		}
+
+
+		
+		.select{
+			width: 60%;
+			height: 580px;
+			padding: 5%;
+			background: #222;
+			position: absolute;
+			top: -1000px;
+			left: 20%;
+			transition: 0.5s;
+			overflow-y: auto;
+			margin: auto;
+		}
+		.select.display{
+			top: 10px;
+		}
+		.select div{
+			width: 100%;
+			height: 200px;
+			display: flex;
+			padding: 5px;
+			border: 1px solid white;
+			position: relative;
+			margin: 5px auto;
+		}
+		.select div img{
+			width: 300px;
+			height: 100%;
+		}
+		.select div p{
+			padding: 35px;
+			color: white;
+		}
+		.select div h6,
+		.select div button{
+			position: absolute;
+			left: 45%;
+			top: 50%;
+			color: white;
+		}
+		.select div button{
+			left: 60%;
+			top: 55%;
+		}
+		.select div span{
+			display: none;
+		}
+        
+       .cart nav {
+            background-color: white;
+            width: 50%;
+            height: 60px;
+            border-radius: 20px;
+            margin-left: 360px;
+            display: inline-flex;
+            margin-top: 60px;
+    
+         } 
+         .cart h2{
+             margin-top: px;
+             margin-left: 180PX;
+             font-weight: bolder;
+             font-size: 40PX;
+             
+         }   
+      
+        .cart nav h2{
+            margin-top: 7px;
+            font-family: 'Dancing Script', cursive;
+        }
+       
+       
+        .btn {
+  border: none;
+  background-color: blue;
+  padding: 14px 28px;
+  font-size:32px;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 540px;
+  margin-top: 60px;
+  width: 25%;
+  font-family: 'Dancing Script', cursive;
+  border-radius: 30PX;
+  color: black;
+}
+ nav h2{
+    font-family: 'Dancing Script', cursive;
+     margin-top: 370px;
+     border-radius: ;
+     width: 150PX;
+     margin-left: -890px;
+     color: black;
+     background: blue;
+     font-size: 37PX;
+     border-radius: 30PX;
+     padding: 0PX 100PX;
+     height: 60px;
+     font-weight: bolder;
+   
+ }
+.cart nav h2{
+        background-color: red;
+    color: blue;
+    display: flex;
+    text-align: left;
+    
+}
+
+    
+.topnav {
+  background-color:red;
+  overflow: hidden;
+  width: 45%;
+  margin-left: 400PX;
+  height: 55PX;
+  border-radius: 30PX;
+  margin-top: 80px;
+}
+.topnav p{
+    font-size: 40px;
+   margin-left: 123px;
+   font-weight: bolder;
+   
+   font-family: 'Dancing Script', cursive;
+   color: black;
+}
+.nav {
+  background-color:blue;
+  overflow: hidden;
+  width: 25%;
+  margin-left: 500PX;
+  height: 55PX;
+  border-radius: 30PX;
+  margin-top: 80px;
+}
+.nav p{
+    font-size: 40px;
+   margin-left: 100px;
+   font-weight: bolder;
+   
+   font-family: 'Dancing Script', cursive;
+   color: black;
+}
+.nav h2{
+    font-size: 40px;
+   margin-left: 55px;
+   font-weight: bolder;
+   
+   font-family: 'Dancing Script', cursive;
+   color: black;
+}
+.cart h3{
+    margin-left: 1370px;
+    margin-top: -60px;
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: 'Dancing Script', cursive;
+    color: blue;
+}   
+.cart h3{
+	margin-left: 1200px;
+}
+
+
+    </style>
+<body>
+    <div class="topnav">
+        
+        <p>WELCOME TO THE CART SECTION</p>
+      </div>
+
+      <div class="cart">
+    <h1><i class=" fa fa-shopping-cart" style="font-size:58px;;color:wheat"></i></h1>
+       <div>
+    <button class="btn 
+    success">GOLF BAGS</button>
+    <div class="cart">
+        <h3>CART</h3>
+    </div>
+	<section>
+      
+		<div class="item">
+            
+			<img src="golf bag 1.jpg" width="200px" height="200px">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+			
+		</div>
+      
+		<div class="item">
+            
+			<img src="golf bag 2.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="golf bag 3.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="golf bag 4.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+        </section>  
+		</div>  
+  
+        <br>
+        <div class="nav">
+            <p>LUGGAGEBAG</p>
+          </div>
+    <section>
+		<div class="item">
+			<img src="Luggage bags 1.jpg" width="200px" height="200px">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+			
+		</div>
+		<div class="item">
+			<img src="Luggage bag2.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="Luggage bag3.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="Luggage bag4.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+	</section>
+    <br>
+        <div class="nav">
+            <p>TRAVELBAGS</p>
+          </div>
+    <section>
+		<div class="item">
+			<img src="Travel bag 1.jpg" width="200px" height="200px">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+			
+		</div>
+		<div class="item">
+			<img src="Travel bag 2.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="Travel bag 3.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="Travel bag 4.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+	</section>
+    <br>
+    <div class="nav">
+        <h2>HANDBAGS</h2>
+      </div>
+    <section>
+		<div class="item">
+			<img src="Hand bag 1.jpg" width="200px" height="200px">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+			
+		</div>
+		<div class="item">
+			<img src="Hand bag 2.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="Hand bag 3.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="Hand bag 4.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+	</section>
+    <br>
+        <div class="nav">
+            <p>SCHOOLBAGS</p>
+          </div>
+    <section>
+		<div class="item">
+			<img src="School bag1.jpg" width="200px" height="200px">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+			
+		</div>
+		<div class="item">
+			<img src="School bag 2.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="School bag 3.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<div class="item">
+			<img src="School bag 4.jpeg"">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quo, modi ea voluptas tempora vero cumque incidunt eum animi</p>
+			<h6>$345.89</h6>
+			<span></span>
+			<button>Add-cart</button>
+		</div>
+		<script>
+			var noti = document.querySelector('h1');
+		var select = document.querySelector('.select');
+		var button = document.getElementsByTagName('button');
+		for(var but of button){
+			but.addEventListener('click', (e)=>{
+				var add = Number(noti.getAttribute('data-count') || 0);
+				noti.setAttribute('data-count', add +1);
+				noti.classList.add('zero')
+	
+				// image --animation to cart ---//
+				var image = e.target.parentNode.querySelector('img');
+				var span = e.target.parentNode.querySelector('span');
+				var s_image = image.cloneNode(false);
+				span.appendChild(s_image);
+				span.classList.add("active");
+				setTimeout(()=>{
+					span.classList.remove("active");
+					span.removeChild(s_image);
+				}, 500); 
+				
+	
+				// copy and paste //
+				var parent = e.target.parentNode;
+				var clone = parent.cloneNode(true);
+				select.appendChild(clone);
+				clone.lastElementChild.innerText = "Buy-now";
+				
+				if (clone) {
+					noti.onclick = ()=>{
+						select.classList.toggle('display');
+					}	
+				}
+			})
+		}
+		
+		
+		</script>
+</body>
+</html>
