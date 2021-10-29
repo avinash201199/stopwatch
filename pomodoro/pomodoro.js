@@ -4,8 +4,16 @@ var minutes
 var timerDate
 var remainingTime = 0
 
+const audio = new Audio();
+audio.src = "../audio/sound_trim.mp3"  // same audio clip is used for pause,reset
+
+
+
+
+
 const setPomoTime = (minutes) => {
     paused = true
+    audio.play();
     pomoTime.minutes = minutes
     document.getElementById('minutes').innerHTML = minutes
     document.getElementById('seconds').innerHTML = '00'
@@ -18,7 +26,9 @@ const setPomoTime = (minutes) => {
     document.getElementById('counter-background').classList.add('active');
 }
 const reset=()=>{
+    audio.play();
     if(pomoTime.minutes == 25){
+        
         setPomoTime(25);
     }
     else if(pomoTime.minutes == 40){
@@ -29,7 +39,8 @@ const reset=()=>{
     }
 }
 const startPomoCounter = (action) => {
-    paused = !paused
+    audio.play();
+    paused = !paused;
 
     document.getElementById('timer-control').innerHTML = paused ? 'Play' : 'Pause';
     if (!paused) {
