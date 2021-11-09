@@ -121,6 +121,9 @@ hr {
 }
 
 #record-container {
+  /* record container is hidden by default */
+  display: none;
+  
   margin-top: 20px;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
@@ -252,7 +255,9 @@ transition-delay:0.001s;
 .buttons:active {
   letter-spacing: 2px;
 }
-
+.buttons:focus {
+  outline: none;
+}
 #disabling{
   pointer-events: none;
 }

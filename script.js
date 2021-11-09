@@ -28,6 +28,9 @@ function start() {
 }
 */
 function reset() {
+    //hiding record container div
+    document.getElementById("record-container").style.display = "none";
+
     audio.play();
     timer = false;
     document.getElementById("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
@@ -94,6 +97,9 @@ function stopwatch() {
 }
 
 function lap() {
+    //displaying record container div
+    document.getElementById("record-container").style.display = "block";
+    
     audio.play();
     var lap_time = document.getElementById("hr").innerHTML + ":" 
                     + document.getElementById("min").innerHTML + ":" 
@@ -112,6 +118,9 @@ function lap() {
 }
 
 function clearLap() {
+    //hiding record container div
+    document.getElementById("record-container").style.display = "none";
+    
     audio.play();
     document.getElementById('record-table-body').innerHTML = '';
     lapCounter=1;
