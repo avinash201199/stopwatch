@@ -102,19 +102,15 @@ function stopwatch() {
 }
 
 function lap() {
-    //displaying record container div
-    $id("record-container").style.display = "block";
     
-    var lap_time = $id("hr").innerHTML + ":" 
-    + $id("min").innerHTML + ":" 
-    + $id("sec").innerHTML + ":" 
-    + $id("count").innerHTML;
-    
-    if(lap_time=="00:00:00:00"){
-        clearLap();
-    }
-    else{
-
+    if(timer){
+        //displaying record container div
+        $id("record-container").style.display = "block";
+        
+        var lap_time = $id("hr").innerHTML + ":" 
+        + $id("min").innerHTML + ":" 
+        + $id("sec").innerHTML + ":" 
+        + $id("count").innerHTML;
         audio.play();
         const table = $id("record-table-body");
         const row = table.insertRow(0);
