@@ -133,9 +133,84 @@ function clearLap() {
     lapCounter=1;
 }
 
+
 let date;
+let day;
+let dayn;
+let month;
 setInterval(() => {
-    date = new Date().toString();
+    date = new Date();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+
+   
+    switch (new Date().getDay()) {
+        case 0:
+          day = "Sunday";
+          break;
+        case 1:
+          day = "Monday";
+          break;
+        case 2:
+           day = "Tuesday";
+          break;
+        case 3:
+          day = "Wednesday";
+          break;
+        case 4:
+          day = "Thursday";
+          break;
+        case 5:
+          day = "Friday";
+          break;
+        case 6:
+          day = "Saturday";
+      }
+
+
+      switch (new Date().getMonth()) {
+        case 0:
+          month = "Jan";
+          break;
+        case 1:
+          month = "Feb";
+          break;
+        case 2:
+            month = "March";
+          break;
+        case 3:
+            month = "April";
+          break;
+        case 4:
+            month = "May";
+          break;
+        case 5:
+            month = "June";
+          break;
+        case 6:
+          month = "July";
+          break;
+        case 7:
+            month = "Aug";
+          break;
+         case 8:
+            month = "Sept";
+          break;
+          case 9:
+            month = "Oct";
+          break;
+          case 10:
+            month = "Nov";
+          break;
+          case 11:
+            month = "Dec";
+          break;
+      }
+   
+      
+      dayn =date.getDate();
+
+      date = dayn+" "+month+"  , "+year;
     $id('d1').innerHTML = date;
 }, 1000);
 
