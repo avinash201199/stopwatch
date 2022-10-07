@@ -2,16 +2,16 @@ body {
     height: 100vh;
 }
 @font-face {
-    font-family: 'digital-7';
-    src: url('fonts/digital-7.ttf');
+    font-family: 'Roboto Flex', sans-serif;
+    src:url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300&display=swap');
 }
 .navigation {
     transition: background-color 0.5s ease;
 }
 
 .inactive {
-    color: rgb(169, 188, 214);
-    background: rgb(5, 30, 54);
+    color: #ffc107;
+    background: #222831;
     transition: background-color 0.5s ease;
 }
 
@@ -28,7 +28,7 @@ body {
 
 .timer {
     font-size: 100px;
-    font-family: 'digital-7';
+    font-family: 'Roboto Flex', sans-serif;
 }
 
 .counter-background {
@@ -37,4 +37,20 @@ body {
 
 .hide {
     color: rgb(137, 192, 189)
+}
+
+a{
+    color: #cbf1f5;
+    text-decoration: underline;
+}
+
+
+.btn-outline-primary {
+    color: #0dcaf0;
+    border-color: #ccbe91;
+}
+
+
+.col-auto h3 a {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: #c1e1fd; text-decoration: none;
 }
