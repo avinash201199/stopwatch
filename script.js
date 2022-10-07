@@ -102,24 +102,26 @@ function stopwatch() {
 }
 
 function lap() {
-    //displaying record container div
-    $id("record-container").style.display = "block";
     
-    audio.play();
-    var lap_time = $id("hr").innerHTML + ":" 
-                    + $id("min").innerHTML + ":" 
-                    + $id("sec").innerHTML + ":" 
-                    + $id("count").innerHTML;
-
-    const table = $id("record-table-body");
-    const row = table.insertRow(0);
-    const no_cell = row.insertCell(0);
-    const time_cell = row.insertCell(1);
-
-    no_cell.innerHTML = lapCounter;
-    time_cell.innerHTML = lap_time;
-
-    lapCounter++;
+    if(timer){
+        //displaying record container div
+        $id("record-container").style.display = "block";
+        
+        var lap_time = $id("hr").innerHTML + ":" 
+        + $id("min").innerHTML + ":" 
+        + $id("sec").innerHTML + ":" 
+        + $id("count").innerHTML;
+        audio.play();
+        const table = $id("record-table-body");
+        const row = table.insertRow(0);
+        const no_cell = row.insertCell(0);
+        const time_cell = row.insertCell(1);
+        
+        no_cell.innerHTML = lapCounter;
+        time_cell.innerHTML = lap_time;
+        
+        lapCounter++;
+    }
 }
 
 function clearLap() {
