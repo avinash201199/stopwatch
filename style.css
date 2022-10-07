@@ -130,14 +130,15 @@ hr {
 }
 
 #record-table {
-  text-align: center;
-  overflow-x: auto;
-  overflow-y: auto;
-  padding: 10px;
-  border-collapse: collapse;
-  display: inline-block;
-  max-height: 200px;
+  
+	width: 350px; 
+	border-collapse: collapse; 
+	margin:50px auto;
+	
 }
+tr:nth-of-type(odd) { 
+	background: rgb(65, 65, 65); 
+	}
 
 #record-table th,
 td,
@@ -147,7 +148,11 @@ tr {
   padding-right: 10px;
   border: 1px solid #ccc;
 }
-
+th { 
+	background: rgb(216, 137, 31);; 
+	color: white; 
+	font-weight: bold; 
+	}
 #record-table-body:nth-child(n + 7) {
   visibility: hidden;
 }
