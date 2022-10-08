@@ -1,5 +1,7 @@
 # **Stop Watch using HTML, CSS and JavaScript**
 
+**Web link** - https://avinash201199.github.io/stopwatch/
+
 - **Time** is the most essential part of everyone's life and keeping track of this time is equally important.
   <br>
 - A **clock** helps us in our quest to utilize our time efficiently. In order to assist you to excel in this quest we are building a digital stopwatch.
@@ -160,7 +162,7 @@ $ git push -u origin BranchName
 
 <br>
 
-**Web link** - https://avinash201199.github.io/stopwatch/
+
 <br>
 If you want this project then go ahead. Fork and clone it, make changes according to you. After that you can host it on Github using github pages.
 For any help reach me on **social media link** is in profile readme. https://www.instagram.com/lets__code/
