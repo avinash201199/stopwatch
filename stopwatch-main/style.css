@@ -3,6 +3,7 @@ body {
     background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -13,6 +14,11 @@ body {
     color: #d7dfe4;
 }
 
+#footer-container {
+    position: absolute;
+    bottom: 10%;
+}
+
 .digit {
     font-size: 150px;
     font-weight: bold;
@@ -21,6 +27,10 @@ body {
 .txt {
     font-size: 40px;
     font-weight: bold;
+}
+.social-txt {
+    font-size: 20px;
+    color: white;
 }
 
 #btn-container {
