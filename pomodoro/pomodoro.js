@@ -7,23 +7,23 @@ var remainingTime = 0
 const audio = new Audio();
 audio.src = "../audio/sound_trim.mp3"  // same audio clip is used for pause,reset
 
-
-
-
+function $id(id) {
+    return document.getElementById(id);
+}
 
 const setPomoTime = (minutes) => {
     paused = true
     audio.play();
     pomoTime.minutes = minutes
-    document.getElementById('minutes').innerHTML = minutes
-    document.getElementById('seconds').innerHTML = '00'
+    $id('minutes').innerHTML = minutes
+    $id('seconds').innerHTML = '00'
     minutes = pomoTime.minutes
     timerDate = new Date(new Date().getTime() + minutes * 60000)
     remainingTime = 0
     paused = true
-    document.getElementById('timer-control').innerHTML = 'Play'
-    document.getElementById('counter-background').classList.remove('inactive');
-    document.getElementById('counter-background').classList.add('active');
+    $id('timer-control').innerHTML = 'Play'
+    $id('counter-background').classList.remove('inactive');
+    $id('counter-background').classList.add('active');
 }
 const reset=()=>{
     audio.play();
@@ -42,21 +42,21 @@ const startPomoCounter = (action) => {
     audio.play();
     paused = !paused;
 
-    document.getElementById('timer-control').innerHTML = paused ? 'Play' : 'Pause';
+    $id('timer-control').innerHTML = paused ? 'Play' : 'Pause';
     if (!paused) {
-        document.getElementById('counter-background').classList.remove('active');
-        document.getElementById('counter-background').classList.add('inactive');
-        document.getElementById('focus').classList.remove('hidden');
+        $id('counter-background').classList.remove('active');
+        $id('counter-background').classList.add('inactive');
+        $id('focus').classList.remove('hidden');
     } else {
-        document.getElementById('counter-background').classList.remove('inactive');
-        document.getElementById('counter-background').classList.add('active');
+        $id('counter-background').classList.remove('inactive');
+        $id('counter-background').classList.add('active');
     }
     const updateTimer = () => {
         if (!paused) {
             const date = new Date().getTime() - remainingTime
             const timeLeft = timerDate - date
-            document.getElementById('minutes').innerHTML = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
-            document.getElementById('seconds').innerHTML = Math.floor((timeLeft % (1000 * 60)) / 1000)
+            $id('minutes').innerHTML = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
+            $id('seconds').innerHTML = Math.floor((timeLeft % (1000 * 60)) / 1000)
         } else {
             remainingTime += 300
         }

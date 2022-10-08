@@ -7,18 +7,23 @@ var count = 0;
 var timer = false;
 var lapCounter = 1;
 const audio = new Audio();
-audio.src = "audio/sound_trim.mp3"
+audio.src = "audio/sound_trim.mp3";
+
+function $id(id) {
+    return document.getElementById(id);
+}
+
 function start() {
     audio.play();
     if (!timer){
         timer = true;
-		document.getElementById("start").innerHTML = '<i class="far fa-pause-circle"></i> Pause';
+		$id("start").innerHTML = '<i class="far fa-pause-circle"></i> Pause';
         stopwatch();
     }
     else
     {
         timer=false;
-        document.getElementById("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
+        $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
     }
 }
 
@@ -29,23 +34,23 @@ function start() {
 */
 function reset() {
     //hiding record container div
-    document.getElementById("record-container").style.display = "none";
+    $id("record-container").style.display = "none";
 
     audio.play();
     timer = false;
-    document.getElementById("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
+    $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
 
     hr = 0;
     min = 0;
     sec = 0;
     count = 0;
 
-    document.getElementById("hr").innerHTML = "00";
-    document.getElementById("min").innerHTML = "00";
-    document.getElementById("sec").innerHTML = "00";
-    document.getElementById("count").innerHTML = "00";
+    $id("hr").innerHTML = "00";
+    $id("min").innerHTML = "00";
+    $id("sec").innerHTML = "00";
+    $id("count").innerHTML = "00";
 
-    document.getElementById("record-table-body").innerHTML = "";
+    $id("record-table-body").innerHTML = "";
     lapCounter = 1;
 
 }
@@ -89,46 +94,123 @@ function stopwatch() {
         countString = "0" + countString;
     }
 
-    document.getElementById("hr").innerHTML = hrString;
-    document.getElementById("min").innerHTML = minString;
-    document.getElementById("sec").innerHTML = secString;
-    document.getElementById("count").innerHTML = countString;
+    $id("hr").innerHTML = hrString;
+    $id("min").innerHTML = minString;
+    $id("sec").innerHTML = secString;
+    $id("count").innerHTML = countString;
     timeoutId = setTimeout("stopwatch()", 10);
 }
 
 function lap() {
-    //displaying record container div
-    document.getElementById("record-container").style.display = "block";
     
-    audio.play();
-    var lap_time = document.getElementById("hr").innerHTML + ":" 
-                    + document.getElementById("min").innerHTML + ":" 
-                    + document.getElementById("sec").innerHTML + ":" 
-                    + document.getElementById("count").innerHTML;
-
-    const table = document.getElementById("record-table-body");
-    const row = table.insertRow(0);
-    const no_cell = row.insertCell(0);
-    const time_cell = row.insertCell(1);
-
-    no_cell.innerHTML = lapCounter;
-    time_cell.innerHTML = lap_time;
-
-    lapCounter++;
+    if(timer){
+        //displaying record container div
+        $id("record-container").style.display = "block";
+        
+        var lap_time = $id("hr").innerHTML + ":" 
+        + $id("min").innerHTML + ":" 
+        + $id("sec").innerHTML + ":" 
+        + $id("count").innerHTML;
+        audio.play();
+        const table = $id("record-table-body");
+        const row = table.insertRow(0);
+        const no_cell = row.insertCell(0);
+        const time_cell = row.insertCell(1);
+        
+        no_cell.innerHTML = lapCounter;
+        time_cell.innerHTML = lap_time;
+        
+        lapCounter++;
+    }
 }
 
 function clearLap() {
     //hiding record container div
-    document.getElementById("record-container").style.display = "none";
+    $id("record-container").style.display = "none";
     
     audio.play();
-    document.getElementById('record-table-body').innerHTML = '';
+    $id('record-table-body').innerHTML = '';
     lapCounter=1;
 }
 
+
 let date;
+let day;
+let dayn;
+let month;
 setInterval(() => {
-    date = new Date().toString();
-    document.getElementById('d1').innerHTML = date;
+    date = new Date();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+
+   
+    switch (new Date().getDay()) {
+        case 0:
+          day = "Sunday";
+          break;
+        case 1:
+          day = "Monday";
+          break;
+        case 2:
+           day = "Tuesday";
+          break;
+        case 3:
+          day = "Wednesday";
+          break;
+        case 4:
+          day = "Thursday";
+          break;
+        case 5:
+          day = "Friday";
+          break;
+        case 6:
+          day = "Saturday";
+      }
+
+
+      switch (new Date().getMonth()) {
+        case 0:
+          month = "Jan";
+          break;
+        case 1:
+          month = "Feb";
+          break;
+        case 2:
+            month = "March";
+          break;
+        case 3:
+            month = "April";
+          break;
+        case 4:
+            month = "May";
+          break;
+        case 5:
+            month = "June";
+          break;
+        case 6:
+          month = "July";
+          break;
+        case 7:
+            month = "Aug";
+          break;
+         case 8:
+            month = "Sept";
+          break;
+          case 9:
+            month = "Oct";
+          break;
+          case 10:
+            month = "Nov";
+          break;
+          case 11:
+            month = "Dec";
+          break;
+      }
+   
+      
+      dayn =date.getDate();
+
+      date = dayn+" "+month+"  , "+year;
+    $id('d1').innerHTML = date;
 }, 1000);
 

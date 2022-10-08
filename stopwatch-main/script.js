@@ -5,6 +5,10 @@ var count = 0;
 
 var timer = false;
 
+function $id(id) {
+    return document.getElementById(id);
+}
+
 function start() {
     timer = true;
     stopwatch();
@@ -23,10 +27,10 @@ function reset() {
     sec = 0;
     count = 0;
 
-    document.getElementById("hr").innerHTML = "00";
-    document.getElementById("min").innerHTML = "00";
-    document.getElementById("sec").innerHTML = "00";
-    document.getElementById("count").innerHTML = "00";
+    $id("hr").innerHTML = "00";
+    $id("min").innerHTML = "00";
+    $id("sec").innerHTML = "00";
+    $id("count").innerHTML = "00";
 
 }
 
@@ -66,21 +70,21 @@ function stopwatch() {
         countString = "0" + countString;
     }
 
-    document.getElementById("hr").innerHTML = hrString;
-    document.getElementById("min").innerHTML = minString;
-    document.getElementById("sec").innerHTML = secString;
-    document.getElementById("count").innerHTML = countString;
+    $id("hr").innerHTML = hrString;
+    $id("min").innerHTML = minString;
+    $id("sec").innerHTML = secString;
+    $id("count").innerHTML = countString;
     setTimeout("stopwatch()", 10)
 }
 
 function lap() {
     console.log(hr, min, sec, count)
-    var Laps = document.getElementById('laps');
+    var Laps = $id('laps');
     Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
 }
 
 function clearLap() {
-    document.getElementById('laps').remove();
+    $id('laps').remove();
 }
 
 function getLocalTime(){

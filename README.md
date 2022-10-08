@@ -1,3 +1,4 @@
+
 ##                      **Stop Watch using HTML,CSS and JavaScript**
 
 * **Time** is the most essential part of everyones life and keeping track of this time is equally important. <br>
@@ -17,6 +18,7 @@
 
 
 `Note : Create an issue first then make pull request :)`
+
 
 **Steps :-->**
 **1. Star The Repo :star2:**
@@ -43,6 +45,8 @@
              $ cd stopwatch
             ```
 >This will change directory to a folder stopwatch
+
+
 
 * Move to this folder for all other commands.
 
@@ -72,6 +76,7 @@ origin    https://github.com/Your_Username/stopwatch.git (push)
 upstream  https://github.com/Remote_Username/stopwatch.git (fetch)
 upstream  https://github.com/Remote_Username/stopwatch.git (push)
 ```
+
 In your case, you will see
 
 ```sh
@@ -82,13 +87,16 @@ upstream  https://github.com/ietebitmesra/stopwatch.git (fetch)
 upstream  https://github.com/ietebitmesra/stopwatch.git (push)
 ```
 
+
 **5. Sync it ♻️**
 * Always keep your local copy of the repository updated with the original repository. Before making any changes and/or in an appropriate interval, run the following commands carefully to update your local repository.
 
-```sh
+- Always keep your local copy of the repository updated with the original repository. Before making any changes and/or in an appropriate interval, run the following commands carefully to update your local repository.
+
+````sh
 # Fetch all remote repositories and delete any deleted remote branches```
 $ git fetch --all --prune
-```
+````
 
 ```sh
 # Switch to `master` branch
@@ -105,18 +113,19 @@ $ git reset --hard upstream/master
 $ git push origin master
 ```
 
+
 **6. Ready Steady Go... 🐢 🐇**
 * Once you have completed these steps, you are ready to start contributing by checking our Help Wanted Issues and creating pull requests.
-
-**7. Create a new branch ‼️**
+*7. Create a new branch ‼️*
 * Whenever you are going to contribute. Please create a separate branch using command and keep your master branch clean (i.e. synced with remote branch).
+
 
 ```sh
 # It will create a new branch with name Branch_Name and switch to branch Folder_Name
 $ git checkout -b BranchName
 ```
 
-* Create a separate branch for contribution and try to use the same name of the branch as of folder.
+- Create a separate branch for contribution and try to use the same name of the branch as of folder.
 
 To switch to the desired branch
 
@@ -144,7 +153,7 @@ Now, Push your awesome work to your remote repository using
 $ git push -u origin BranchName
 ```
 
-* Finally, go to your repository in the browser and click on compare and pull requests. Then add a title and description to your pull request that explains your precious efforts
+- Finally, go to your repository in the browser and click on compare and pull requests. Then add a title and description to your pull request that explains your precious efforts
 
 **8. Pull request should have screenshot of the changes you have made.**
 
@@ -159,14 +168,12 @@ For any help reach me on **social media link** is in profile readme. https://www
 <br><br>
 For any doubt contact me here: - <br>
 [<img src="https://img.icons8.com/color/50/000000/instagram-new--v2.png"/>](https://www.instagram.com/lets__code/) [<img src="https://img.icons8.com/color/48/000000/github--v3.png"/>](https://github.com/avinash201199)[<img src="https://img.icons8.com/color/48/000000/linkedin.png"/>](https://www.linkedin.com/in/avinash-singh-071b79175/)
-<br>(Must Check My Github for more cool stuff !)<br>
+<br>(Must Check My Github for more cool stuff!)<br>
 
 ### Thank you for your valuable contribution!
-
 
 ## Our Contributors
 
 <a href="https://github.com/avinash201199/stopwatch/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=avinash201199/stopwatch" />
 </a>
-
