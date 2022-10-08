@@ -1,4 +1,4 @@
-# **Stop Watch using HTML, CSS and JavaScript**
+<h1>Stop Watch</h1> 
 
 **Web link** - https://avinash201199.github.io/stopwatch/
 
@@ -6,17 +6,29 @@
   <br>
 - A **clock** helps us in our quest to utilize our time efficiently. In order to assist you to excel in this quest we are building a digital stopwatch.
   <br>
-- This **stopwatch** represents the time in **DD:HH:MM:SS** (day:hour:minute:second) format, making it easy to keep track of our time.
+- This **stopwatch** represents the time in **DD:HH:MM:SS** ```(day:hour:minute:second)``` format, making it easy to keep track of our time.
   <br>
-- The functionalities of **Start, Stop, Reset, Lap and Clear Lap** are accessible by a mere click of a button.
+- The functionalities of **Start, Stop, Reset, Lap and Clear Lap** are accessible by a click of a button.
   <br>
 - To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website inorder to maximize the user experience.
   <br>
-- This project makes use of the technologies such as **HTML, CSS and Javascript** to implement the stopwatch.
 
-## **Note: Create an issue first then make pull request :)**
 
-## **How to contribute 😎**<br>
+![Untitled design](https://user-images.githubusercontent.com/114678694/194710310-87a8fa0e-7f8d-4cd7-a4ff-5b9dc9b008a5.png)
+
+
+<h1>Tech Stack</h1>
+
+![Untitled design (1)](https://user-images.githubusercontent.com/114678694/194710424-a81ee687-2cb9-43ad-9bfd-a95c3aefc552.png)
+
+<h3><li>Html</li></h3>
+<h3><li>Css</li></h3>
+<h3><li>Javascript</li></h3>
+
+
+## **Note: First create an issue then make pull request :)**
+
+## **How to be a contributor of the project 😎**<br>
 
 ### **1. Star The Repo :star2:**
 
@@ -163,13 +175,32 @@ $ git push -u origin BranchName
 <br>
 
 
+<h2>Project</h2> 
+- https://avinash201199.github.io/stopwatch/
 <br>
-If you want this project then go ahead. Fork and clone it, make changes according to you. After that you can host it on Github using github pages.
+
+<h2>Screenshots</h2>
+
+>Interface of the StopWatch
+
+![image](https://user-images.githubusercontent.com/114678694/194711541-1b911e5c-eaec-420b-bf62-e07fa60663bc.png)
+
+>StopWatch Started
+
+<img width="922" alt="image" src="https://user-images.githubusercontent.com/114678694/194711258-253b46fc-3b90-437b-8740-0e0f7d46d6f1.png">
+
+
+
+>If you want this project then go ahead. Fork and clone it, make changes according to you. After that you can host it on Github using github pages.
 For any help reach me on **social media link** is in profile readme. https://www.instagram.com/lets__code/
 <br><br>
-For any doubt contact me here: - <br>
-[<img src="https://img.icons8.com/color/50/000000/instagram-new--v2.png"/>](https://www.instagram.com/lets__code/) [<img src="https://img.icons8.com/color/48/000000/github--v3.png"/>](https://github.com/avinash201199)[<img src="https://img.icons8.com/color/48/000000/linkedin.png"/>](https://www.linkedin.com/in/avinash-singh-071b79175/)
-<br>(Must Check My Github for more cool stuff!)<br>
+
+<h2>Connect with me</h2>
+<br>
+<a href="https://www.instagram.com/lets__code/"><img src="https://img.icons8.com/color/50/000000/instagram-new--v2.png"</img></a>
+<a href="https://www.linkedin.com/in/avinash-singh-071b79175/"><img src="https://img.icons8.com/color/48/000000/linkedin.png"</img></a>
+<a href="https://github.com/avinash201199"><img src="https://img.icons8.com/color/48/000000/github--v3.png"</img></a>
+
 
 ### Thank you for your valuable contribution!
 
