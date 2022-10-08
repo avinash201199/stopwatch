@@ -4,8 +4,8 @@ body {
   overflow: hidden;
 }
 @font-face {
-  font-family: 'digital-7';
-  src: url('fonts/digital-7.ttf');
+  font-family: 'Roboto Flex', sans-serif;
+  src:url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300&display=swap');
 }
 .navigation {
   transition: background-color 0.5s ease;
@@ -13,14 +13,14 @@ body {
 
 
 .inactive {
-  color: rgb(169, 188, 214);
-  background: rgb(5, 30, 54);
+  color: #ffc107;
+  background: #222831;
   transition: background-color 0.5s ease;
 }
 
 .active {
 
-  color: #7fe9d4;
+  color: #ffc105;
   background: #7fe9d4;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #191654, #43c6ac);
@@ -41,7 +41,7 @@ body {
 
 .timer {
   font-size: 100px;
-  font-family: 'digital-7';
+  font-family: 'Roboto Flex', sans-serif;
 }
 
 .counter-background {
@@ -49,7 +49,7 @@ body {
 }
 
 .hide {
-  color: rgb(137, 192, 189)
+  color: #0dcaf0
 }
 
 .checkbox {
@@ -96,4 +96,28 @@ body {
 
 .fa-sun {
   color: yellow;
+}
+
+a{
+  color: #cbf1f5;
+  text-decoration: underline;
+}
+
+
+.btn-outline-primary {
+  color: #0dcaf0;
+  border-color: #ccbe91;
+}
+
+.col-auto h3 a {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: #c1e1fd; text-decoration: none;
+}
+
+button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive{
+  background: #738eb6;
+  color: #ffc105;
+}
+
+.col-auto.my-auto{
+  color: #ffc105;
 }
