@@ -211,7 +211,7 @@ tr {
 }
 
 .checkbox:checked + .label .ball {
-  transform: translateX(24px);
+  transform: translateX(22px);
 }
 
 .fa-moon {
