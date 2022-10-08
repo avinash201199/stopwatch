@@ -191,12 +191,14 @@ tr {
   height: 26px;
   background-color: #111;
   display: flex;
-   border-radius: 5px; 
+  
   align-items: center;
   justify-content: space-between;
   padding: 5px;
   position: relative;
   transform: scale(1);
+  border-radius: 5px; 
+ 
 }
 
 .ball {
