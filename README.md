@@ -1,55 +1,52 @@
-# **Stop Watch using HTML,CSS and JavaScript**
+##                      **Stop Watch using HTML,CSS and JavaScript**
 
-* **Time** is the most essential part of everyones life and keeping track of this time is equally important. 
-<br>
-* A **clock** help us in our quest to utilize our time efficiently. In order to assist you to excell in this quest we are building a digital stopwatch.
-<br>
-* This **stopwatch** represents the time in **DD:HH:MM:SS** (day:hour:minute:second) format, making it easy to keep track of our time.
-<br>
-* The functionalities of **Start, Stop, Reset, Lap and Clear Lap** are accessible by a mere click of a button.
-<br>
-* To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website inorder to maximize the user experience.
-<br> 
+* **Time** is the most essential part of everyones life and keeping track of this time is equally important. <br>
+
+* A **clock** help us in our quest to utilize our time efficiently. In order to assist you to excell in this quest we are building a digital stopwatch. <br>
+
+* This **stopwatch** represents the time in **DD:HH:MM:SS** (day:hour:minute:second) format, making it easy to keep track of our time. It also includes **Pomodoro Timer**. <br>
+
+* The functionalities of **Start, Stop, Reset, Lap and Clear Lap** are accessible by a mere click of a button. <br>
+
+* To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website inorder to maximize the user experience. <br>
+ 
 * This project makes use of the technologies of **HTML, CSS and Javascript** to implemet the stopwatch.
 
 
+##                             **How to contribute 😎**
 
-## **Note : Create an issue first then make pull request :)** 
 
-## **How to contribute 😎**<br>
+`Note : Create an issue first then make pull request :)`
 
-### **1. Star The Repo :star2:**
+**Steps :-->**
+**1. Star The Repo :star2:**
 * Star this repository by pressing the topmost-right button to start your wonderful journey.
-  
 * Create an issue with description that how you want to contribute in this project.
 
-### **2. Fork it :fork_and_knife:**
+**2. Fork it :fork_and_knife:**
 * Then fork this repository by using the <kbd><b>Fork</b></kbd> button on top-right of your screen.
-
 * In forked repository add your changes.
   
-### **3. Clone it :busts_in_silhouette:**
+**3. Clone it :busts_in_silhouette:**
 
 `NOTE: commands are to be executed on Linux, Mac, and Windows(using Powershell)`
 
 * You need to clone (download) it to local machine using
-
-```sh
-$ git clone https://github.com/Your_Username/stopwatch.git
-```
-
+`command :`  ```sh
+               $ git clone https://github.com/Your_Username/stopwatch.git
+            ```  
 > This makes a local copy of the repository in your machine.
+
 * Then make pull request with issue number .
 * Once you have cloned the stopwatch repository in Github, move to that folder first using change directory command on Linux, Mac, and Windows(PowerShell to be used).
+`command :`  ```sh
+             $ cd stopwatch
+            ```
+>This will change directory to a folder stopwatch
 
-```sh
-# This will change directory to a folder stopwatch
-$ cd stopwatch
-```
+* Move to this folder for all other commands.
 
-Move to this folder for all other commands.
-
-### **4. Set it up ⬆️**
+**4. Set it up ⬆️**
 * Run the following commands to see that your local copy has a reference to your forked remote repository in Github :octocat:
 
 ```sh
@@ -85,7 +82,7 @@ upstream  https://github.com/ietebitmesra/stopwatch.git (fetch)
 upstream  https://github.com/ietebitmesra/stopwatch.git (push)
 ```
 
-### **5. Sync it ♻️**
+**5. Sync it ♻️**
 * Always keep your local copy of the repository updated with the original repository. Before making any changes and/or in an appropriate interval, run the following commands carefully to update your local repository.
 
 ```sh
@@ -108,10 +105,10 @@ $ git reset --hard upstream/master
 $ git push origin master
 ```
 
-### **6. Ready Steady Go... 🐢 🐇**
+**6. Ready Steady Go... 🐢 🐇**
 * Once you have completed these steps, you are ready to start contributing by checking our Help Wanted Issues and creating pull requests.
 
-### **7. Create a new branch ‼️**
+**7. Create a new branch ‼️**
 * Whenever you are going to contribute. Please create a separate branch using command and keep your master branch clean (i.e. synced with remote branch).
 
 ```sh
@@ -149,9 +146,9 @@ $ git push -u origin BranchName
 
 * Finally, go to your repository in the browser and click on compare and pull requests. Then add a title and description to your pull request that explains your precious efforts
 
-### **8. Pull request should have screenshot of the changes you have made.**
+**8. Pull request should have screenshot of the changes you have made.**
 
-### **9. Wait for review. :heart:**
+**9. Wait for review. :heart:**
 
 <br>
 
