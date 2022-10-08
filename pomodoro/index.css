@@ -97,3 +97,17 @@ body {
 .fa-sun {
   color: yellow;
 }
+button.btn.btn-outline-primary.button-pill.px-3{
+  transition:transform 0.03s;
+}
+button.btn.btn-outline-primary.button-pill.px-3:hover{
+  transform: scale(1.1);
+  box-shadow:1px 1px 12px 7px blue;
+}
+button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive{
+  transition: transform 0.03s;
+}
+button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover{
+  transform: scale(1.05);
+  box-shadow:1px 1px 12px 7px rgb(119, 204, 238);
+}
