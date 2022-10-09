@@ -1,9 +1,16 @@
 
+
 ##                      **Stop Watch using HTML,CSS and JavaScript**
 
 * **Time** is the most essential part of everyones life and keeping track of this time is equally important. <br>
 
 * A **clock** help us in our quest to utilize our time efficiently. In order to assist you to excell in this quest we are building a digital stopwatch. <br>
+
+<h1>Stop Watch</h1> 
+
+**Web link** - https://avinash201199.github.io/stopwatch/
+
+
 
 * This **stopwatch** represents the time in **DD:HH:MM:SS** (day:hour:minute:second) format, making it easy to keep track of our time. It also includes **Pomodoro Timer**. <br>
 
@@ -161,14 +168,33 @@ $ git push -u origin BranchName
 
 <br>
 
-**Web link** - https://avinash201199.github.io/stopwatch/
+
+<h2>Project</h2> 
+- https://avinash201199.github.io/stopwatch/
 <br>
-If you want this project then go ahead. Fork and clone it, make changes according to you. After that you can host it on Github using github pages.
+
+<h2>Screenshots</h2>
+
+>Interface of the StopWatch
+
+![image](https://user-images.githubusercontent.com/114678694/194711541-1b911e5c-eaec-420b-bf62-e07fa60663bc.png)
+
+>StopWatch Started
+
+<img width="922" alt="image" src="https://user-images.githubusercontent.com/114678694/194711258-253b46fc-3b90-437b-8740-0e0f7d46d6f1.png">
+
+
+
+>If you want this project then go ahead. Fork and clone it, make changes according to you. After that you can host it on Github using github pages.
 For any help reach me on **social media link** is in profile readme. https://www.instagram.com/lets__code/
 <br><br>
-For any doubt contact me here: - <br>
-[<img src="https://img.icons8.com/color/50/000000/instagram-new--v2.png"/>](https://www.instagram.com/lets__code/) [<img src="https://img.icons8.com/color/48/000000/github--v3.png"/>](https://github.com/avinash201199)[<img src="https://img.icons8.com/color/48/000000/linkedin.png"/>](https://www.linkedin.com/in/avinash-singh-071b79175/)
-<br>(Must Check My Github for more cool stuff!)<br>
+
+<h2>Connect with me</h2>
+<br>
+<a href="https://www.instagram.com/lets__code/"><img src="https://img.icons8.com/color/50/000000/instagram-new--v2.png"</img></a>
+<a href="https://www.linkedin.com/in/avinash-singh-071b79175/"><img src="https://img.icons8.com/color/48/000000/linkedin.png"</img></a>
+<a href="https://github.com/avinash201199"><img src="https://img.icons8.com/color/48/000000/github--v3.png"</img></a>
+
 
 ### Thank you for your valuable contribution!
 
