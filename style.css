@@ -274,6 +274,13 @@ transition-delay:0.001s;
 font-size: large;
 }
 
+.nav-item{
+  display: flex;
+}
+.nav-item > a{
+  margin-right: 30px;
+}
+
 .buttons {
   color:#fefefe;
   outline: none;
@@ -308,6 +315,11 @@ transition-delay:0.001s;
   pointer-events: none;
 }
 
+.nav-link:hover{
+  font-size: 1.1em;
+  transition: 0.05s all ease-in;
+  font-weight: 600;
+}
 
 ::-webkit-scrollbar
 {
