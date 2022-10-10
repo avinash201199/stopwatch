@@ -12,6 +12,7 @@ function setDarkTheme() {
     $('#title1').css({ "color": "white" });
     $('body').css({ "background": "#191212" });
     $('.digit').css({ "color": "rgb(216 137 31)" });
+    $('.buttons').css({ "border-color": "white" });
     $('#light').prop("checked", true);
 }
 
