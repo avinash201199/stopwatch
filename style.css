@@ -319,11 +319,6 @@ transition-delay:0.001s;
   pointer-events: none;
 }
 
-.nav-link:hover{
-  font-size: 1.1em;
-  transition: 0.05s all ease-in;
-  font-weight: 600;
-}
 
 ::-webkit-scrollbar
 {
@@ -341,4 +336,5 @@ transition-delay:0.001s;
 									   color-stop(0.72, rgb(73,125,189)),
 									   color-stop(0.86, rgb(28,58,148)));
 }
- 
+
+
