@@ -336,5 +336,45 @@ transition-delay:0.001s;
 									   color-stop(0.72, rgb(73,125,189)),
 									   color-stop(0.86, rgb(28,58,148)));
 }
+footer{
+
+  height: 250px;
+  display: flex; 
+
+  justify-content: center;
+  align-items: center;
+  text-decoration-color: white;
+  text-emphasis-style: bold;
+}
+.link1{
+  max-width: 10%;
+   padding: 0.5rem 1rem;
+   box-sizing: border-box; 
+   display: inline;
+   float: right;
+  margin-right: 25%;
+}
+.link2{
+  max-width: 10%;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box; 
+  display: inline;
+  float: right;
+  margin-right: 10%;
+}
+.link3{
+  max-width: 10%;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  display: inline;float: left;
+  margin-left: 25%
+}
+
+.textfooter{
+  color: white; 
+  margin-left: 43%; 
+  margin-right:25%; 
+  font-size: large;
+}
 
 
