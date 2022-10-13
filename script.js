@@ -36,8 +36,6 @@ function start() {
 */
 function reset() {
     //hiding record container div
-    if(timer)
-    {
     $id("record-container").style.display = "none";
     audio.play();
     timer = false;
@@ -55,7 +53,6 @@ function reset() {
 
     $id("record-table-body").innerHTML = "";
     lapCounter = 1;
-  }
 
 }
 
