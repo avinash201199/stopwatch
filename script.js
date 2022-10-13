@@ -14,17 +14,19 @@ function $id(id) {
 }
 
 function start() {
-    audio.play();
-    if (!timer){
-        timer = true;
-		$id("start").innerHTML = '<i class="far fa-pause-circle"></i> Pause';
-        stopwatch();
-    }
-    else
-    {
-        timer=false;
-        $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
-    }
+
+      audio.play();
+      if (!timer){
+          timer = true;
+      $id("start").innerHTML = '<i class="far fa-pause-circle"></i> Pause';
+          stopwatch();
+      }
+      else
+      {
+          timer=false;
+          $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
+      }
+    
 }
 
 /*function stop() {
@@ -34,8 +36,9 @@ function start() {
 */
 function reset() {
     //hiding record container div
+    if(timer)
+    {
     $id("record-container").style.display = "none";
-
     audio.play();
     timer = false;
     $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
@@ -52,6 +55,7 @@ function reset() {
 
     $id("record-table-body").innerHTML = "";
     lapCounter = 1;
+  }
 
 }
 
@@ -126,11 +130,14 @@ function lap() {
 
 function clearLap() {
     //hiding record container div
-    $id("record-container").style.display = "none";
+    if(timer)
+    {
+      $id("record-container").style.display = "none";
     
-    audio.play();
-    $id('record-table-body').innerHTML = '';
-    lapCounter=1;
+      audio.play();
+      $id('record-table-body').innerHTML = '';
+      lapCounter=1;
+    } 
 }
 
 
