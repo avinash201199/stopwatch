@@ -25,12 +25,15 @@ const setCustomTime = (minutes) => {
     $id('timer-control').innerHTML = 'Play'
     $id('counter-background').classList.remove('inactive');
     $id('counter-background').classList.add('active');
+    customTime.seconds = 60*customTime.minutes
 }
 
 const reset=()=>{
     audio.play();
+    clearInterval(interval);
     setCustomTime(time.value);
 }
+var interval = 0;
 const startCustomTimerCounter = (action) => {
     audio.play();
     paused = !paused;
@@ -57,16 +60,19 @@ const startCustomTimerCounter = (action) => {
         }
     }
     const updateTimer = () => {
-        if (!paused) {
-            const date = new Date().getTime() - remainingTime
-            const timeLeft = timerDate - date
-            $id('minutes').innerHTML = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
-            $id('seconds').innerHTML = Math.floor((timeLeft % (1000 * 60)) / 1000)
-        } else {
-            remainingTime += 300
+        console.log("hi")
+        if (!paused && customTime.seconds  > 0) {
+            customTime.seconds--;
+            const minutes = Math.floor(customTime.seconds / 60);
+            const seconds = customTime.seconds % 60;
+            $id('minutes').innerHTML = minutes
+            $id('seconds').innerHTML = seconds
+        }
+        if(customTime.seconds == 0){
+            reset()
         }
     }
-    setInterval(updateTimer, 1000);
+    interval = setInterval(updateTimer, 1000);
 }
 
 setCustomTime(time.value);
