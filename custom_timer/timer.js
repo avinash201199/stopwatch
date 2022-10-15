@@ -12,26 +12,28 @@ function $id(id) {
     return document.getElementById(id);
 }
 
-const setCustomTime = (minutes) => {
-    paused = true
-    audio.play();
-    customTime.minutes = minutes
-    $id('minutes').innerHTML = minutes
-    $id('seconds').innerHTML = '00'
-    minutes = customTime.minutes
-    timerDate = new Date(new Date().getTime() + minutes * 60000)
-    remainingTime = 0
-    paused = true
-    $id('timer-control').innerHTML = 'Play'
-    $id('counter-background').classList.remove('inactive');
-    $id('counter-background').classList.add('active');
-    customTime.seconds = 60*customTime.minutes
+const setCustomTime = (hours=0,minutes=0,seconds=0) => {
+   
+        paused = true
+        audio.play();
+        $id('hours').innerHTML = String(hours).padStart(2,'0')
+        $id('minutes').innerHTML = String(minutes).padStart(2,'0')
+        $id('seconds').innerHTML = String(seconds).padStart(2,'0')
+        remainingTime = 0
+        paused = true
+        $id('timer-control').innerHTML = 'Play'
+        $id('counter-background').classList.remove('inactive');
+        $id('counter-background').classList.add('active');
+        customTime.seconds = (Number(hours)*3600)+(Number(minutes)*60)+Number(seconds)
 }
 
 const reset=()=>{
     audio.play();
     clearInterval(interval);
-    setCustomTime(time.value);
+    if(!(hoursInput.value==0&&minutesInput.value==0&&secondsInput.value==0))
+    {
+        setCustomTime(hoursInput.value,minutesInput.value,secondsInput.value);
+    }  
 }
 var interval = 0;
 const startCustomTimerCounter = (action) => {
@@ -60,13 +62,15 @@ const startCustomTimerCounter = (action) => {
         }
     }
     const updateTimer = () => {
-        console.log("hi")
+        console.log(customTime.seconds)
         if (!paused && customTime.seconds  > 0) {
             customTime.seconds--;
-            const minutes = Math.floor(customTime.seconds / 60);
+            const hours=Math.floor(customTime.seconds / (60*60));
+            const minutes = Math.floor(customTime.seconds / 60)%60;
             const seconds = customTime.seconds % 60;
-            $id('minutes').innerHTML = minutes
-            $id('seconds').innerHTML = seconds
+            $id('hours').innerHTML = String(hours).padStart(2,'0')
+            $id('minutes').innerHTML = String(minutes).padStart(2,'0')
+            $id('seconds').innerHTML = String(seconds).padStart(2,'0')
         }
         if(customTime.seconds == 0){
             reset()
