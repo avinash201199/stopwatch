@@ -21,40 +21,37 @@
         <title>Pomodoro timer</title>
     </head>
     <body>
-        <nav class='navbar inactive theme' id='navigation'>
-            <div class='container-fluid py-4 px-5'>
-                <div class='row justify-content-between w-100'>
-                    <div class='col-auto'>
-                        <h3 class='primary p-0 mb-0'>
-                            <a style="text-decoration: none;" href="../custom_timer/timer.html" >Custom Timer</a>
-                        </h3>
-                    </div>
-                    <div class='col-auto'>
-                        <h3 class='primary p-0 mb-0'>
-                            <a style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac; text-decoration: none;" href="../index.html">Stop Watch</a>
-                        </h3>
-                    </div>
-                    <div class='col-auto'>
-                        <button type='button' class='btn btn-outline-primary button-pill px-3' onClick='setPomoTime(25)'>
-                            25min
-                        </button>
-                        <button type='button' class='btn btn-outline-primary button-pill px-3 mx-3' onClick='setPomoTime(40)'>
-                            40min
-                        </button>
-                        <button type='button' class='btn btn-outline-primary button-pill px-3' onClick='setPomoTime(60)'>
-                            60min
-                        </button>  
-                    </div>
-                    <div class="col-auto">
-                        <input type="checkbox" id="light" class="checkbox">
-                        <label for="checkbox" class="label">
-                            <i class="fas fa-moon"></i>
-                            <i class='fas fa-sun'></i>
-                            <div class='ball'>
-                        </label>
-                    </div>
-                </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a id="disabling" class="navbar-brand" href="#" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png" style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
+        <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac;" href="../index.html">Stop Watch</a>
+                    <a class="nav-link"  style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac;" href="../custom_timer/timer.html">Custom Timer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#"></a>
+                </li>
+                
+            </ul>
+            <div id="switch-theme">
+                <input type="checkbox" id="light" class="checkbox">
+                <label for="checkbox" class="label">
+                    <i class="fas fa-moon"></i>
+                    <i class='fas fa-sun'></i>
+                    <div class='ball'>
+                </label>
             </div>
+
+        </div>
         </nav>
         <div class='row h-100 justify-content-center active' id='counter-background'>
             <div class='col-12 my-auto'>
