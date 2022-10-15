@@ -69,6 +69,18 @@ hr {
   }
 }
 
+@media screen and (max-width: 991px){
+  #switch-theme input[type='checkbox'], #switch-theme label{
+    position: relative;
+  }
+  #switch-theme label{
+    margin-top: -1.6rem;
+  }
+  #switch-theme{
+    max-width: max-content;
+  }
+}
+
 @media screen and (max-width: 890px) {
   #time .digit {
     font-size: 4rem;
