@@ -127,14 +127,11 @@ function lap() {
 
 function clearLap() {
     //hiding record container div
-    if(timer)
-    {
-      $id("record-container").style.display = "none";
+    $id("record-container").style.display = "none";
     
-      audio.play();
-      $id('record-table-body').innerHTML = '';
-      lapCounter=1;
-    } 
+    audio.play();
+    $id('record-table-body').innerHTML = '';
+    lapCounter=1;
 }
 
 
