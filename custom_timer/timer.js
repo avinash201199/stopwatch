@@ -30,11 +30,10 @@ const setCustomTime = (hours=0,minutes=0,seconds=0) => {
 const reset=()=>{
     audio.play();
     clearInterval(interval);
-    if(!(hoursInput.value==0&&minutesInput.value==0&&secondsInput.value==0))
-    {
-        setCustomTime(hoursInput.value,minutesInput.value,secondsInput.value);
-    }  
+
+    setCustomTime(0);
 }
+
 var interval = 0;
 const startCustomTimerCounter = (action) => {
     audio.play();
@@ -71,6 +70,10 @@ const startCustomTimerCounter = (action) => {
             $id('hours').innerHTML = String(hours).padStart(2,'0')
             $id('minutes').innerHTML = String(minutes).padStart(2,'0')
             $id('seconds').innerHTML = String(seconds).padStart(2,'0')
+        }
+        if(customTime.seconds < 0){
+            alert("Please Enter positive time value!");
+            reset();
         }
         if(customTime.seconds == 0){
             reset()
