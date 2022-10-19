@@ -31,8 +31,9 @@ const setCustomTime = (minutes) => {
 const reset=()=>{
     audio.play();
     clearInterval(interval);
-    setCustomTime(time.value);
+    setCustomTime(0);
 }
+
 var interval = 0;
 const startCustomTimerCounter = (action) => {
     audio.play();
@@ -67,6 +68,10 @@ const startCustomTimerCounter = (action) => {
             const seconds = customTime.seconds % 60;
             $id('minutes').innerHTML = minutes
             $id('seconds').innerHTML = seconds
+        }
+        if(customTime.seconds < 0){
+            alert("Please Enter positive time value!");
+            reset();
         }
         if(customTime.seconds == 0){
             reset()
