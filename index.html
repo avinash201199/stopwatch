@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Stop Watch</title>
@@ -13,31 +12,41 @@
     <link rel="stylesheet" href="./style.css" />
 
     <!-- External JS File Link -->
-    <script type="text/javascript" src="script.js"></script>
 
     <!-- Favicon Icon-->
-    <link rel="icon" type="image/png" href="./img/favicon.png">
+    <link rel="icon" type="image/png" href="./img/favicon.png" />
 
     <!-- jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="jquery.js"></script>
 
     <!-- FontAwesome CDN-->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
 
     <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
 
-<body>
+  <body>
+ 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="disabling" class="navbar-brand" href="#" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-            <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png" style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
-        <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="container-fluid">
+        <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png" style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
+        <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          </button>
+        <div class="collapse navbar-collapse"  id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link"  style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac;" href="pomodoro/index.html">Pomodoro Timer</a>
@@ -49,121 +58,120 @@
                 <label for="checkbox" class="label">
                     <i class="fas fa-moon"></i>
                     <i class='fas fa-sun'></i>
-                    <div class='ball'>
+                    <div class='ball'></ball>
                 </label>
             </div>
-
-        </div>
+      </div>
     </nav>
 
     <div class="container-fluid">
-        <div id="container">
-            <div>
-                <div id="time">
-                    <span>
-                        <span class="digit" id="hr">00</span>
-                    <span class="txt">Hr</span>
-                    </span>
-                    <span>
-                        <span class="digit" id="min">00</span>
-                    <span class="txt">Min</span>
-                    </span>
-                    <span>
-                        <span class="digit" id="sec">00</span>
-                    <span class="txt">Sec</span>
-                    </span>
-                    <span>
-                        <span class="digit" id="count">00</span>
-                    <span class="txt">Ms</span>
-                    </span>
-                </div>
+      <div id="container">
+        <div>
+          <div id="time">
+            <span>
+              <span class="digit" id="hr">00</span>
+              <span class="txt">Hr</span>
+            </span>
+            <span>
+              <span class="digit" id="min">00</span>
+              <span class="txt">Min</span>
+            </span>
+            <span>
+              <span class="digit" id="sec">00</span>
+              <span class="txt">Sec</span>
+            </span>
+            <span>
+              <span class="digit" id="count">00</span>
+              <span class="txt">Ms</span>
+            </span>
+          </div>
 
-                <span class="todayDate"><h3><span id="d1"></span></h3></span>
-                
-            </div>
-            <hr />
-            <div id="btn-container">
-                <button class="buttons" id="start" onclick="start()"><i class="far fa-play-circle"></i> Start</button>
-                <!--   <button class="btn" id="stop" onclick="stop()">Stop</button> -->
-                <button class="buttons" id="reset" onclick="reset()"><i class="fas fa-power-off"></i> Reset</button>
-                <button class="buttons" id="lap" onclick="lap()"><i class="fas fa-stopwatch"></i> Lap</button>
-                <button class="buttons" id="clearlap" onclick="clearLap()"><i class="fad fa-trash-alt"></i></i> Clear Lap</button>
-            </div>
-            <div>
-                <div id="record-container">
-                    <table id="record-table">
-                        <tr>
-                            <th>Lap Number</th>
-                            <th>Time</th>
-                        </tr>
-                        <tbody id="record-table-body">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <hr />
+          <span class="todayDate"
+            ><h3><span id="d1"></span></h3
+          ></span>
         </div>
+        <hr />
+        <div id="btn-container">
+          <button class="buttons" id="start" onclick="start()">
+            <i class="far fa-play-circle"></i> Start
+          </button>
+          <!--   <button class="btn" id="stop" onclick="stop()">Stop</button> -->
+          <button class="buttons" id="reset" onclick="reset()">
+            <i class="fas fa-power-off"></i> Reset
+          </button>
+          <button class="buttons" id="lap" onclick="lap()">
+            <i class="fas fa-stopwatch"></i> Lap
+          </button>
+          <button class="buttons" id="clearlap" onclick="clearLap()">
+            <i class="fad fa-trash-alt"></i> Clear Lap
+          </button>
+        </div>
+        <div>
+          <div id="record-container">
+            <table id="record-table">
+              <tr>
+                <th>Lap Number</th>
+                <th>Time</th>
+              </tr>
+              <tbody id="record-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <hr />
+      </div>
     </div>
-    
-           
 
     <script type="text/javascript">
-        // start or stop stopwatch using "spacebar" key
-        document.addEventListener('keyup', event => {
-            if (event.code === 'Space') {
-                start();
-            }
-        })
-        document.addEventListener('keyup', event => {
-            if (event.code === 'Backspace') {
-                reset();
-            }
-        })
-        document.addEventListener('keyup', event => {
-            if (event.code === 'Enter') {
-                lap();
-            }
-        })
+      // start or stop stopwatch using "spacebar" key
+      document.addEventListener("keyup", (event) => {
+        if (event.code === "Space") {
+          start();
+        }
+      });
+      document.addEventListener("keyup", (event) => {
+        if (event.code === "Backspace") {
+          reset();
+        }
+      });
+      document.addEventListener("keyup", (event) => {
+        if (event.code === "Enter") {
+          lap();
+        }
+      });
 
-        document.addEventListener('keyup', event => {
-            if (event.code === 'Numpad0') {
-                clearLap();
-            }
-        })
+      document.addEventListener("keyup", (event) => {
+        if (event.code === "Numpad0") {
+          clearLap();
+        }
+      });
     </script>
     <script src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-     <!-- FOOTER -->
-     <footer>
+    <!-- FOOTER -->
+    <footer>
+      <div>
+        <p class="textfooter">Made with 💝 by Avinash</p>
+
         <div>
-        <p class="textfooter">
-            Made with 💝 by Avinash
-        </p>
-        
-        <div>
-        <ul style="color: white;" class="social-links">
-          
-          <li>
+          <ul style="color: white" class="social-links">
+            <li>
               <a href="https://github.com/avinash201199">
-              <img class="link" src="./img/github.png"  ></a>
-          </li>
-          <li>
-              <a  href="https://www.linkedin.com/in/avinash-singh-071b79175/">
-              <img class="link" src="./img/linkedin.png"  ></a>
-          </li>
-          <li>
-              <a  href="https://www.instagram.com/lets__code/">
-              <img class="link"  src="./img/instagram.png"  ></a>
-          </li>
-          
-        </ul>
+                <img class="link" src="./img/github.png"
+              /></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
+                <img class="link" src="./img/linkedin.png"
+              /></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/lets__code/">
+                <img class="link" src="./img/instagram.png"
+              /></a>
+            </li>
+          </ul>
         </div>
-        </div>
+      </div>
     </footer>
-
-</body>
-
+  </body>
 </html>

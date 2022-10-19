@@ -35,9 +35,11 @@
                         </h3>
                     </div>
                     <div class='col-auto'>
-                        <input type="number" placeholder="Enter the time" id="time" class="justify-content-between"> 
+                        <input type="number" placeholder="Enter Hours" id="hoursInput" class="justify-content-between time">
+                        <input type="number" placeholder="Enter Minutes" id="minutesInput" class="justify-content-between time">
+                        <input type="number" placeholder="Enter Seconds" id="secondsInput" class="justify-content-between time"> 
                         <button type='submit' class='btn btn-outline-success button-pill px-3' for="time"
-                        onClick='setCustomTime(time.value)'>
+                        onClick='setCustomTime(hoursInput.value,minutesInput.value,secondsInput.value)'>
                             Make Timer
                         </button>  
                     </div>
@@ -46,7 +48,7 @@
                         <label for="checkbox" class="label">
                             <i class="fas fa-moon"></i>
                             <i class='fas fa-sun'></i>
-                            <div class='ball'>
+                            <div class='ball'></div>
                         </label>
                     </div>
                 </div>
@@ -55,6 +57,16 @@
         <div class='row h-100 justify-content-center active' id='counter-background'>
             <div class='col-12 my-auto'>
                 <div class='row justify-content-center'>
+                    <div class='col-auto my-auto'>
+                        <p class='timer' id='hours'>
+                                00
+                        </p>
+                    </div>
+                    <div class='col-auto my-auto'>
+                        <p class='timer'>
+                            :
+                        </p>
+                    </div>
                     <div class='col-auto my-auto'>
                         <p class='timer' id='minutes'>
                                 00

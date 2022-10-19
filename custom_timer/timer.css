@@ -112,7 +112,7 @@ body {
     box-shadow:1px 1px 12px 7px rgb(119, 204, 238);
   }
 
-  #time{
+  .time{
     height: 2.5em;
     border-radius: 25px;
     font-size:19.2px;
