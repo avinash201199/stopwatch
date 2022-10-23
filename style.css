@@ -15,6 +15,11 @@ hr {
   background-color: #fff;
 }
 
+thinner{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .container-fluid {
   display: flex;
   justify-content: space-around;
