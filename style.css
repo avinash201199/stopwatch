@@ -148,28 +148,38 @@ thinner{
 
 #record-table {
   
-	width: 350px; 
+  width: 100%;
 	border-collapse: collapse; 
 	margin:50px auto;
 	
 }
-tr:nth-of-type(odd) { 
+/* tr:nth-of-type(odd) { 
 	background: rgb(65, 65, 65); 
-	}
+	} */
+
 
 #record-table th,
 td,
 tr {
   text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 25px 30px;
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  color:#000;
+  
+}
+
+tr{
+    background-color: #ffffff;
+    margin-bottom: 25px;
 }
 th { 
-	background: rgb(216, 137, 31);; 
-	color: white; 
-	font-weight: bold; 
+  background-color: #95A5A6;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 	}
+
 #record-table-body:nth-child(n + 7) {
   visibility: hidden;
 }
