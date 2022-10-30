@@ -1,155 +1,153 @@
 <!DOCTYPE html>
-
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Stop Watch</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- External CSS File Link -->
-    <link rel="stylesheet" href="./style.css" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Stop Watch</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- External JS File Link -->
+  <!-- External CSS File Link -->
+  <link rel="stylesheet" href="./style.css" />
 
-    <!-- Favicon Icon-->
-    <link rel="icon" type="image/png" href="./img/favicon.png" />
+  <!-- External JS File Link -->
 
-    <!-- jquery CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script type="text/javascript" src="jquery.js"></script>
+  <!-- Favicon Icon-->
+  <link rel="icon" type="image/png" href="./img/favicon.png" />
 
-    <!-- FontAwesome CDN-->
-    <link
-      rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-      crossorigin="anonymous"
-    />
+  <!-- jquery CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
 
-    <!-- Bootstrap CDN -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
+  <!-- FontAwesome CDN-->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-  <body>
- 
-    <nav class="navbar navbar-default  navbar-expand-lg  bg-white thinner">
-      <div class="container-fluid">
-        <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png" style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
-        <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        <div class="collapse navbar-collapse"  id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item px-4">
-                    <a class="nav-link"  style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac;" href="pomodoro/index.html">Pomodoro Timer</a>
-                    <a class="nav-link"  style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac;" href="custom_timer/timer.html">Custom Timer</a>
-                </li>                
-            </ul>
-            <div id="switch-theme">
-                <input type="checkbox" id="light" class="checkbox">
-                <label for="checkbox" class="label">
-                    <i class="fas fa-moon"></i>
-                    <i class='fas fa-sun'></i>
-                    <div class='ball'></ball></div>
-                </label>
-            </div>
-      </div>
-    </nav>
+<body>
 
+  <nav class="navbar navbar-default  navbar-expand-lg  bg-white thinner">
     <div class="container-fluid">
-      <div id="container">
-        <div>
-          <div id="time">
-            <span>
-              <span class="digit" id="hr">00</span>
-              <span class="txt">Hr</span>
-            </span>
-            <span>
-              <span class="digit" id="min">00</span>
-              <span class="txt">Min</span>
-            </span>
-            <span>
-              <span class="digit" id="sec">00</span>
-              <span class="txt">Sec</span>
-            </span>
-            <span>
-              <span class="digit" id="count">00</span>
-              <span class="txt">Ms</span>
-            </span>
-          </div>
-
-          <span class="todayDate"
-            ><h3><span id="d1"></span></h3
-          ></span>
+      <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png"
+        style="height: 2rem; width: 2rem; margin-top: -30px;" alt=""> <span id="title1">Stop Watch</span></a>
+      <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item px-4">
+            <a class="nav-link"
+              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
+              href="pomodoro/index.html">POMODORO TIMER</a>
+            <a class="nav-link"
+              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
+              href="custom_timer/timer.html">CUSTOM TIMER</a>
+          </li>
+        </ul>
+        <div id="switch-theme">
+          <input type="checkbox" id="light" class="checkbox">
+          <label for="checkbox" class="label">
+            <i class="fas fa-moon"></i>
+            <i class='fas fa-sun'></i>
+            <div class='ball'>
+              </ball>
+            </div>
+          </label>
         </div>
-        <hr />
-        <div id="btn-container">
-          <button class="buttons" id="start" onclick="start()">
-            <i class="far fa-play-circle"></i> Start
-          </button>
-          <!--   <button class="btn" id="stop" onclick="stop()">Stop</button> -->
-          <button class="buttons" id="reset" onclick="reset()">
-            <i class="fas fa-power-off"></i> Reset
-          </button>
-          <button class="buttons" id="lap" onclick="lap()">
-            <i class="fas fa-stopwatch"></i> Lap
-          </button>
-          <button class="buttons" id="clearlap" onclick="clearLap()">
-            <i class="fad fa-trash-alt"></i> Clear Lap
-          </button>
-        </div>
-        <div>
-          <div id="record-container">
-            <table id="record-table">
-              <tr>
-                <th>Lap Number</th>
-                <th>Time</th>
-              </tr>
-              <tbody id="record-table-body"></tbody>
-            </table>
-          </div>
-        </div>
-        <hr />
       </div>
+  </nav>
+  <div class="container-fluid">
+    <div id="container">
+      <div>
+        <div id="time">
+          <span>
+            <span class="digit" id="hr">00</span>
+            <span class="txt">Hr</span>
+          </span>
+          <span>
+            <span class="digit" id="min">00</span>
+            <span class="txt">Min</span>
+          </span>
+          <span>
+            <span class="digit" id="sec">00</span>
+            <span class="txt">Sec</span>
+          </span>
+          <span>
+            <span class="digit" id="count">00</span>
+            <span class="txt">Ms</span>
+          </span>
+        </div>
+        <span class="todayDate">
+          <h3><span id="d1"></span></h3>
+        </span>
+      </div>
+      <hr />
+      <div id="btn-container">
+        <button class="buttons" id="start" onclick="start()">
+          <i class="far fa-play-circle"></i> Start
+        </button>
+        <!--   <button class="btn" id="stop" onclick="stop()">Stop</button> -->
+        <button class="buttons" id="reset" onclick="reset()">
+          <i class="fas fa-power-off"></i> Reset
+        </button>
+        <button class="buttons" id="lap" onclick="lap()">
+          <i class="fas fa-stopwatch"></i> Lap
+        </button>
+        <button class="buttons" id="clearlap" onclick="clearLap()">
+          <i class="fad fa-trash-alt"></i> Clear Lap
+        </button>
+      </div>
+      <div>
+        <div id="record-container">
+          <table id="record-table">
+            <tr>
+              <th>Lap Number</th>
+              <th>Time</th>
+            </tr>
+            <tbody id="record-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <hr />
     </div>
+  </div>
 
-    <script type="text/javascript">
-      // start or stop stopwatch using "spacebar" key
-      document.addEventListener("keyup", (event) => {
-        if (event.code === "Space") {
-          start();
-        }
-      });
-      document.addEventListener("keyup", (event) => {
-        if (event.code === "Backspace") {
-          reset();
-        }
-      });
-      document.addEventListener("keyup", (event) => {
-        if (event.code === "Enter") {
-          lap();
-        }
-      });
+  <script type="text/javascript">
+    // start or stop stopwatch using "spacebar" key
+    document.addEventListener("keyup", (event) => {
+      if (event.code === "Space") {
+        start();
+      }
+    });
+    document.addEventListener("keyup", (event) => {
+      if (event.code === "Backspace") {
+        reset();
+      }
+    });
+    document.addEventListener("keyup", (event) => {
+      if (event.code === "Enter") {
+        lap();
+      }
+    });
 
-      document.addEventListener("keyup", (event) => {
-        if (event.code === "Numpad0") {
-          clearLap();
-        }
-      });
-    </script>
-    <script src="script.js"></script>
+    document.addEventListener("keyup", (event) => {
+      if (event.code === "Numpad0") {
+        clearLap();
+      }
+    });
+  </script>
+  <script src="script.js"></script>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="container-fluid my-class">
+  <!-- FOOTER -->
+  <footer>
+    <div class="container-fluid my-class">
       <div class="container">
         <p class="textfooter" style="colour:black" >Made with 💝 by Avinash</p>
 
@@ -157,24 +155,22 @@
           <ul style="color: white" class="social-links">
             <li class="hov">
               <a href="https://github.com/avinash201199">
-                <img class="link" src="./img/Github.png"
-              /></a>
+                <img class="link" src="./img/GitHub.png" /></a>
             </li>
             <li class="hov">
               <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
-                <img class="link" src="./img/LinkedinLogo.png"
-              /></a>
+                <img class="link" src="./img/LinkedinLogo.png" /></a>
             </li>
             <li class="hov">
               <a href="https://www.instagram.com/lets__code/">
-                <img class="link" src="./img/Instagram.png"
-              /></a>
+                <img class="link" src="./img/Instagram.png" /></a>
             </li>
           </ul>
         </div>
       </div>
-</div>
-  </container>
-    </footer>
-  </body>
+    </div>
+    </container>
+  </footer>
+</body>
+
 </html>
