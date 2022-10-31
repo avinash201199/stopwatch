@@ -454,3 +454,48 @@ li {
 .my-class {
   background: white;
 }
+
+:root {
+  --main: #FFD166;
+  --secondary: #800080;
+  --tertiary: #;
+  --light: white;
+  --dark: black;
+}
+
+.btn {
+  border: solid 2px var(--secondary);
+  background-color: white;
+  color: var(--secondary);
+  padding: 0 12px;
+  font-size: 1.2em;
+  height: 2.3em;
+  position: relative;
+  box-shadow: 5px 5px 0 var(--main);
+  z-index: 2;
+  border-radius: 5px;
+}
+
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn:before {
+  content: '';
+  width: 0;
+  height: 0;
+  bottom: 0px;
+  right: 0px;
+  position: absolute;
+  z-index: -1;
+  background: var(--main);
+  transition: width .3s, height .3s;
+  border-top-left-radius: 5px;
+}
+
+
+.btn:hover:before {
+  width: calc(100% - 3px);
+  height: calc(100% - 3px);
+}
