@@ -9,7 +9,7 @@ function setLightTheme() {
 function setDarkTheme() {
     $('.navbar.navbar-expand-lg.navbar-light').removeClass('bg-light');
     $('.navbar.navbar-expand-lg.navbar-light').css({ "background-color": "black" });
-    $('#title1').css({ "color": "white" });
+    $('#title1').css({ "color": "black" });
     $('body').css({ "background": "#191212" });
     $('.digit').css({ "color": "rgb(216 137 31)" });
     $('.buttons').css({ "border-color": "white" });
