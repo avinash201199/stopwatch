@@ -33,8 +33,10 @@
 
   <nav class="navbar navbar-default  navbar-expand-lg  bg-white thinner">
     <div class="container-fluid">
-      <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png"
-        style="height: 2rem; width: 2rem; margin-top: -30px;" alt=""> <span id="title1">Stop Watch</span></a>
+        <div class="maintitle">
+          <img src="https://img.icons8.com/arcade/64/000000/timer.png"
+            style="height: 3rem; width: 3rem;margin-right:1rem;" alt=""> <span id="title1">Stop Watch</span>
+        </div>
       <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
         data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -91,17 +93,17 @@
       <hr />
       <div id="btn-container">
         <button class="buttons" id="start" onclick="start()">
-          <i class="far fa-play-circle"></i> Start
+          <i class="fas fa-play-circle"></i> Start
         </button>
         <!--   <button class="btn" id="stop" onclick="stop()">Stop</button> -->
         <button class="buttons" id="reset" onclick="reset()">
-          <i class="fas fa-power-off"></i> Reset
+          <i class="fas fa-undo"></i> Reset
         </button>
         <button class="buttons" id="lap" onclick="lap()">
           <i class="fas fa-stopwatch"></i> Lap
         </button>
         <button class="buttons" id="clearlap" onclick="clearLap()">
-          <i class="fad fa-trash-alt"></i> Clear Lap
+          <i class="fas fa-trash"></i> Clear Lap
         </button>
       </div>
       <div>

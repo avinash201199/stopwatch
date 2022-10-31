@@ -21,6 +21,13 @@ hr {
   height: 90px;
 }
 
+.maintitle{
+  margin-bottom: 1rem;
+}
+#title1{
+  font-weight: 700;
+  font-size: 1.3rem;
+}
 .container-fluid {
   display: flex;
   justify-content: space-around;
@@ -89,6 +96,9 @@ hr {
 
   #switch-theme {
     max-width: max-content;
+  }
+  .maintitle{
+    margin-bottom: 0rem;
   }
 }
 
