@@ -1,9 +1,8 @@
-var hr = 0;
-var min = 0;
-var sec = 0;
-var count = 0;
-
-var timer = false;
+let hr = 0;
+let min = 0;
+let sec = 0;
+let count = 0;
+let timer = false;
 
 function $id(id) {
     return document.getElementById(id);
@@ -21,11 +20,7 @@ function stop() {
 
 function reset() {
     timer = false;
-
-    hr = 0;
-    min = 0;
-    sec = 0;
-    count = 0;
+    hr = min = sec = count = 0;
 
     $id("hr").innerHTML = "00";
     $id("min").innerHTML = "00";
@@ -35,52 +30,41 @@ function reset() {
 }
 
 function stopwatch() {
-    if (timer == true)
-        count = count + 1;
+    if (timer) {
+        count += 1;
+    }
 
-    if (count == 99) {
-        sec = sec + 1;
+    if (count === 99) {
+        sec += 1;
         count = 0;
     }
-    if (sec == 59) {
-        min = min + 1;
+    if (sec === 59) {
+        min += 1;
         sec = 0;
     }
-    if (min == 59) {
-        hr = hr + 1;
+    if (min === 59) {
+        hr += 1;
         min = 0;
         sec = 0;
     }
 
-    var hrString = hr;
-    var minString = min;
-    var secString = sec;
-    var countString = count;
+    updateDisplay(hr, "hr");
+    updateDisplay(min, "min");
+    updateDisplay(sec, "sec");
+    updateDisplay(count, "count");
 
-    if (hr < 10) {
-        hrString = "0" + hrString;
-    }
-    if (min < 10) {
-        minString = "0" + minString;
-    }
-    if (sec < 10) {
-        secString = "0" + secString;
-    }
-    if (count < 10) {
-        countString = "0" + countString;
-    }
+    setTimeout(stopwatch, 10);
+}
 
-    $id("hr").innerHTML = hrString;
-    $id("min").innerHTML = minString;
-    $id("sec").innerHTML = secString;
-    $id("count").innerHTML = countString;
-    setTimeout("stopwatch()", 10)
+function updateDisplay(value, elementId) {
+    const stringValue = value < 10 ? '0' + value : value.toString();
+    document.getElementById(elementId).innerHTML = stringValue;
 }
 
 function lap() {
     console.log(hr, min, sec, count)
-    var Laps = $id('laps');
-    Laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
+    const laps = $id('laps');
+    laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
 }
 
 function clearLap() {
