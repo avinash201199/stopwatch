@@ -1,98 +1,111 @@
 <!DOCTYPE html>
 <html lang='en'>
-    <head>
-        <meta charset='UTF-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
-        <!-- Favicon Icon-->
-        <link rel="apple-touch-icon" sizes="180x180" href="../img/Pomodoro.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../img/Pomodoro.png">
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
-        <!-- jquery CDN -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- Favicon Icon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/Pomodoro.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/Pomodoro.png">
 
-        <!-- FontAwesome CDN-->
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- jquery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU' crossorigin='anonymous'>
-        <link rel='stylesheet' href='index.css'/>
+    <!-- FontAwesome CDN-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-        <title>Pomodoro timer</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="disabling" class="navbar-brand" href="#" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-            <img src="https://icons.iconarchive.com/icons/martz90/circle/256/timer-icon.png" style="height: 2rem; width: 2rem;" alt=""> <span id="title1">Stop Watch</span></a>
-        <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css' rel='stylesheet'
+        integrity='sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU' crossorigin='anonymous'>
+    <link rel='stylesheet' href='index.css' />
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac;" href="../index.html">Stop Watch</a>
-                    <a class="nav-link"  style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#72acac;" href="../custom_timer/timer.html">Custom Timer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#"></a>
-                </li>
-                
-            </ul>
-            <div id="switch-theme">
-                <input type="checkbox" id="light" class="checkbox">
-                <label for="checkbox" class="label">
-                    <i class="fas fa-moon"></i>
-                    <i class='fas fa-sun'></i>
-                    <div class='ball'>
-                </label>
+    <title>Pomodoro timer</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-default  navbar-expand-lg  bg-white thinner">
+        <div class="container-fluid">
+            <div class="maintitle">
+                <img src="../img/logo.gif" style="height: 3rem; width: 3rem;margin-right:1rem;" alt=""> <span
+                    id="title1">Stop Watch</span>
             </div>
-
-        </div>
-        </nav>
-        <div class='row h-100 justify-content-center active' id='counter-background'>
-            <div class='col-12 my-auto'>
-                <div class='row justify-content-center'>
-                    <div class='col-auto my-auto'>
-                        <p class='timer' id='minutes'>
-                                00
-                        </p>
-                    </div>
-                    <div class='col-auto my-auto'>
-                        <p class='timer'>
-                            :
-                        </p>
-                    </div>
-                    <div class='col-auto my-auto'>
-                        <p class='timer' id='seconds'>
-                                00
-                        </p>
-                    </div>
-                </div>
-                <div class='row justify-content-center'>
-                    <div class='col-auto py-5 px-4 hide' id='focus'>
-                        <h1 class='text-center'>
-                            Focus!
-                        </h1>
-                    </div>
-                </div>
-                <div class='row justify-content-center'>
-                    <button type="button" class='col-auto bg-dark button-pill py-1 px-4 mx-2 inactive'  id='timer-control' onClick='startPomoCounter()'>
-                            Play
-                    </button>
-               
-                    <button type="button" class='col-auto bg-dark button-pill py-1 px-4 mx-2 inactive'  id='reset' onClick='reset()'>
-                            Reset
-                    </button>
+            <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item px-4" id="nav-links">
+                        <a class="nav-link btn secondary"
+                            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
+                            href="../index.html">STOP WATCH</a>
+                        <a class="nav-link btn secondary"
+                            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
+                            href="../custom_timer/timer.html">CUSTOM TIMER</a>
+                    </li>
+                </ul>
+                <div id="switch-theme">
+                    <input type="checkbox" id="light" class="checkbox">
+                    <label for="checkbox" class="label">
+                        <i class="fas fa-moon"></i>
+                        <i class='fas fa-sun'></i>
+                        <div class='ball'>
+                            </ball>
+                        </div>
+                    </label>
                 </div>
             </div>
-        </div>
-        <script src="pomodoro.js" type="text/javascript"></script>
+    </nav>
+    <div class='row h-100 justify-content-center active' id='counter-background'>
+        <div class='col-12 my-auto'>
+            <div class='row justify-content-center'>
+                <div class='col-auto my-auto'>
+                    <p class='timer' id='minutes'>
+                        00
+                    </p>
+                </div>
+                <div class='col-auto my-auto'>
+                    <p class='timer'>
+                        :
+                    </p>
+                </div>
+                <div class='col-auto my-auto'>
+                    <p class='timer' id='seconds'>
+                        00
+                    </p>
+                </div>
+            </div>
+            <div class='row justify-content-center'>
+                <div class='col-auto py-5 px-4 hide' id='focus'>
+                    <h1 class='text-center'>
+                        Focus!
+                    </h1>
+                </div>
+            </div>
+            <div class='row justify-content-center'>
+                <button type="button" class='col-auto bg-dark button-pill py-1 px-4 mx-2 inactive' id='timer-control'
+                    onClick='startPomoCounter()'>
+                    Play
+                </button>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    </body>
+                <button type="button" class='col-auto bg-dark button-pill py-1 px-4 mx-2 inactive' id='reset'
+                    onClick='reset()'>
+                    Reset
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="pomodoro.js" type="text/javascript"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>

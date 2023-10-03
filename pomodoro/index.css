@@ -1,113 +1,138 @@
-  
-body {
-  height: 100vh;
-  overflow: hidden;
-}
-@font-face {
-  font-family: 'digital-7';
-  src: url('fonts/digital-7.ttf');
-}
-.navigation {
-  transition: background-color 0.5s ease;
-}
+  body {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  @font-face {
+    font-family: 'digital-7';
+    src: url('fonts/digital-7.ttf');
+  }
+
+  .navigation {
+    transition: background-color 0.5s ease;
+  }
 
 
-.inactive {
-  color: rgb(169, 188, 214);
-  background: rgb(5, 30, 54);
-  transition: background-color 0.5s ease;
-}
+  .inactive {
+    color: rgb(169, 188, 214);
+    background: rgb(5, 30, 54);
+    transition: background-color 0.5s ease;
+  }
 
-.active {
+  .active {
 
-  color: #7fe9d4;
-  background: #7fe9d4;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #191654, #43c6ac);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #7fe9d4;
+    background: #7fe9d4;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #191654, #43c6ac);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  transition: background-color 0.5s ease;
-}
-
-
+    transition: background-color 0.5s ease;
+  }
 
 
-.button-pill {
-  font-size: 1.2em;
-  border-radius: 40px;
-}
 
-.timer {
-  font-size: 100px;
-  font-family: 'digital-7';
-}
 
-.counter-background {
-  background: rgb(1, 47, 99)
-}
+  .button-pill {
+    font-size: 1.2em;
+    border-radius: 40px;
+  }
 
-.hide {
-  color: rgb(137, 192, 189)
-}
+  .timer {
+    font-size: 100px;
+    font-family: 'digital-7';
+  }
 
-.checkbox {
-  opacity: 0;
-  position: absolute;
-  z-index: 10;
-  height: 2rem;
-  width: 4rem;
-  cursor: pointer;
+  .counter-background {
+    background: rgb(1, 47, 99)
+  }
 
-}
+  .hide {
+    color: rgb(137, 192, 189)
+  }
 
-.label {
-  width: 50px;
-  height: 26px;
-  background-color: #111;
-  display: flex;
-  border-radius: 50px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  position: relative;
-  transform: scale(1);
-}
+  .checkbox {
+    opacity: 0;
+    position: absolute;
+    z-index: 10;
+    height: 2rem;
+    width: 4rem;
+    cursor: pointer;
 
-.ball {
-  width: 20px;
-  height: 20px;
-  background-color: white;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  border-radius: 50%;
-  transition: transform 0.2s linear;
-}
+  }
 
-.checkbox:checked + .label .ball {
-  transform: translateX(24px);
-}
+  .label {
+    width: 50px;
+    height: 26px;
+    background-color: #111;
+    display: flex;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    transform: scale(1);
+  }
 
-.fa-moon {
-  color: pink;
-}
+  .ball {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
 
-.fa-sun {
-  color: yellow;
-}
-button.btn.btn-outline-primary.button-pill.px-3{
-  transition:transform 0.03s;
-}
-button.btn.btn-outline-primary.button-pill.px-3:hover{
-  transform: scale(1.1);
-  box-shadow:1px 1px 12px 7px blue;
-}
-button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive{
-  transition: transform 0.03s;
-}
-button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover{
-  transform: scale(1.05);
-  box-shadow:1px 1px 12px 7px rgb(119, 204, 238);
-}
+  .checkbox:checked+.label .ball {
+    transform: translateX(24px);
+  }
+
+  .fa-moon {
+    color: pink;
+  }
+
+  .fa-sun {
+    color: yellow;
+  }
+
+  button.btn.btn-outline-primary.button-pill.px-3 {
+    transition: transform 0.03s;
+  }
+
+  button.btn.btn-outline-primary.button-pill.px-3:hover {
+    transform: scale(1.1);
+    box-shadow: 1px 1px 12px 7px blue;
+  }
+
+  button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive {
+    transition: transform 0.03s;
+  }
+
+  button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
+    transform: scale(1.05);
+    box-shadow: 1px 1px 12px 7px rgb(119, 204, 238);
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #navbarSupportedContent {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #nav-links {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #title1{
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
