@@ -280,3 +280,5 @@ setInterval(() => {
     $id('d1').innerHTML = date;
 }, 1000);
 
+
+
