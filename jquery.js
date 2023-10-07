@@ -4,6 +4,9 @@ function setLightTheme() {
     $('body').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" })
     $('.digit').css({ "color": "white" })
     $('#light').prop("checked", false);
+    $('.foot').css({ "background": "white" });
+ 
+   
 }
 
 function setDarkTheme() {
@@ -14,6 +17,9 @@ function setDarkTheme() {
     $('.digit').css({ "color": "rgb(216 137 31)" });
     $('.buttons').css({ "border-color": "white" });
     $('#light').prop("checked", true);
+    $('.foot').css({ "background": "#a7a7a7 " });
+   
+
 }
 
 var prefersDarkThemeMql = window.matchMedia("(prefers-color-scheme: dark)");
