@@ -250,7 +250,7 @@ th {
   border-radius: 50px;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 5px;
   margin-top: -40px;
   position: relative;
   transform: scale(1);
@@ -261,8 +261,8 @@ th {
   height: 20px;
   background-color: white;
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 3px;
+  left: 3px;
   border-radius: 50%;
   transition: transform 0.2s linear;
 }
