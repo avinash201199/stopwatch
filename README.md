@@ -8,9 +8,9 @@
   <br>
 - This **stopwatch** represents the time in **DD:HH:MM:SS** ```(day:hour:minute:second)``` format, making it easy to keep track of our time.
   <br>
-- The functionalities of **Start, Stop, Reset, Lap and Clear Lap** are accessible by a click of a button.
+- The functionalities of **Start, Stop, Reset, Lap, and Clear Lap** are accessible with a click of a button.
   <br>
-- To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website inorder to maximize the user experience.
+- To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website in order to maximize the user experience.
   <br>
 
 
@@ -26,26 +26,26 @@
 <h3><li>Javascript</li></h3>
 
 
-## **Note: First create an issue then make pull request :)**
+## **Note: First create an issue then make a pull request :)**
 
-## **How to be a contributor of the project 😎**<br>
+## **How to be a contributor to the project 😎**<br>
 
 ### **1. Star The Repo :star2:**
 
-- Star this repository by pressing the top-right most button to start your wonderful journey.
-- Create an issue with description that how you want to contribute in this project.
+- Star this repository by pressing the top-rightmost button to start your incredible journey.
+- Create an issue describing how you want to contribute to this project.
 
 ### **2. Fork it :fork_and_knife:**
 
 - Then fork this repository by using the <kbd><b>Fork</b></kbd> button on top-right of your screen.
 
-- In forked repository add your changes.
+- In the forked repository add your changes.
 
 ### **3. Clone it :busts_in_silhouette:**
 
 `NOTE: commands are to be executed on Linux, Mac, and Windows(using Powershell)`
 
-- You need to clone (download) it to local machine using
+- You need to clone (download) it to a local machine using
 
 ```sh
 $ git clone https://github.com/Your_Username/stopwatch.git
@@ -53,11 +53,11 @@ $ git clone https://github.com/Your_Username/stopwatch.git
 
 > This makes a local copy of the repository in your machine.
 
-- Then make pull request with issue number.
-- Once you have cloned the stopwatch repository in Github, move to that folder first using change directory command on Linux, Mac, and Windows(PowerShell to be used).
+- Then make a pull request with the issue number.
+- Once you have cloned the stopwatch repository in Github, move to that folder first using the change directory command on Linux, Mac, and Windows(PowerShell to be used).
 
 ```sh
-# This will change directory to a folder stopwatch
+# This will change the directory to a folder stopwatch
 $ cd stopwatch
 ```
 
