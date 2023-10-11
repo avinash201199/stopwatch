@@ -15,6 +15,16 @@ hr {
   background-color: #fff;
 }
 
+#link--active {
+  box-shadow: none;
+  background-color: #FFD166;
+  box-shadow: 2.5px 2.5px 0 var(--active);
+}
+
+.container-fluid {
+  padding: 0.3rem;
+}
+
 .thinner {
   margin-top: 0;
   margin-bottom: 0px;
@@ -32,6 +42,11 @@ hr {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.navbar-collapse {
+  top: -10px;
+  position: relative;
 }
 
 #container {
@@ -209,7 +224,7 @@ th {
 }
 
 #record-table::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 #record-table::-webkit-scrollbar-track {
@@ -233,7 +248,7 @@ th {
 
 .checkbox {
   opacity: 0;
-  position: absolute;
+  position: relative;
   top: 0px;
   right: 27px;
   z-index: 10;
@@ -373,6 +388,7 @@ th {
   margin: 10px;
   font-family: 'Roboto';
   overflow: hidden;
+  border: 2px solid white;
 }
 
 .buttons:hover {
@@ -397,17 +413,19 @@ th {
 
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: #F5F5F5;
+  background-color: #ffffff90;
+  /* background-color: transparent; */
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-image: -webkit-gradient(linear,
+  /* background-image: -webkit-gradient(linear,
       left bottom,
       left top,
       color-stop(0.44, rgb(122, 153, 217)),
       color-stop(0.72, rgb(73, 125, 189)),
-      color-stop(0.86, rgb(28, 58, 148)));
+      color-stop(0.86, rgb(28, 58, 148))); */
+  background-color: rgba(46, 46, 46, 0.729);
 }
 
 footer {
@@ -468,6 +486,7 @@ li {
 
 :root {
   --main: #FFD166;
+  --active: #d82323;
   --secondary: #800080;
   --tertiary: #;
   --light: white;
@@ -475,11 +494,8 @@ li {
 }
 
 .btn {
-  border: solid 2px var(--secondary);
   background-color: white;
-  color: var(--secondary);
-  padding: 0 12px;
-  font-size: 1.2em;
+  padding: auto 12px;
   height: 2.3em;
   position: relative;
   box-shadow: 5px 5px 0 var(--main);
@@ -509,4 +525,16 @@ li {
 .btn:hover:before {
   width: calc(100% - 3px);
   height: calc(100% - 3px);
+}
+
+#timer-control {
+  color: hsl(127, 100%, 57%);
+}
+
+#timer-control:hover {
+  color: #000000;
+  background: hsl(131, 100%, 69%);
+  box-shadow: 0 0 10px hsl(151, 88%, 70%), 0 0 40px hsl(159, 93%, 77%), 0 0 80px hsl(157, 96%, 72%);
+  transition-delay: 0.001s;
+  font-size: large;
 }

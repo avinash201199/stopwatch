@@ -1,90 +1,116 @@
-const pomoTime = {}
-var paused = true
-var minutes
-var timerDate
-var remainingTime = 0
-var darkTheme = false
+const pomoTime = {};
+let paused = true;
+let currentTime = 0;
+let intervalId;
+let darkTheme = false;
 
 const audio = new Audio();
-audio.src = "../audio/sound_trim.mp3"  // same audio clip is used for pause,reset
+audio.src = "../audio/sound_trim.mp3";
+let isFirstLoad = true;
+
+if(darkTheme) $id('.counter-background').css({ "background": "rgb(25, 18, 18)" });
 
 function $id(id) {
     return document.getElementById(id);
 }
 
 const setPomoTime = (minutes) => {
-    paused = true
     audio.play();
-    pomoTime.minutes = minutes
-    $id('minutes').innerHTML = minutes
-    $id('seconds').innerHTML = '00'
-    minutes = pomoTime.minutes
-    timerDate = new Date(new Date().getTime() + minutes * 60000)
-    remainingTime = 0
-    paused = true
-    $id('timer-control').innerHTML = 'Play'
-    $id('counter-background').classList.remove('inactive');
-    $id('counter-background').classList.add('active');
+    pomoTime.minutes = minutes;
+    $id('minutes').innerHTML = minutes.toString().padStart(2, '0');
+    $id('seconds').innerHTML = '00';
+    currentTime = minutes * 60;
+    paused = true;
+    $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+    $id('counter-background').classList.remove('active');
+    $id('counter-background').classList.add('inactive');
+    clearInterval(intervalId);
+    isFirstLoad = false;
 }
 
-const reset=()=>{
+const reset = () => {
+    $id('counter-background').classList.remove('inactive');
+    $id('counter-background').classList.add('active');
+    if (darkTheme) {
+        $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
+    } else {
+        $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
+    }
     audio.play();
-    if(pomoTime.minutes == 25){
-        
-        setPomoTime(25);
-    }
-    else if(pomoTime.minutes == 40){
-        setPomoTime(40);
-    }
-    else{
-        setPomoTime(60);
-    }
+    setPomoTime(pomoTime.minutes); // Reset to the currently set time
 }
-const startPomoCounter = (action) => {
+
+const updateTimerDisplay = () => {
+    const minutesDisplay = Math.floor(currentTime / 60).toString().padStart(2, '0');
+    const secondsDisplay = (currentTime % 60).toString().padStart(2, '0');
+    $id('minutes').innerHTML = minutesDisplay;
+    $id('seconds').innerHTML = secondsDisplay;
+};
+
+const startPomoCounter = () => {
     audio.play();
     paused = !paused;
 
-    $id('timer-control').innerHTML = paused ? 'Play' : 'Pause';
+    $id('timer-control').innerHTML = paused ? '<i class="fas fa-play-circle"></i> Play' : '<i class="fas fa-pause-circle"></i> Pause';
+
     if (!paused) {
         $id('counter-background').classList.remove('active');
         $id('counter-background').classList.add('inactive');
         $id('focus').classList.remove('hidden');
-        if(darkTheme){
-            $('.inactive').css({"background": "black", "color": "white"})
+
+        if (darkTheme) {
+            $('.inactive').css({ "background": "black", "color": "white" });
+        } else {
+            $('.inactive').css({ "background": "rgb(5, 30, 54)", "color": "rgb(169, 188, 214)" });
         }
-        else{
-            $('.inactive').css({"background": "rgb(5, 30, 54)", "color": "rgb(169, 188, 214)"});
-        }
+
+        intervalId = setInterval(() => {
+            if (currentTime > 0) {
+                currentTime--;
+                updateTimerDisplay();
+            } else {
+                clearInterval(intervalId);
+                paused = true;
+                audio.pause();
+                $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+                $id('counter-background').classList.remove('inactive');
+                $id('counter-background').classList.add('active');
+
+                if (darkTheme) {
+                    $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
+                } else {
+                    $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
+                }
+            }
+        }, 1000);
     } else {
+        clearInterval(intervalId);
+        audio.pause();
+        $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
         $id('counter-background').classList.remove('inactive');
         $id('counter-background').classList.add('active');
-        if(darkTheme){
-            $('.active').css({"color":"#7fe9d4", "background": "#191212"})
-        }
-        else{
+
+        if (darkTheme) {
+            $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
+        } else {
             $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
         }
     }
-    const updateTimer = () => {
-        if (!paused) {
-            const date = new Date().getTime() - remainingTime
-            const timeLeft = timerDate - date
-            $id('minutes').innerHTML = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
-            $id('seconds').innerHTML = Math.floor((timeLeft % (1000 * 60)) / 1000)
-        } else {
-            remainingTime += 300
-        }
-    }
-    setInterval(updateTimer, 1000);
+};
+
+if (isFirstLoad) {
+    audio.pause();
+    isFirstLoad = false;
 }
 
-setPomoTime(25)
-
+setPomoTime(25);
+updateTimerDisplay();
 
 function setLightTheme(){
     darkTheme = false;
     $('.navbar').css({ "background-color": "rgb(5, 30, 54)" });
     $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
+    $('.timer').css({ "color": "white" })
     $('.inactive').css({"background": "rgb(5, 30, 54)"});
     $('#light').prop("checked", false);
 }
@@ -92,8 +118,9 @@ function setLightTheme(){
 function setDarkTheme(){
     darkTheme = true;
     $('.navbar').css({ "background-color": "black" });
-    $('.active').css({"color":"#7fe9d4", "background": "#191212"})
-    $('.inactive').css({"background": "black", "color": "white"})
+    $('.active').css({"color":"#7fe9d4", "background": "#191212"});
+    $('.timer').css({ "color": "rgb(216 137 31)" });
+    $('.inactive').css({"background": "rgb(25, 18, 18)", "color": "white"})
     $('#light').prop("checked", true);
 }
 
