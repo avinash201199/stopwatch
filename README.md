@@ -4,13 +4,13 @@
 
 - **Time** is the most essential part of everyone's life and keeping track of this time is equally important.
   <br>
-- A **clock** helps us in our quest to utilize our time efficiently. In order to assist you to excel in this quest we are building a digital stopwatch.
+- A **clock** helps us in our quest to utilize our time efficiently. To assist you to excel in this quest we are building a digital stopwatch.
   <br>
-- This **stopwatch** represents the time in **DD:HH:MM:SS** ```(day:hour:minute:second)``` format, making it easy to keep track of our time.
+- This **stopwatch** represents the time in **DD:HH:MM: SS** ```(day:hour:minute: second)``` format, making it easy to keep track of our time.
   <br>
 - The functionalities of **Start, Stop, Reset, Lap, and Clear Lap** are accessible with a click of a button.
   <br>
-- To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website in order to maximize the user experience.
+- To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website to maximize the user experience.
   <br>
 
 
@@ -106,7 +106,7 @@ upstream  https://github.com/ietebitmesra/stopwatch.git (push)
 - Always keep your local copy of the repository updated with the original repository. Before making any changes and/or in an appropriate interval, run the following commands carefully to update your local repository.
 
 ````sh
-# Fetch all remote repositories and delete any deleted remote branches```
+# Fetch all remote repositories and delete any deleted remote branches ``
 $ git fetch --all --prune
 ````
 
@@ -155,7 +155,7 @@ Type in a message relevant for the code reviewer using
 ```
 
 ```sh
-# This message get associated with all files you have changed
+# This message gets associated with all files you have changed
 $ git commit -m 'relevant message'
 ```
 
@@ -168,7 +168,7 @@ $ git push -u origin BranchName
 
 - Finally, go to your repository in the browser and click on compare and pull requests. Then add a title and description to your pull request that explains your precious efforts
 
-### **8. Pull request should have screenshot of the changes you have made.**
+### **8. Pull requests should have screenshots of the changes you have made.**
 
 ### **9. Wait for review. :heart:**
 
@@ -191,8 +191,8 @@ $ git push -u origin BranchName
 
 
 
->If you want this project then go ahead. Fork and clone it, make changes according to you. After that you can host it on Github using github pages.
-For any help reach me on **social media link** is in profile readme. https://www.instagram.com/lets__code/
+>If you want this project then go ahead. Fork and clone it, and make changes according to you. After that, you can host it on Github using Github pages.
+For any help reach me on **social media link** in profile readme. https://www.instagram.com/lets__code/
 <br><br>
 
 <h2>Connect with me</h2>
