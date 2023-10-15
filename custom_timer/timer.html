@@ -81,33 +81,44 @@
       </div>
   </nav>
   <div class="row h-100 justify-content-center active" id="counter-background">
-    <div class="col-auto">
-      <input
+    <div class="col-auto" id="custom-timer-form">
+      <div class="form__group field">
+        <input 
         type="number"
-        placeholder="Enter Hours"
+        placeholder=""
         id="hoursInput"
-        class="justify-content-between time"
-      />
-      <input
+        class="form__field justify-content-between time"
+        >
+        <label for="name" class="form__label">Enter Hours</label>
+    </div>
+      <div class="form__group field">
+        <input 
         type="number"
-        placeholder="Enter Minutes"
+        placeholder=""
         id="minutesInput"
-        class="justify-content-between time"
-      />
-      <input
+        class="form__field justify-content-between time"
+        >
+        <label for="name" class="form__label">Enter Minutes</label>
+    </div>
+      <div class="form__group field">
+        <input 
         type="number"
-        placeholder="Enter Seconds"
+        placeholder=""
         id="secondsInput"
-        class="justify-content-between time"
-      />
-      <button
-        type="submit"
-        class="btn-outline-success button-pill px-3"
+        class="form__field justify-content-between time"
+        >
+        <label for="name" class="form__label">Enter Seconds</label>
+    </div>
+
+      <button 
+      type="submit"
+        class="animated-button btn-outline-success button-pill px-3"
         for="time"
-        onClick="setCustomTime(hoursInput.value,minutesInput.value,secondsInput.value)"
-      >
-        Make Timer
+        onClick="setCustomTime(hoursInput.value,minutesInput.value,secondsInput.value)">
+        <span>Make Timer</span>
+        <span></span>
       </button>
+      
     </div>
     <div class="col-12 my-5" id="timer-container">
       <div class="row justify-content-center">
