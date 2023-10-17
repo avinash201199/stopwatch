@@ -3,6 +3,12 @@ let min = 0;
 let sec = 0;
 let count = 0;
 let timer = false;
+let lapCounter = 1;
+
+let prev_hr = 0;
+let prev_min = 0;
+let prev_sec = 0;
+let prev_count = 0;
 
 function $id(id) {
     return document.getElementById(id);
@@ -15,18 +21,23 @@ function start() {
 
 function stop() {
     timer = false;
-
 }
 
 function reset() {
     timer = false;
     hr = min = sec = count = 0;
+    updateDisplay(hr, "hr");
+    updateDisplay(min, "min");
+    updateDisplay(sec, "sec");
+    updateDisplay(count, "count");
 
-    $id("hr").innerHTML = "00";
-    $id("min").innerHTML = "00";
-    $id("sec").innerHTML = "00";
-    $id("count").innerHTML = "00";
+    clearLapTable();  // Add this line to clear the lap table
+    lapCounter = 1;
+}
 
+function clearLapTable() {
+    const lapsBody = $id('laps');
+    lapsBody.innerHTML = '';  // Clear the laps table content
 }
 
 function stopwatch() {
@@ -62,16 +73,39 @@ function updateDisplay(value, elementId) {
 }
 
 function lap() {
-    console.log(hr, min, sec, count)
-    const laps = $id('laps');
-    laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
+    const lapsTable = $id('laps-table');
+    const lapsBody = $id('laps');
+
+    const lapTime = `${hr}:${min}:${sec}:${count}`;
+    const diff = getDiff();
+
+    const newRow = lapsBody.insertRow(-1);
+    newRow.innerHTML = `<td>${lapCounter}</td><td>${lapTime}</td><td>${diff}</td>`;
+
+    lapCounter += 1;
 }
 
 function clearLap() {
-    $id('laps').remove();
+    const laps = $id('laps');
+    const lastLap = laps.lastElementChild;
+
+    if (lastLap) {
+        laps.removeChild(lastLap);
+    }
+
+    lapCounter = 1;
 }
 
-function getLocalTime(){
-    const d = new Date().toLocaleTimeString();
-    console.log(d);
+function getDiff() {
+    const diff_hr = hr - prev_hr;
+    const diff_min = min - prev_min;
+    const diff_sec = sec - prev_sec;
+    const diff_count = count - prev_count;
+
+    prev_count = count;
+    prev_sec = sec;
+    prev_min = min;
+    prev_hr = hr;
+
+    return `${diff_hr}:${diff_min}:${diff_sec}:${diff_count}`;
 }
