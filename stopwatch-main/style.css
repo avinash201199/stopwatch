@@ -12,6 +12,7 @@ body {
 
 #container {
     color: #d7dfe4;
+    text-align: center;
 }
 
 #footer-container {
@@ -28,9 +29,10 @@ body {
     font-size: 40px;
     font-weight: bold;
 }
+
 .social-txt {
     font-size: 20px;
-    color: white;
+    color: rgb(5, 4, 4);
 }
 
 #btn-container {
@@ -42,7 +44,7 @@ body {
     padding: 7px 25px;
     font-size: 15px;
     margin: 0px 10px;
-    color: white;
+    color: rgb(0, 0, 0);
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
@@ -50,10 +52,6 @@ body {
 
 #start {
     background-color: #1abc9c;
-}
-
-#start :hover {
-    background-color: yellow;
 }
 
 #stop {
@@ -88,7 +86,52 @@ body {
 }
 
 #laps {
-    margin-top: 100px;
+    margin-top: 20px;
     text-align: center;
     font-size: 25px;
+    list-style-type: none;
+}
+/* ... (your existing styles) */
+
+#laps-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#laps-table th, #laps-table td {
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+#laps-table th {
+    background-color: #191654;
+    color: #000000;
+}
+
+#laps-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#laps-table tbody tr:hover {
+    background-color: #ddd;
+}
+
+/* ... (your existing styles) */
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #555;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 2rem;
 }
