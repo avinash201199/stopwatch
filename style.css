@@ -318,7 +318,7 @@ th {
 #start:hover {
   color: #000000;
   background: hsl(131, 100%, 69%);
-  box-shadow: 0 0 10px hsl(151, 88%, 70%), 0 0 40px hsl(159, 93%, 77%), 0 0 80px hsl(157, 96%, 72%);
+  box-shadow: 0 0 4px hsl(151, 88%, 70%), 0 0 5px hsl(159, 93%, 77%), 0 0 37px hsl(157, 96%, 72%);
   transition-delay: 0.001s;
   font-size: large;
 }
@@ -330,7 +330,7 @@ th {
 #reset:hover {
   color: #000000;
   background: hwb(277 6% 7%);
-  box-shadow: 0 0 10px #9f2c99, 0 0 40px #481844, 0 0 80px #c18cd0;
+  box-shadow: 0 0 4px #9f2c99, 0 0 5px #481844, 0 0 37px #c18cd0;
   transition-delay: 0.001s;
   font-size: large;
 }
@@ -342,7 +342,7 @@ th {
 #lap:hover {
   color: #000000;
   background: hwb(61 31% 0%);
-  box-shadow: 0 0 10px hwb(68 57% 0%), 0 0 40px hwb(68 54% 0%), 0 0 80px hwb(70 63% 1%);
+  box-shadow: 0 0 4px hwb(68 57% 0%), 0 0 5px hwb(68 54% 0%), 0 0 37px hwb(70 63% 1%);
   transition-delay: 0.001s;
   font-size: large;
 }
@@ -354,7 +354,7 @@ th {
 #clearlap:hover {
   color: #000000;
   background: rgb(255, 89, 38);
-  box-shadow: 0 0 10px rgb(255, 118, 63), 0 0 40px rgb(255, 106, 103), 0 0 80px rgb(255, 137, 104);
+  box-shadow: 0 0 4px rgb(255, 118, 63), 0 0 5px rgb(255, 106, 103), 0 0 37px rgb(255, 137, 104);
   transition-delay: 0.001s;
   font-size: large;
 }
@@ -394,7 +394,7 @@ th {
 .buttons:hover {
   color: #1b5c7e;
   background: #46f5f8;
-  box-shadow: 0 0 10px #29d3d6, 0 0 40px #29d3d6, 0 0 80px #29d3d6;
+  box-shadow: 0 0 4px #29d3d6, 0 0 5px #29d3d6, 0 0 37px #29d3d6;
   transition-delay: 0.001s;
 }
 
@@ -534,7 +534,7 @@ li {
 #timer-control:hover {
   color: #000000;
   background: hsl(131, 100%, 69%);
-  box-shadow: 0 0 10px hsl(151, 88%, 70%), 0 0 40px hsl(159, 93%, 77%), 0 0 80px hsl(157, 96%, 72%);
+  box-shadow: 0 0 4px hsl(151, 88%, 70%), 0 0 5px hsl(159, 93%, 77%), 0 0 37px hsl(157, 96%, 72%);
   transition-delay: 0.001s;
   font-size: large;
 }
