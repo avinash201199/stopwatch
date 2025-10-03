@@ -200,6 +200,14 @@ $ git push -u origin BranchName
 
 <img width="922" alt="image" src="./img/readme_img/darkmode.png">
 
+> Pomodoro
+
+<img width="922" alt="image" src="./img/readme_img/image.png">
+
+> Pomodoro
+
+<img width="922" alt="image" src="./img/readme_img/custome.png">
+
 > If you want this project then go ahead. Fork and clone it, and make changes according to you. After that, you can host it on Github using Github pages.
 > For any help reach me on **social media link** in profile readme. https://www.instagram.com/lets__code/ > <br><br>
 
