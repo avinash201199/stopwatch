@@ -118,9 +118,46 @@
         <span>Make Timer</span>
         <span></span>
       </button>
-      
+      <div class="presets mt-3">
+        <button class="preset btn btn-sm btn-outline-light" data-mins="5">5m</button>
+        <button class="preset btn btn-sm btn-outline-light" data-mins="10">10m</button>
+        <button class="preset btn btn-sm btn-outline-light" data-mins="15">15m</button>
+        <button class="preset btn btn-sm btn-outline-light" data-mins="25">25m</button>
+        <button class="preset btn btn-sm btn-outline-light" data-mins="45">45m</button>
+      </div>
+      <div class="muted-toggle mt-2">
+        <label class="me-2" for="muteBtn">Sound</label>
+        <button id="muteBtn" class="btn btn-sm btn-light">🔈</button>
+      </div>
     </div>
     <div class="col-12 my-5" id="timer-container">
+      <!-- circular progress ring for visual feedback -->
+      <div class="progress-wrap">
+        <svg class="progress-ring" width="220" height="220">
+          <circle class="progress-ring__circle--bg" stroke="#222" stroke-width="10" fill="transparent" r="100" cx="110" cy="110" />
+          <circle class="progress-ring__circle" stroke="#21f341" stroke-width="10" fill="transparent" r="100" cx="110" cy="110" transform="rotate(-90 110 110)" />
+        </svg>
+        <div class="progress-center">
+          <!-- timer digits will remain visible in center for small screens -->
+          <div class="row justify-content-center">
+            <div class="col-auto my-auto">
+              <p class="timer" id="hours">00</p>
+            </div>
+            <div class="col-auto my-auto">
+              <p class="timer">:</p>
+            </div>
+            <div class="col-auto my-auto">
+              <p class="timer" id="minutes">00</p>
+            </div>
+            <div class="col-auto my-auto">
+              <p class="timer">:</p>
+            </div>
+            <div class="col-auto my-auto">
+              <p class="timer" id="seconds">00</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row justify-content-center">
         <div class="col-auto my-auto">
           <p class="timer" id="hours">00</p>
@@ -152,6 +189,7 @@
         <button type="button" class="buttons" id="reset" onClick="reset()">
           <i class="fas fa-undo"></i> Reset
         </button>
+        <div class="mt-2 w-100 text-center small text-muted">Space = Play/Pause · R = Reset · Click presets to quick-set</div>
       </div>
     </div>
   </div>

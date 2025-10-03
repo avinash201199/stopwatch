@@ -53,6 +53,46 @@ input:focus {
   font-family: "digital-7";
 }
 
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto 1.5rem auto;
+}
+.progress-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.35));
+}
+.progress-ring__circle {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s linear;
+  transform-origin: 50% 50%;
+}
+.progress-center {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.presets { display:flex; gap:.5rem; flex-wrap:wrap }
+.preset { color: #fff; border-color: rgba(255,255,255,0.2) }
+
+.muted-toggle { display:flex; align-items:center }
+#muteBtn { padding: .2rem .5rem }
+
+@media (max-width: 700px) {
+  .timer { font-size: 48px }
+  .progress-wrap { width: 200px; height: 200px }
+}
+
 .counter-background {
   background: rgb(1, 47, 99);
 }
