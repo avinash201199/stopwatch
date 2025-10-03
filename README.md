@@ -10,7 +10,18 @@
   <br>
 - The functionalities of **Start, Stop, Reset, Lap, and Clear Lap** are accessible with a click of a button.
   <br>
-- To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website to maximize the user experience.
+- **Keyboard shortcuts** are now available for enhanced productivity:
+  - **Space** or **P** - Start/Stop the stopwatch
+  - **Backspace** or **R** - Reset the stopwatch
+  - **Enter** - Add a lap
+  - **Numpad 0** - Clear all laps
+  - **K** - Play/Pause background music
+  <br>
+- **Custom Timer** with enhanced UI features including time completion animations, sound alerts, and confetti celebrations.
+  <br>
+- **Pomodoro Timer** with consistent styling and footer layout across all pages.
+  <br>
+- To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with a responsive website to maximize the user experience.
   <br>
 
 

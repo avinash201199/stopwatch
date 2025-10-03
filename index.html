@@ -154,6 +154,31 @@
         clearLap();
       }
     });
+
+    // P key for Start/Stop
+    document.addEventListener("keyup", (event) => {
+      if (event.code === "KeyP") {
+        start();
+      }
+    });
+
+    // R key for Reset
+    document.addEventListener("keyup", (event) => {
+      if (event.code === "KeyR") {
+        reset();
+      }
+    });
+
+    // K key for Play/Pause music
+    document.addEventListener("keyup", (event) => {
+      if (event.code === "KeyK") {
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      }
+    });
   </script>
   <script src="script.js"></script>
 
