@@ -353,4 +353,49 @@ footer {
   background: #ffffff !important;
 }
 
+.hidden {
+  display: none !important;
+}
 
+.timer.pulse {
+  animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+
+  to {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 12px rgba(255, 214, 102, 0.8));
+  }
+}
+
+/* full-screen confetti layer */
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* single confetti piece */
+.confetti {
+  position: absolute;
+  top: -10vh;
+  width: 10px;
+  height: 14px;
+  opacity: 0.9;
+  transform: translateY(-100px) rotate(0deg);
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(120vh) rotate(720deg);
+    opacity: 1;
+  }
+}

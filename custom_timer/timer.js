@@ -12,6 +12,85 @@ function $id(id) {
     return document.getElementById(id);
 }
 
+function startCelebration() {
+    // pulse all timer digits
+    document.querySelectorAll('.timer').forEach(el => el.classList.add('pulse'));
+  
+    // create confetti pieces
+    const root = document.getElementById('confetti');
+    if (!root) return;
+  
+    // clear any leftovers first
+    root.innerHTML = '';
+  
+    const colors = ['#FFD166', '#06D6A0', '#EF476F', '#118AB2', '#8338EC', '#FB5607'];
+    const pieceCount = 120;
+    const durationMin = 3000; // ms
+    const durationMax = 6000;
+  
+    for (let i = 0; i < pieceCount; i++) {
+      const s = document.createElement('span');
+      s.className = 'confetti';
+      const left = Math.random() * 100;     // vw
+      const size = 6 + Math.random() * 10;  // px
+      const delay = Math.random() * 400;    // ms
+      const dur = durationMin + Math.random() * (durationMax - durationMin);
+  
+      s.style.left = `${left}vw`;
+      s.style.background = colors[i % colors.length];
+      s.style.width = `${size}px`;
+      s.style.height = `${size * 1.4}px`;
+      s.style.animationDuration = `${dur}ms`;
+      s.style.animationDelay = `${delay}ms`;
+  
+      root.appendChild(s);
+      // clean up each piece after it falls
+      setTimeout(() => s.remove(), dur + delay + 100);
+    }
+  }
+  
+  function stopCelebration() {
+    document.querySelectorAll('.timer').forEach(el => el.classList.remove('pulse'));
+    const root = document.getElementById('confetti');
+    if (root) root.innerHTML = '';
+  }
+  
+  function onTimerComplete() {
+    paused = true;
+    clearInterval(interval);
+    $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+  
+    // flip background to active again
+    $id('counter-background').classList.remove('inactive');
+    $id('counter-background').classList.add('active');
+  
+    // show "Stop Alarm" button
+    $id('stop-alarm').classList.remove('hidden');
+  
+    // loop the alarm sound
+    audio.loop = true;
+    audio.currentTime = 0;
+    // Browsers generally allow this because user clicked Play earlier
+    audio.play().catch(() => {}); 
+  
+    // fireworks time
+    startCelebration();
+  }
+  
+  function stopAlarm() {
+    // stop sound
+    audio.pause();
+    audio.currentTime = 0;
+    audio.loop = false;
+  
+    // hide stop button
+    $id('stop-alarm').classList.add('hidden');
+  
+    // stop visuals
+    stopCelebration();
+  }
+  
+
 const setCustomTime = (hours = 0, minutes = 0, seconds = 0) => {
     paused = true;
     $id('hours').innerHTML = String(hours).padStart(2, '0');
@@ -30,6 +109,7 @@ const setCustomTime = (hours = 0, minutes = 0, seconds = 0) => {
 
 
 const reset = () => {
+    stopAlarm();
     $id('counter-background').classList.remove('inactive');
     $id('counter-background').classList.add('active');
     if (darkTheme) {
@@ -38,7 +118,7 @@ const reset = () => {
     else {
         $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
     }
-    audio.play();
+    // audio.play();    dont want sound when we press reset button
     clearInterval(interval);
 
     setCustomTime(0);
@@ -48,7 +128,7 @@ var interval = 0;
 const startCustomTimerCounter = () => {
     clearInterval(interval);
 
-    audio.play();
+    // audio.play();
     paused = !paused;
 
     $id('timer-control').innerHTML = paused ? '<i class="fas fa-play-circle"></i> Play' : '<i class="fas fa-pause-circle"></i> Pause';
@@ -86,7 +166,8 @@ const startCustomTimerCounter = () => {
             reset();
         }
         if (customTime.seconds == 0) {
-            reset();
+            // reset();
+            onTimerComplete();
         }
     }
     interval = setInterval(updateTimer, 1000);
