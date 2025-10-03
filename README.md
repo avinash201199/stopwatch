@@ -1,4 +1,4 @@
-<h1>Stop Watch</h1> 
+<h1>Stop Watch</h1>
 
 **Web link** - https://avinash201199.github.io/stopwatch/
 
@@ -6,25 +6,32 @@
   <br>
 - A **clock** helps us in our quest to utilize our time efficiently. To assist you to excel in this quest we are building a digital stopwatch.
   <br>
-- This **stopwatch** represents the time in **DD:HH:MM: SS** ```(day:hour:minute: second)``` format, making it easy to keep track of our time.
+- This **stopwatch** represents the time in **DD:HH:MM: SS** `(day:hour:minute: second)` format, making it easy to keep track of our time.
   <br>
 - The functionalities of **Start, Stop, Reset, Lap, and Clear Lap** are accessible with a click of a button.
   <br>
 - To enhance the visual appearance it can be viewed in **both dark and light modes,** making it easier to access at all times, along with having a responsive website to maximize the user experience.
   <br>
 
-
 ![Untitled design](https://user-images.githubusercontent.com/114678694/194710310-87a8fa0e-7f8d-4cd7-a4ff-5b9dc9b008a5.png)
-
 
 <h1>Tech Stack</h1>
 
-![Untitled design (1)](https://user-images.githubusercontent.com/114678694/194710424-a81ee687-2cb9-43ad-9bfd-a95c3aefc552.png)
+<!--  ![Untitled design (1)](https://user-images.githubusercontent.com/114678694/194710424-a81ee687-2cb9-43ad-9bfd-a95c3aefc552.png) -->
 
 <h3><li>Html</li></h3>
 <h3><li>Css</li></h3>
 <h3><li>Javascript</li></h3>
 
+## ✨ Features
+
+- ⏲️ Displays time in **DD:HH:MM:SS** format
+- ▶️ Functionalities: **Start, Stop, Reset, Lap, Clear Lap**
+- 🌗 **Dark & Light mode** support
+- 📱 Fully **responsive UI** (mobile, tablet, desktop)
+- ⚡ **Simple, lightweight, and fast**
+- ⏳ **Custom Timer** – set your own countdown
+- 🍅 **Pomodoro Timer** – focus with the classic Pomodoro technique
 
 ## **Note: First create an issue then make a pull request :)**
 
@@ -105,10 +112,10 @@ upstream  https://github.com/ietebitmesra/stopwatch.git (push)
 
 - Always keep your local copy of the repository updated with the original repository. Before making any changes and/or in an appropriate interval, run the following commands carefully to update your local repository.
 
-````sh
+```sh
 # Fetch all remote repositories and delete any deleted remote branches ``
 $ git fetch --all --prune
-````
+```
 
 ```sh
 # Switch to `master` branch
@@ -174,33 +181,33 @@ $ git push -u origin BranchName
 
 <br>
 
-
 <h2>Project</h2> 
 - https://avinash201199.github.io/stopwatch/
 <br>
 
 <h2>Screenshots</h2>
 
->Interface of the StopWatch
+> Interface of the StopWatch
 
-![image](https://user-images.githubusercontent.com/114678694/194711541-1b911e5c-eaec-420b-bf62-e07fa60663bc.png)
+<!-- ![image](https://user-images.githubusercontent.com/114678694/194711541-1b911e5c-eaec-420b-bf62-e07fa60663bc.png) -->
+<img width="922" alt="image" src="./img//readme_img/stopwatch_new.png">
 
->StopWatch Started
+> StopWatch Started
 
-<img width="922" alt="image" src="https://user-images.githubusercontent.com/114678694/194711258-253b46fc-3b90-437b-8740-0e0f7d46d6f1.png">
+<img width="922" alt="image" src="./img/readme_img/started.png">
 
+> Dark-Mode On
 
+<img width="922" alt="image" src="./img/readme_img/darkmode.png">
 
->If you want this project then go ahead. Fork and clone it, and make changes according to you. After that, you can host it on Github using Github pages.
-For any help reach me on **social media link** in profile readme. https://www.instagram.com/lets__code/
-<br><br>
+> If you want this project then go ahead. Fork and clone it, and make changes according to you. After that, you can host it on Github using Github pages.
+> For any help reach me on **social media link** in profile readme. https://www.instagram.com/lets__code/ > <br><br>
 
 <h2>Connect with me</h2>
 <br>
 <a href="https://www.instagram.com/lets__code/"><img src="https://img.icons8.com/color/50/000000/instagram-new--v2.png"</img></a>
 <a href="https://www.linkedin.com/in/avinash-singh-071b79175/"><img src="https://img.icons8.com/color/48/000000/linkedin.png"</img></a>
 <a href="https://github.com/avinash201199"><img src="https://img.icons8.com/color/48/000000/github--v3.png"</img></a>
-
 
 ### Thank you for your valuable contribution!
 
