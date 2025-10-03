@@ -1,6 +1,7 @@
 body {
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #link--active {
@@ -26,15 +27,8 @@ body {
 }
 
 .active {
-
-  color: #7fe9d4;
-  background: #7fe9d4;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #191654, #43c6ac);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #191654, #43c6ac);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  color: #333;
+  background: white;
   transition: background-color 0.5s ease;
 }
 
@@ -138,4 +132,79 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
 #title1 {
   font-weight: 700;
   font-size: 1.3rem;
+}
+
+footer {
+  height: 240px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration-color: white;
+  text-emphasis-style: bold;
+}
+
+.social-links {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
+li {
+  width: max(5vw, 2.5rem);
+  height: max(5vw, 2.5rem);
+  list-style: none;
+  margin: 10px;
+}
+
+.link {
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #000;
+  font-size: 20px;
+  transition: all 0.5s ease;
+}
+
+.textfooter {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+  text-align: center;
+}
+
+.my-class {
+  background: #d7dfe4;
+}
+
+.hov {
+  width: 40px;
+  height: 40px;
+}
+
+.hov:hover {
+  transition: 2s;
+  width: 60px;
+  height: 60px;
+}
+
+body {
+  background: #ffffff !important;
+}
+
+footer {
+  height: 240px !important;
+  background: #ffffff !important;
+  margin: 0;
+  padding: 0;
+}
+
+.my-class {
+  background: #ffffff !important;
 }
