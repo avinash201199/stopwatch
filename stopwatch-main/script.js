@@ -1,77 +1,73 @@
-let hr = 0;
-let min = 0;
-let sec = 0;
-let count = 0;
+```javascript
+let hr = 0, min = 0, sec = 0, count = 0;
 let timer = false;
 
 function $id(id) {
-    return document.getElementById(id);
+  return document.getElementById(id);
 }
 
 function start() {
+  if (!timer) {
     timer = true;
     stopwatch();
+  }
 }
 
 function stop() {
-    timer = false;
-
+  timer = false;
 }
 
 function reset() {
-    timer = false;
-    hr = min = sec = count = 0;
-
-    $id("hr").innerHTML = "00";
-    $id("min").innerHTML = "00";
-    $id("sec").innerHTML = "00";
-    $id("count").innerHTML = "00";
-
+  timer = false;
+  hr = min = sec = count = 0;
+  updateDisplay(hr, "hr");
+  updateDisplay(min, "min");
+  updateDisplay(sec, "sec");
+  updateDisplay(count, "count");
+  $id("laps").innerHTML = "";
 }
 
 function stopwatch() {
-    if (timer) {
-        count += 1;
+  if (timer) {
+    count++;
+    if (count === 100) {
+      sec++;
+      count = 0;
     }
-
-    if (count === 99) {
-        sec += 1;
-        count = 0;
+    if (sec === 60) {
+      min++;
+      sec = 0;
     }
-    if (sec === 59) {
-        min += 1;
-        sec = 0;
+    if (min === 60) {
+      hr++;
+      min = 0;
+      sec = 0;
     }
-    if (min === 59) {
-        hr += 1;
-        min = 0;
-        sec = 0;
-    }
-
     updateDisplay(hr, "hr");
     updateDisplay(min, "min");
     updateDisplay(sec, "sec");
     updateDisplay(count, "count");
-
     setTimeout(stopwatch, 10);
+  }
 }
 
 function updateDisplay(value, elementId) {
-    const stringValue = value < 10 ? '0' + value : value.toString();
-    document.getElementById(elementId).innerHTML = stringValue;
+  const stringValue = value < 10 ? "0" + value : value.toString();
+  $id(elementId).innerHTML = stringValue;
 }
 
 function lap() {
-    console.log(hr, min, sec, count)
-    const laps = $id('laps');
-    laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
+  const laps = $id("laps");
+  const li = document.createElement("li");
+  li.textContent = `${format(hr)}:${format(min)}:${format(sec)}:${format(count)}`;
+  laps.appendChild(li);
 }
 
 function clearLap() {
-    $id('laps').remove();
+  $id("laps").innerHTML = "";
 }
 
-function getLocalTime(){
-    const d = new Date().toLocaleTimeString();
-    console.log(d);
+function format(value) {
+  return value < 10 ? "0" + value : value;
 }
+```

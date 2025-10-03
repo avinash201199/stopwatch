@@ -1,94 +1,87 @@
+```css
 body {
-    background: #43C6AC;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+  background: linear-gradient(to right, #191654, #43C6AC);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #d7dfe4;
 }
 
 #container {
-    color: #d7dfe4;
+  text-align: center;
 }
 
-#footer-container {
-    position: absolute;
-    bottom: 10%;
+#time {
+  margin: 20px 0;
 }
 
 .digit {
-    font-size: 150px;
-    font-weight: bold;
+  font-size: 80px;
+  font-weight: bold;
 }
 
 .txt {
-    font-size: 40px;
-    font-weight: bold;
-}
-.social-txt {
-    font-size: 20px;
-    color: white;
+  font-size: 20px;
+  margin-left: 5px;
 }
 
 #btn-container {
-    text-align: center;
-    margin-top: 40px;
+  margin-top: 30px;
 }
 
 .btn {
-    padding: 7px 25px;
-    font-size: 15px;
-    margin: 0px 10px;
-    color: white;
-    border: 0px;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 5px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-#start {
-    background-color: #1abc9c;
-}
+#start { background-color: #1abc9c; }
+#start:hover { background-color: #16a085; }
 
-#start :hover {
-    background-color: yellow;
-}
+#stop { background-color: #e74c3c; }
+#stop:hover { background-color: #c0392b; }
 
-#stop {
-    background-color: #ff0000;
-}
+#reset { background-color: #3498db; }
+#reset:hover { background-color: #2980b9; }
 
-#reset {
-    background-color: #0400fc;
-}
+#lap { background-color: #9b59b6; }
+#lap:hover { background-color: #8e44ad; }
 
-@media screen and (max-width:800px){
-    #time span{
-        font-size: 4rem;
-    }
-    #time{
-        display: flex;
-        flex-direction: column;
-    }
-    #container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-#lap {
-    background-color: rgb(166, 17, 211);
-}
-
-#clearLap {
-    background-color: #ee42a6;
-}
+#clearLap { background-color: #e84393; }
+#clearLap:hover { background-color: #d63073; }
 
 #laps {
-    margin-top: 100px;
-    text-align: center;
-    font-size: 25px;
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+  font-size: 20px;
+  color: #fff;
 }
+
+#footer-container {
+  position: absolute;
+  bottom: 10px;
+  font-size: 14px;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  #time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .digit {
+    font-size: 50px;
+  }
+}
+```
