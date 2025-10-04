@@ -137,8 +137,9 @@
 
   <script type="text/javascript">
     // start or stop stopwatch using "spacebar" key
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "Space") {
+        event.preventDefault();
         start();
       }
     });
