@@ -14,7 +14,7 @@ const audio = new Audio();
 audio.src = "../audio/sound_trim.mp3";
 let isFirstLoad = true;
 
-if(darkTheme) $id('.counter-background').css({ "background": "rgb(25, 18, 18)" });
+if (darkTheme) $id('.counter-background').css({ "background": "rgb(25, 18, 18)" });
 
 function $id(id) {
     return document.getElementById(id);
@@ -35,7 +35,10 @@ const setPomoTime = (minutes, skipAudio = false) => {
     clearInterval(intervalId);
     isFirstLoad = false;
     updateModeDisplay();
-}
+
+    // === Reset Progress Bar ===
+    updateProgressBar();
+};
 
 const setPomodoroOption = (focus, rest) => {
     focusTime = focus;
@@ -43,12 +46,12 @@ const setPomodoroOption = (focus, rest) => {
     isFocusMode = true;
     sessionActive = false;
     setPomoTime(focusTime);
-}
+};
 
 const updateModeDisplay = () => {
     const modeText = isFocusMode ? 'Focus Time' : 'Rest Time';
     $id('current-mode').innerHTML = modeText;
-}
+};
 
 const switchMode = () => {
     isFocusMode = !isFocusMode;
@@ -61,7 +64,7 @@ const switchMode = () => {
             startPomoCounter();
         }
     }, 1000);
-}
+};
 
 const reset = () => {
     $id('counter-background').classList.remove('inactive');
@@ -75,7 +78,7 @@ const reset = () => {
     isFocusMode = true;
     audio.play();
     setPomoTime(focusTime); // Reset to focus time
-}
+};
 
 const updateTimerDisplay = () => {
     const minutesDisplay = Math.floor(currentTime / 60).toString().padStart(2, '0');
@@ -83,6 +86,20 @@ const updateTimerDisplay = () => {
     $id('minutes').innerHTML = minutesDisplay;
     $id('seconds').innerHTML = secondsDisplay;
 };
+
+// === NEW FUNCTION ===
+function updateProgressBar() {
+    const progressBar = $id("progress-bar");
+    if (!progressBar) return;
+    const totalDuration = pomoTime.minutes * 60;
+    const progressPercent = (currentTime / totalDuration) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+
+    // Optional color feedback
+    if (progressPercent < 20) progressBar.style.backgroundColor = "#f44336";
+    else if (progressPercent < 50) progressBar.style.backgroundColor = "#ff9800";
+    else progressBar.style.backgroundColor = "#4caf50";
+}
 
 const startPomoCounter = () => {
     audio.play();
@@ -108,6 +125,7 @@ const startPomoCounter = () => {
             if (currentTime > 0) {
                 currentTime--;
                 updateTimerDisplay();
+                updateProgressBar(); // 🔥 Progress updates every second
             } else {
                 clearInterval(intervalId);
                 paused = true;
@@ -121,7 +139,8 @@ const startPomoCounter = () => {
                     $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
                 }
                 
-                // Switch between focus and rest modes
+                // Reset and switch modes
+                updateProgressBar();
                 switchMode();
             }
         }, 1000);
@@ -149,21 +168,21 @@ if (isFirstLoad) {
 setPomodoroOption(25, 5);
 updateTimerDisplay();
 
-function setLightTheme(){
+function setLightTheme() {
     darkTheme = false;
     $('.navbar').css({ "background-color": "rgb(5, 30, 54)" });
     $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
     $('.timer').css({ "color": "white" })
-    $('.inactive').css({"background": "rgb(5, 30, 54)"});
+    $('.inactive').css({ "background": "rgb(5, 30, 54)" });
     $('#light').prop("checked", false);
 }
 
-function setDarkTheme(){
+function setDarkTheme() {
     darkTheme = true;
     $('.navbar').css({ "background-color": "black" });
-    $('.active').css({"color":"#7fe9d4", "background": "#191212"});
+    $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
     $('.timer').css({ "color": "rgb(216 137 31)" });
-    $('.inactive').css({"background": "rgb(25, 18, 18)", "color": "white"})
+    $('.inactive').css({ "background": "rgb(25, 18, 18)", "color": "white" });
     $('#light').prop("checked", true);
 }
 
@@ -175,28 +194,21 @@ prefersDarkThemeMql.addEventListener("change", function(mql) {
     } else {
         setLightTheme();
     }
-})
+});
 
-$(document).ready(function ()
-{
-
+$(document).ready(function () {
     if (
         localStorage.getItem("darkmode") == "true" ||
         (localStorage.getItem("darkmode") === null && prefersDarkThemeMql.matches)
-    )
-    {
+    ) {
         setDarkTheme();
     }
 
-    $('#light').on("change paste keyup", function (e)
-    {
-        if (!e.target.checked)
-        {
+    $('#light').on("change paste keyup", function (e) {
+        if (!e.target.checked) {
             setLightTheme();
             localStorage.setItem("darkmode", false);
-        }
-        else
-        {
+        } else {
             setDarkTheme();
             localStorage.setItem("darkmode", true);
         }
