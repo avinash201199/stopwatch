@@ -81,6 +81,29 @@
     </nav>
     <div class='row h-100 justify-content-center active' id='counter-background'>
         <div class='col-12 my-auto'>
+            <!-- Pomodoro Options -->
+            <div class='row justify-content-center mb-4'>
+                <div class='col-auto'>
+                    <h5 class='text-center mb-3' style='color: inherit;'>Choose Your Pomodoro Session: Focus Time/Rest Time</h5>
+                </div>
+            </div>
+            <div class='row justify-content-center mb-4'>
+                <div class='col-auto px-2'>
+                    <button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(25, 5)'>
+                        25/5
+                    </button>
+                </div>
+                <div class='col-auto px-2'>
+                    <button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(55, 10)'>
+                        55/10
+                    </button>
+                </div>
+                <div class='col-auto px-2'>
+                    <button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(90, 15)'>
+                        90/15
+                    </button>
+                </div>
+            </div>
             <div class='row justify-content-center'>
                 <div class='col-auto my-auto'>
                     <p class='timer' id='minutes'>
@@ -99,10 +122,10 @@
                 </div>
             </div>
             <div class='row justify-content-center'>
-                <div class='col-auto py-5 px-4 hide' id='focus'>
-                    <h1 class='text-center'>
-                        Focus!
-                    </h1>
+                <div class='col-auto py-3 px-4' id='mode-display'>
+                    <h3 class='text-center' style='color: inherit;'>
+                        <span id='current-mode'>Focus Time</span>
+                    </h3>
                 </div>
             </div>
             <div class='row justify-content-center'>
