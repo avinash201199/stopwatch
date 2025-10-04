@@ -4,6 +4,12 @@ let currentTime = 0;
 let intervalId;
 let darkTheme = false;
 
+// Pomodoro session tracking
+let focusTime = 25;
+let restTime = 5;
+let isFocusMode = true;
+let sessionActive = false;
+
 const audio = new Audio();
 audio.src = "../audio/sound_trim.mp3";
 let isFirstLoad = true;
@@ -14,8 +20,10 @@ function $id(id) {
     return document.getElementById(id);
 }
 
-const setPomoTime = (minutes) => {
-    audio.play();
+const setPomoTime = (minutes, skipAudio = false) => {
+    if (!skipAudio && !isFirstLoad) {
+        audio.play();
+    }
     pomoTime.minutes = minutes;
     $id('minutes').innerHTML = minutes.toString().padStart(2, '0');
     $id('seconds').innerHTML = '00';
@@ -26,6 +34,33 @@ const setPomoTime = (minutes) => {
     $id('counter-background').classList.add('inactive');
     clearInterval(intervalId);
     isFirstLoad = false;
+    updateModeDisplay();
+}
+
+const setPomodoroOption = (focus, rest) => {
+    focusTime = focus;
+    restTime = rest;
+    isFocusMode = true;
+    sessionActive = false;
+    setPomoTime(focusTime);
+}
+
+const updateModeDisplay = () => {
+    const modeText = isFocusMode ? 'Focus Time' : 'Rest Time';
+    $id('current-mode').innerHTML = modeText;
+}
+
+const switchMode = () => {
+    isFocusMode = !isFocusMode;
+    const newTime = isFocusMode ? focusTime : restTime;
+    setPomoTime(newTime, true);
+    audio.play();
+    // Auto-start the next session
+    setTimeout(() => {
+        if (sessionActive) {
+            startPomoCounter();
+        }
+    }, 1000);
 }
 
 const reset = () => {
@@ -36,8 +71,10 @@ const reset = () => {
     } else {
         $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
     }
+    sessionActive = false;
+    isFocusMode = true;
     audio.play();
-    setPomoTime(pomoTime.minutes); // Reset to the currently set time
+    setPomoTime(focusTime); // Reset to focus time
 }
 
 const updateTimerDisplay = () => {
@@ -50,13 +87,16 @@ const updateTimerDisplay = () => {
 const startPomoCounter = () => {
     audio.play();
     paused = !paused;
+    
+    if (!paused) {
+        sessionActive = true;
+    }
 
     $id('timer-control').innerHTML = paused ? '<i class="fas fa-play-circle"></i> Play' : '<i class="fas fa-pause-circle"></i> Pause';
 
     if (!paused) {
         $id('counter-background').classList.remove('active');
         $id('counter-background').classList.add('inactive');
-        $id('focus').classList.remove('hidden');
 
         if (darkTheme) {
             $('.inactive').css({ "background": "black", "color": "white" });
@@ -71,7 +111,6 @@ const startPomoCounter = () => {
             } else {
                 clearInterval(intervalId);
                 paused = true;
-                audio.pause();
                 $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
                 $id('counter-background').classList.remove('inactive');
                 $id('counter-background').classList.add('active');
@@ -81,6 +120,9 @@ const startPomoCounter = () => {
                 } else {
                     $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
                 }
+                
+                // Switch between focus and rest modes
+                switchMode();
             }
         }, 1000);
     } else {
@@ -103,7 +145,8 @@ if (isFirstLoad) {
     isFirstLoad = false;
 }
 
-setPomoTime(25);
+// Initialize with default 25/5 Pomodoro
+setPomodoroOption(25, 5);
 updateTimerDisplay();
 
 function setLightTheme(){
