@@ -2,6 +2,41 @@ body {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
+  background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #e94560);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating particles effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.2), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: float 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-100px) translateX(50px); }
 }
 
 #link--active {
@@ -19,16 +54,22 @@ body {
   transition: background-color 0.5s ease;
 }
 
+.thinner {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 
 .inactive {
   color: rgb(169, 188, 214);
-  background: rgb(5, 30, 54);
+  background: transparent;
   transition: background-color 0.5s ease;
 }
 
 .active {
-  color: #333;
-  background: white;
+  color: #fff;
+  background: transparent;
   transition: background-color 0.5s ease;
 }
 
@@ -40,6 +81,8 @@ body {
 .timer {
   font-size: 100px;
   font-family: 'digital-7';
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  color: white;
 }
 
 .counter-background {
@@ -195,16 +238,39 @@ li {
 }
 
 body {
-  background: #ffffff !important;
+  background: transparent !important;
 }
 
 footer {
   height: 240px !important;
-  background: #ffffff !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
   margin: 0;
   padding: 0;
 }
 
 .my-class {
-  background: #ffffff !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Video Background Responsive */
+@media (max-width: 768px) {
+  .video-background video {
+    filter: blur(6px) brightness(0.8);
+  }
+
+  .video-overlay {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (max-width: 480px) {
+  .video-background video {
+    filter: blur(4px) brightness(0.9);
+  }
+
+  .video-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
 }
