@@ -701,3 +701,24 @@ li {
     background: rgba(0, 0, 0, 0.5);
   }
 }
+
+#mode-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.mode-btn {
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: 1px solid #003333;
+  background-color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.mode-btn.active {
+  background-color: #003333;
+  color: white;
+}

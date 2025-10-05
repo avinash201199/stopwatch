@@ -256,6 +256,23 @@ footer {
   backdrop-filter: blur(10px);
 }
 
+/* === Pomodoro Progress Bar === */
+.progress-container {
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+#progress-bar {
+  width: 100%;
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 1s linear, background-color 0.5s ease;
+}
+
 /* Video Background Responsive */
 @media (max-width: 768px) {
   .video-background video {
