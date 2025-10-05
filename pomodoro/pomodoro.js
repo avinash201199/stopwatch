@@ -1,3 +1,5 @@
+console.log('Pomodoro.js script loading...');
+
 const pomoTime = {};
 let paused = true;
 let currentTime = 0;
@@ -14,7 +16,26 @@ const audio = new Audio();
 audio.src = "../audio/sound_trim.mp3";
 let isFirstLoad = true;
 
-if (darkTheme) $id('.counter-background').css({ "background": "rgb(25, 18, 18)" });
+// Simple focus music functionality
+let focusMusic = null;
+let isMusicPlaying = false;
+
+function initializeFocusMusic() {
+    console.log('Initializing focus music...');
+    focusMusic = new Audio('/audio/rain.mp3');
+    focusMusic.loop = true;
+    focusMusic.volume = 0.2; // Set a lower volume for rain sounds
+
+    focusMusic.addEventListener('loadstart', () => console.log('Focus music loading...'));
+    focusMusic.addEventListener('canplaythrough', () => console.log('Focus music ready to play'));
+    focusMusic.addEventListener('error', (e) => console.log('Focus music error:', e));
+    focusMusic.addEventListener('play', () => console.log('Focus music started playing'));
+    focusMusic.addEventListener('pause', () => console.log('Focus music paused'));
+
+    console.log('Focus music initialized:', focusMusic);
+}
+
+if (darkTheme) $('#counter-background').css({ "background": "rgb(25, 18, 18)" });
 
 function $id(id) {
     return document.getElementById(id);
@@ -22,7 +43,9 @@ function $id(id) {
 
 const setPomoTime = (minutes, skipAudio = false) => {
     if (!skipAudio && !isFirstLoad) {
-        audio.play();
+        audio.play().catch(() => {
+            console.log('Audio play blocked by browser - this is normal on page load');
+        });
     }
     pomoTime.minutes = minutes;
     $id('minutes').innerHTML = minutes.toString().padStart(2, '0');
@@ -57,7 +80,9 @@ const switchMode = () => {
     isFocusMode = !isFocusMode;
     const newTime = isFocusMode ? focusTime : restTime;
     setPomoTime(newTime, true);
-    audio.play();
+    audio.play().catch(() => {
+        console.log('Audio play blocked by browser');
+    });
     // Auto-start the next session
     setTimeout(() => {
         if (sessionActive) {
@@ -76,7 +101,9 @@ const reset = () => {
     }
     sessionActive = false;
     isFocusMode = true;
-    audio.play();
+    audio.play().catch(() => {
+        console.log('Audio play blocked by browser');
+    });
     setPomoTime(focusTime); // Reset to focus time
 };
 
@@ -200,4 +227,56 @@ $(document).ready(function () {
             localStorage.setItem("darkmode", true);
         }
     });
+});
+
+// Simple music control function
+function toggleMusic() {
+    if (!focusMusic) {
+        initializeFocusMusic();
+    }
+
+    console.log('toggleMusic called, isMusicPlaying:', isMusicPlaying);
+    console.log('focusMusic:', focusMusic);
+
+    if (!isMusicPlaying) {
+        console.log('Attempting to play focus music...');
+        focusMusic.play().then(() => {
+            console.log('Focus music started successfully');
+            isMusicPlaying = true;
+            updateMusicStatus(true);
+        }).catch((error) => {
+            console.log('Focus music play failed:', error);
+            isMusicPlaying = false;
+            updateMusicStatus(false);
+        });
+    } else {
+        console.log('Pausing focus music...');
+        focusMusic.pause();
+        isMusicPlaying = false;
+        updateMusicStatus(false);
+    }
+}
+
+function updateMusicStatus(isPlaying) {
+    const statusElement = $id("music-status");
+    const toggleButton = $id("music-toggle");
+
+    console.log('Updating music status, isPlaying:', isPlaying);
+
+    if (statusElement && toggleButton) {
+        if (isPlaying) {
+            statusElement.textContent = "Pause Focus Music";
+            toggleButton.innerHTML = '<i class="fas fa-pause"></i> <span id="music-status">Pause Focus Music</span>';
+        } else {
+            statusElement.textContent = "Play Focus Music";
+            toggleButton.innerHTML = '<i class="fas fa-play"></i> <span id="music-status">Play Focus Music</span>';
+        }
+    }
+}
+
+// Initialize music controls when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing music...');
+    initializeFocusMusic();
+    updateMusicStatus(false);
 });
