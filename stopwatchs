@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stopwatch</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap');
+
+    :root{
+      --bg: linear-gradient(135deg,#0f172a,#0b1220);
+      --card: #0f172a;
+      --accent: #7c3aed;
+      --muted: #94a3b8;
+      --glass: rgba(255,255,255,0.04);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,"Helvetica Neue",Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--bg);
+      color:#e6eef8;
+      padding:24px;
+    }
+
+    .card {
+      width:100%;
+      max-width:480px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:28px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+    }
+
+    .title {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+    .title h1 {
+      font-size:18px;
+      letter-spacing:0.2px;
+      margin:0;
+      font-weight:800;
+    }
+    .subtitle {
+      color:var(--muted);
+      font-size:13px;
+      margin-top:4px;
+      font-weight:300;
+    }
+
+    .display {
+      display:flex;
+      align-items:baseline;
+      justify-content:center;
+      padding:22px;
+      border-radius:10px;
+      background: linear-gradient(90deg, rgba(124,58,237,0.12), rgba(124,58,237,0.03));
+      border: 1px solid rgba(124,58,237,0.08);
+      margin-bottom:20px;
+      position:relative;
+    }
+
+    .time {
+      font-size:48px;
+      font-weight:800;
+      letter-spacing:1px;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+    .ms {
+      font-size:18px;
+      margin-left:8px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .controls {
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      margin-bottom:16px;
+    }
+
+    .btn {
+      appearance:none;
+      border: none;
+      padding:10px 16px;
+      border-radius:10px;
+      min-width:96px;
+      font-weight:700;
+      letter-spacing:0.2px;
+      cursor:pointer;
+      transition:transform 0.12s ease, box-shadow 0.12s ease;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+      color:white;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn:focus{outline:2px solid rgba(124,58,237,0.24); outline-offset:3px}
+
+    .btn.start {
+      background: linear-gradient(90deg,#10b981,#06b6d4);
+    }
+    .btn.stop {
+      background: linear-gradient(90deg,#ef4444,#ef4444cc);
+    }
+    .btn.reset {
+      background: transparent;
+      color:var(--muted);
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow:none;
+      min-width:72px;
+    }
+    .btn.lap {
+      background: linear-gradient(90deg,#7c3aed,#a78bfa);
+      min-width:72px;
+    }
+
+    .hint {
+      color:var(--muted);
+      text-align:center;
+      font-size:13px;
+      margin-bottom:14px;
+    }
+
+    .laps {
+      max-height:220px;
+      overflow:auto;
+      border-radius:8px;
+      padding:10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .lap {
+      display:flex;
+      justify-content:space-between;
+      padding:8px 10px;
+      align-items:center;
+      border-radius:6px;
+      margin-bottom:8px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      font-weight:600;
+      color:#dbeafe;
+      font-size:14px;
+    }
+    .lap:last-child{margin-bottom:0}
+    .lap-index { color:var(--muted); font-weight:700; margin-right:12px; width:64px; text-align:left }
+    .lap-time { font-variant-numeric:tabular-nums; }
+
+    /* small screens */
+    @media (max-width:420px){
+      .time { font-size:38px }
+      .ms { font-size:14px }
+      .btn{min-width:64px; padding:8px 10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="application" aria-label="Stopwatch">
+    <div class="title">
+      <div>
+        <h1>Stopwatch</h1>
+        <div class="subtitle">Accurate • Laps • Space = Start/Stop • L = Lap • R = Reset</div>
+      </div>
+      <div style="text-align:right">
+        <div style="color:var(--muted); font-weight:600; font-size:12px">Simple • Lightweight</div>
+      </div>
+    </div>
+
+    <div class="display" aria-hidden="false">
+      <div class="time" id="time">00:00:00</div>
+      <div class="ms" id="ms">000</div>
+    </div>
+
+    <div class="controls" role="group" aria-label="Stopwatch controls">
+      <button class="btn start" id="startBtn" aria-pressed="false">Start</button>
+      <button class="btn lap" id="lapBtn" disabled>Lap</button>
+      <button class="btn reset" id="resetBtn" disabled>Reset</button>
+    </div>
+
+    <div class="hint">Press <strong>Space</strong> to Start/Stop • <strong>L</strong> to Lap • <strong>R</strong> to Reset</div>
+
+    <div class="laps" id="laps" aria-live="polite">
+      <!-- laps inserted here -->
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const startBtn = document.getElementById('startBtn');
+      const lapBtn = document.getElementById('lapBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const timeEl = document.getElementById('time');
+      const msEl = document.getElementById('ms');
+      const lapsEl = document.getElementById('laps');
+
+      let running = false;
+      let startTime = 0;        // timestamp when started (performance.now())
+      let elapsedBefore = 0;   // accumulated elapsed time before current run (ms)
+      let rafId = null;
+      let laps = [];
+
+      function formatTime(msTotal) {
+        const totalMs = Math.floor(msTotal);
+        const ms = totalMs % 1000;
+        const totalSec = Math.floor(totalMs / 1000);
+        const secs = totalSec % 60;
+        const mins = Math.floor(totalSec / 60) % 60;
+        const hours = Math.floor(totalSec / 3600);
+        const hh = String(hours).padStart(2,'0');
+        const mm = String(mins).padStart(2,'0');
+        const ss = String(secs).padStart(2,'0');
+        return {
+          display: `${hh}:${mm}:${ss}`,
+          ms: String(ms).padStart(3,'0')
+        };
+      }
+
+      function render(now){
+        const nowPerf = performance.now();
+        const elapsed = elapsedBefore + (running ? (nowPerf - startTime) : 0);
+        const t = formatTime(elapsed);
+        timeEl.textContent = t.display;
+        msEl.textContent = t.ms;
+        rafId = requestAnimationFrame(render);
+      }
+
+      function start(){
+        if (running) return;
+        running = true;
+        startTime = performance.now();
+        startBtn.textContent = 'Stop';
+        startBtn.classList.remove('start');
+        startBtn.classList.add('stop');
+        startBtn.setAttribute('aria-pressed','true');
+        lapBtn.disabled = false;
+        resetBtn.disabled = false;
+        if (!rafId) rafId = requestAnimationFrame(render);
+      }
+
+      function stop(){
+        if (!running) return;
+        running = false;
+        const nowPerf = performance.now();
+        elapsedBefore += (nowPerf - startTime);
+        startBtn.textContent = 'Start';
+        startBtn.classList.remove('stop');
+        startBtn.classList.add('start');
+        startBtn.setAttribute('aria-pressed','false');
+        // keep RAF running so display keeps consistent; you can cancel if you want:
+      }
+
+      function reset(){
+        running = false;
+        startTime = 0;
+        elapsedBefore = 0;
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        const t = formatTime(0);
+        timeEl.textContent = t.display;
+        msEl.textContent = t.ms;
+        startBtn.textContent = 'Start';
+        startBtn.classList.remove('stop');
+        startBtn.classList.add('start');
+        startBtn.setAttribute('aria-pressed','false');
+        laps = [];
+        renderLaps();
+        lapBtn.disabled = true;
+        resetBtn.disabled = true;
+      }
+
+      function lap(){
+        // record the current elapsed time
+        const nowPerf = performance.now();
+        const elapsed = elapsedBefore + (running ? (nowPerf - startTime) : 0);
+        laps.unshift(elapsed); // newest first
+        renderLaps();
+      }
+
+      function renderLaps(){
+        lapsEl.innerHTML = '';
+        if (laps.length === 0) {
+          lapsEl.innerHTML = '<div style="color:var(--muted); padding:8px; text-align:center">No laps yet</div>';
+          return;
+        }
+        laps.forEach((msTotal, idx) => {
+          const index = laps.length - idx; // 1-based ascending
+          const t = formatTime(msTotal);
+          const div = document.createElement('div');
+          div.className = 'lap';
+          div.innerHTML = `<div style="display:flex;align-items:center"><div class="lap-index">Lap ${index}</div></div>
+                           <div class="lap-time">${t.display}.<span style="opacity:0.85">${t.ms}</span></div>`;
+          lapsEl.appendChild(div);
+        });
+      }
+
+      // init display
+      (function init(){
+        const t = formatTime(0);
+        timeEl.textContent = t.display;
+        msEl.textContent = t.ms;
+        renderLaps();
+      })();
+
+      // button events
+      startBtn.addEventListener('click', () => {
+        if (running) stop(); else start();
+        if (!rafId) rafId = requestAnimationFrame(render);
+      });
+      lapBtn.addEventListener('click', () => {
+        if (!lapBtn.disabled) lap();
+      });
+      resetBtn.addEventListener('click', () => {
+        reset();
+      });
+
+      // keyboard shortcuts: Space = start/stop, L = lap, R = reset
+      window.addEventListener('keydown', (e) => {
+        // avoid interfering when typing in inputs (there are none) — safe
+        if (e.code === 'Space') {
+          e.preventDefault();
+          if (running) stop(); else start();
+          if (!rafId) rafId = requestAnimationFrame(render);
+        } else if (e.key.toLowerCase() === 'l') {
+          if (!lapBtn.disabled) lap();
+        } else if (e.key.toLowerCase() === 'r') {
+          reset();
+        }
+      });
+
+      // keep animation running to show accurate time even when stopped (optional)
+      // We'll keep RAF active so the UI updates smoothly. To conserve CPU, you can cancel RAF when stopped.
+
+      // Start RAF to keep display updated (but it won't change if not running)
+      if (!rafId) rafId = requestAnimationFrame(render);
+
+    })();
+  </script>
+</body>
+</html>
