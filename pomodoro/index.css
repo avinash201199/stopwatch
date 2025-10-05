@@ -654,3 +654,113 @@ body {
     background: rgba(0, 0, 0, 0.5);
   }
 }
+
+/* Dark Mode Styles for Pomodoro */
+body.dark-mode {
+  color: white;
+}
+
+body.dark-mode .video-overlay {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+body.dark-mode .thinner {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .my-class {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+body.dark-mode footer {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+body.dark-mode #title1 {
+  color: white !important;
+}
+
+body.dark-mode .nav-link {
+  color: #003333 !important;
+}
+
+body.dark-mode .nav-link:hover {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .timer {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .active {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .inactive {
+  color: white !important;
+}
+
+body.dark-mode #current-mode {
+  color: white !important;
+}
+
+body.dark-mode h5 {
+  color: white !important;
+}
+
+body.dark-mode .buttons {
+  border-color: #ff6b35 !important;
+  background: rgba(255, 107, 53, 0.2) !important;
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .buttons:hover {
+  background: #ff6b35 !important;
+  color: black !important;
+}
+
+body.dark-mode .textfooter {
+  color: white !important;
+}
+
+body.dark-mode .link {
+  background-color: #ff6b35 !important;
+  color: white !important;
+}
+
+body.dark-mode .btn-outline-primary {
+  color: #ff6b35 !important;
+  border-color: #ff6b35 !important;
+  background-color: transparent !important;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+  background-color: #ff6b35 !important;
+  color: black !important;
+}
+
+body.dark-mode #music-controls {
+  background: rgba(0,0,0,0.3) !important;
+}
+
+body.dark-mode #music-controls h5 {
+  color: white !important;
+}
+
+body.dark-mode .progress-container {
+  background-color: #333 !important;
+}
+
+body.dark-mode #progress-bar {
+  background-color: #ff6b35 !important;
+}
+
+/* Navigation links always dark */
+.nav-link {
+  color: #003333 !important;
+}
+
+.nav-link:hover {
+  color: #ff6b35 !important;
+}

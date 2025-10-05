@@ -448,6 +448,15 @@ th {
   box-shadow: rgba(0, 0, 0, 0.185) 0px 3px 8px;
 }
 
+/* Navigation links always dark */
+.nav-link {
+  color: #003333 !important;
+}
+
+.nav-link:hover {
+  color: #ff6b35 !important;
+}
+
 .buttons {
   color: #fefefe;
   outline: none;
@@ -910,4 +919,105 @@ footer {
 .mode-btn.active {
   background-color: #003333;
   color: white;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  color: white;
+}
+
+body.dark-mode .video-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .thinner {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .my-class {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+body.dark-mode hr {
+  background-color: #ff6b35;
+}
+
+body.dark-mode #link--active {
+  background-color: #ff6b35;
+  color: black;
+}
+
+body.dark-mode .nav-link {
+  color: #003333 !important;
+}
+
+body.dark-mode .nav-link:hover {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .digit {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .txt {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .todayDate h3 {
+  color: white !important;
+}
+
+body.dark-mode .buttons {
+  border-color: #ff6b35 !important;
+  background: rgba(255, 107, 53, 0.2) !important;
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .buttons:hover {
+  background: #ff6b35 !important;
+  color: black !important;
+}
+
+body.dark-mode .textfooter {
+  color: white !important;
+}
+
+body.dark-mode .link {
+  background-color: #ff6b35 !important;
+  color: white !important;
+}
+
+body.dark-mode tr {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+body.dark-mode th, 
+body.dark-mode td {
+  color: white !important;
+}
+
+body.dark-mode th {
+  background-color: #333 !important;
+}
+
+body.dark-mode .mode-btn {
+  background-color: transparent !important;
+  color: white !important;
+  border-color: white !important;
+}
+
+body.dark-mode .mode-btn.active {
+  background-color: #ff6b35 !important;
+  color: black !important;
+}
+
+body.dark-mode #countdown-minutes {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: white !important;
+  border: 1px solid #ff6b35 !important;
+}
+
+body.dark-mode #countdown-minutes::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }

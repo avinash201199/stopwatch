@@ -439,3 +439,119 @@ body {
   transition: width 0.5s linear;
   border-radius: 10px;
 }
+
+/* Dark Mode Styles for Custom Timer */
+body.dark-mode {
+  color: white;
+  background: transparent !important;
+}
+
+body.dark-mode .navbar {
+  background-color: rgba(0, 0, 0, 0.95) !important;
+}
+
+body.dark-mode #title1 {
+  color: white !important;
+}
+
+body.dark-mode .nav-link {
+  color: #003333 !important;
+}
+
+body.dark-mode .nav-link:hover {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .timer {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .active {
+  color: #ff6b35 !important;
+  background: #191212 !important;
+}
+
+body.dark-mode .inactive {
+  background: black !important;
+  color: white !important;
+}
+
+body.dark-mode .buttons {
+  border-color: #ff6b35 !important;
+  background: rgba(255, 107, 53, 0.2) !important;
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .buttons:hover {
+  background: #ff6b35 !important;
+  color: black !important;
+}
+
+body.dark-mode .textfooter {
+  color: white !important;
+}
+
+body.dark-mode .link {
+  background-color: #ff6b35 !important;
+  color: white !important;
+}
+
+body.dark-mode .foot {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+body.dark-mode .my-class {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+body.dark-mode footer {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+body.dark-mode .form__field {
+  color: #ff6b35 !important;
+  border-bottom-color: #ff6b35 !important;
+}
+
+body.dark-mode .form__label {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .form__field:focus {
+  border-image: linear-gradient(to right, #ff6b35, #ff6b35) !important;
+}
+
+body.dark-mode .form__field:focus ~ .form__label {
+  color: #ff6b35 !important;
+}
+
+body.dark-mode #progress-container {
+  background-color: #333 !important;
+}
+
+body.dark-mode #progress-bar {
+  background: #ff6b35 !important;
+}
+
+body.dark-mode .animated-button {
+  color: #ff6b35 !important;
+  box-shadow: 0 0 0 2px #ff6b3520 !important;
+}
+
+body.dark-mode .animated-button:hover {
+  box-shadow: 0 0 0 5px #ff6b3560 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .animated-button span:last-child {
+  background-color: #ff6b35 !important;
+}
+
+/* Navigation links always dark */
+.nav-link {
+  color: #003333 !important;
+}
+
+.nav-link:hover {
+  color: #ff6b35 !important;
+}
