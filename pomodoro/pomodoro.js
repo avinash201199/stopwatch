@@ -36,7 +36,10 @@ function $id(id) {
 }
 
 const setPomoTime = (minutes) => {
-    notificationAudio.play();
+    // Only play notification sound if not first load
+    if (!isFirstLoad) {
+        notificationAudio.play().catch(e => console.log('Audio play prevented:', e));
+    }
     pomoTime.minutes = minutes;
     $id('minutes').innerHTML = minutes.toString().padStart(2, '0');
     $id('seconds').innerHTML = '00';
@@ -64,7 +67,7 @@ const updateSessionDisplay = () => {
 const reset = () => {
     $id('counter-background').classList.remove('inactive');
     $id('counter-background').classList.add('active');
-    notificationAudio.play();
+    notificationAudio.play().catch(e => console.log('Audio play prevented:', e));
     stopBackgroundMusic();
     currentSession = 'focus';
     sessionsCompleted = 0;
@@ -79,7 +82,7 @@ const updateTimerDisplay = () => {
 };
 
 const startPomoCounter = () => {
-    notificationAudio.play();
+    notificationAudio.play().catch(e => console.log('Audio play prevented:', e));
     paused = !paused;
 
     $id('timer-control').innerHTML = paused ? '<i class="fas fa-play-circle"></i> Play' : '<i class="fas fa-pause-circle"></i> Pause';

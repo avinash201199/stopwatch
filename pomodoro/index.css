@@ -238,7 +238,9 @@ li {
 }
 
 body {
-  background: transparent !important;
+  background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #e94560) !important;
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
 }
 
 footer {
