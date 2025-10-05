@@ -30,6 +30,12 @@
 </head>
 
 <body>
+  <!-- Video Background -->
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -999;">
+    <video width="100%" height="100%" autoplay muted loop style="object-fit: cover;">
+      <source src="lofi.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <nav class="navbar navbar-default navbar-expand-lg thinner navcol">
     <div class="container-fluid-nav">
@@ -80,6 +86,15 @@
   </nav>
   <div class="container-fluid">
     <div id="container">
+      <div id="mode-toggle">
+        <button id="stopwatch-btn" class="mode-btn active">Stopwatch</button>
+        <button id="countdown-btn" class="mode-btn">Countdown Timer</button>
+      </div>
+
+      <div id="countdown-input-container" style="display: none; margin: 10px 0;">
+        <input type="number" id="countdown-minutes" placeholder="Minutes" min="0" style="width: 100px; padding:5px;">
+        <button class="buttons" id="start-countdown">Start Countdown</button>
+      </div>
       <div>
         <div id="time">
           <span>
@@ -137,8 +152,9 @@
 
   <script type="text/javascript">
     // start or stop stopwatch using "spacebar" key
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "Space") {
+        event.preventDefault();
         start();
       }
     });
@@ -173,16 +189,6 @@
       }
     });
 
-    // K key for Play/Pause music
-    document.addEventListener("keyup", (event) => {
-      if (event.code === "KeyK") {
-        if (audio.paused) {
-          audio.play();
-        } else {
-          audio.pause();
-        }
-      }
-    });
   </script>
   <script src="script.js"></script>
 

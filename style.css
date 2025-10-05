@@ -4,7 +4,37 @@ body {
   background: black;
   display: block;
   height: 100vh;
-  /* padding-top: 90px; */
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Video Background - Enhanced feature, falls back gracefully */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8; /* Ensure visibility of overlaid content */
+}
+
+/* Overlay to improve readability */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
 }
 
 hr {
@@ -240,8 +270,9 @@ tr {
 }
 
 tr {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.95);
   margin-bottom: 25px;
+  backdrop-filter: blur(10px);
 }
 
 th {
@@ -424,7 +455,7 @@ th {
   text-align: center;
   width: 150px;
   border-radius: 55px;
-  background: #8b19ae00;
+  background: rgba(0, 0, 0, 0.4);
   letter-spacing: 1px;
   text-shadow: 0;
   font-size: 16px;
@@ -435,6 +466,8 @@ th {
   font-family: 'Roboto';
   overflow: hidden;
   border: 2px solid white;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .buttons:hover {
@@ -698,17 +731,26 @@ footer {
   font-size: 0.9rem;
 }
 
+/* Video Background Responsive */
 @media (max-width: 768px) {
+  .video-background video {
+    filter: blur(6px) brightness(0.8);
+  }
+
+  .video-overlay {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
   .footer-container {
     flex-direction: column;
     text-align: center;
     gap: 1.5rem;
   }
-  
+
   .footer-links {
     gap: 1.5rem;
   }
-  
+
   .footer-brand {
     justify-content: center;
   }
@@ -838,4 +880,34 @@ footer {
     background-color: #FFD166 !important; /* Active item styling */
     box-shadow: 2.5px 2.5px 0 var(--active) !important;
   }
+}
+@media (max-width: 480px) {
+  .video-background video {
+    filter: blur(4px) brightness(0.9);
+  }
+
+  .video-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+#mode-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.mode-btn {
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: 1px solid #003333;
+  background-color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.mode-btn.active {
+  background-color: #003333;
+  color: white;
 }
