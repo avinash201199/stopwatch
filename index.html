@@ -80,6 +80,15 @@
   </nav>
   <div class="container-fluid">
     <div id="container">
+      <div id="mode-toggle">
+        <button id="stopwatch-btn" class="mode-btn active">Stopwatch</button>
+        <button id="countdown-btn" class="mode-btn">Countdown Timer</button>
+      </div>
+
+      <div id="countdown-input-container" style="display: none; margin: 10px 0;">
+        <input type="number" id="countdown-minutes" placeholder="Minutes" min="0" style="width: 100px; padding:5px;">
+        <button class="buttons" id="start-countdown">Start Countdown</button>
+      </div>
       <div>
         <div id="time">
           <span>
