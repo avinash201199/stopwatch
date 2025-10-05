@@ -6,6 +6,57 @@ let currentTime = 0;
 let intervalId;
 let darkTheme = false;
 
+// Video background handler
+function initializeVideoBackground() {
+    const video = document.getElementById('bg-video');
+    if (video) {
+        // Set video properties to ensure autoplay
+        video.muted = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.playsInline = true;
+
+        // Force load the video
+        video.load();
+
+        // Multiple attempts to start video
+        const attemptPlay = () => {
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Background video started playing');
+                }).catch(error => {
+                    console.log('Video autoplay blocked, retrying:', error);
+                    // Try again after a short delay
+                    setTimeout(attemptPlay, 100);
+                });
+            }
+        };
+
+        // Start playing immediately
+        attemptPlay();
+
+        // Also try when video is loaded
+        video.addEventListener('loadeddata', attemptPlay);
+        video.addEventListener('canplay', attemptPlay);
+
+        // Add click listener as ultimate fallback
+        const startOnInteraction = () => {
+            video.play().then(() => {
+                console.log('Background video started after user interaction');
+                document.removeEventListener('click', startOnInteraction);
+                document.removeEventListener('keydown', startOnInteraction);
+                document.removeEventListener('touchstart', startOnInteraction);
+            }).catch(err => console.log('Video play error:', err));
+        };
+
+        document.addEventListener('click', startOnInteraction, { once: true });
+        document.addEventListener('keydown', startOnInteraction, { once: true });
+        document.addEventListener('touchstart', startOnInteraction, { once: true });
+    }
+}
+
 // Pomodoro session tracking
 let focusTime = 25;
 let restTime = 5;
@@ -22,20 +73,30 @@ let isMusicPlaying = false;
 
 function initializeFocusMusic() {
     console.log('Initializing focus music...');
-    focusMusic = new Audio('/audio/rain.mp3');
+    focusMusic = new Audio('../audio/rain.mp3');
     focusMusic.loop = true;
     focusMusic.volume = 0.2; // Set a lower volume for rain sounds
+    focusMusic.preload = 'auto';
 
     focusMusic.addEventListener('loadstart', () => console.log('Focus music loading...'));
     focusMusic.addEventListener('canplaythrough', () => console.log('Focus music ready to play'));
-    focusMusic.addEventListener('error', (e) => console.log('Focus music error:', e));
+    focusMusic.addEventListener('error', (e) => {
+        console.log('Focus music error:', e);
+        console.log('Trying alternative path...');
+        // Try absolute path as fallback
+        focusMusic.src = '/audio/rain.mp3';
+        focusMusic.load();
+    });
     focusMusic.addEventListener('play', () => console.log('Focus music started playing'));
     focusMusic.addEventListener('pause', () => console.log('Focus music paused'));
+
+    // Force load
+    focusMusic.load();
 
     console.log('Focus music initialized:', focusMusic);
 }
 
-if (darkTheme) $('#counter-background').css({ "background": "rgb(25, 18, 18)" });
+if (darkTheme) $('#counter-background').css({ "background": "transparent" });
 
 function $id(id) {
     return document.getElementById(id);
@@ -95,9 +156,9 @@ const reset = () => {
     $id('counter-background').classList.remove('inactive');
     $id('counter-background').classList.add('active');
     if (darkTheme) {
-        $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
+        $('.active').css({ "color": "#7fe9d4", "background": "transparent" });
     } else {
-        $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
+        $('.active').css({ "background": "transparent" });
     }
     sessionActive = false;
     isFocusMode = true;
@@ -155,9 +216,9 @@ const startPomoCounter = () => {
                 $id('counter-background').classList.add('active');
 
                 if (darkTheme) {
-                    $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
+                    $('.active').css({ "color": "#7fe9d4", "background": "transparent" });
                 } else {
-                    $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
+                    $('.active').css({ "background": "transparent" });
                 }
 
                 // Reset and switch modes
@@ -185,18 +246,18 @@ updateTimerDisplay();
 function setLightTheme() {
     darkTheme = false;
     $('.navbar').css({ "background-color": "rgb(5, 30, 54)" });
-    $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
+    $('.active').css({ "background": "transparent" });
     $('.timer').css({ "color": "white" })
-    $('.inactive').css({ "background": "rgb(5, 30, 54)" });
+    $('.inactive').css({ "background": "transparent" });
     $('#light').prop("checked", false);
 }
 
 function setDarkTheme() {
     darkTheme = true;
     $('.navbar').css({ "background-color": "black" });
-    $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
+    $('.active').css({ "color": "#7fe9d4", "background": "transparent" });
     $('.timer').css({ "color": "rgb(216 137 31)" });
-    $('.inactive').css({ "background": "rgb(25, 18, 18)", "color": "white" });
+    $('.inactive').css({ "background": "transparent", "color": "white" });
     $('#light').prop("checked", true);
 }
 
@@ -232,20 +293,31 @@ $(document).ready(function () {
 // Simple music control function
 function toggleMusic() {
     if (!focusMusic) {
+        console.log('Focus music not initialized, initializing now...');
         initializeFocusMusic();
+        // Wait a bit for initialization
+        setTimeout(() => toggleMusic(), 100);
+        return;
     }
 
     console.log('toggleMusic called, isMusicPlaying:', isMusicPlaying);
     console.log('focusMusic:', focusMusic);
+    console.log('focusMusic.src:', focusMusic.src);
 
     if (!isMusicPlaying) {
         console.log('Attempting to play focus music...');
+
+        // Ensure volume and loop are set
+        focusMusic.volume = 0.2;
+        focusMusic.loop = true;
+
         focusMusic.play().then(() => {
             console.log('Focus music started successfully');
             isMusicPlaying = true;
             updateMusicStatus(true);
         }).catch((error) => {
             console.log('Focus music play failed:', error);
+            console.log('Retrying with user interaction requirement...');
             isMusicPlaying = false;
             updateMusicStatus(false);
         });
@@ -274,9 +346,10 @@ function updateMusicStatus(isPlaying) {
     }
 }
 
-// Initialize music controls when page loads
+// Initialize music controls and video background when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, initializing music...');
+    console.log('DOM loaded, initializing music and video...');
     initializeFocusMusic();
     updateMusicStatus(false);
+    initializeVideoBackground();
 });
