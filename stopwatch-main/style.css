@@ -1,22 +1,30 @@
 body {
-    background: #43C6AC;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+  background: #43c6ac; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #191654,
+    #43c6ac
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #191654,
+    #43c6ac
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 #container {
-    color: #d7dfe4;
+  color: #d7dfe4;
+  margin-top: 100px;
 }
 
 #footer-container {
-    position: absolute;
-    bottom: 10%;
+  position: absolute;
+  bottom: 10%;
 }
 
 /* Footer Styles - Standardized */
@@ -33,7 +41,7 @@ body {
 }
 
 .hov:hover .link {
-  background: linear-gradient(135deg, #FFD166 0%, #FFC107 100%);
+  background: linear-gradient(135deg, #ffd166 0%, #ffc107 100%);
   border-color: rgba(255, 209, 102, 0.8);
   box-shadow: 0 8px 25px rgba(255, 209, 102, 0.4);
   color: #333;
@@ -87,9 +95,15 @@ li {
 }
 
 @keyframes heartbeat {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Additional container-fluid styling for footer */
@@ -113,75 +127,75 @@ footer {
 }
 
 .digit {
-    font-size: 150px;
-    font-weight: bold;
+  font-size: 150px;
+  font-weight: bold;
 }
 
 .txt {
-    font-size: 40px;
-    font-weight: bold;
+  font-size: 40px;
+  font-weight: bold;
 }
 .social-txt {
-    font-size: 20px;
-    color: white;
+  font-size: 20px;
+  color: white;
 }
 
 #btn-container {
-    text-align: center;
-    margin-top: 40px;
+  text-align: center;
+  margin-top: 40px;
 }
 
 .btn {
-    padding: 7px 25px;
-    font-size: 15px;
-    margin: 0px 10px;
-    color: white;
-    border: 0px;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 7px 25px;
+  font-size: 15px;
+  margin: 0px 10px;
+  color: white;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #start {
-    background-color: #1abc9c;
+  background-color: #1abc9c;
 }
 
 #start :hover {
-    background-color: yellow;
+  background-color: yellow;
 }
 
 #stop {
-    background-color: #ff0000;
+  background-color: #ff0000;
 }
 
 #reset {
-    background-color: #0400fc;
+  background-color: #0400fc;
 }
 
-@media screen and (max-width:800px){
-    #time span{
-        font-size: 4rem;
-    }
-    #time{
-        display: flex;
-        flex-direction: column;
-    }
-    #container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+@media screen and (max-width: 800px) {
+  #time span {
+    font-size: 4rem;
+  }
+  #time {
+    display: flex;
+    flex-direction: column;
+  }
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 #lap {
-    background-color: rgb(166, 17, 211);
+  background-color: rgb(166, 17, 211);
 }
 
 #clearLap {
-    background-color: #ee42a6;
+  background-color: #ee42a6;
 }
 
 #laps {
-    margin-top: 100px;
-    text-align: center;
-    font-size: 25px;
+  margin-top: 100px;
+  text-align: center;
+  font-size: 25px;
 }
