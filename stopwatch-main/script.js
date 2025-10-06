@@ -1,77 +1,51 @@
-let hr = 0;
-let min = 0;
-let sec = 0;
-let count = 0;
-let timer = false;
+let startTime = 0;
+let elapsedTime = 0;
+let timerInterval;
 
-function $id(id) {
-    return document.getElementById(id);
+function updateDisplay(time) {
+    const hr = Math.floor(time / 3600000);
+    const min = Math.floor((time % 3600000) / 60000);
+    const sec = Math.floor((time % 60000) / 1000);
+    const count = Math.floor((time % 1000) / 10);
+
+    document.getElementById("hr").textContent = hr.toString().padStart(2, "0");
+    document.getElementById("min").textContent = min.toString().padStart(2, "0");
+    document.getElementById("sec").textContent = sec.toString().padStart(2, "0");
+    document.getElementById("count").textContent = count.toString().padStart(2, "0");
 }
 
 function start() {
-    timer = true;
-    stopwatch();
+    startTime = Date.now() - elapsedTime;
+    timerInterval = setInterval(() => {
+        elapsedTime = Date.now() - startTime;
+        updateDisplay(elapsedTime);
+    }, 10);
+    document.getElementById("start").disabled = true;
 }
 
 function stop() {
-    timer = false;
-
+    clearInterval(timerInterval);
+    document.getElementById("start").disabled = false;
 }
 
 function reset() {
-    timer = false;
-    hr = min = sec = count = 0;
-
-    $id("hr").innerHTML = "00";
-    $id("min").innerHTML = "00";
-    $id("sec").innerHTML = "00";
-    $id("count").innerHTML = "00";
-
-}
-
-function stopwatch() {
-    if (timer) {
-        count += 1;
-    }
-
-    if (count === 99) {
-        sec += 1;
-        count = 0;
-    }
-    if (sec === 59) {
-        min += 1;
-        sec = 0;
-    }
-    if (min === 59) {
-        hr += 1;
-        min = 0;
-        sec = 0;
-    }
-
-    updateDisplay(hr, "hr");
-    updateDisplay(min, "min");
-    updateDisplay(sec, "sec");
-    updateDisplay(count, "count");
-
-    setTimeout(stopwatch, 10);
-}
-
-function updateDisplay(value, elementId) {
-    const stringValue = value < 10 ? '0' + value : value.toString();
-    document.getElementById(elementId).innerHTML = stringValue;
+    clearInterval(timerInterval);
+    elapsedTime = 0;
+    updateDisplay(elapsedTime);
+    document.getElementById("start").disabled = false;
 }
 
 function lap() {
-    console.log(hr, min, sec, count)
-    const laps = $id('laps');
-    laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
+    const laps = document.getElementById("laps");
+    const li = document.createElement("li");
+    const hr = document.getElementById("hr").textContent;
+    const min = document.getElementById("min").textContent;
+    const sec = document.getElementById("sec").textContent;
+    const count = document.getElementById("count").textContent;
+    li.textContent = `${hr} : ${min} : ${sec} : ${count}`;
+    laps.appendChild(li);
 }
 
 function clearLap() {
-    $id('laps').remove();
-}
-
-function getLocalTime(){
-    const d = new Date().toLocaleTimeString();
-    console.log(d);
+    document.getElementById("laps").innerHTML = "";
 }
