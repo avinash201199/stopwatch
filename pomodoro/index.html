@@ -19,6 +19,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
+    <!-- Google Calendar API -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
     <!-- FontAwesome CDN-->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -34,9 +38,7 @@
 
     <title>Pomodoro timer</title>
 
-    <!-- added -->
     <style>
-        /* Pomodoro Progress Bar */
         .progress-container {
             width: 100%;
             height: 10px;
@@ -52,8 +54,106 @@
             background-color: #4caf50;
             transition: width 1s linear;
         }
+
+        .calendar-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .calendar-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .calendar-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        #calendar-status {
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
     </style>
-    <!-- added end -->
 </head>
 
 <body>
@@ -150,7 +250,6 @@
                 </div>
             </div>
 
-            <!-- added progress bar -->
             <div class="row justify-content-center my-3">
                 <div class="col-10">
                     <div class="progress-container">
@@ -158,7 +257,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end added -->
 
             <div class='row justify-content-center'>
                 <button type="button" class='buttons' id='timer-control' onClick='startPomoCounter()'>
@@ -169,6 +267,65 @@
                     <i class="fas fa-undo"></i> Reset
                 </button>
             </div>
+
+            <div class='row justify-content-center mt-4'>
+                <div class='col-auto'>
+                    <button class="calendar-btn" id="authorize-btn" onclick="handleAuthClick()" style="display: none;">
+                        <i class="fas fa-calendar-plus"></i> Connect Google Calendar
+                    </button>
+                    <button class="calendar-btn" id="schedule-btn" onclick="openScheduleModal()" style="display: none;">
+                        <i class="fas fa-calendar-check"></i> Add to Google Calendar
+                    </button>
+                    <button class="calendar-btn" id="signout-btn" onclick="handleSignoutClick()" style="display: none;">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+            <div class='row justify-content-center'>
+                <div class='col-10'>
+                    <div id="calendar-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeScheduleModal()">&times;</span>
+            <h2 style="color: #333; margin-bottom: 20px;">
+                <i class="fas fa-calendar-plus"></i> Schedule Pomodoro Session
+            </h2>
+            <form id="calendar-form">
+                <div class="form-group">
+                    <label for="event-title">Session Title:</label>
+                    <input type="text" id="event-title" placeholder="e.g., Deep Work Session" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-date">Date:</label>
+                    <input type="date" id="event-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-time">Start Time:</label>
+                    <input type="time" id="event-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Description (Optional):</label>
+                    <textarea id="event-description" rows="3" placeholder="What will you work on?"></textarea>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center;">
+                    <input type="checkbox" id="include-break" checked style="margin-right: 8px; width: auto;">
+                    <label for="include-break" style="margin: 0; cursor: pointer; font-weight: normal;">Include break time in calendar</label>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="calendar-btn">
+                        <i class="fas fa-check"></i> Add to Calendar
+                    </button>
+                    <button type="button" class="calendar-btn" onclick="closeScheduleModal()" 
+                            style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        Cancel
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
     
