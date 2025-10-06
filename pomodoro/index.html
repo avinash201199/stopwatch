@@ -65,50 +65,54 @@
         </video>
         <div class="video-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
     </div>
-
-    <nav class="navbar navbar-default  navbar-expand-lg  bg-white thinner navcol">
-        <div class="container-fluid">
-            <div class="maintitle">
-                <img src="../img/logo.gif" style="height: 3rem; width: 3rem;margin-right:1rem;" alt=""> <span
-                    id="title1">Stop Watch</span>
+<nav class="navbar navbar-default navbar-expand-lg thinner navcol">
+    <div class="container-fluid-nav">
+        <div class="maintitle">
+          <img src="../img/logo.gif"
+            style="height: 3rem; width: 3rem;margin-right:1rem; font-weight:bold; border-radius: 50%;" alt=""> <span id="title1" >Stop Watch</span>
+        </div>
+      <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item px-4">
+            <a class="nav-link btn secondary" 
+              style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+          'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+          font-weight: bold; 
+          color: #003333; 
+          text-decoration: none;"
+              href="../index.html">
+              STOP WATCH
+            </a>
+            <a class="nav-link btn secondary" id="link--active"
+              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
+              href="#">
+              POMODORO TIMER
+            </a>
+            <a class="nav-link btn secondary"
+              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
+              href="../custom_timer/timer.html">
+              CUSTOM TIMER
+            </a>
+          </li>
+        </ul>
+        <div id="switch-theme">
+          <input type="checkbox" id="light" class="checkbox">
+          <label for="checkbox" class="label">
+            <i class="fas fa-moon"></i>
+            <i class='fas fa-sun'></i>
+            <div class='ball'>
+              </ball>
             </div>
-            <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item px-4">
-                        <a class="nav-link btn secondary"
-                            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
-                            href="../index.html">
-                            STOP WATCH
-                        </a>
-                        <a class="nav-link btn secondary" id="link--active"
-                            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
-                            href="#">
-                            POMODORO TIMER
-                        </a>
-                        <a class="nav-link btn secondary"
-                            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
-                            href="../custom_timer/timer.html">
-                            CUSTOM TIMER
-                        </a>
-                    </li>
-                </ul>
-                <div id="switch-theme">
-                    <input type="checkbox" id="light" class="checkbox">
-                    <label for="checkbox" class="label">
-                        <i class="fas fa-moon"></i>
-                        <i class='fas fa-sun'></i>
-                        <div class='ball'>
-                            </ball>
-                        </div>
-                    </label>
-                </div>
-            </div>
-    </nav>
+          </label>
+        </div>
+      </div>
+  </nav>
+    
     <div class='row h-100 justify-content-center active' id='counter-background'>
         <div class='col-12 my-auto'>
             <!-- Pomodoro Options -->
@@ -193,34 +197,37 @@
             </div>
         </div>
     </div>
-    
     <!-- FOOTER -->
-    <footer>
-      <div class="container-fluid my-class foot">
-        <div class="container">
-          <p class="textfooter" style="margin-top: 2rem;">Made with 💝 by Avinash Singh</p>
-  
-          <div>
-            <ul style="color: white" class="social-links">
-              <li class="hov">
-                <a href="https://github.com/avinash201199">
-                  <img class="link" src="../img/GitHub.png" /></a>
-              </li>
-              <li class="hov">
-                <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
-                  <img class="link" src="../img/LinkedinLogo.png" /></a>
-              </li>
-              <li class="hov">
-                <a href="https://www.instagram.com/lets__code/">
-                  <img class="link" src="../img/Instagram.png" /></a>
-              </li>
-            </ul>
-          </div>
+  <footer>
+    <div class="container-fluid my-class foot">
+      <div class="container">
+        <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
+
+        <div>
+          <ul style="color: white" class="social-links">
+            <li class="hov">
+              <a href="https://github.com/avinash201199">
+                <img class="link" src="../img/GitHub.png" /></a>
+            </li>
+            <li class="hov">
+              <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
+                <img class="link" src="../img/LinkedinLogo.png" /></a>
+            </li>
+            <li class="hov">
+              <a href="https://www.instagram.com/lets__code/">
+                <img class="link" src="../img/Instagram.png" /></a>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
-
+    </div>
+    </container>
+  </footer>
+  
+  <div id="confetti"></div>
+    
     <script src="pomodoro.js" type="text/javascript"></script>
+    <script src="../jquery.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
