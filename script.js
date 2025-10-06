@@ -243,26 +243,6 @@ setInterval(() => {
   if ($id("d1")) $id("d1").innerHTML = dateStr;
 }, 1000);
 
-
-// -- keyboard shortcuts --------------
-document.addEventListener("keydown", function (event) {
-  // ignore if typing in an input or textarea (defensive)
-  var tag =
-    document.activeElement && document.activeElement.tagName.toLowerCase();
-  if (tag === "input" || tag === "textarea") return;
-
-  const key = event.key.toLowerCase();
-  switch (key) {
-    case "p": // Start / Stop
-      start();
-      break;
-    case "r": // Reset
-      reset();
-      break;
-  }
-});
-
-
 const stopwatchBtn = document.getElementById('stopwatch-btn');
 const countdownBtn = document.getElementById('countdown-btn');
 const countdownInputContainer = document.getElementById('countdown-input-container');

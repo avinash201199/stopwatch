@@ -158,32 +158,32 @@
         start();
       }
     });
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "Backspace") {
         reset();
       }
     });
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "Enter") {
         lap();
       }
     });
 
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "Numpad0") {
         clearLap();
       }
     });
 
     // P key for Start/Stop
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "KeyP") {
         start();
       }
     });
 
     // R key for Reset
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       if (event.code === "KeyR") {
         reset();
       }
