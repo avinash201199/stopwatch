@@ -1,46 +1,143 @@
 function setLightTheme() {
+    // Remove dark mode class from body
+    $('body').removeClass('dark-mode');
+    
+    // Navbar styling
     $('.navbar.navbar-expand-lg.navbar-light').addClass('bg-light');
-    $('.navbar.navbar-expand-lg.navbar-light').css({ "background-color": "" }); // Reset navbar background
-    $('#title1').css({ "color": "black" });
+    $('.navbar.navbar-expand-lg.navbar-light').css({ "background-color": "rgba(255, 255, 255, 0.95)" });
+    
+    // Title styling
+    $('#title1').css({ "color": "#003333" });
     
     // Smart background targeting - only change body if counter-background doesn't exist
     if ($('#counter-background').length > 0) {
         $('#counter-background').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" }); // For pomodoro/timer pages
     } else {
-        $('body').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" }); // For main stopwatch page
+        $('body').css({ "background": "transparent" }); // Keep video background for main stopwatch page
     }
     
+    // Video overlay for light mode
+    $('.video-overlay').css({ "background": "rgba(0, 0, 0, 0.3)" });
+    
+    // Time display styling
     $('.digit').css({ "color": "white" }); // Main stopwatch digits
     $('.timer').css({ "color": "white" }); // Custom timer digits - white in light mode
-    $('#light').prop("checked", false);
-    $('.foot').css({ "background": "white" });
+    $('.txt').css({ "color": "white" });
+    $('.todayDate h3').css({ "color": "white" });
+    
+    // Button styling
+    $('.buttons').css({ 
+        "border-color": "white",
+        "background": "rgba(0, 0, 0, 0.4)",
+        "color": "#fefefe"
+    });
+    
+    // Navigation links - always dark
+    $('.nav-link').css({ "color": "#003333" });
+    
+    // Footer styling
+    $('.foot').css({ "background": "rgba(255, 255, 255, 0.95)" });
+    $('.textfooter').css({ "color": "black" });
+    $('.link').css({ "background-color": "#fff", "color": "#000" });
     $('.dummyspace').css({ "background": "linear-gradient(to right, #191654, #43C6AC)", "color": "white" });
     $('.my-class').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" }); // Footer solid background
- 
-   
+    
+    // Table styling
+    $('tr').css({ "background-color": "rgba(255, 255, 255, 0.95)" });
+    $('th, td').css({ "color": "#000" });
+    $('th').css({ "background-color": "#95A5A6" });
+    
+    // Mode toggle buttons
+    $('.mode-btn').css({ 
+        "background-color": "white",
+        "color": "#003333",
+        "border-color": "#003333"
+    });
+    $('.mode-btn.active').css({ 
+        "background-color": "#003333",
+        "color": "white"
+    });
+    
+    // Countdown input
+    $('#countdown-minutes').css({ 
+        "background-color": "white",
+        "color": "#003333",
+        "border": "1px solid #003333"
+    });
+    
+    // Set checkbox state
+    $('#light').prop("checked", false);
 }
 
 function setDarkTheme() {
+    // Add dark mode class to body
+    $('body').addClass('dark-mode');
+    
+    // Navbar styling
     $('.navbar.navbar-expand-lg.navbar-light').removeClass('bg-light');
-    $('.navbar.navbar-expand-lg.navbar-light').css({ "background-color": "black" });
-    $('#title1').css({ "color": "black" });
+    $('.navbar.navbar-expand-lg.navbar-light').css({ "background-color": "rgba(0, 0, 0, 0.95)" });
+    
+    // Title styling
+    $('#title1').css({ "color": "white" });
     
     // Smart background targeting - only change body if counter-background doesn't exist
     if ($('#counter-background').length > 0) {
         $('#counter-background').css({ "background": "#191212" }); // For pomodoro/timer pages
     } else {
-        $('body').css({ "background": "#191212" }); // For main stopwatch page
+        $('body').css({ "background": "transparent" }); // Keep video background for main stopwatch page
     }
     
-    $('.digit').css({ "color": "rgb(216 137 31)" }); // Main stopwatch digits
-    $('.timer').css({ "color": "rgb(216 137 31)" }); // Custom timer digits - orange in dark mode
-    $('.buttons').css({ "border-color": "white" });
-    $('#light').prop("checked", true);
-    $('.foot').css({ "background": "#a7a7a7 " });
-    $('.dummyspace').css({ "background": "#191212", "color": "rgb(216 137 31)" });
+    // Video overlay for dark mode
+    $('.video-overlay').css({ "background": "rgba(0, 0, 0, 0.7)" });
+    
+    // Time display styling
+    $('.digit').css({ "color": "#ff6b35" }); // Main stopwatch digits
+    $('.timer').css({ "color": "#ff6b35" }); // Custom timer digits - orange in dark mode
+    $('.txt').css({ "color": "#ff6b35" });
+    $('.todayDate h3').css({ "color": "white" });
+    
+    // Button styling
+    $('.buttons').css({ 
+        "border-color": "#ff6b35",
+        "background": "rgba(255, 107, 53, 0.2)",
+        "color": "#ff6b35"
+    });
+    
+    // Navigation links - always dark
+    $('.nav-link').css({ "color": "#003333" });
+    
+    // Footer styling
+    $('.foot').css({ "background": "rgba(0, 0, 0, 0.95)" });
+    $('.textfooter').css({ "color": "white" });
+    $('.link').css({ "background-color": "#ff6b35", "color": "white" });
+    $('.dummyspace').css({ "background": "#191212", "color": "#ff6b35" });
     $('.my-class').css({ "background": "#191212" }); // Footer solid background
-   
-
+    
+    // Table styling
+    $('tr').css({ "background-color": "rgba(0, 0, 0, 0.8)" });
+    $('th, td').css({ "color": "white" });
+    $('th').css({ "background-color": "#333" });
+    
+    // Mode toggle buttons
+    $('.mode-btn').css({ 
+        "background-color": "transparent",
+        "color": "white",
+        "border-color": "white"
+    });
+    $('.mode-btn.active').css({ 
+        "background-color": "#ff6b35",
+        "color": "black"
+    });
+    
+    // Countdown input
+    $('#countdown-minutes').css({ 
+        "background-color": "rgba(0, 0, 0, 0.8)",
+        "color": "white",
+        "border": "1px solid #ff6b35"
+    });
+    
+    // Set checkbox state
+    $('#light').prop("checked", true);
 }
 
 var prefersDarkThemeMql = window.matchMedia("(prefers-color-scheme: dark)");

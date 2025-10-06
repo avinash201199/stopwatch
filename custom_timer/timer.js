@@ -157,19 +157,91 @@ const startCustomTimerCounter = () => {
 
 function setLightTheme() {
     darkTheme = false;
-    $('.navbar').css({ "background-color": "rgb(5, 30, 54)" });
+    
+    // Remove dark mode class from body
+    $('body').removeClass('dark-mode');
+    
+    // Navbar styling
+    $('.navbar').css({ "background-color": "rgba(255, 255, 255, 0.95)" });
+    
+    // Title styling
+    $('#title1').css({ "color": "#003333" });
+    
+    // Timer display styling
+    $('.timer').css({ "color": "white" });
     $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
-    $('.timer').css({ "color": "white" })
     $('.inactive').css({ "background": "rgb(5, 30, 54)" });
+    
+    // Button styling
+    $('.buttons').css({ 
+        "border-color": "white",
+        "background": "rgba(0, 0, 0, 0.4)",
+        "color": "#fefefe"
+    });
+    
+    // Navigation links - always dark
+    $('.nav-link').css({ "color": "#003333" });
+    
+    // Footer styling
+    $('.foot').css({ "background": "rgba(255, 255, 255, 0.95)" });
+    $('.textfooter').css({ "color": "black" });
+    $('.link').css({ "background-color": "#fff", "color": "#000" });
+    $('.my-class').css({ "background": "rgba(255, 255, 255, 0.95)" });
+    
+    // Form styling
+    $('.form__field').css({ "color": "#fff", "border-bottom-color": "#9b9b9b" });
+    $('.form__label').css({ "color": "#9b9b9b" });
+    
+    // Progress bar
+    $('#progress-container').css({ "background-color": "#ddd" });
+    $('#progress-bar').css({ "background": "linear-gradient(90deg, #21f341, #116399)" });
+    
+    // Set checkbox state
     $('#light').prop("checked", false);
 }
 
 function setDarkTheme() {
     darkTheme = true;
-    $('.navbar').css({ "background-color": "black" });
-    $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
-    $('.timer').css({ "color": "rgb(216 137 31)" });
-    $('.inactive').css({ "background": "black", "color": "white" })
+    
+    // Add dark mode class to body
+    $('body').addClass('dark-mode');
+    
+    // Navbar styling
+    $('.navbar').css({ "background-color": "rgba(0, 0, 0, 0.95)" });
+    
+    // Title styling
+    $('#title1').css({ "color": "white" });
+    
+    // Timer display styling
+    $('.timer').css({ "color": "#ff6b35" });
+    $('.active').css({ "color": "#ff6b35", "background": "#191212" });
+    $('.inactive').css({ "background": "black", "color": "white" });
+    
+    // Button styling
+    $('.buttons').css({ 
+        "border-color": "#ff6b35",
+        "background": "rgba(255, 107, 53, 0.2)",
+        "color": "#ff6b35"
+    });
+    
+    // Navigation links - always dark
+    $('.nav-link').css({ "color": "#003333" });
+    
+    // Footer styling
+    $('.foot').css({ "background": "rgba(0, 0, 0, 0.95)" });
+    $('.textfooter').css({ "color": "white" });
+    $('.link').css({ "background-color": "#ff6b35", "color": "white" });
+    $('.my-class').css({ "background": "rgba(0, 0, 0, 0.95)" });
+    
+    // Form styling
+    $('.form__field').css({ "color": "#ff6b35", "border-bottom-color": "#ff6b35" });
+    $('.form__label').css({ "color": "#ff6b35" });
+    
+    // Progress bar
+    $('#progress-container').css({ "background-color": "#333" });
+    $('#progress-bar').css({ "background": "#ff6b35" });
+    
+    // Set checkbox state
     $('#light').prop("checked", true);
 }
 
