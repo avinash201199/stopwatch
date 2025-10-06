@@ -245,19 +245,121 @@ updateTimerDisplay();
 
 function setLightTheme() {
     darkTheme = false;
-    $('.navbar').css({ "background-color": "rgb(5, 30, 54)" });
+    
+    // Remove dark mode class from body
+    $('body').removeClass('dark-mode');
+    
+    // Navbar styling
+    $('.navbar').css({ "background-color": "rgba(255, 255, 255, 0.95)" });
+    
+    // Title styling
+    $('#title1').css({ "color": "#003333" });
+    
+    // Video overlay for light mode
+    $('.video-overlay').css({ "background": "rgba(0, 0, 0, 0.3)" });
+    
+    // Timer display styling
+    $('.timer').css({ "color": "white" });
     $('.active').css({ "background": "transparent" });
-    $('.timer').css({ "color": "white" })
     $('.inactive').css({ "background": "transparent" });
+    
+    // Mode display and text
+    $('#current-mode').css({ "color": "white" });
+    $('h5').css({ "color": "white" });
+    
+    // Button styling
+    $('.buttons').css({ 
+        "border-color": "white",
+        "background": "rgba(0, 0, 0, 0.4)",
+        "color": "#fefefe"
+    });
+    
+    // Navigation links - always dark
+    $('.nav-link').css({ "color": "#003333" });
+    
+    // Footer styling
+    $('.foot').css({ "background": "rgba(255, 255, 255, 0.95)" });
+    $('.textfooter').css({ "color": "black" });
+    $('.link').css({ "background-color": "#fff", "color": "#000" });
+    $('.my-class').css({ "background": "rgba(255, 255, 255, 0.95)" });
+    $('footer').css({ "background": "rgba(255, 255, 255, 0.95)" });
+    
+    // Pomodoro option buttons
+    $('.btn-outline-primary').css({
+        "color": "#003333",
+        "border-color": "#003333",
+        "background-color": "transparent"
+    });
+    
+    // Music controls background
+    $('#music-controls').css({ "background": "rgba(255,255,255,0.1)" });
+    $('#music-controls h5').css({ "color": "white" });
+    
+    // Progress bar
+    $('.progress-container').css({ "background-color": "#ddd" });
+    $('#progress-bar').css({ "background-color": "#4caf50" });
+    
+    // Set checkbox state
     $('#light').prop("checked", false);
 }
 
 function setDarkTheme() {
     darkTheme = true;
-    $('.navbar').css({ "background-color": "black" });
-    $('.active').css({ "color": "#7fe9d4", "background": "transparent" });
-    $('.timer').css({ "color": "rgb(216 137 31)" });
+    
+    // Add dark mode class to body
+    $('body').addClass('dark-mode');
+    
+    // Navbar styling
+    $('.navbar').css({ "background-color": "rgba(0, 0, 0, 0.95)" });
+    
+    // Title styling
+    $('#title1').css({ "color": "white" });
+    
+    // Video overlay for dark mode
+    $('.video-overlay').css({ "background": "rgba(0, 0, 0, 0.7)" });
+    
+    // Timer display styling
+    $('.timer').css({ "color": "#ff6b35" });
+    $('.active').css({ "color": "#ff6b35", "background": "transparent" });
     $('.inactive').css({ "background": "transparent", "color": "white" });
+    
+    // Mode display and text
+    $('#current-mode').css({ "color": "white" });
+    $('h5').css({ "color": "white" });
+    
+    // Button styling
+    $('.buttons').css({ 
+        "border-color": "#ff6b35",
+        "background": "rgba(255, 107, 53, 0.2)",
+        "color": "#ff6b35"
+    });
+    
+    // Navigation links - always dark
+    $('.nav-link').css({ "color": "#003333" });
+    
+    // Footer styling
+    $('.foot').css({ "background": "rgba(0, 0, 0, 0.95)" });
+    $('.textfooter').css({ "color": "white" });
+    $('.link').css({ "background-color": "#ff6b35", "color": "white" });
+    $('.my-class').css({ "background": "rgba(0, 0, 0, 0.95)" });
+    $('footer').css({ "background": "rgba(0, 0, 0, 0.95)" });
+    
+    // Pomodoro option buttons
+    $('.btn-outline-primary').css({
+        "color": "#ff6b35",
+        "border-color": "#ff6b35",
+        "background-color": "transparent"
+    });
+    
+    // Music controls background
+    $('#music-controls').css({ "background": "rgba(0,0,0,0.3)" });
+    $('#music-controls h5').css({ "color": "white" });
+    
+    // Progress bar
+    $('.progress-container').css({ "background-color": "#333" });
+    $('#progress-bar').css({ "background-color": "#ff6b35" });
+    
+    // Set checkbox state
     $('#light').prop("checked", true);
 }
 
