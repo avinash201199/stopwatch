@@ -156,7 +156,8 @@
   <script type="text/javascript">
     // start or stop stopwatch using "spacebar" key
     document.addEventListener("keydown", (event) => {
-      if (event.code === "Space") {
+      // Don't trigger stopwatch if typing in todo input
+      if (event.code === "Space" && event.target.id !== 'todo-input') {
         event.preventDefault();
         start();
       }
@@ -194,6 +195,102 @@
 
   </script>
   <script src="script.js"></script>
+  
+  <!-- Todo list script -->
+  <script>
+    // Todo list functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const todoRoll = document.getElementById('todo-roll');
+      const todoList = document.getElementById('todo-list');
+      const addBtn = document.getElementById('todo-add-btn');
+      const formWrapper = document.getElementById('todo-form-wrapper');
+      const input = document.getElementById('todo-input');
+      
+      // Load saved todos
+      function loadTodos() {
+        try {
+          return JSON.parse(localStorage.getItem('todos') || '[]');
+        } catch {
+          return [];
+        }
+      }
+
+      // Save todos
+      function saveTodos(todos) {
+        localStorage.setItem('todos', JSON.stringify(todos));
+      }
+
+      // Render todos
+      function renderTodos() {
+        const todos = loadTodos();
+        todoList.innerHTML = '';
+        
+        todos.forEach((todo, index) => {
+          const li = document.createElement('li');
+          
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = todo.done;
+          checkbox.className = 'todo-checkbox';
+          
+          checkbox.onchange = () => {
+            todos[index].done = checkbox.checked;
+            saveTodos(todos);
+            renderTodos();
+          };
+          
+          const span = document.createElement('span');
+          span.textContent = todo.text;
+          span.className = todo.done ? 'todo-text done' : 'todo-text';
+          
+          li.appendChild(checkbox);
+          li.appendChild(span);
+          todoList.appendChild(li);
+        });
+      }
+
+      // Toggle todo list
+      todoRoll.onclick = (e) => {
+        if (e.target.closest('.todo-handle')) {
+          todoRoll.classList.toggle('open');
+        }
+      };
+
+      // Add new todo
+      addBtn.onclick = () => {
+        formWrapper.classList.toggle('show');
+        if (formWrapper.classList.contains('show')) {
+          input.focus();
+        }
+      };
+
+      // Handle input
+      input.onkeypress = (e) => {
+        if (e.key === 'Enter') {
+          const text = input.value.trim();
+          if (text) {
+            const todos = loadTodos();
+            todos.push({ text, done: false });
+            saveTodos(todos);
+            input.value = '';
+            formWrapper.classList.remove('show');
+            renderTodos();
+          }
+        }
+      };
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!todoRoll.contains(e.target)) {
+          todoRoll.classList.remove('open');
+          formWrapper.classList.remove('show');
+        }
+      }, true);
+
+      // Initial render
+      renderTodos();
+    });
+  </script>
 
   <!-- FOOTER -->
   <footer>
@@ -223,6 +320,27 @@
   </footer>
   
   <div id="confetti"></div>
+  <!-- Simple todo list -->
+  <div id="todo-wrapper" class="todo-roll-wrapper">
+    <div id="todo-roll" class="todo-roll">
+      <div class="todo-handle">
+        Todo List
+      </div>
+      <div class="todo-paper">
+        <div class="todo-content">
+          <div class="todo-add-wrapper">
+            <button id="todo-add-btn" class="todo-add-btn" title="Add new task">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <ul id="todo-list" class="todo-list"></ul>
+          <div id="todo-form-wrapper" class="todo-form-wrapper">
+            <input type="text" id="todo-input" class="todo-input" placeholder="Type and press Enter">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
