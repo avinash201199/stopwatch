@@ -398,6 +398,285 @@ th {
   color: hwb(277 44% 20%);
 }
 
+
+
+
+
+
+
+
+
+
+/* ---------------- Vintage Todo List ---------------- */
+.todo-roll-wrapper {
+  position: fixed;
+  right: 2rem;
+  top: 120px;
+  z-index: 999;
+  width: 280px;
+  font-family: 'Lucida Sans', 'Courier New', serif;
+  pointer-events: auto;
+  transition: transform 0.3s ease;
+}
+
+.todo-roll {
+  background: #f4d03f;
+  border-radius: 8px 8px 2px 2px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.todo-roll::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/png;base64,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");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.todo-handle {
+  padding: 0.8rem;
+  color: #2c1810;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  border-bottom: 1px dashed rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+  position: relative;
+}
+
+.todo-handle::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+}
+
+.todo-paper {
+  background: #fff9e6;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out;
+  background-image: 
+    linear-gradient(90deg, transparent 0%, transparent 49px, #ede3c3 49px, #ede3c3 51px, transparent 51px),
+    linear-gradient(#ede3c3 1px, transparent 1px);
+  background-size: 100% 25px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.02);
+  position: relative;
+}
+
+.todo-paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 48px;
+  bottom: 0;
+  width: 3px;
+  background: rgba(255,0,0,0.1);
+}
+
+.todo-roll.open .todo-paper {
+  max-height: 400px;
+}
+
+.todo-content {
+  padding: 1rem 1rem 1rem 3.8rem;
+}
+
+.todo-add-wrapper {
+  text-align: right;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.todo-add-btn {
+  background: none;
+  border: none;
+  color: #8b5e3c;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.todo-add-btn:hover {
+  color: #2c1810;
+}
+
+.todo-form-wrapper {
+  display: none;
+  padding: 0.5rem 0;
+}
+
+.todo-form-wrapper.show {
+  display: block;
+}
+
+.todo-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px dashed #d4b483;
+  background: transparent;
+  font-family: inherit;
+  color: #2c1810;
+  font-size: 0.95rem;
+}
+
+.todo-input::placeholder {
+  color: #b38b6d;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.todo-list li {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.25rem 0;
+  position: relative;
+  min-height: 25px;
+}
+
+.todo-checkbox {
+  margin: 4px 0.8rem 0 0;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  position: relative;
+  appearance: none;
+  border: 1px solid #8b5e3c;
+  background: transparent;
+  border-radius: 2px;
+}
+
+.todo-checkbox:checked {
+  background: #8b5e3c;
+}
+
+.todo-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  color: #fff9e6;
+  font-size: 10px;
+  left: 2px;
+  top: 0px;
+}
+
+.todo-text {
+  color: #2c1810;
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding-top: 1px;
+}
+
+.todo-text.done {
+  text-decoration: line-through;
+  color: #b38b6d;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .todo-roll-wrapper {
+    right: 1.5rem;
+    width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .todo-roll-wrapper {
+    right: 1rem;
+    width: 240px;
+  }
+  
+  .todo-content {
+    padding: 0.8rem 0.8rem 0.8rem 3.2rem;
+  }
+
+  .todo-handle {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .todo-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .todo-roll-wrapper {
+    right: 0.5rem;
+    width: 220px;
+    top: 100px;
+  }
+
+  .todo-content {
+    padding: 0.7rem 0.7rem 0.7rem 2.8rem;
+  }
+
+  .todo-paper::before {
+    left: 40px;
+  }
+
+  .todo-input {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  /* Ensure it doesn't overlay the stopwatch */
+  .todo-roll.open .todo-paper {
+    max-height: 300px;
+  }
+}
+
+/* Handle very small screens */
+@media (max-width: 360px) {
+  .todo-roll-wrapper {
+    width: 200px;
+  }
+
+  .todo-handle {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .todo-content {
+    padding: 0.6rem 0.6rem 0.6rem 2.5rem;
+  }
+
+  .todo-paper::before {
+    left: 35px;
+  }
+}
+
+/* Handle landscape orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+  .todo-roll-wrapper {
+    top: 90px;
+  }
+
+  .todo-roll.open .todo-paper {
+    max-height: 250px;
+  }
+}
+
 #reset:hover {
   color: #000000;
   background: hwb(277 6% 7%);

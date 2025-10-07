@@ -295,3 +295,83 @@ document.getElementById('start-countdown').addEventListener('click', () => {
   }, 1000);
 });
 
+/* ---------------- Minimal Todo List ---------------- */
+(function() {
+  const STORAGE_KEY = 'stopwatch_todo_v2';
+  const todoRoll = document.getElementById('todo-roll');
+  const todoHandle = document.querySelector('.todo-handle');
+  const todoList = document.getElementById('todo-list');
+  const addBtn = document.getElementById('todo-add-btn');
+  const formWrapper = document.getElementById('todo-form-wrapper');
+  const input = document.getElementById('todo-input');
+
+  // Load/Save todos
+  function loadTodos() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  }
+
+  function saveTodos(todos) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  }
+
+  // Render todos
+  function renderTodos() {
+    const todos = loadTodos();
+    todoList.innerHTML = '';
+    todos.forEach((todo, index) => {
+      const li = document.createElement('li');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.className = 'todo-checkbox';
+      checkbox.checked = todo.done;
+      checkbox.addEventListener('change', () => {
+        todos[index].done = !todos[index].done;
+        saveTodos(todos);
+        renderTodos();
+      });
+
+      const text = document.createElement('span');
+      text.className = 'todo-text' + (todo.done ? ' done' : '');
+      text.textContent = todo.text;
+
+      li.appendChild(checkbox);
+      li.appendChild(text);
+      todoList.appendChild(li);
+    });
+  }
+
+  // Event Listeners
+  todoHandle.addEventListener('click', () => {
+    todoRoll.classList.toggle('open');
+  });
+
+  addBtn.addEventListener('click', () => {
+    formWrapper.classList.toggle('show');
+    input.focus();
+  });
+
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      const text = input.value.trim();
+      if (text) {
+        const todos = loadTodos();
+        todos.push({ text, done: false });
+        saveTodos(todos);
+        input.value = '';
+        formWrapper.classList.remove('show');
+        renderTodos();
+      }
+    }
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!todoRoll.contains(e.target)) {
+      todoRoll.classList.remove('open');
+      formWrapper.classList.remove('show');
+    }
+  });
+
+  // Initial render
+  renderTodos();
+})();
