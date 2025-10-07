@@ -30,6 +30,12 @@
 </head>
 
 <body>
+  <!-- Video Background -->
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -999;">
+    <video width="100%" height="100%" autoplay muted loop style="object-fit: cover;">
+      <source src="lofi.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <nav class="navbar navbar-default  navbar-expand-lg  bg-white thinner navcol">
     <div class="container-fluid">
@@ -183,16 +189,6 @@
       }
     });
 
-    // K key for Play/Pause music
-    document.addEventListener("keyup", (event) => {
-      if (event.code === "KeyK") {
-        if (audio.paused) {
-          audio.play();
-        } else {
-          audio.pause();
-        }
-      }
-    });
   </script>
   <script src="script.js"></script>
 

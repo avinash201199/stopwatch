@@ -17,8 +17,6 @@ var diff_hr = 0,
 
 var timer = false;
 var lapCounter = 1;
-const audio = new Audio();
-audio.src = "audio/sound_trim.mp3";
 
 // helper
 function $id(id) {
@@ -31,10 +29,6 @@ function start() {
     timer = true;
     if ($id("start"))
       $id("start").innerHTML = '<i class="far fa-pause-circle"></i> Pause';
-    // user gesture may be required; catch the promise rejection silently
-    audio.play().catch(() => {
-      /* autoplay blocked; okay */
-    });
     stopwatch();
   } else {
     timer = false;
@@ -53,11 +47,6 @@ function stop() {
 // -- Reset --------------------------
 function reset() {
   if ($id("record-container")) $id("record-container").style.display = "none";
-  // pause audio and reset time
-  audio.pause();
-  try {
-    audio.currentTime = 0;
-  } catch (e) {}
   timer = false;
   if ($id("start"))
     $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
@@ -149,8 +138,6 @@ function lap() {
       ":" +
       ($id("count") ? $id("count").innerHTML : "00");
 
-    // play click sound if available
-    audio.play().catch(() => {});
 
     const table = $id("record-table-body");
     if (table) {
@@ -176,7 +163,6 @@ function lap() {
 
 function clearLap() {
   if ($id("record-container")) $id("record-container").style.display = "none";
-  audio.play().catch(() => {});
   if ($id("record-table-body")) $id("record-table-body").innerHTML = "";
   lapCounter = 1;
 }
@@ -257,14 +243,6 @@ setInterval(() => {
   if ($id("d1")) $id("d1").innerHTML = dateStr;
 }, 1000);
 
-// -- music toggle --------------------
-function toggleMusic() {
-  if (audio.paused) {
-    audio.play().catch(() => {});
-  } else {
-    audio.pause();
-  }
-}
 
 // -- keyboard shortcuts --------------
 document.addEventListener("keydown", function (event) {
@@ -280,9 +258,6 @@ document.addEventListener("keydown", function (event) {
       break;
     case "r": // Reset
       reset();
-      break;
-    case "k": // Play / Pause music
-      toggleMusic();
       break;
   }
 });
@@ -339,3 +314,4 @@ document.getElementById('start-countdown').addEventListener('click', () => {
     totalSeconds--;
   }, 1000);
 });
+
