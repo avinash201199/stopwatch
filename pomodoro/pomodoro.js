@@ -6,6 +6,38 @@ let currentTime = 0;
 let intervalId;
 let darkTheme = false;
 
+//time in browser title 
+const originalTitle = document.title;
+function requestNotificationPermission() {
+    if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+                new Notification('Notifications Enabled!', {
+                    body: "You'll be notified when a session ends.",
+                    icon: "../img/Pomodoro.png" // Uses your existing favicon
+                });
+            }
+        });
+    }
+}
+
+function showCompletionNotification() {
+
+    if (Notification.permission === 'granted') {
+
+        // Customize message based on which session just ended
+
+        const message = isFocusMode ? 'Focus session over!' : 'Break is over!';
+
+        const body = isFocusMode ? 'Time for a break. Good work!' : 'Time to get back to focus!';
+        new Notification(message, {
+            body: body,
+            icon: "../img/Pomodoro.png"
+        });
+
+    }
+}
 // Video background handler
 function initializeVideoBackground() {
     const video = document.getElementById('bg-video');
@@ -173,6 +205,11 @@ const updateTimerDisplay = () => {
     const secondsDisplay = (currentTime % 60).toString().padStart(2, '0');
     $id('minutes').innerHTML = minutesDisplay;
     $id('seconds').innerHTML = secondsDisplay;
+
+    // Update the page title with timer
+    if (!paused) {
+        document.title = `${minutesDisplay}:${secondsDisplay} | ${originalTitle}`;
+    }
 };
 
 // === NEW FUNCTION ===
@@ -190,6 +227,7 @@ function updateProgressBar() {
 }
 
 const startPomoCounter = () => {
+    requestNotificationPermission();
     audio.play().catch(e => console.log('Audio play prevented:', e));
     paused = !paused;
 
@@ -211,6 +249,7 @@ const startPomoCounter = () => {
             } else {
                 clearInterval(intervalId);
                 paused = true;
+                showCompletionNotification();
                 $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
                 $id('counter-background').classList.remove('inactive');
                 $id('counter-background').classList.add('active');
@@ -231,6 +270,7 @@ const startPomoCounter = () => {
         $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
         $id('counter-background').classList.remove('inactive');
         $id('counter-background').classList.add('active');
+        document.title = originalTitle;//on pause , page title appears
     }
 };
 
