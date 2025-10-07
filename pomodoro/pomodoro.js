@@ -8,35 +8,9 @@ let darkTheme = false;
 
 //time in browser title 
 const originalTitle = document.title;
-function requestNotificationPermission() {
-    if ('Notification' in window && Notification.permission === 'default') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                console.log('Notification permission granted.');
-                new Notification('Notifications Enabled!', {
-                    body: "You'll be notified when a session ends.",
-                    icon: "../img/Pomodoro.png" // Uses your existing favicon
-                });
-            }
-        });
-    }
-}
-
 function showCompletionNotification() {
-
-    if (Notification.permission === 'granted') {
-
-        // Customize message based on which session just ended
-
-        const message = isFocusMode ? 'Focus session over!' : 'Break is over!';
-
-        const body = isFocusMode ? 'Time for a break. Good work!' : 'Time to get back to focus!';
-        new Notification(message, {
-            body: body,
-            icon: "../img/Pomodoro.png"
-        });
-
-    }
+    const message = isFocusMode ? 'Focus session is done! Time for a break.' : 'Break is over! Time to get back to focus.';
+    alert(message);
 }
 // Video background handler
 function initializeVideoBackground() {
@@ -227,7 +201,6 @@ function updateProgressBar() {
 }
 
 const startPomoCounter = () => {
-    requestNotificationPermission();
     audio.play().catch(e => console.log('Audio play prevented:', e));
     paused = !paused;
 
