@@ -1,3 +1,108 @@
+// ===== Interval Timer Feature =====
+let intervalTimerActive = false;
+let intervalPaused = true;
+let intervalCount = 5;
+let intervalWork = 1;
+let intervalRest = 1;
+let intervalCurrent = 1;
+let intervalIsWork = true;
+let intervalCurrentTime = 0;
+let intervalTimerId = null;
+
+function showIntervalTimer() {
+    document.getElementById('pomodoro-timer-ui').style.display = 'none';
+    document.getElementById('interval-timer-ui').style.display = '';
+}
+
+function showPomodoroTimer() {
+    document.getElementById('pomodoro-timer-ui').style.display = '';
+    document.getElementById('interval-timer-ui').style.display = 'none';
+}
+
+function startIntervalTimer() {
+    // Get values from UI
+    intervalCount = parseInt(document.getElementById('interval-count').value) || 1;
+    intervalWork = parseInt(document.getElementById('interval-work').value) || 1;
+    intervalRest = parseInt(document.getElementById('interval-rest').value) || 1;
+    if (!intervalTimerActive) {
+        intervalCurrent = 1;
+        intervalIsWork = true;
+        intervalCurrentTime = intervalWork * 60;
+        intervalTimerActive = true;
+        intervalPaused = false;
+        updateIntervalTimerDisplay();
+        updateIntervalModeDisplay();
+    } else {
+        intervalPaused = !intervalPaused;
+    }
+    document.getElementById('interval-timer-control').innerHTML = intervalPaused ? '<i class="fas fa-play-circle"></i> Play' : '<i class="fas fa-pause-circle"></i> Pause';
+    if (!intervalPaused) {
+        intervalTimerId = setInterval(() => {
+            if (intervalCurrentTime > 0) {
+                intervalCurrentTime--;
+                updateIntervalTimerDisplay();
+            } else {
+                if (intervalIsWork) {
+                    intervalIsWork = false;
+                    intervalCurrentTime = intervalRest * 60;
+                    updateIntervalModeDisplay();
+                } else {
+                    intervalIsWork = true;
+                    intervalCurrent++;
+                    if (intervalCurrent > intervalCount) {
+                        clearInterval(intervalTimerId);
+                        intervalTimerActive = false;
+                        intervalPaused = true;
+                        document.getElementById('interval-timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+                        document.getElementById('interval-current-mode').textContent = 'Done!';
+                        updateIntervalTimerDisplay();
+                        return;
+                    }
+                    intervalCurrentTime = intervalWork * 60;
+                    updateIntervalModeDisplay();
+                }
+                updateIntervalTimerDisplay();
+            }
+        }, 1000);
+    } else {
+        clearInterval(intervalTimerId);
+    }
+}
+
+function resetIntervalTimer() {
+    clearInterval(intervalTimerId);
+    intervalTimerActive = false;
+    intervalPaused = true;
+    intervalCurrent = 1;
+    intervalIsWork = true;
+    intervalCurrentTime = intervalWork * 60;
+    updateIntervalTimerDisplay();
+    updateIntervalModeDisplay();
+    document.getElementById('interval-timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+}
+
+function updateIntervalTimerDisplay() {
+    let min = Math.floor(intervalCurrentTime / 60).toString().padStart(2, '0');
+    let sec = (intervalCurrentTime % 60).toString().padStart(2, '0');
+    document.getElementById('interval-minutes').textContent = min;
+    document.getElementById('interval-seconds').textContent = sec;
+}
+
+function updateIntervalModeDisplay() {
+    document.getElementById('interval-current-mode').textContent = intervalIsWork ? `Work (${intervalCurrent}/${intervalCount})` : 'Rest';
+}
+
+// Optionally, allow switching back to Pomodoro
+window.showIntervalTimer = showIntervalTimer;
+window.showPomodoroTimer = showPomodoroTimer;
+window.startIntervalTimer = startIntervalTimer;
+window.resetIntervalTimer = resetIntervalTimer;
+
+// Initialize interval timer UI on load
+document.addEventListener('DOMContentLoaded', function() {
+    updateIntervalTimerDisplay();
+    updateIntervalModeDisplay();
+});
 console.log('Pomodoro.js script loading...');
 
 const pomoTime = {};

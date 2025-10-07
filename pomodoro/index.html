@@ -137,22 +137,71 @@
                         90/15
                     </button>
                 </div>
+                <div class='col-auto px-2'>
+                    <button class='btn btn-outline-success button-pill px-3' onclick='showIntervalTimer()'>
+                        Interval Timer
+                    </button>
+                </div>
             </div>
-            <div class='row justify-content-center'>
-                <div class='col-auto my-auto'>
-                    <p class='timer' id='minutes'>
-                        00
-                    </p>
+            <div id="pomodoro-timer-ui">
+                <div class='row justify-content-center'>
+                    <div class='col-auto my-auto'>
+                        <p class='timer' id='minutes'>
+                            00
+                        </p>
+                    </div>
+                    <div class='col-auto my-auto'>
+                        <p class='timer'>
+                            :
+                        </p>
+                    </div>
+                    <div class='col-auto my-auto'>
+                        <p class='timer' id='seconds'>
+                            00
+                        </p>
+                    </div>
                 </div>
-                <div class='col-auto my-auto'>
-                    <p class='timer'>
-                        :
-                    </p>
+            </div>
+            <div id="interval-timer-ui" style="display:none;">
+                <div class='row justify-content-center mb-2'>
+                    <div class='col-auto'>
+                        <label for='interval-count'>Intervals:</label>
+                        <input type='number' id='interval-count' min='1' value='5' style='width:60px;'>
+                    </div>
+                    <div class='col-auto'>
+                        <label for='interval-work'>Work (min):</label>
+                        <input type='number' id='interval-work' min='1' value='1' style='width:60px;'>
+                    </div>
+                    <div class='col-auto'>
+                        <label for='interval-rest'>Rest (min):</label>
+                        <input type='number' id='interval-rest' min='1' value='1' style='width:60px;'>
+                    </div>
                 </div>
-                <div class='col-auto my-auto'>
-                    <p class='timer' id='seconds'>
-                        00
-                    </p>
+                <div class='row justify-content-center'>
+                    <div class='col-auto my-auto'>
+                        <p class='timer' id='interval-minutes'>00</p>
+                    </div>
+                    <div class='col-auto my-auto'>
+                        <p class='timer'>:</p>
+                    </div>
+                    <div class='col-auto my-auto'>
+                        <p class='timer' id='interval-seconds'>00</p>
+                    </div>
+                </div>
+                <div class='row justify-content-center'>
+                    <div class='col-auto py-3 px-4' id='interval-mode-display'>
+                        <h3 class='text-center' style='color: inherit;'>
+                            <span id='interval-current-mode'>Work</span>
+                        </h3>
+                    </div>
+                </div>
+                <div class='row justify-content-center'>
+                    <button type="button" class='buttons' id='interval-timer-control' onClick='startIntervalTimer()'>
+                        <i class="fas fa-play-circle"></i> Play
+                    </button>
+                    <button type="button" class='buttons' id='interval-reset' onClick='resetIntervalTimer()'>
+                        <i class="fas fa-undo"></i> Reset
+                    </button>
                 </div>
             </div>
             <div class='row justify-content-center'>
