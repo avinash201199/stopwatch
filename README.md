@@ -235,3 +235,6 @@ $ git push -u origin BranchName
 <a href="https://github.com/avinash201199/stopwatch/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=avinash201199/stopwatch" />
 </a>
+<a href="https://github.com/CodeWithAdnaan/Quote-genetrator/tree/main">
+</a>
+
