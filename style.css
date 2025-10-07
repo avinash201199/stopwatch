@@ -64,6 +64,8 @@ hr {
   z-index: 1000;
   /* background-color: white; */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* Ensure this base is fully transparent for glassmorphism to work on .navcol */
+  background: transparent !important; 
 }
 
 /* Ensure navbar sticks to top */
@@ -78,6 +80,8 @@ nav.navbar {
   justify-content: center !important;
   align-items: center !important;
   max-height: 70px;
+  /* Ensure base is transparent */
+  background: transparent !important; 
 }
 
 .maintitle{
@@ -270,7 +274,8 @@ tr {
 }
 
 tr {
-  background-color: rgba(255, 255, 255, 0.95);
+  /* MODIFIED: Adjusted for Glassmorphism in light mode */
+  background-color: rgba(255, 255, 255, 0.2) !important; 
   margin-bottom: 25px;
   backdrop-filter: blur(10px);
 }
@@ -593,14 +598,16 @@ footer {
 }
 
 .my-class {
-  /* Background color will be set by theme functions */
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-top: 2px solid gray !important; /* Separation border */
+  /* MODIFIED: Glassmorphism for Footer Content */
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.5) !important; /* Enhanced separation border */
   box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.2) !important;
   min-width: 100%;
   padding: 1rem 2rem;
   margin: 0 auto;
-  /* max-width: 1400px; */
 }
 
 :root {
@@ -658,7 +665,7 @@ footer {
   font-size: large;
 }
 
-/*  Footer Styles */
+/* Footer Styles */
 .minimal-footer {
   margin-top: 3rem;
   background: rgba(255, 255, 255, 0.95);
@@ -774,15 +781,16 @@ footer {
 
 /* Enhanced Glass-like transparent effect for navcol */
 .navcol {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(25px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  /* MODIFIED: Adjusted for a lighter glass effect */
+  background: rgba(255, 255, 255, 0.1) !important; 
+  backdrop-filter: blur(15px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
   border-top: none !important;
   border-radius: 0 0 25px 25px !important;
   box-shadow: 
     0 8px 32px 0 rgba(31, 38, 135, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
   position: relative !important;
 }
 
@@ -931,12 +939,21 @@ body.dark-mode .video-overlay {
 }
 
 body.dark-mode .thinner {
-  background: rgba(0, 0, 0, 0.95) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* MODIFIED: Dark Glassmorphism for .thinner (Header) */
+  background: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(15px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .my-class {
-  background: rgba(0, 0, 0, 0.95);
+  /* MODIFIED: Dark Glassmorphism for Footer Content */
+  background: rgba(0, 0, 0, 0.25) !important; 
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 
 body.dark-mode hr {
@@ -989,7 +1006,9 @@ body.dark-mode .link {
 }
 
 body.dark-mode tr {
-  background-color: rgba(0, 0, 0, 0.8) !important;
+  /* MODIFIED: Dark Glassmorphism for Lap rows */
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(5px);
 }
 
 body.dark-mode th, 
