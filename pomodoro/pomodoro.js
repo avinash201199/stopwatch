@@ -612,4 +612,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeVideoBackground();
 });
 
-
+});
