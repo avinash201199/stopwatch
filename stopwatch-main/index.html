@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -11,6 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="script.js"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Stop Watch</title>
+  <link rel="shortcut icon" type="image/jpg" href="/img/favicon.png" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="script.js"></script>
 </head>
 
 <body>
@@ -30,60 +37,80 @@
                 <span class="digit" id="sec">00</span>
                 <span class="txt">Sec</span>
             </span>
+  <div id="container">
+    <h1 style="text-align:center">STOP WATCH</h1>
+    <img src="./clock.png" alt="clock image" width="150" height="150">
+    <div id="time">
+      <span>
+        <span class="digit" id="hr">00</span>
+        <span class="txt">Hr</span>
+      </span>
+      <span>
+        <span class="digit" id="min">00</span>
+        <span class="txt">Min</span>
+      </span>
+      <span>
+        <span class="digit" id="sec">00</span>
+        <span class="txt">Sec</span>
+      </span>
 
-            <span class="digit" id="count">00</span>
+      <span class="digit" id="count">00</span>
 
-        </div>
+    </div>
 
-        <div id="btn-container">
-            <hr>
-            <button class="btn" id="start" onclick="start()">Start</button>
-            <button class="btn" id="stop" onclick="stop()">Stop</button>
-            <button class="btn" id="reset" onclick="reset()">Reset</button>
-            <button class="btn" id="lap" onclick="lap()">Lap</button>
-            <button class="btn" id="clearLap" onclick="clearLap()">Clear Laps</button>
-        </div>
-        <hr>
+    <div id="btn-container">
+      <hr>
+      <button class="btn" id="start" onclick="start()">Start</button>
+      <button class="btn" id="stop" onclick="stop()">Stop</button>
+      <button class="btn" id="reset" onclick="reset()">Reset</button>
+      <button class="btn" id="lap" onclick="lap()">Lap</button>
+      <button class="btn" id="clearLap" onclick="clearLap()">Clear Laps</button>
+      <label class="tick-label">
+        <input type="checkbox" id="tickToggle">
+        Enable Ticking Sound
+      </label>
+    </div>
+    <hr>
+    <div>
+      <ul id="laps" style="list-style-type:none;">
+        <li>
+          <span id="li-hr"></span>
+          <span id="li-min"></span>
+          <span id="li-sec"></span>
+          <span id="li-count"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container-fluid my-class foot">
+      <div class="container">
+        <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
+
         <div>
-            <ul id="laps" style="list-style-type:none;">
-                <li>
-                    <span id="li-hr"></span>
-                    <span id="li-min"></span>
-                    <span id="li-sec"></span>
-                    <span id="li-count"></span>
-                </li>
-            </ul>
+          <ul style="color: white" class="social-links">
+            <li class="hov">
+              <a href="https://github.com/avinash201199">
+                <img class="link" src="../img/GitHub.png" /></a>
+            </li>
+            <li class="hov">
+              <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
+                <img class="link" src="../img/LinkedinLogo.png" /></a>
+            </li>
+            <li class="hov">
+              <a href="https://www.instagram.com/lets__code/">
+                <img class="link" src="../img/Instagram.png" /></a>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
-    <div id="footer-container">
-        <div class="container">
-            <ul style="list-style-type:none;">
-                <li class="social-list">
-                    <a href="https://www.linkedin.com/in/avinash-singh-071b79175/" target="_blank">
-                        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white"
-                            alt="LinkedIn">
-                    </a>
-                    <a href="https://instagram.com/michael201199/" target="_blank">
-                        <img src="https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white"
-                            alt="Instagram">
-                    </a>
-                    <a href="mailto:avinash201199@gmail.com">
-                        <img src="https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white"
-                            alt="Gmail">
-                    </a>
-                    <a href="https://www.hackerrank.com/avinash201199" target="_blank">
-                        <img src="https://img.shields.io/badge/HackerRank-2EC866?style=flat&logo=hackerrank&logoColor=white"
-                            alt="HackerRank">
-                    </a>
-                    <a href="https://leetcode.com/avinash201199/" target="_blank">
-                        <img src="https://img.shields.io/badge/LeetCode-FE7A16?style=flat&logo=leetcode&logoColor=white"
-                            alt="LeetCode">
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    </container>
+  </footer>
+
+  <div id="confetti"></div>
+  <script src="script.js"></script>
 </body>
 
 </html>

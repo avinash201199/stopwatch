@@ -1,51 +1,124 @@
-let startTime = 0;
-let elapsedTime = 0;
-let timerInterval;
+let hr = 0;
+let min = 0;
+let sec = 0;
+let count = 0;
+let timer = false;
+let timerInterval = null;
+const tickSound = new Audio("../audio/ticking.mp3");
+tickSound.loop = true;
 
-function updateDisplay(time) {
-    const hr = Math.floor(time / 3600000);
-    const min = Math.floor((time % 3600000) / 60000);
-    const sec = Math.floor((time % 60000) / 1000);
-    const count = Math.floor((time % 1000) / 10);
+let tickToggle = null;
+let isTickEnabled = false;
 
-    document.getElementById("hr").textContent = hr.toString().padStart(2, "0");
-    document.getElementById("min").textContent = min.toString().padStart(2, "0");
-    document.getElementById("sec").textContent = sec.toString().padStart(2, "0");
-    document.getElementById("count").textContent = count.toString().padStart(2, "0");
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  tickToggle = document.getElementById("tickToggle");
+  if (tickToggle) {
+    isTickEnabled = tickToggle.checked;
+
+    // Listen for checkbox change
+    tickToggle.addEventListener("change", (e) => {
+      isTickEnabled = e.target.checked;
+
+      // Handle real-time toggle during stopwatch running
+      if (timer) {
+        if (isTickEnabled) {
+          tickSound.play().catch(() => {});
+        } else {
+          tickSound.pause();
+          tickSound.currentTime = 0;
+        }
+      }
+    });
+  }
+});
+
+function $id(id) {
+  return document.getElementById(id);
 }
 
 function start() {
-    startTime = Date.now() - elapsedTime;
-    timerInterval = setInterval(() => {
-        elapsedTime = Date.now() - startTime;
-        updateDisplay(elapsedTime);
-    }, 10);
-    document.getElementById("start").disabled = true;
+  if (timer) return; // Prevent multiple timers
+
+  timer = true;
+  if (isTickEnabled) {
+    tickSound.play();
+  }
+  stopwatch();
 }
 
 function stop() {
-    clearInterval(timerInterval);
-    document.getElementById("start").disabled = false;
+  timer = false;
+  if (timerInterval) {
+    clearTimeout(timerInterval);
+    timerInterval = null;
+  }
+  tickSound.pause();
+  tickSound.currentTime = 0;
 }
 
 function reset() {
-    clearInterval(timerInterval);
-    elapsedTime = 0;
-    updateDisplay(elapsedTime);
-    document.getElementById("start").disabled = false;
+  timer = false;
+  if (timerInterval) {
+    clearTimeout(timerInterval);
+    timerInterval = null;
+  }
+  hr = min = sec = count = 0;
+  tickSound.pause();
+  tickSound.currentTime = 0;
+
+  $id("hr").innerHTML = "00";
+  $id("min").innerHTML = "00";
+  $id("sec").innerHTML = "00";
+  $id("count").innerHTML = "00";
+}
+
+function stopwatch() {
+  if (timer) {
+    count += 1;
+  }
+
+  if (count === 99) {
+    sec += 1;
+    count = 0;
+  }
+  if (sec === 59) {
+    min += 1;
+    sec = 0;
+  }
+  if (min === 59) {
+    hr += 1;
+    min = 0;
+    sec = 0;
+  }
+
+  updateDisplay(hr, "hr");
+  updateDisplay(min, "min");
+  updateDisplay(sec, "sec");
+  updateDisplay(count, "count");
+
+  // Continue timer loop only if timer is active
+  if (timer) {
+    timerInterval = setTimeout(stopwatch, 10);
+  } else {
+    timerInterval = null;
+  }
+}
+
+function updateDisplay(value, elementId) {
+  const stringValue = value < 10 ? "0" + value : value.toString();
+  document.getElementById(elementId).innerHTML = stringValue;
 }
 
 function lap() {
-    const laps = document.getElementById("laps");
-    const li = document.createElement("li");
-    const hr = document.getElementById("hr").textContent;
-    const min = document.getElementById("min").textContent;
-    const sec = document.getElementById("sec").textContent;
-    const count = document.getElementById("count").textContent;
-    li.textContent = `${hr} : ${min} : ${sec} : ${count}`;
-    laps.appendChild(li);
+  const laps = $id("laps");
+  laps.innerHTML += "<li>" + hr + ":" + min + ":" + sec + ":" + count + "</li>";
 }
 
 function clearLap() {
-    document.getElementById("laps").innerHTML = "";
+  $id("laps").remove();
+}
+
+function getLocalTime() {
+  const d = new Date().toLocaleTimeString();
 }

@@ -42,10 +42,11 @@
 
   <nav class="navbar navbar-default navbar-expand-lg thinner navcol">
     <div class="container-fluid-nav">
-        <div class="maintitle">
-          <img src="./img/logo.gif"
-            style="height: 3rem; width: 3rem;margin-right:1rem; font-weight:bold; border-radius: 50%;" alt=""> <span id="title1" >Stop Watch</span>
-        </div>
+      <div class="maintitle">
+        <img src="./img/logo.gif"
+          style="height: 3rem; width: 3rem;margin-right:1rem; font-weight:bold; border-radius: 50%;" alt=""> <span
+          id="title1">Stop Watch</span>
+      </div>
       <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
         data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -54,13 +55,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item px-4">
-            <a class="nav-link btn secondary" id="link--active"
-              style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+            <a class="nav-link btn secondary" id="link--active" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
           'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
           font-weight: bold; 
           color: #003333; 
-          text-decoration: none;"
-              href="#">
+          text-decoration: none;" href="#">
               STOP WATCH
             </a>
             <a class="nav-link btn secondary"
@@ -136,6 +135,10 @@
         <button class="buttons" id="clearlap" onclick="clearLap()">
           <i class="fas fa-trash"></i> Clear Lap
         </button>
+        <label class="tick-label">
+          <input type="checkbox" id="tickToggle">
+          Enable Ticking Sound
+        </label>
       </div>
       <div>
         <div id="record-container">
@@ -221,7 +224,7 @@
     </div>
     </container>
   </footer>
-  
+
   <div id="confetti"></div>
 </body>
 

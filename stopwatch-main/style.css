@@ -1,22 +1,27 @@
 body {
-   background: linear-gradient(270deg, #ff416c, #ff4b2b, #1fa2ff, #12d8fa);
-    background-size: 800% 800%;
-    animation: gradientBG 20s ease infinite;
-
+  background: linear-gradient(270deg, #ff416c, #ff4b2b, #1fa2ff, #12d8fa);
+  background-size: 800% 800%;
+  animation: gradientBG 20s ease infinite;
 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #e9eef5;
   margin: 0;
 }
 @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 #container {
@@ -33,10 +38,9 @@ body {
   transform: translateY(-4px);
 }
 
-
 #footer-container {
-    position: absolute;
-    bottom: 10%;
+  position: absolute;
+  bottom: 10%;
 }
 
 /* Footer Styles - Standardized */
@@ -53,7 +57,7 @@ body {
 }
 
 .hov:hover .link {
-  background: linear-gradient(135deg, #FFD166 0%, #FFC107 100%);
+  background: linear-gradient(135deg, #ffd166 0%, #ffc107 100%);
   border-color: rgba(255, 209, 102, 0.8);
   box-shadow: 0 8px 25px rgba(255, 209, 102, 0.4);
   color: #333;
@@ -107,9 +111,15 @@ li {
 }
 
 @keyframes heartbeat {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Additional container-fluid styling for footer */
@@ -145,13 +155,13 @@ footer {
   color: #b0c4de;
 }
 .social-txt {
-    font-size: 20px;
-    color: white;
+  font-size: 20px;
+  color: white;
 }
 
 #btn-container {
-    text-align: center;
-    margin-top: 40px;
+  text-align: center;
+  margin-top: 40px;
 }
 
 .btn {
@@ -164,47 +174,107 @@ footer {
   font-weight: 500;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   opacity: 0.95;
 }
 
-#start { background: linear-gradient(45deg, #00b09b, #96c93d); }
-#stop { background: linear-gradient(45deg, #ff416c, #ff4b2b); }
-#reset { background: linear-gradient(45deg, #1d2671, #c33764); }
-#lap { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
-#clearLap { background: linear-gradient(45deg, #ff6a00, #ee0979); }
+#start {
+  background: linear-gradient(45deg, #00b09b, #96c93d);
+}
+#stop {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+}
+#reset {
+  background: linear-gradient(45deg, #1d2671, #c33764);
+}
+#lap {
+  background: linear-gradient(45deg, #8e2de2, #4a00e0);
+}
+#clearLap {
+  background: linear-gradient(45deg, #ff6a00, #ee0979);
+}
 
-
-@media screen and (max-width:800px){
-    #time span{
-        font-size: 4rem;
-    }
-    #time{
-        display: flex;
-        flex-direction: column;
-    }
-    #container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+@media screen and (max-width: 800px) {
+  #time span {
+    font-size: 4rem;
+  }
+  #time {
+    display: flex;
+    flex-direction: column;
+  }
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 #lap {
-    background-color: rgb(166, 17, 211);
+  background-color: rgb(166, 17, 211);
 }
 
 #clearLap {
-    background-color: #ee42a6;
+  background-color: #ee42a6;
 }
 
 #laps {
-    margin-top: 100px;
-    text-align: center;
-    font-size: 25px;
+  margin-top: 100px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.tick-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fefefe;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid white;
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+}
+
+.tick-label:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.03);
+}
+
+.tick-label input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tick-label input[type="checkbox"]:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  box-shadow: 0 0 10px #4caf50;
+}
+
+.tick-label input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 0;
+  left: 4px;
+  font-size: 14px;
+  color: white;
 }
