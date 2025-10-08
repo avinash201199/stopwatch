@@ -138,7 +138,6 @@ function lap() {
       ":" +
       ($id("count") ? $id("count").innerHTML : "00");
 
-
     const table = $id("record-table-body");
     if (table) {
       const row = table.insertRow(0);
@@ -243,33 +242,36 @@ setInterval(() => {
   if ($id("d1")) $id("d1").innerHTML = dateStr;
 }, 1000);
 
-const stopwatchBtn = document.getElementById('stopwatch-btn');
-const countdownBtn = document.getElementById('countdown-btn');
-const countdownInputContainer = document.getElementById('countdown-input-container');
-let mode = 'stopwatch'; // default mode
+const stopwatchBtn = document.getElementById("stopwatch-btn");
+const countdownBtn = document.getElementById("countdown-btn");
+const countdownInputContainer = document.getElementById(
+  "countdown-input-container"
+);
+let mode = "stopwatch"; // default mode
 
-stopwatchBtn.addEventListener('click', () => {
-  mode = 'stopwatch';
-  stopwatchBtn.classList.add('active');
-  countdownBtn.classList.remove('active');
-  countdownInputContainer.style.display = 'none';
+stopwatchBtn.addEventListener("click", () => {
+  mode = "stopwatch";
+  stopwatchBtn.classList.add("active");
+  countdownBtn.classList.remove("active");
+  countdownInputContainer.style.display = "none";
   reset(); // reset stopwatch
 });
 
-countdownBtn.addEventListener('click', () => {
-  mode = 'countdown';
-  countdownBtn.classList.add('active');
-  stopwatchBtn.classList.remove('active');
-  countdownInputContainer.style.display = 'block';
+countdownBtn.addEventListener("click", () => {
+  mode = "countdown";
+  countdownBtn.classList.add("active");
+  stopwatchBtn.classList.remove("active");
+  countdownInputContainer.style.display = "block";
   reset(); // reset stopwatch
 });
 
 // Countdown logic
 let countdownInterval;
-document.getElementById('start-countdown').addEventListener('click', () => {
-  let minutes = parseInt(document.getElementById('countdown-minutes').value);
-  if (isNaN(minutes) || minutes < 0) {
-    alert('Enter a valid number of minutes');
+document.getElementById("start-countdown").addEventListener("click", () => {
+  let minutes = parseInt(document.getElementById("countdown-minutes").value);
+  if (isNaN(minutes) || minutes < 0 || minutes > 1440) {
+    // Max 24 hours
+    alert("Enter a valid number of minutes (0-1440)");
     return;
   }
 
@@ -277,21 +279,21 @@ document.getElementById('start-countdown').addEventListener('click', () => {
   clearInterval(countdownInterval);
 
   countdownInterval = setInterval(() => {
+    if (totalSeconds <= 0) {
+      clearInterval(countdownInterval);
+      alert("Time's up!");
+      return;
+    }
+
     let hrs = Math.floor(totalSeconds / 3600);
     let mins = Math.floor((totalSeconds % 3600) / 60);
     let secs = totalSeconds % 60;
 
-    document.getElementById('hr').textContent = String(hrs).padStart(2, '0');
-    document.getElementById('min').textContent = String(mins).padStart(2, '0');
-    document.getElementById('sec').textContent = String(secs).padStart(2, '0');
-    document.getElementById('count').textContent = '00';
-
-    if (totalSeconds <= 0) {
-      clearInterval(countdownInterval);
-      alert("Time's up!");
-    }
+    document.getElementById("hr").textContent = String(hrs).padStart(2, "0");
+    document.getElementById("min").textContent = String(mins).padStart(2, "0");
+    document.getElementById("sec").textContent = String(secs).padStart(2, "0");
+    document.getElementById("count").textContent = "00";
 
     totalSeconds--;
   }, 1000);
 });
-
