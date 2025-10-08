@@ -382,54 +382,59 @@ th {
 }
 
 #start {
-  color: hsl(127, 100%, 57%);
+  color: #00ff00;
+  border-color: #00ff00;
 }
 
 #start:hover {
-  color: #000000;
-  background: hsl(131, 100%, 69%);
-  box-shadow: 0 0 4px hsl(151, 88%, 70%), 0 0 5px hsl(159, 93%, 77%),
-    0 0 37px hsl(157, 96%, 72%);
+  color: #ffffff;
+  background: rgba(0, 255, 0, 0.2);
+  border-color: #00ff00;
+  box-shadow: 0 0 4px #00ff00, 0 0 5px #00ff00, 0 0 37px rgba(0, 255, 0, 0.3);
+  transform: translateY(-2px);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 #reset {
-  color: hwb(277 44% 20%);
+  color: #9966cc;
+  border-color: #9966cc;
 }
 
 #reset:hover {
-  color: #000000;
-  background: hwb(277 6% 7%);
-  box-shadow: 0 0 4px #9f2c99, 0 0 5px #481844, 0 0 37px #c18cd0;
+  color: #ffffff;
+  background: rgba(153, 102, 204, 0.2);
+  border-color: #9966cc;
+  box-shadow: 0 0 4px #9966cc, 0 0 5px #9966cc, 0 0 37px rgba(153, 102, 204, 0.3);
+  transform: translateY(-2px);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 #lap {
-  color: hwb(67 20% 3%);
+  color: #ffff00;
+  border-color: #ffff00;
 }
 
 #lap:hover {
   color: #000000;
-  background: hwb(61 31% 0%);
-  box-shadow: 0 0 4px hwb(68 57% 0%), 0 0 5px hwb(68 54% 0%),
-    0 0 37px hwb(70 63% 1%);
+  background: rgba(255, 255, 0, 0.2);
+  border-color: #ffff00;
+  box-shadow: 0 0 4px #ffff00, 0 0 5px #ffff00, 0 0 37px rgba(255, 255, 0, 0.3);
+  transform: translateY(-2px);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 #clearlap {
-  color: rgb(255, 71, 39);
+  color: #ff0000;
+  border-color: #ff0000;
 }
 
 #clearlap:hover {
-  color: #000000;
-  background: rgb(255, 89, 38);
-  box-shadow: 0 0 4px rgb(255, 118, 63), 0 0 5px rgb(255, 106, 103),
-    0 0 37px rgb(255, 137, 104);
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.2);
+  border-color: #ff0000;
+  box-shadow: 0 0 4px #ff0000, 0 0 5px #ff0000, 0 0 37px rgba(255, 0, 0, 0.3);
+  transform: translateY(-2px);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 .nav-item {
@@ -466,7 +471,7 @@ th {
   text-align: center;
   width: 150px;
   border-radius: 55px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.1);
   letter-spacing: 1px;
   text-shadow: 0;
   font-size: 16px;
@@ -476,15 +481,14 @@ th {
   margin: 10px;
   font-family: "Roboto";
   overflow: hidden;
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .buttons:hover {
-  color: #1b5c7e;
-  background: #46f5f8;
-  box-shadow: 0 0 4px #29d3d6, 0 0 5px #29d3d6, 0 0 37px #29d3d6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   transition-delay: 0.001s;
 }
 
@@ -988,14 +992,57 @@ body.dark-mode .todayDate h3 {
 }
 
 body.dark-mode .buttons {
-  border-color: #ff6b35 !important;
-  background: rgba(255, 107, 53, 0.2) !important;
-  color: #ff6b35 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 body.dark-mode .buttons:hover {
-  background: #ff6b35 !important;
-  color: black !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode #start {
+  color: #00ff00 !important;
+  border-color: #00ff00 !important;
+}
+
+body.dark-mode #start:hover {
+  color: #ffffff !important;
+  background: rgba(0, 255, 0, 0.2) !important;
+  border-color: #00ff00 !important;
+}
+
+body.dark-mode #reset {
+  color: #9966cc !important;
+  border-color: #9966cc !important;
+}
+
+body.dark-mode #reset:hover {
+  color: #ffffff !important;
+  background: rgba(153, 102, 204, 0.2) !important;
+  border-color: #9966cc !important;
+}
+
+body.dark-mode #lap {
+  color: #ffff00 !important;
+  border-color: #ffff00 !important;
+}
+
+body.dark-mode #lap:hover {
+  color: #000000 !important;
+  background: rgba(255, 255, 0, 0.2) !important;
+  border-color: #ffff00 !important;
+}
+
+body.dark-mode #clearlap {
+  color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+body.dark-mode #clearlap:hover {
+  color: #ffffff !important;
+  background: rgba(255, 0, 0, 0.2) !important;
+  border-color: #ff0000 !important;
 }
 
 body.dark-mode .textfooter {
