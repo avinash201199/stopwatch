@@ -392,6 +392,264 @@ $(document).ready(function () {
     });
 });
 
+
+
+let calendarMode = 'universal';
+let tokenClient;
+let gapiInited = false;
+let gisInited = false;
+
+const CLIENT_ID = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
+const API_KEY = 'YOUR_API_KEY';
+const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
+
+function hasAPICredentials() {
+    return !CLIENT_ID.includes('YOUR_CLIENT_ID') && !API_KEY.includes('YOUR_API_KEY');
+}
+
+
+function showStatus(message, type = 'info') {
+    const statusDiv = $id('calendar-status');
+    statusDiv.innerHTML = message;
+    statusDiv.className = `status-${type}`;
+    statusDiv.style.display = 'block';
+    
+    setTimeout(() => {
+        statusDiv.style.display = 'none';
+    }, 5000);
+}
+
+function createUniversalCalendarEvent(eventDetails) {
+    const startDate = new Date(eventDetails.startDateTime);
+    const endDate = new Date(eventDetails.endDateTime);
+    
+    const formatDateTime = (date) => {
+        return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    };
+    
+    const startStr = formatDateTime(startDate);
+    const endStr = formatDateTime(endDate);
+    
+    const baseUrl = 'https://calendar.google.com/calendar/render';
+    const params = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: eventDetails.title,
+        dates: `${startStr}/${endStr}`,
+        details: eventDetails.description || '',
+        location: '',
+        trp: false
+    });
+    
+    const calendarUrl = `${baseUrl}?${params.toString()}`;
+    window.open(calendarUrl, '_blank');
+    
+    return true;
+}
+
+function gapiLoaded() {
+    if (hasAPICredentials()) {
+        gapi.load('client', initializeGapiClient);
+    }
+}
+
+async function initializeGapiClient() {
+    try {
+        await gapi.client.init({
+            apiKey: API_KEY,
+            discoveryDocs: [DISCOVERY_DOC],
+        });
+        gapiInited = true;
+        calendarMode = 'api';
+        maybeEnableButtons();
+    } catch (err) {
+        console.error('Error initializing GAPI:', err);
+        calendarMode = 'universal';
+        maybeEnableButtons();
+    }
+}
+
+function gisLoaded() {
+    if (hasAPICredentials()) {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            callback: '',
+        });
+        gisInited = true;
+        maybeEnableButtons();
+    }
+}
+
+function maybeEnableButtons() {
+    if (calendarMode === 'universal') {
+        $id('authorize-btn').style.display = 'none';
+        $id('schedule-btn').style.display = 'inline-block';
+        $id('signout-btn').style.display = 'none';
+    } else if (gapiInited && gisInited) {
+        $id('authorize-btn').style.display = 'inline-block';
+    }
+}
+
+function handleAuthClick() {
+    if (calendarMode === 'universal') {
+        openScheduleModal();
+        return;
+    }
+
+    tokenClient.callback = async (resp) => {
+        if (resp.error !== undefined) {
+            throw (resp);
+        }
+        $id('authorize-btn').style.display = 'none';
+        $id('schedule-btn').style.display = 'inline-block';
+        $id('signout-btn').style.display = 'inline-block';
+        showStatus('Connected to Google Calendar!', 'success');
+    };
+
+    if (gapi.client.getToken() === null) {
+        tokenClient.requestAccessToken({prompt: 'consent'});
+    } else {
+        tokenClient.requestAccessToken({prompt: ''});
+    }
+}
+
+function handleSignoutClick() {
+    if (calendarMode === 'universal') {
+        return;
+    }
+    
+    const token = gapi.client.getToken();
+    if (token !== null) {
+        google.accounts.oauth2.revoke(token.access_token);
+        gapi.client.setToken('');
+        $id('authorize-btn').style.display = 'inline-block';
+        $id('schedule-btn').style.display = 'none';
+        $id('signout-btn').style.display = 'none';
+        showStatus('Signed out from Google Calendar', 'info');
+    }
+}
+
+function openScheduleModal() {
+    const modal = $id('scheduleModal');
+    const today = new Date();
+    const dateStr = today.toISOString().split('T')[0];
+    const timeStr = today.toTimeString().slice(0, 5);
+    
+    $id('event-date').value = dateStr;
+    $id('event-time').value = timeStr;
+    $id('event-title').value = isFocusMode ? 'Pomodoro Focus Session' : 'Pomodoro Break';
+    
+    modal.style.display = 'block';
+}
+
+function closeScheduleModal() {
+    $id('scheduleModal').style.display = 'none';
+}
+
+async function createCalendarEvent(eventDetails) {
+    try {
+        const event = {
+            'summary': eventDetails.title,
+            'description': eventDetails.description || 'Pomodoro productivity session',
+            'start': {
+                'dateTime': eventDetails.startDateTime,
+                'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+            },
+            'end': {
+                'dateTime': eventDetails.endDateTime,
+                'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+            },
+            'reminders': {
+                'useDefault': false,
+                'overrides': [
+                    {'method': 'popup', 'minutes': 5}
+                ]
+            }
+        };
+
+        const request = await gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource': event
+        });
+
+        return request.result;
+    } catch (err) {
+        console.error('Error creating event:', err);
+        throw err;
+    }
+}
+
+$id('calendar-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const title = $id('event-title').value;
+    const date = $id('event-date').value;
+    const time = $id('event-time').value;
+    const description = $id('event-description').value;
+    const includeBreak = $id('include-break').checked;
+    
+    const focusDuration = focusTime;
+    const breakDuration = restTime;
+    const totalDuration = includeBreak ? focusDuration + breakDuration : focusDuration;
+    
+    const startDateTime = `${date}T${time}:00`;
+    const startDate = new Date(startDateTime);
+    const endDate = new Date(startDate.getTime() + totalDuration * 60000);
+    const endDateTime = endDate.toISOString().slice(0, 19);
+    
+    const eventDetails = {
+        title: title,
+        description: description + `\n\nFocus: ${focusDuration} min | Break: ${breakDuration} min`,
+        startDateTime: startDateTime,
+        endDateTime: endDateTime
+    };
+    
+    try {
+        showStatus('Creating calendar event...', 'info');
+        
+        if (calendarMode === 'universal') {
+            createUniversalCalendarEvent(eventDetails);
+            showStatus('Opening Google Calendar to add your event!', 'success');
+            closeScheduleModal();
+        } else {
+            const event = await createCalendarEvent(eventDetails);
+            showStatus('Event added to your Google Calendar!', 'success');
+            closeScheduleModal();
+            
+            if (event.htmlLink) {
+                setTimeout(() => {
+                    if (confirm('Event created! Would you like to view it in Google Calendar?')) {
+                        window.open(event.htmlLink, '_blank');
+                    }
+                }, 500);
+            }
+        }
+    } catch (error) {
+        showStatus('Failed to create event. Please try again.', 'error');
+        console.error('Error:', error);
+    }
+});
+
+window.onclick = function(event) {
+    const modal = $id('scheduleModal');
+    if (event.target == modal) {
+        closeScheduleModal();
+    }
+}
+
+window.addEventListener('load', () => {
+    if (hasAPICredentials() && typeof gapi !== 'undefined') {
+        gapiLoaded();
+    }
+    if (hasAPICredentials() && typeof google !== 'undefined') {
+        gisLoaded();
+    }
+    
+    if (!hasAPICredentials()) {
+        calendarMode = 'universal';
+        maybeEnableButtons();
+    }
 // Simple music control function
 function toggleMusic() {
     if (!focusMusic) {
@@ -454,4 +712,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFocusMusic();
     updateMusicStatus(false);
     initializeVideoBackground();
+});
+
 });

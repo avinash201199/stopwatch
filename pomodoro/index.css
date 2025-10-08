@@ -2,34 +2,6 @@ body {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  position: relative;
-  background: transparent;
-}
-
-
-/* Floating particles effect */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3), transparent),
-    radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.2), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: float 20s linear infinite;
-  z-index: -998;
-}
-
-@keyframes float {
-  0% { transform: translateY(0) translateX(0); }
-  100% { transform: translateY(-100px) translateX(50px); }
 }
 
 #link--active {
@@ -47,22 +19,16 @@ body::before {
   transition: background-color 0.5s ease;
 }
 
-.thinner {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
 
 .inactive {
   color: rgb(169, 188, 214);
-  background: transparent;
+  background: rgb(5, 30, 54);
   transition: background-color 0.5s ease;
 }
 
 .active {
-  color: #fff;
-  background: transparent;
+  color: #333;
+  background: white;
   transition: background-color 0.5s ease;
 }
 
@@ -74,8 +40,6 @@ body::before {
 .timer {
   font-size: 100px;
   font-family: 'digital-7';
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  color: white;
 }
 
 .counter-background {
@@ -251,7 +215,7 @@ li {
 }
 
 body {
-  background: transparent !important;
+  background: #ffffff !important;
 }
 
 /* Additional container-fluid styling for footer */
@@ -277,18 +241,15 @@ footer {
 body {
   background: #ffffff !important;
   height: 240px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px);
+  background: #ffffff !important;
   margin: 0;
   padding: 0;
 }
 
 
 .my-class {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px);
+  background: #ffffff !important;
 }
-
 /* === Pomodoro Progress Bar === */
 .progress-container {
   width: 100%;
@@ -296,35 +257,140 @@ body {
   background-color: #ddd;
   border-radius: 5px;
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 #progress-bar {
   width: 100%;
   height: 100%;
   background-color: #4caf50;
-  transition: width 1s linear, background-color 0.5s ease;
+  transition: width 1s linear;
 }
 
-/* Video Background Responsive */
-@media (max-width: 768px) {
-  .video-background video {
-    filter: blur(6px) brightness(0.8);
-  }
-
-  .video-overlay {
-    background: rgba(0, 0, 0, 0.4);
-  }
+/* === Calendar Button Styles === */
+.calendar-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin: 10px;
 }
 
-@media (max-width: 480px) {
-  .video-background video {
-    filter: blur(4px) brightness(0.9);
-  }
+.calendar-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
 
-  .video-overlay {
-    background: rgba(0, 0, 0, 0.5);
-  }
+.calendar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* === Modal Styles === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling for modal */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 10px 0;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.6);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+}
+
+/* === Form Group Styles === */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* === Calendar Status Styles === */
+#calendar-status {
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.status-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
 }
 body {
   height: 100vh;
