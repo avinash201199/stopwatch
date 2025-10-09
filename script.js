@@ -333,3 +333,42 @@ document.getElementById("start-countdown").addEventListener("click", () => {
     totalSeconds--;
   }, 1000);
 });
+
+
+let presetSound = new Audio("../audio/beep_cut.mp3");
+presetSound.volume = 0.3;
+
+function setPresetTimer(minutes) {
+
+  presetSound.play().catch(() => {
+   
+  });
+  
+
+  document.getElementById("countdown-minutes").value = minutes;
+  
+
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+
+  const clickedBtn = document.querySelector(`[data-minutes="${minutes}"]`);
+  if (clickedBtn) {
+    clickedBtn.classList.add('active');
+  }
+  
+
+  const input = document.getElementById("countdown-minutes");
+  input.style.border = "2px solid #ffb703";
+  input.style.background = "rgba(255, 183, 3, 0.1)";
+  input.style.color = "white";
+  input.style.transform = "scale(1.02)";
+  
+  setTimeout(() => {
+    input.style.transform = "scale(1)";
+    input.style.background = "rgba(255, 255, 255, 0.08)";
+    input.style.border = "2px solid rgba(255, 255, 255, 0.3)";
+    input.style.color = "white";
+  }, 300);
+}
