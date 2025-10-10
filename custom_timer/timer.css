@@ -1,42 +1,58 @@
+/* ----------------------------------
+   GLOBAL STYLES
+---------------------------------- */
+
 body {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 100vh;                     /* Full viewport height */
+  overflow-x: hidden;                /* Prevent horizontal scroll */
+  overflow-y: auto;                  /* Allow vertical scroll */
 }
 
 input:focus {
-  outline: none;
-  border: none;
+  outline: none;                     /* Remove blue border glow */
+  border: none;                      /* Remove default border */
 }
 
+/* Active link style (e.g., current nav link) */
 #link--active {
   box-shadow: none;
-  background-color: #ffd166;
-  box-shadow: 2.5px 2.5px 0 var(--active);
+  background-color: #ffd166;         /* Yellow highlight */
+  box-shadow: 2.5px 2.5px 0 var(--active); /* Slight shadow using CSS variable */
 }
 
+/* Custom digital font */
 @font-face {
   font-family: "digital-7";
   src: url("fonts/digital-7.ttf");
 }
 
+/* ----------------------------------
+   NAVIGATION BAR STYLES
+---------------------------------- */
+
 .navigation {
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease; /* Smooth color transition */
 }
 
+/* Inactive nav button */
 .inactive {
   color: rgb(169, 188, 214);
   background: rgb(5, 30, 54);
   transition: background-color 0.5s ease;
 }
 
+/* Active nav button */
 .active {
   color: #333;
   background: white;
-
   transition: background-color 0.5s ease;
 }
 
+/* ----------------------------------
+   BUTTONS
+---------------------------------- */
+
+/* Pill-shaped button with neon green border */
 .button-pill {
   font-size: 1.2em;
   border-radius: 40px;
@@ -44,9 +60,13 @@ input:focus {
   border: 2px solid hsl(127, 100%, 57%);
 }
 
+/* ----------------------------------
+   TIMER
+---------------------------------- */
+
 .timer {
   font-size: 100px;
-  font-family: "digital-7";
+  font-family: "digital-7";          /* Digital clock style font */
 }
 
 .counter-background {
@@ -57,8 +77,12 @@ input:focus {
   color: rgb(137, 192, 189);
 }
 
+/* ----------------------------------
+   DARK/LIGHT MODE TOGGLE SWITCH
+---------------------------------- */
+
 .checkbox {
-  opacity: 0;
+  opacity: 0;                        /* Hide checkbox */
   position: absolute;
   z-index: 10;
   height: 2rem;
@@ -66,6 +90,7 @@ input:focus {
   cursor: pointer;
 }
 
+/* Switch background container */
 .label {
   width: 50px;
   height: 26px;
@@ -79,6 +104,7 @@ input:focus {
   transform: scale(1);
 }
 
+/* The white moving circle ("ball") */
 .ball {
   width: 20px;
   height: 20px;
@@ -90,27 +116,31 @@ input:focus {
   transition: transform 0.2s linear;
 }
 
+/* Move the ball to the right when checked */
 .checkbox:checked + .label .ball {
   transform: translateX(24px);
 }
 
-.fa-moon {
-  color: pink;
-}
+/* Icons inside toggle */
+.fa-moon { color: pink; }
+.fa-sun { color: yellow; }
 
-.fa-sun {
-  color: yellow;
-}
+/* ----------------------------------
+   BUTTON ANIMATIONS
+---------------------------------- */
 
+/* Main buttons animation */
 button.btn.btn-outline-primary.button-pill.px-3 {
   transition: transform 0.03s;
 }
 
+/* Scale and glow on hover */
 button.btn.btn-outline-primary.button-pill.px-3:hover {
   transform: scale(1.1);
   box-shadow: 1px 1px 12px 7px blue;
 }
 
+/* Navigation inactive button hover animation */
 button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive {
   transition: transform 0.03s;
 }
@@ -119,6 +149,10 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   transform: scale(1.05);
   box-shadow: 1px 1px 12px 7px rgb(119, 204, 238);
 }
+
+/* ----------------------------------
+   LAYOUT STRUCTURE
+---------------------------------- */
 
 .col-auto {
   display: flex;
@@ -129,17 +163,7 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   margin: 0 0.5rem 0 0;
 }
 
-.nav {
-  display: flex;
-  flex-direction: row;
-}
-
-#navbarSupportedContent {
-  display: flex;
-  flex-direction: row;
-}
-
-#nav-links {
+.nav, #navbarSupportedContent, #nav-links {
   display: flex;
   flex-direction: row;
 }
@@ -153,6 +177,7 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   margin-top: 0 !important;
 }
 
+/* Custom timer input container */
 #custom-timer-form {
   display: flex;
   flex-wrap: wrap;
@@ -160,9 +185,10 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   gap: 20px;
 }
 
+/* ----------------------------------
+   INPUT FIELDS (Floating Labels)
+---------------------------------- */
 
-
-/* input fiels  */
 .form__group {
   position: relative;
   padding: 20px 0 0;
@@ -181,6 +207,347 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+/* Floating label when field is empty */
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 17px;
+  cursor: text;
+  top: 20px;
+}
+
+/* Label animation */
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+/* Highlighted border and label on focus */
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #116399, #21f341);
+  border-image-slice: 1;
+}
+
+.form__field:focus ~ .form__label {
+  color: #21f341;
+  font-weight: 700;
+}
+
+/* Prevent red border on invalid inputs */
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
+}
+
+/* ----------------------------------
+   ANIMATED BUTTON
+---------------------------------- */
+
+.animated-button {
+  position: relative;
+  display: inline-block;
+  padding: 5px 18px;
+  border: none;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 0 0 2px #ffffff;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* Hidden circle inside button for ripple effect */
+.animated-button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #21f341;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+/* Button hover & click animations */
+.animated-button:hover {
+  box-shadow: 0 0 0 5px #21f35960;
+}
+
+.animated-button:active {
+  scale: 0.95;
+}
+
+.animated-button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+
+/* ----------------------------------
+   FOOTER STYLES
+---------------------------------- */
+
+.hov {
+  width: max(4.5vw, 3rem);
+  height: max(4.5vw, 3rem);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.hov:hover {
+  transform: translateY(-5px) scale(1.1);
+  filter: brightness(1.1);
+}
+
+/* Hover effects for social links */
+.hov:hover .link {
+  background: linear-gradient(135deg, #FFD166 0%, #FFC107 100%);
+  border-color: rgba(255, 209, 102, 0.8);
+  box-shadow: 0 8px 25px rgba(255, 209, 102, 0.4);
+  color: #333;
+}
+
+/* Layout for social icons */
+.social-links {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  gap: 20px;
+}
+
+/* Remove list bullet and set size */
+li {
+  width: max(4.5vw, 3rem);
+  height: max(4.5vw, 3rem);
+  list-style: none;
+  margin: 8px;
+}
+
+/* Circle link style */
+.link {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  color: #333;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 209, 102, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+/* Footer text */
+.textfooter {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Red animated heart icon */
+.textfooter .heart {
+  color: #ff4757 !important;
+  font-size: 1.3rem;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Heartbeat animation */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Footer container styling */
+footer {
+  margin-top: auto;
+  padding-left: 0;
+  padding-right: 0;
+  color: white !important;
+  background: transparent !important;
+  max-height: 20px !important;
+}
+
+/* Top border separation for footer */
+.my-class {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-top: 2px solid gray !important;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.2) !important;
+  min-width: 100%;
+  padding: 1rem 2rem;
+}
+
+body {
+  background:#ffffff !important;
+}
+
+/* Utility class for hiding elements */
+.hidden {
+  display: none !important;
+}
+
+/* ----------------------------------
+   TIMER ANIMATION
+---------------------------------- */
+
+.timer.pulse {
+  animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 12px rgba(255, 214, 102, 0.8));
+  }
+}
+
+/* ----------------------------------
+   CONFETTI ANIMATION
+---------------------------------- */
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.confetti {
+  position: absolute;
+  top: -10vh;
+  width: 10px;
+  height: 14px;
+  opacity: 0.9;
+  transform: translateY(-100px) rotate(0deg);
+  animation: confetti-fall linear forwards;
+}
+
+/* Falling confetti animation */
+@keyframes confetti-fall {
+  to {
+    transform: translateY(120vh) rotate(720deg);
+    opacity: 1;
+  }
+}
+
+/* ----------------------------------
+   PROGRESS BAR
+---------------------------------- */
+
+#progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #21f341, #116399);
+  transition: width 0.5s linear;
+  border-radius: 10px;
+}
+
+/* ----------------------------------
+   DARK MODE THEME
+---------------------------------- */
+
+body.dark-mode {
+  color: white;
+  background: transparent !important;
+}
+
+/* Navbar dark theme */
+body.dark-mode .navbar,
+body.dark-mode footer,
+body.dark-mode .my-class,
+body.dark-mode .foot {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+body.dark-mode #title1,
+body.dark-mode .textfooter {
+  color: white !important;
+}
+
+body.dark-mode .timer { color: #ff6b35 !important; }
+
+body.dark-mode .active {
+  color: #ff6b35 !important;
+  background: #191212 !important;
+}
+
+body.dark-mode .inactive {
+  background: black !important;
+  color: white !important;
+}
+
+/* Button styles in dark mode */
+body.dark-mode .buttons {
+  border-color: #ff6b35 !important;
+  background: rgba(255, 107, 53, 0.2) !important;
+  color: #ff6b35 !important;
+}
+
+body.dark-mode .buttons:hover {
+  background: #ff6b35 !important;
+  color: black !important;
+}
+
+/* Input and progress bar adjustments */
+body.dark-mode .form__field,
+body.dark-mode .form__label {
+  color: #ff6b35 !important;
+  border-bottom-color: #ff6b35 !important;
+}
+
+body.dark-mode #progress-container { background-color: #333 !important; }
+body.dark-mode #progress-bar { background: #ff6b35 !important; }
+
+body.dark-mode .animated-button {
+  color: #ff6b35 !important;
+  box-shadow: 0 0 0 2px #ff6b3520 !important;
+}
+
+body.dark-mode .animated-button:hover {
+  box-shadow: 0 0 0 5px #ff6b3560 !important;
+}
+
+body.dark-mode .animated-button span:last-child {
+  background-color: #ff6b35 !important;
+}
+
+/* Navigation link colors */
+.nav-link { color: #003333 !important; }
+.nav-link:hover { color: #ff6b35 !important; }
 }
 
 .form__field::placeholder {
