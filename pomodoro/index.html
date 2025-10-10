@@ -2,150 +2,120 @@
 <html lang='en'>
 
 <head>
+    <!-- Basic Meta Tags -->
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
-    <!-- Roboto font -->
+    <!-- Google Fonts: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 
-    <!-- Favicon Icon-->
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../img/Pomodoro.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../img/Pomodoro.png">
 
-    <!-- jquery CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
     <!-- Google Calendar API -->
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-    <!-- FontAwesome CDN-->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css' rel='stylesheet'
-        integrity='sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU' crossorigin='anonymous'>
-    <link rel='stylesheet' href='index.css' />
+    <!-- Bootstrap CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../style.css" />
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel='stylesheet' href='index.css' />
+
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <title>Pomodoro timer</title>
 </head>
 
 <body>
-    <!-- Video Background -->
+    <!-- Video Background Section -->
     <div class="video-background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; pointer-events: none;">
         <video id="bg-video" autoplay muted loop playsinline preload="auto" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover;">
             <source src="lofi.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <!-- Semi-transparent overlay for better readability -->
         <div class="video-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
     </div>
-<nav class="navbar navbar-default navbar-expand-lg thinner navcol">
-    <div class="container-fluid-nav">
-        <div class="maintitle">
-          <img src="../img/logo.gif"
-            style="height: 3rem; width: 3rem;margin-right:1rem; font-weight:bold; border-radius: 50%;" alt=""> <span id="title1" >Stop Watch</span>
-        </div>
-      <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
-        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item px-4">
-            <a class="nav-link btn secondary" 
-              style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
-          'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
-          font-weight: bold; 
-          color: #003333; 
-          text-decoration: none;"
-              href="../index.html">
-              STOP WATCH
-            </a>
-            <a class="nav-link btn secondary" id="link--active"
-              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
-              href="#">
-              POMODORO TIMER
-            </a>
-            <a class="nav-link btn secondary"
-              style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:#003333;"
-              href="../custom_timer/timer.html">
-              CUSTOM TIMER
-            </a>
-          </li>
-        </ul>
-        <div id="switch-theme">
-          <input type="checkbox" id="light" class="checkbox">
-          <label for="checkbox" class="label">
-            <i class="fas fa-moon"></i>
-            <i class='fas fa-sun'></i>
-            <div class='ball'>
-              </ball>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-default navbar-expand-lg thinner navcol">
+        <div class="container-fluid-nav">
+            <!-- Logo and Title -->
+            <div class="maintitle">
+                <img src="../img/logo.gif" style="height: 3rem; width: 3rem;margin-right:1rem; border-radius: 50%;" alt="Logo">
+                <span id="title1">Stop Watch</span>
             </div>
-          </label>
+            <!-- Mobile Toggler Button -->
+            <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item px-4">
+                        <a class="nav-link btn secondary" href="../index.html">STOP WATCH</a>
+                        <a class="nav-link btn secondary" id="link--active" href="#">POMODORO TIMER</a>
+                        <a class="nav-link btn secondary" href="../custom_timer/timer.html">CUSTOM TIMER</a>
+                    </li>
+                </ul>
+
+                <!-- Theme Switcher -->
+                <div id="switch-theme">
+                    <input type="checkbox" id="light" class="checkbox">
+                    <label for="checkbox" class="label">
+                        <i class="fas fa-moon"></i>
+                        <i class='fas fa-sun'></i>
+                        <div class='ball'></div>
+                    </label>
+                </div>
+            </div>
         </div>
-      </div>
-  </nav>
-    
+    </nav>
+
+    <!-- Pomodoro Timer Section -->
     <div class='row h-100 justify-content-center active' id='counter-background'>
         <div class='col-12 my-auto'>
-            <!-- Pomodoro Options -->
+            <!-- Pomodoro Session Options -->
             <div class='row justify-content-center mb-4'>
                 <div class='col-auto'>
-                    <h5 class='text-center mb-3' style='color: inherit;'>Choose Your Pomodoro Session: Focus Time/Rest Time</h5>
-                </div>
-            </div>
-            <div class='row justify-content-center mb-4'>
-                <div class='col-auto px-2'>
-                    <button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(25, 5)'>
-                        25/5
-                    </button>
-                </div>
-                <div class='col-auto px-2'>
-                    <button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(55, 10)'>
-                        55/10
-                    </button>
-                </div>
-                <div class='col-auto px-2'>
-                    <button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(90, 15)'>
-                        90/15
-                    </button>
-                </div>
-            </div>
-            <div class='row justify-content-center'>
-                <div class='col-auto my-auto'>
-                    <p class='timer' id='minutes'>
-                        00
-                    </p>
-                </div>
-                <div class='col-auto my-auto'>
-                    <p class='timer'>
-                        :
-                    </p>
-                </div>
-                <div class='col-auto my-auto'>
-                    <p class='timer' id='seconds'>
-                        00
-                    </p>
-                </div>
-            </div>
-            <div class='row justify-content-center'>
-                <div class='col-auto py-3 px-4' id='mode-display'>
-                    <h3 class='text-center' style='color: inherit;'>
-                        <span id='current-mode'>Focus Time</span>
-                    </h3>
+                    <h5 class='text-center mb-3'>Choose Your Pomodoro Session: Focus Time/Rest Time</h5>
                 </div>
             </div>
 
+            <!-- Session Buttons -->
+            <div class='row justify-content-center mb-4'>
+                <div class='col-auto px-2'><button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(25, 5)'>25/5</button></div>
+                <div class='col-auto px-2'><button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(55, 10)'>55/10</button></div>
+                <div class='col-auto px-2'><button class='btn btn-outline-primary button-pill px-3' onclick='setPomodoroOption(90, 15)'>90/15</button></div>
+            </div>
+
+            <!-- Timer Display -->
+            <div class='row justify-content-center'>
+                <div class='col-auto my-auto'><p class='timer' id='minutes'>00</p></div>
+                <div class='col-auto my-auto'><p class='timer'>:</p></div>
+                <div class='col-auto my-auto'><p class='timer' id='seconds'>00</p></div>
+            </div>
+
+            <!-- Current Mode Display -->
+            <div class='row justify-content-center'>
+                <div class='col-auto py-3 px-4' id='mode-display'>
+                    <h3 class='text-center'><span id='current-mode'>Focus Time</span></h3>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
             <div class="row justify-content-center my-3">
                 <div class="col-10">
                     <div class="progress-container">
@@ -154,127 +124,99 @@
                 </div>
             </div>
 
-            <!-- Focus Music Control -->
+            <!-- Focus Music Controls -->
             <div class="row justify-content-center my-3">
                 <div class="col-10">
                     <div id="music-controls" style="text-align: center; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                        <h5 style="color: inherit; margin-bottom: 15px;">Focus Music</h5>
+                        <h5 style="margin-bottom: 15px;">Focus Music</h5>
                         <button class="btn btn-outline-primary button-pill px-3" id="music-toggle" onclick="toggleMusic()">
                             <i class="fas fa-play"></i> <span id="music-status">Play Focus Music</span>
                         </button>
                     </div>
                 </div>
             </div>
-            <!-- End Music Control -->
 
+            <!-- Timer Control Buttons -->
             <div class='row justify-content-center'>
-                <button type="button" class='buttons' id='timer-control' onClick='startPomoCounter()'>
-                    <i class="fas fa-play-circle"></i> Play
-                </button>
-
-                <button type="button" class='buttons' id='reset' onClick='reset()'>
-                    <i class="fas fa-undo"></i> Reset
-                </button>
+                <button type="button" class='buttons' id='timer-control' onClick='startPomoCounter()'><i class="fas fa-play-circle"></i> Play</button>
+                <button type="button" class='buttons' id='reset' onClick='reset()'><i class="fas fa-undo"></i> Reset</button>
             </div>
 
+            <!-- Google Calendar Buttons -->
             <div class='row justify-content-center mt-4'>
                 <div class='col-auto'>
-                    <button class="calendar-btn" id="authorize-btn" onclick="handleAuthClick()" style="display: none;">
-                        <i class="fas fa-calendar-plus"></i> Connect Google Calendar
-                    </button>
-                    <button class="calendar-btn" id="schedule-btn" onclick="openScheduleModal()" style="display: none;">
-                        <i class="fas fa-calendar-check"></i> Add to Google Calendar
-                    </button>
-                    <button class="calendar-btn" id="signout-btn" onclick="handleSignoutClick()" style="display: none;">
-                        <i class="fas fa-sign-out-alt"></i> Sign Out
-                    </button>
+                    <button class="calendar-btn" id="authorize-btn" onclick="handleAuthClick()" style="display: none;"><i class="fas fa-calendar-plus"></i> Connect Google Calendar</button>
+                    <button class="calendar-btn" id="schedule-btn" onclick="openScheduleModal()" style="display: none;"><i class="fas fa-calendar-check"></i> Add to Google Calendar</button>
+                    <button class="calendar-btn" id="signout-btn" onclick="handleSignoutClick()" style="display: none;"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
                 </div>
             </div>
             <div class='row justify-content-center'>
-                <div class='col-10'>
-                    <div id="calendar-status"></div>
-                </div>
+                <div class='col-10'><div id="calendar-status"></div></div>
             </div>
         </div>
     </div>
 
+    <!-- Schedule Modal -->
     <div id="scheduleModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeScheduleModal()">&times;</span>
-            <h2 style="color: #333; margin-bottom: 20px;">
-                <i class="fas fa-calendar-plus"></i> Schedule Pomodoro Session
-            </h2>
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-calendar-plus"></i> Schedule Pomodoro Session</h2>
             <form id="calendar-form">
+                <!-- Event Title -->
                 <div class="form-group">
                     <label for="event-title">Session Title:</label>
                     <input type="text" id="event-title" placeholder="e.g., Deep Work Session" required>
                 </div>
+                <!-- Event Date -->
                 <div class="form-group">
                     <label for="event-date">Date:</label>
                     <input type="date" id="event-date" required>
                 </div>
+                <!-- Event Time -->
                 <div class="form-group">
                     <label for="event-time">Start Time:</label>
                     <input type="time" id="event-time" required>
                 </div>
+                <!-- Event Description -->
                 <div class="form-group">
                     <label for="event-description">Description (Optional):</label>
                     <textarea id="event-description" rows="3" placeholder="What will you work on?"></textarea>
                 </div>
+                <!-- Include Break Checkbox -->
                 <div class="form-group" style="display: flex; align-items: center;">
                     <input type="checkbox" id="include-break" checked style="margin-right: 8px; width: auto;">
                     <label for="include-break" style="margin: 0; cursor: pointer; font-weight: normal;">Include break time in calendar</label>
                 </div>
+                <!-- Modal Buttons -->
                 <div style="text-align: center; margin-top: 20px;">
-                    <button type="submit" class="calendar-btn">
-                        <i class="fas fa-check"></i> Add to Calendar
-                    </button>
-                    <button type="button" class="calendar-btn" onclick="closeScheduleModal()" 
-                            style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        Cancel
-                    </button>
+                    <button type="submit" class="calendar-btn"><i class="fas fa-check"></i> Add to Calendar</button>
+                    <button type="button" class="calendar-btn" onclick="closeScheduleModal()" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
-    <!-- FOOTER -->
-  <footer>
-    <div class="container-fluid my-class foot">
-      <div class="container">
-        <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
 
-        <div>
-          <ul style="color: white" class="social-links">
-            <li class="hov">
-              <a href="https://github.com/avinash201199">
-                <img class="link" src="../img/GitHub.png" /></a>
-            </li>
-            <li class="hov">
-              <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
-                <img class="link" src="../img/LinkedinLogo.png" /></a>
-            </li>
-            <li class="hov">
-              <a href="https://www.instagram.com/lets__code/">
-                <img class="link" src="../img/Instagram.png" /></a>
-            </li>
-          </ul>
+    <!-- Footer -->
+    <footer>
+        <div class="container-fluid my-class foot">
+            <div class="container">
+                <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
+                <!-- Social Links -->
+                <ul style="color: white" class="social-links">
+                    <li class="hov"><a href="https://github.com/avinash201199"><img class="link" src="../img/GitHub.png" /></a></li>
+                    <li class="hov"><a href="https://www.linkedin.com/in/avinash-singh-071b79175/"><img class="link" src="../img/LinkedinLogo.png" /></a></li>
+                    <li class="hov"><a href="https://www.instagram.com/lets__code/"><img class="link" src="../img/Instagram.png" /></a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-    </div>
-    </container>
-  </footer>
-  
-  <div id="confetti"></div>
-    
+    </footer>
+
+    <!-- Confetti Animation Placeholder -->
+    <div id="confetti"></div>
+
+    <!-- JavaScript Files -->
     <script src="pomodoro.js" type="text/javascript"></script>
     <script src="../jquery.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
