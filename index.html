@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Stop-Watch</title>
-  <meta name="description" content="" />
+  <title>Stopwatch by Hector JS</title>
+  <meta name="description" content="Modern stopwatch with lap timer, dark mode, and keyboard shortcuts" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- External CSS File Link -->
   <link rel="stylesheet" href="./style.css" />
-
-  <!-- External JS File Link -->
 
   <!-- Favicon Icon-->
   <link rel="icon" type="image/png" href="./img/favicon.png" />
@@ -150,26 +148,48 @@
             <tbody id="record-table-body"></tbody>
           </table>
         </div>
-      </div>
-      <hr />
     </div>
   </div>
 
   <script type="text/javascript">
-    // start or stop stopwatch using "spacebar" key
+    // ============================================
+    // KEYBOARD SHORTCUTS
+    // ============================================
+    // Space = Start/Pause
     document.addEventListener("keydown", (event) => {
       if (event.code === "Space") {
         event.preventDefault();
         start();
       }
     });
+
+    // R = Reset
     document.addEventListener("keydown", (event) => {
-      if (event.code === "Backspace") {
+      if (event.code === "KeyR") {
+        event.preventDefault();
         reset();
       }
     });
+
+    // L = Lap
+    document.addEventListener("keydown", (event) => {
+      if (event.code === "KeyL") {
+        event.preventDefault();
+        lap();
+      }
+    });
+
+    // Legacy shortcuts (kept for backward compatibility)
+    document.addEventListener("keydown", (event) => {
+      if (event.code === "Backspace") {
+        event.preventDefault();
+        reset();
+      }
+    });
+    
     document.addEventListener("keydown", (event) => {
       if (event.code === "Enter") {
+        event.preventDefault();
         lap();
       }
     });
@@ -180,17 +200,9 @@
       }
     });
 
-    // P key for Start/Stop
     document.addEventListener("keydown", (event) => {
       if (event.code === "KeyP") {
         start();
-      }
-    });
-
-    // R key for Reset
-    document.addEventListener("keydown", (event) => {
-      if (event.code === "KeyR") {
-        reset();
       }
     });
 
