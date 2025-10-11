@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Test</title>
+</head>
+<body>
+    <h1>Audio Test Page</h1>
+    <p>Testing audio files from the server...</p>
+    
+    <div>
+        <h3>Test Rain Sound:</h3>
+        <audio controls>
+            <source src="./audio/rain.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button onclick="testRain()">Test Rain Audio</button>
+    </div>
+    
+    <div>
+        <h3>Test Sound Trim:</h3>
+        <audio controls>
+            <source src="./audio/sound_trim.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button onclick="testSoundTrim()">Test Sound Trim Audio</button>
+    </div>
+    
+    <div>
+        <h3>Test Focus 1:</h3>
+        <audio controls>
+            <source src="./audio/focus1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button onclick="testFocus1()">Test Focus 1 Audio</button>
+    </div>
+    
+    <div id="status"></div>
+    
+    <script>
+        function testRain() {
+            const audio = new Audio('./audio/rain.mp3');
+            audio.volume = 0.3;
+            audio.play().then(() => {
+                document.getElementById('status').innerHTML = '<p style="color: green;">✓ Rain audio is working!</p>';
+            }).catch((error) => {
+                document.getElementById('status').innerHTML = '<p style="color: red;">✗ Rain audio failed: ' + error.message + '</p>';
+            });
+        }
+        
+        function testSoundTrim() {
+            const audio = new Audio('./audio/sound_trim.mp3');
+            audio.volume = 0.3;
+            audio.play().then(() => {
+                document.getElementById('status').innerHTML = '<p style="color: green;">✓ Sound Trim audio is working!</p>';
+            }).catch((error) => {
+                document.getElementById('status').innerHTML = '<p style="color: red;">✗ Sound Trim audio failed: ' + error.message + '</p>';
+            });
+        }
+        
+        function testFocus1() {
+            const audio = new Audio('./audio/focus1.mp3');
+            audio.volume = 0.3;
+            audio.play().then(() => {
+                document.getElementById('status').innerHTML = '<p style="color: green;">✓ Focus 1 audio is working!</p>';
+            }).catch((error) => {
+                document.getElementById('status').innerHTML = '<p style="color: red;">✗ Focus 1 audio failed: ' + error.message + '</p>';
+            });
+        }
+    </script>
+</body>
+</html>
