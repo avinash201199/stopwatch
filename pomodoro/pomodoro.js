@@ -67,33 +67,335 @@ const audio = new Audio();
 audio.src = "../audio/sound_trim.mp3";
 let isFirstLoad = true;
 
-// Simple focus music functionality
+// Enhanced focus music playlist functionality
 let focusMusic = null;
 let isMusicPlaying = false;
+let currentTrackIndex = 0;
+let isShuffleMode = false;
+let isRepeatMode = false;
+let originalPlaylist = [];
+
+const focusPlaylist = [
+    {
+        title: "Rain Sounds",
+        file: "/audio/rain.mp3",
+        duration: "10:00",
+        category: "Nature"
+    },
+    {
+        title: "Cutie Japan Lo-Fi",
+        file: "/audio/cutie-japan-lofi-402355.mp3",
+        duration: "3:00",
+        category: "Lo-Fi"
+    },
+    {
+        title: "Good Night Lo-Fi",
+        file: "/audio/good-night-lofi-cozy-chill-music-160166 (1).mp3",
+        duration: "3:00",
+        category: "Lo-Fi"
+    },
+    {
+        title: "Study Lo-Fi",
+        file: "/audio/lofi-295209.mp3",
+        duration: "3:00",
+        category: "Lo-Fi"
+    },
+    {
+        title: "Calm Study Lo-Fi",
+        file: "/audio/lofi-study-calm-peaceful-chill-hop-112191.mp3",
+        duration: "3:00",
+        category: "Lo-Fi"
+    },
+    {
+        title: "Rainy City Lo-Fi",
+        file: "/audio/rainy-lofi-city-lofi-music-332746.mp3",
+        duration: "3:00",
+        category: "Lo-Fi"
+    }
+];
+
+// Initialize the playlist
+function initializePlaylist() {
+    originalPlaylist = [...focusPlaylist];
+    updatePlaylistDisplay();
+}
 
 function initializeFocusMusic() {
-    console.log('Initializing focus music...');
-    focusMusic = new Audio('../audio/rain.mp3');
-    focusMusic.loop = true;
-    focusMusic.volume = 0.2; // Set a lower volume for rain sounds
-    focusMusic.preload = 'auto';
+    console.log('Initializing focus music playlist...');
+    
+    if (focusPlaylist.length === 0) {
+        console.log('No tracks in playlist');
+        return;
+    }
 
+    // Create new audio instance
+    focusMusic = new Audio();
+    focusMusic.volume = 0.3; // Set a comfortable volume
+    focusMusic.preload = 'auto';
+    focusMusic.crossOrigin = 'anonymous'; // Handle CORS if needed
+
+    // Event listeners for music control
     focusMusic.addEventListener('loadstart', () => console.log('Focus music loading...'));
     focusMusic.addEventListener('canplaythrough', () => console.log('Focus music ready to play'));
     focusMusic.addEventListener('error', (e) => {
-        console.log('Focus music error:', e);
-        console.log('Trying alternative path...');
-        // Try absolute path as fallback
-        focusMusic.src = '/audio/rain.mp3';
-        focusMusic.load();
+        console.error('Focus music error:', e);
+        console.error('Failed to load:', focusMusic.src);
+        console.log('Trying next track...');
+        playNextTrack();
     });
-    focusMusic.addEventListener('play', () => console.log('Focus music started playing'));
-    focusMusic.addEventListener('pause', () => console.log('Focus music paused'));
+    focusMusic.addEventListener('play', () => {
+        console.log('Focus music started playing:', focusMusic.src);
+        isMusicPlaying = true;
+        updateMusicStatus(true);
+    });
+    focusMusic.addEventListener('pause', () => {
+        console.log('Focus music paused');
+        isMusicPlaying = false;
+        updateMusicStatus(false);
+    });
+    focusMusic.addEventListener('ended', () => {
+        console.log('Track ended, playing next...');
+        isMusicPlaying = false;
+        if (isRepeatMode) {
+            playCurrentTrack();
+        } else {
+            playNextTrack();
+        }
+    });
+    focusMusic.addEventListener('load', () => {
+        console.log('Audio loaded successfully:', focusMusic.src);
+    });
+    focusMusic.addEventListener('canplay', () => {
+        console.log('Audio can play:', focusMusic.src);
+    });
 
-    // Force load
+    // Load the first track
+    loadCurrentTrack();
+    console.log('Focus music playlist initialized');
+}
+
+function loadCurrentTrack() {
+    if (!focusMusic || focusPlaylist.length === 0) return;
+    
+    const currentTrack = focusPlaylist[currentTrackIndex];
+    console.log('Loading track:', currentTrack.title, 'from:', currentTrack.file);
+    focusMusic.src = currentTrack.file;
     focusMusic.load();
+    updateCurrentTrackDisplay();
+}
 
-    console.log('Focus music initialized:', focusMusic);
+// Test function to check if audio files are accessible
+function testAudioFiles() {
+    console.log('Testing audio file accessibility...');
+    focusPlaylist.forEach((track, index) => {
+        const testAudio = new Audio(track.file);
+        testAudio.addEventListener('loadstart', () => {
+            console.log(`✓ Track ${index + 1} (${track.title}) is accessible`);
+        });
+        testAudio.addEventListener('error', (e) => {
+            console.error(`✗ Track ${index + 1} (${track.title}) failed to load:`, e);
+        });
+        testAudio.load();
+    });
+}
+
+// Test function to directly play audio (bypasses autoplay restrictions)
+function testDirectPlay() {
+    console.log('Testing direct audio play...');
+    const testAudio = new Audio('/audio/rain.mp3');
+    testAudio.volume = 0.3;
+    
+    testAudio.play().then(() => {
+        console.log('✓ Direct audio play successful!');
+        const statusDiv = document.getElementById('current-track-display');
+        if (statusDiv) {
+            statusDiv.innerHTML = '<div style="color: #4caf50; font-size: 12px;">✓ Audio is working! Click Play Focus Music to start playlist.</div>';
+        }
+    }).catch((error) => {
+        console.error('✗ Direct audio play failed:', error);
+        const statusDiv = document.getElementById('current-track-display');
+        if (statusDiv) {
+            statusDiv.innerHTML = '<div style="color: #f44336; font-size: 12px;">✗ Audio failed: ' + error.message + '</div>';
+        }
+    });
+}
+
+function playCurrentTrack() {
+    if (!focusMusic) {
+        initializeFocusMusic();
+        return;
+    }
+    
+    console.log('Attempting to play:', focusMusic.src);
+    focusMusic.play().then(() => {
+        console.log('Successfully started playing audio');
+        isMusicPlaying = true;
+        updateMusicStatus(true);
+    }).catch((error) => {
+        console.error('Play failed:', error);
+        console.error('This might be due to browser autoplay restrictions');
+        isMusicPlaying = false;
+        updateMusicStatus(false);
+        
+        // Show user-friendly message
+        const statusDiv = document.getElementById('current-track-display');
+        if (statusDiv) {
+            statusDiv.innerHTML = '<div style="color: #ff6b35; font-size: 12px;">Click the play button to start music (browser autoplay blocked)</div>';
+        }
+    });
+}
+
+function pauseMusic() {
+    if (focusMusic) {
+        focusMusic.pause();
+        isMusicPlaying = false;
+        updateMusicStatus(false);
+    }
+}
+
+function playNextTrack() {
+    if (focusPlaylist.length === 0) return;
+    
+    if (isShuffleMode) {
+        currentTrackIndex = Math.floor(Math.random() * focusPlaylist.length);
+    } else {
+        currentTrackIndex = (currentTrackIndex + 1) % focusPlaylist.length;
+    }
+    
+    loadCurrentTrack();
+    if (isMusicPlaying) {
+        playCurrentTrack();
+    }
+}
+
+function playPreviousTrack() {
+    if (focusPlaylist.length === 0) return;
+    
+    if (isShuffleMode) {
+        currentTrackIndex = Math.floor(Math.random() * focusPlaylist.length);
+    } else {
+        currentTrackIndex = (currentTrackIndex - 1 + focusPlaylist.length) % focusPlaylist.length;
+    }
+    
+    loadCurrentTrack();
+    if (isMusicPlaying) {
+        playCurrentTrack();
+    }
+}
+
+function toggleShuffle() {
+    isShuffleMode = !isShuffleMode;
+    updateShuffleButton();
+    console.log('Shuffle mode:', isShuffleMode ? 'ON' : 'OFF');
+}
+
+function toggleRepeat() {
+    isRepeatMode = !isRepeatMode;
+    updateRepeatButton();
+    console.log('Repeat mode:', isRepeatMode ? 'ON' : 'OFF');
+}
+
+function updateCurrentTrackDisplay() {
+    const trackDisplay = document.getElementById('current-track');
+    if (trackDisplay && focusPlaylist[currentTrackIndex]) {
+        trackDisplay.textContent = `${currentTrackIndex + 1}. ${focusPlaylist[currentTrackIndex].title}`;
+    }
+}
+
+function updatePlaylistDisplay() {
+    const playlistContainer = document.getElementById('playlist-container');
+    console.log('updatePlaylistDisplay called, container found:', !!playlistContainer);
+    
+    if (!playlistContainer) {
+        console.error('Playlist container not found!');
+        return;
+    }
+    
+    playlistContainer.innerHTML = '';
+    console.log('Updating playlist with', focusPlaylist.length, 'tracks');
+    
+    // Group tracks by category
+    const categories = {};
+    focusPlaylist.forEach((track, index) => {
+        if (!categories[track.category]) {
+            categories[track.category] = [];
+        }
+        categories[track.category].push({...track, index});
+    });
+    
+    console.log('Categories found:', Object.keys(categories));
+    
+    // Display tracks by category
+    Object.keys(categories).forEach(category => {
+        const categoryHeader = document.createElement('div');
+        categoryHeader.className = 'playlist-category';
+        categoryHeader.innerHTML = `<h6 style="color: #ff6b35; margin: 10px 0 5px 0; font-weight: bold;">${category}</h6>`;
+        playlistContainer.appendChild(categoryHeader);
+        
+        categories[category].forEach(track => {
+            const trackElement = document.createElement('div');
+            trackElement.className = `playlist-track ${track.index === currentTrackIndex ? 'active' : ''}`;
+            trackElement.innerHTML = `
+                <span class="track-number">${track.index + 1}</span>
+                <span class="track-title">${track.title}</span>
+                <span class="track-duration">${track.duration}</span>
+            `;
+            trackElement.addEventListener('click', () => {
+                console.log('Track clicked:', track.title);
+                currentTrackIndex = track.index;
+                loadCurrentTrack();
+                if (isMusicPlaying) {
+                    playCurrentTrack();
+                }
+            });
+            playlistContainer.appendChild(trackElement);
+        });
+    });
+    
+    console.log('Playlist display updated successfully');
+    console.log('Total tracks in container:', playlistContainer.children.length);
+    console.log('Container height:', playlistContainer.style.maxHeight);
+}
+
+function updateShuffleButton() {
+    const shuffleBtn = document.getElementById('shuffle-btn');
+    if (shuffleBtn) {
+        shuffleBtn.className = isShuffleMode ? 'music-control-btn active' : 'music-control-btn';
+        shuffleBtn.innerHTML = `<i class="fas fa-random"></i>`;
+    }
+}
+
+function updateRepeatButton() {
+    const repeatBtn = document.getElementById('repeat-btn');
+    if (repeatBtn) {
+        repeatBtn.className = isRepeatMode ? 'music-control-btn active' : 'music-control-btn';
+        repeatBtn.innerHTML = `<i class="fas fa-redo"></i>`;
+    }
+}
+
+function togglePlaylist() {
+    const playlistContainer = document.getElementById('playlist-container');
+    const playlistToggle = document.getElementById('playlist-toggle');
+    
+    console.log('togglePlaylist called, container found:', !!playlistContainer);
+    
+    if (playlistContainer && playlistToggle) {
+        const isVisible = playlistContainer.style.display !== 'none';
+        console.log('Playlist currently visible:', isVisible);
+        
+        playlistContainer.style.display = isVisible ? 'none' : 'block';
+        playlistToggle.innerHTML = isVisible ? 
+            '<i class="fas fa-list"></i> Show Playlist' : 
+            '<i class="fas fa-list"></i> Hide Playlist';
+            
+        // If showing playlist and it's empty, refresh it
+        if (!isVisible && playlistContainer.children.length === 0) {
+            console.log('Playlist is empty, refreshing...');
+            updatePlaylistDisplay();
+        }
+    } else {
+        console.error('Playlist container or toggle button not found!');
+    }
 }
 
 if (darkTheme) $('#counter-background').css({ "background": "transparent" });
@@ -638,54 +940,29 @@ window.onclick = function(event) {
     }
 }
 
-window.addEventListener('load', () => {
-    if (hasAPICredentials() && typeof gapi !== 'undefined') {
-        gapiLoaded();
-    }
-    if (hasAPICredentials() && typeof google !== 'undefined') {
-        gisLoaded();
-    }
-    
-    if (!hasAPICredentials()) {
-        calendarMode = 'universal';
-        maybeEnableButtons();
-    }
-// Simple music control function
+// Enhanced music control function with playlist support
 function toggleMusic() {
+    console.log('toggleMusic called, isMusicPlaying:', isMusicPlaying);
+    
     if (!focusMusic) {
         console.log('Focus music not initialized, initializing now...');
         initializeFocusMusic();
+        initializePlaylist();
         // Wait a bit for initialization
         setTimeout(() => toggleMusic(), 100);
         return;
     }
 
-    console.log('toggleMusic called, isMusicPlaying:', isMusicPlaying);
-    console.log('focusMusic:', focusMusic);
-    console.log('focusMusic.src:', focusMusic.src);
-
     if (!isMusicPlaying) {
         console.log('Attempting to play focus music...');
-
-        // Ensure volume and loop are set
-        focusMusic.volume = 0.2;
-        focusMusic.loop = true;
-
-        focusMusic.play().then(() => {
-            console.log('Focus music started successfully');
-            isMusicPlaying = true;
-            updateMusicStatus(true);
-        }).catch((error) => {
-            console.log('Focus music play failed:', error);
-            console.log('Retrying with user interaction requirement...');
-            isMusicPlaying = false;
-            updateMusicStatus(false);
-        });
+        // Ensure we have a valid audio source
+        if (!focusMusic.src) {
+            loadCurrentTrack();
+        }
+        playCurrentTrack();
     } else {
         console.log('Pausing focus music...');
-        focusMusic.pause();
-        isMusicPlaying = false;
-        updateMusicStatus(false);
+        pauseMusic();
     }
 }
 
@@ -704,14 +981,90 @@ function updateMusicStatus(isPlaying) {
             toggleButton.innerHTML = '<i class="fas fa-play"></i> <span id="music-status">Play Focus Music</span>';
         }
     }
+    
+    // Update current track display
+    updateCurrentTrackDisplay();
 }
+
+// Add volume control functionality
+function setVolume(volume) {
+    if (focusMusic) {
+        focusMusic.volume = Math.max(0, Math.min(1, volume));
+        console.log('Volume set to:', focusMusic.volume);
+    }
+}
+
+// Add keyboard shortcuts for music control
+document.addEventListener('keydown', function(event) {
+    // Only handle music shortcuts if music controls are visible
+    const musicControls = document.getElementById('music-controls');
+    if (!musicControls || musicControls.style.display === 'none') return;
+    
+    switch(event.code) {
+        case 'KeyM': // M key for music toggle
+            event.preventDefault();
+            toggleMusic();
+            break;
+        case 'KeyN': // N key for next track
+            event.preventDefault();
+            playNextTrack();
+            break;
+        case 'KeyB': // B key for previous track (back)
+            event.preventDefault();
+            playPreviousTrack();
+            break;
+        case 'KeyS': // S key for shuffle
+            event.preventDefault();
+            toggleShuffle();
+            break;
+        case 'KeyR': // R key for repeat
+            event.preventDefault();
+            toggleRepeat();
+            break;
+    }
+});
 
 // Initialize music controls and video background when page loads
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing music and video...');
+    console.log('Focus playlist has', focusPlaylist.length, 'tracks');
+    
     initializeFocusMusic();
+    initializePlaylist();
     updateMusicStatus(false);
     initializeVideoBackground();
+    
+    // Test audio files after a short delay
+    setTimeout(() => {
+        testAudioFiles();
+    }, 1000);
+    
+        // Force show playlist after initialization
+        setTimeout(() => {
+            console.log('Forcing playlist display...');
+            updatePlaylistDisplay();
+            // Also force show the playlist
+            const playlistContainer = document.getElementById('playlist-container');
+            if (playlistContainer) {
+                playlistContainer.style.display = 'block';
+                const playlistToggle = document.getElementById('playlist-toggle');
+                if (playlistToggle) {
+                    playlistToggle.innerHTML = '<i class="fas fa-list"></i> Hide Playlist';
+                }
+            }
+        }, 2000);
 });
 
+window.addEventListener('load', () => {
+    if (hasAPICredentials() && typeof gapi !== 'undefined') {
+        gapiLoaded();
+    }
+    if (hasAPICredentials() && typeof google !== 'undefined') {
+        gisLoaded();
+    }
+    
+    if (!hasAPICredentials()) {
+        calendarMode = 'universal';
+        maybeEnableButtons();
+    }
 });
