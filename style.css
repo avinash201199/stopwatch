@@ -1,14 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 body {
-  background: black;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
   display: block;
   height: 100vh;
   position: relative;
   overflow-x: hidden;
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
 }
 
-/* Video Background - Enhanced feature, falls back gracefully */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhanced Video Background with improved visual effects */
 .video-background {
   position: fixed;
   top: 0;
@@ -23,17 +32,21 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.8; /* Ensure visibility of overlaid content */
+  opacity: 0.6;
+  filter: brightness(0.7) blur(1px);
 }
 
-/* Overlay to improve readability */
+/* Enhanced overlay with subtle pattern */
 .video-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    rgba(0, 0, 0, 0.3);
   z-index: -1;
 }
 
@@ -117,13 +130,29 @@ nav.navbar {
 
 .digit {
   font-size: 150px;
-  /*font-weight: bold;*/
   font-family: "digital-7";
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
+  background: linear-gradient(45deg, #fff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.2); }
 }
 
 .txt {
   font-size: 40px;
   font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
 }
 
 #btn-container {
@@ -466,26 +495,48 @@ th {
   text-align: center;
   width: 150px;
   border-radius: 55px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.1);
   letter-spacing: 1px;
   text-shadow: 0;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 10px;
   font-family: "Roboto";
   overflow: hidden;
-  border: 2px solid white;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.buttons::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.buttons:hover::before {
+  left: 100%;
 }
 
 .buttons:hover {
   color: #1b5c7e;
-  background: #46f5f8;
-  box-shadow: 0 0 4px #29d3d6, 0 0 5px #29d3d6, 0 0 37px #29d3d6;
-  transition-delay: 0.001s;
+  background: rgba(70, 245, 248, 0.9);
+  box-shadow: 
+    0 0 20px rgba(41, 211, 214, 0.6), 
+    0 0 40px rgba(41, 211, 214, 0.4), 
+    0 8px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  border-color: rgba(70, 245, 248, 0.8);
 }
 
 .buttons:active {
@@ -781,16 +832,16 @@ footer {
 
 /* Enhanced Glass-like transparent effect for navcol */
 .navcol {
-  /* MODIFIED: Adjusted for a lighter glass effect */
-  background: rgba(255, 255, 255, 0.1) !important; 
-  backdrop-filter: blur(15px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.15) !important; 
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   border-top: none !important;
-  border-radius: 0 0 25px 25px !important;
+  border-radius: 0 0 30px 30px !important;
   box-shadow: 
-    0 8px 32px 0 rgba(31, 38, 135, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    0 12px 40px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.1) !important;
   position: relative !important;
 }
 
@@ -803,11 +854,11 @@ footer {
   bottom: 0;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.02) 100%
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 100%
   ) !important;
-  border-radius: 0 0 25px 25px !important;
+  border-radius: 0 0 30px 30px !important;
   pointer-events: none;
 }
 

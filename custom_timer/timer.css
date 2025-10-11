@@ -2,6 +2,38 @@ body {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Enhanced floating particles */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.3) 2px, transparent 2px),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2) 1px, transparent 1px),
+    radial-gradient(circle at 40% 40%, rgba(255,255,255,0.4) 1.5px, transparent 1.5px);
+  background-size: 250px 250px, 180px 180px, 300px 300px;
+  animation: sparkle 30s linear infinite;
+  z-index: -999;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.8; transform: rotate(0deg); }
+  50% { opacity: 1; transform: rotate(180deg); }
 }
 
 input:focus {
@@ -47,6 +79,26 @@ input:focus {
 .timer {
   font-size: 100px;
   font-family: "digital-7";
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.9),
+    0 0 30px rgba(255, 255, 255, 0.7),
+    0 0 45px rgba(255, 255, 255, 0.5);
+  background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: timerPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes timerPulse {
+  0% { 
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  100% { 
+    filter: brightness(1.3);
+    transform: scale(1.02);
+  }
 }
 
 .counter-background {
@@ -227,22 +279,39 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
 }
 
 
-/* button  */
-
+/* Enhanced animated button */
 .animated-button {
   position: relative;
   display: inline-block;
-  padding: 5px 18px;
+  padding: 8px 24px;
   border: none;
   font-size: 16px;
-  background-color: inherit;
-  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
   font-weight: 600;
   color: #ffffff;
-  box-shadow: 0 0 0 2px #ffffff;
+  box-shadow: 
+    0 0 0 2px rgba(255, 255, 255, 0.3),
+    0 8px 25px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   overflow: hidden;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  backdrop-filter: blur(10px);
+}
+
+.animated-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button:hover::before {
+  left: 100%;
 }
 
 .animated-button span:last-child {
@@ -252,7 +321,7 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   transform: translate(-50%, -50%);
   width: 20px;
   height: 20px;
-  background-color: #21f341;
+  background: linear-gradient(135deg, #21f341, #00d2ff);
   border-radius: 50%;
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
@@ -264,17 +333,20 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
 }
 
 .animated-button:hover {
-  box-shadow: 0 0 0 5px #21f35960;
+  box-shadow: 
+    0 0 0 5px rgba(33, 243, 65, 0.3),
+    0 12px 35px rgba(0, 0, 0, 0.3);
   color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .animated-button:active {
-  scale: 0.95;
+  transform: scale(0.95) translateY(-1px);
 }
 
 .animated-button:hover span:last-child {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   opacity: 1;
 }
 
@@ -422,22 +494,64 @@ body {
     opacity: 1;
   }
 }
-/* Progress Bar Styles */
+/* Enhanced Progress Bar Styles */
 #progress-container {
   width: 100%;
-  height: 20px;
-  background-color: #ddd;
-  border-radius: 10px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+#progress-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.1) 25%, 
+    transparent 25%, 
+    transparent 50%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0.1) 75%, 
+    transparent 75%);
+  background-size: 20px 20px;
+  animation: progressStripes 1s linear infinite;
+  z-index: 1;
+}
+
+@keyframes progressStripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
 }
 
 #progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #21f341, #116399);
-  transition: width 0.5s linear;
-  border-radius: 10px;
+  background: linear-gradient(90deg, #21f341, #00d2ff, #21f341);
+  background-size: 200% 100%;
+  transition: width 0.5s ease-out;
+  border-radius: 12px;
+  position: relative;
+  z-index: 2;
+  animation: progressGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes progressGlow {
+  0% { 
+    background-position: 0% 50%;
+    box-shadow: 0 0 10px rgba(33, 243, 65, 0.3);
+  }
+  100% { 
+    background-position: 100% 50%;
+    box-shadow: 0 0 20px rgba(33, 243, 65, 0.6);
+  }
 }
 
 /* Dark Mode Styles for Custom Timer */
