@@ -163,6 +163,7 @@ nav.navbar {
   flex-wrap: wrap;
 }
 
+/* Basic button styles - consolidated to avoid conflicts */
 .btn {
   padding: 7px 25px;
   font-size: 15px;
@@ -171,6 +172,7 @@ nav.navbar {
   border: 0px;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 .switch-theme {
   min-height: 80px;
@@ -672,7 +674,8 @@ footer {
   --dark: black;
 }
 
-.btn {
+/* Special styled button with shadow effects */
+.btn-styled {
   background-color: white;
   padding: auto 12px;
   height: 2.3em;
@@ -682,11 +685,11 @@ footer {
   border-radius: 5px;
 }
 
-.btn:hover {
+.btn-styled:hover {
   cursor: pointer;
 }
 
-.btn:before {
+.btn-styled:before {
   content: "";
   width: 0;
   height: 0;
@@ -699,7 +702,7 @@ footer {
   border-top-left-radius: 5px;
 }
 
-.btn:hover:before {
+.btn-styled:hover:before {
   width: calc(100% - 3px);
   height: calc(100% - 3px);
 }
