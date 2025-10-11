@@ -89,6 +89,9 @@ function reset() {
   if ($id("start"))
     $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
 
+  clearTimeout(timeoutId);
+  clearInterval(countdownInterval);
+
   hr = 0;
   min = 0;
   sec = 0;
@@ -106,6 +109,7 @@ function reset() {
 let timeoutId;
 function stopwatch() {
   clearTimeout(timeoutId);
+  clearInterval(countdownInterval);
 
   if (timer === true) count = count + 1;
 
@@ -313,7 +317,11 @@ document.getElementById("start-countdown").addEventListener("click", () => {
   }
 
   let totalSeconds = minutes * 60;
+  clearTimeout(timeoutId);
   clearInterval(countdownInterval);
+
+  if ($id("start"))
+    $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
 
   countdownInterval = setInterval(() => {
     let hrs = Math.floor(totalSeconds / 3600);
