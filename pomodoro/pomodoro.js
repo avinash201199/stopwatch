@@ -285,6 +285,17 @@ function playPreviousTrack() {
 
 function toggleShuffle() {
     isShuffleMode = !isShuffleMode;
+    
+    if (isShuffleMode) {
+        shufflePlaylist();
+    } else {
+        // Restore original order
+        focusPlaylist.splice(0, focusPlaylist.length, ...originalPlaylist);
+        console.log('Playlist restored to original order');
+        updatePlaylistDisplay();
+        updateCurrentTrackDisplay();
+    }
+    
     updateShuffleButton();
     console.log('Shuffle mode:', isShuffleMode ? 'ON' : 'OFF');
 }
@@ -311,6 +322,7 @@ function updatePlaylistDisplay() {
         return;
     }
     
+    // Clear existing content
     playlistContainer.innerHTML = '';
     console.log('Updating playlist with', focusPlaylist.length, 'tracks');
     
@@ -344,6 +356,8 @@ function updatePlaylistDisplay() {
                 console.log('Track clicked:', track.title);
                 currentTrackIndex = track.index;
                 loadCurrentTrack();
+                updateCurrentTrackDisplay();
+                updatePlaylistDisplay(); // Refresh to update active state
                 if (isMusicPlaying) {
                     playCurrentTrack();
                 }
@@ -355,6 +369,30 @@ function updatePlaylistDisplay() {
     console.log('Playlist display updated successfully');
     console.log('Total tracks in container:', playlistContainer.children.length);
     console.log('Container height:', playlistContainer.style.maxHeight);
+}
+
+function refreshPlaylist() {
+    console.log('Refreshing playlist...');
+    updatePlaylistDisplay();
+    updateCurrentTrackDisplay();
+    console.log('Playlist refreshed successfully');
+}
+
+function shufflePlaylist() {
+    console.log('Shuffling playlist...');
+    // Shuffle the playlist
+    const shuffled = [...focusPlaylist];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    focusPlaylist.splice(0, focusPlaylist.length, ...shuffled);
+    console.log('Playlist shuffled');
+    
+    // Update display
+    updatePlaylistDisplay();
+    updateCurrentTrackDisplay();
+    console.log('Shuffle completed successfully');
 }
 
 function updateShuffleButton() {
