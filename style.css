@@ -415,7 +415,7 @@ th {
 }
 
 #lap:hover {
-  color: #000000;
+  color: #ffffff;
   background: rgba(255, 255, 0, 0.2);
   border-color: #ffff00;
   box-shadow: 0 0 4px #ffff00, 0 0 5px #ffff00, 0 0 37px rgba(255, 255, 0, 0.3);
@@ -457,11 +457,11 @@ th {
 
 /* Navigation links always dark */
 .nav-link {
-  color: #003333 !important;
+  color: #33001f !important;
 }
 
 .nav-link:hover {
-  color: #ff6b35 !important;
+  color: #eb4f16 !important;
 }
 
 .buttons {
@@ -471,7 +471,7 @@ th {
   text-align: center;
   width: 150px;
   border-radius: 55px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(228, 15, 15, 0.1);
   letter-spacing: 1px;
   text-shadow: 0;
   font-size: 16px;
@@ -481,14 +481,14 @@ th {
   margin: 10px;
   font-family: "Roboto";
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(42, 17, 186, 0.3);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .buttons:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(215, 6, 6, 0.3);
   transition-delay: 0.001s;
 }
 
@@ -1032,7 +1032,7 @@ body.dark-mode #lap {
 }
 
 body.dark-mode #lap:hover {
-  color: #000000 !important;
+  color: #ffffff !important;
   background: rgba(255, 255, 0, 0.2) !important;
   border-color: #ffff00 !important;
 }
