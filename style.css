@@ -63,9 +63,9 @@ hr {
   right: 0;
   z-index: 1000;
   /* background-color: white; */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Ensure this base is fully transparent for glassmorphism to work on .navcol */
-  background: transparent !important; 
+  background: transparent !important;
 }
 
 /* Ensure navbar sticks to top */
@@ -81,7 +81,7 @@ nav.navbar {
   align-items: center !important;
   max-height: 70px;
   /* Ensure base is transparent */
-  background: transparent !important; 
+  background: transparent !important;
 }
 
 .maintitle {
@@ -269,7 +269,7 @@ tr {
 
 tr {
   /* MODIFIED: Adjusted for Glassmorphism in light mode */
-  background-color: rgba(255, 255, 255, 0.2) !important; 
+  background-color: rgba(255, 255, 255, 0.2) !important;
   margin-bottom: 25px;
   backdrop-filter: blur(10px);
 }
@@ -613,7 +613,7 @@ footer {
 }
 
 :root {
-  --main: #ffd166;
+  --main: #9aa4bf;
   --active: #d82323;
   --secondary: #800080;
   --tertiary: #;
@@ -782,14 +782,13 @@ footer {
 /* Enhanced Glass-like transparent effect for navcol */
 .navcol {
   /* MODIFIED: Adjusted for a lighter glass effect */
-  background: rgba(255, 255, 255, 0.1) !important; 
+  background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(15px) saturate(150%) !important;
   -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   border-top: none !important;
   border-radius: 0 0 25px 25px !important;
-  box-shadow: 
-    0 8px 32px 0 rgba(31, 38, 135, 0.15),
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
   position: relative !important;
 }
@@ -814,9 +813,9 @@ footer {
 .container-fluid-nav {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  min-height: 80px;
+  min-height: 60px;
   max-height: 90px;
   background: transparent !important;
 }
@@ -863,7 +862,7 @@ footer {
     top: 100% !important;
     left: 0 !important;
     right: 0 !important;
-    background-color: white !important;
+    background-color: rgb(94 95 105 / 74%) !important;
     border-top: 1px solid #dee2e6 !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
     z-index: 999 !important;
@@ -898,6 +897,10 @@ footer {
   .nav-item > a#link--active {
     background-color: #ffd166 !important; /* Active item styling */
     box-shadow: 2.5px 2.5px 0 var(--active) !important;
+  }
+  #switch-theme {
+    margin-left: 45%;
+    margin-top: 25%;
   }
 }
 @media (max-width: 480px) {
@@ -950,7 +953,7 @@ body.dark-mode .thinner {
 
 body.dark-mode .my-class {
   /* MODIFIED: Dark Glassmorphism for Footer Content */
-  background: rgba(0, 0, 0, 0.25) !important; 
+  background: rgba(0, 0, 0, 0.25) !important;
   backdrop-filter: blur(10px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -1041,55 +1044,4 @@ body.dark-mode #countdown-minutes {
 
 body.dark-mode #countdown-minutes::placeholder {
   color: rgba(255, 255, 255, 0.7);
-}
-
-.tick-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fefefe;
-  font-size: 16px;
-  font-weight: bold;
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid white;
-  border-radius: 50px;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  font-family: "Roboto", sans-serif;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.25s ease;
-}
-
-.tick-label:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(1.03);
-}
-
-.tick-label input[type="checkbox"] {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 5px;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.tick-label input[type="checkbox"]:checked {
-  background-color: #4caf50;
-  border-color: #4caf50;
-  box-shadow: 0 0 10px #4caf50;
-}
-
-.tick-label input[type="checkbox"]:checked::after {
-  content: "✔";
-  position: absolute;
-  top: 0;
-  left: 4px;
-  font-size: 14px;
-  color: white;
 }
