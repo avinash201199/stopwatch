@@ -6,6 +6,12 @@ let currentTime = 0;
 let intervalId;
 let darkTheme = false;
 
+//time in browser title 
+const originalTitle = document.title;
+function showCompletionNotification() {
+    const message = isFocusMode ? 'Focus session is done! Time for a break.' : 'Break is over! Time to get back to focus.';
+    alert(message);
+}
 // Video background handler
 function initializeVideoBackground() {
     const video = document.getElementById('bg-video');
@@ -173,6 +179,11 @@ const updateTimerDisplay = () => {
     const secondsDisplay = (currentTime % 60).toString().padStart(2, '0');
     $id('minutes').innerHTML = minutesDisplay;
     $id('seconds').innerHTML = secondsDisplay;
+
+    // Update the page title with timer
+    if (!paused) {
+        document.title = `${minutesDisplay}:${secondsDisplay} | ${originalTitle}`;
+    }
 };
 
 // === NEW FUNCTION ===
@@ -211,6 +222,7 @@ const startPomoCounter = () => {
             } else {
                 clearInterval(intervalId);
                 paused = true;
+                showCompletionNotification();
                 $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
                 $id('counter-background').classList.remove('inactive');
                 $id('counter-background').classList.add('active');
@@ -231,6 +243,7 @@ const startPomoCounter = () => {
         $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
         $id('counter-background').classList.remove('inactive');
         $id('counter-background').classList.add('active');
+        document.title = originalTitle;//on pause , page title appears
     }
 };
 

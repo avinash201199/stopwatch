@@ -63,9 +63,9 @@ hr {
   right: 0;
   z-index: 1000;
   /* background-color: white; */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Ensure this base is fully transparent for glassmorphism to work on .navcol */
-  background: transparent !important; 
+  background: transparent !important;
 }
 
 /* Ensure navbar sticks to top */
@@ -81,7 +81,7 @@ nav.navbar {
   align-items: center !important;
   max-height: 70px;
   /* Ensure base is transparent */
-  background: transparent !important; 
+  background: transparent !important;
 }
 
 .maintitle {
@@ -269,7 +269,7 @@ tr {
 
 tr {
   /* MODIFIED: Adjusted for Glassmorphism in light mode */
-  background-color: rgba(255, 255, 255, 0.2) !important; 
+  background-color: rgba(255, 255, 255, 0.2) !important;
   margin-bottom: 25px;
   backdrop-filter: blur(10px);
 }
@@ -382,54 +382,59 @@ th {
 }
 
 #start {
-  color: hsl(127, 100%, 57%);
+  color: #00ff00;
+  border-color: #00ff00;
 }
 
 #start:hover {
-  color: #000000;
-  background: hsl(131, 100%, 69%);
-  box-shadow: 0 0 4px hsl(151, 88%, 70%), 0 0 5px hsl(159, 93%, 77%),
-    0 0 37px hsl(157, 96%, 72%);
+  color: #ffffff;
+  background: rgba(0, 255, 0, 0.2);
+  border-color: #00ff00;
+  box-shadow: 0 0 4px #00ff00, 0 0 5px #00ff00, 0 0 37px rgba(0, 255, 0, 0.3);
+  transform: translateY(-2px);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 #reset {
-  color: hwb(277 44% 20%);
+  color: #9966cc;
+  border-color: #9966cc;
 }
 
 #reset:hover {
-  color: #000000;
-  background: hwb(277 6% 7%);
-  box-shadow: 0 0 4px #9f2c99, 0 0 5px #481844, 0 0 37px #c18cd0;
+  color: #ffffff;
+  background: rgba(153, 102, 204, 0.2);
+  border-color: #9966cc;
+  box-shadow: 0 0 4px #9966cc, 0 0 5px #9966cc, 0 0 37px rgba(153, 102, 204, 0.3);
+  transform: translateY(-2px);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 #lap {
-  color: hwb(67 20% 3%);
+  color: #ffff00;
+  border-color: #ffff00;
 }
 
 #lap:hover {
   color: #000000;
-  background: hwb(61 31% 0%);
-  box-shadow: 0 0 4px hwb(68 57% 0%), 0 0 5px hwb(68 54% 0%),
-    0 0 37px hwb(70 63% 1%);
+  background: rgba(255, 255, 0, 0.2);
+  border-color: #ffff00;
+  box-shadow: 0 0 4px #ffff00, 0 0 5px #ffff00, 0 0 37px rgba(255, 255, 0, 0.3);
+  transform: translateY(-2px);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 #clearlap {
-  color: rgb(255, 71, 39);
+  color: #ff0000;
+  border-color: #ff0000;
 }
 
 #clearlap:hover {
-  color: #000000;
-  background: rgb(255, 89, 38);
-  box-shadow: 0 0 4px rgb(255, 118, 63), 0 0 5px rgb(255, 106, 103),
-    0 0 37px rgb(255, 137, 104);
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.2);
+  border-color: #ff0000;
+  box-shadow: 0 0 4px #ff0000, 0 0 5px #ff0000, 0 0 37px rgba(255, 0, 0, 0.3);
+  transform: translateY(-2px);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 .nav-item {
@@ -466,7 +471,7 @@ th {
   text-align: center;
   width: 150px;
   border-radius: 55px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.1);
   letter-spacing: 1px;
   text-shadow: 0;
   font-size: 16px;
@@ -476,15 +481,14 @@ th {
   margin: 10px;
   font-family: "Roboto";
   overflow: hidden;
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .buttons:hover {
-  color: #1b5c7e;
-  background: #46f5f8;
-  box-shadow: 0 0 4px #29d3d6, 0 0 5px #29d3d6, 0 0 37px #29d3d6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   transition-delay: 0.001s;
 }
 
@@ -613,7 +617,7 @@ footer {
 }
 
 :root {
-  --main: #ffd166;
+  --main: #9aa4bf;
   --active: #d82323;
   --secondary: #800080;
   --tertiary: #;
@@ -782,14 +786,13 @@ footer {
 /* Enhanced Glass-like transparent effect for navcol */
 .navcol {
   /* MODIFIED: Adjusted for a lighter glass effect */
-  background: rgba(255, 255, 255, 0.1) !important; 
+  background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(15px) saturate(150%) !important;
   -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   border-top: none !important;
   border-radius: 0 0 25px 25px !important;
-  box-shadow: 
-    0 8px 32px 0 rgba(31, 38, 135, 0.15),
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
   position: relative !important;
 }
@@ -814,9 +817,9 @@ footer {
 .container-fluid-nav {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  min-height: 80px;
+  min-height: 60px;
   max-height: 90px;
   background: transparent !important;
 }
@@ -863,7 +866,7 @@ footer {
     top: 100% !important;
     left: 0 !important;
     right: 0 !important;
-    background-color: white !important;
+    background-color: rgb(94 95 105 / 74%) !important;
     border-top: 1px solid #dee2e6 !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
     z-index: 999 !important;
@@ -898,6 +901,10 @@ footer {
   .nav-item > a#link--active {
     background-color: #ffd166 !important; /* Active item styling */
     box-shadow: 2.5px 2.5px 0 var(--active) !important;
+  }
+  #switch-theme {
+    margin-left: 45%;
+    margin-top: 25%;
   }
 }
 @media (max-width: 480px) {
@@ -950,7 +957,7 @@ body.dark-mode .thinner {
 
 body.dark-mode .my-class {
   /* MODIFIED: Dark Glassmorphism for Footer Content */
-  background: rgba(0, 0, 0, 0.25) !important; 
+  background: rgba(0, 0, 0, 0.25) !important;
   backdrop-filter: blur(10px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -988,14 +995,57 @@ body.dark-mode .todayDate h3 {
 }
 
 body.dark-mode .buttons {
-  border-color: #ff6b35 !important;
-  background: rgba(255, 107, 53, 0.2) !important;
-  color: #ff6b35 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 body.dark-mode .buttons:hover {
-  background: #ff6b35 !important;
-  color: black !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode #start {
+  color: #00ff00 !important;
+  border-color: #00ff00 !important;
+}
+
+body.dark-mode #start:hover {
+  color: #ffffff !important;
+  background: rgba(0, 255, 0, 0.2) !important;
+  border-color: #00ff00 !important;
+}
+
+body.dark-mode #reset {
+  color: #9966cc !important;
+  border-color: #9966cc !important;
+}
+
+body.dark-mode #reset:hover {
+  color: #ffffff !important;
+  background: rgba(153, 102, 204, 0.2) !important;
+  border-color: #9966cc !important;
+}
+
+body.dark-mode #lap {
+  color: #ffff00 !important;
+  border-color: #ffff00 !important;
+}
+
+body.dark-mode #lap:hover {
+  color: #000000 !important;
+  background: rgba(255, 255, 0, 0.2) !important;
+  border-color: #ffff00 !important;
+}
+
+body.dark-mode #clearlap {
+  color: #ff0000 !important;
+  border-color: #ff0000 !important;
+}
+
+body.dark-mode #clearlap:hover {
+  color: #ffffff !important;
+  background: rgba(255, 0, 0, 0.2) !important;
+  border-color: #ff0000 !important;
 }
 
 body.dark-mode .textfooter {
@@ -1041,55 +1091,4 @@ body.dark-mode #countdown-minutes {
 
 body.dark-mode #countdown-minutes::placeholder {
   color: rgba(255, 255, 255, 0.7);
-}
-
-.tick-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fefefe;
-  font-size: 16px;
-  font-weight: bold;
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid white;
-  border-radius: 50px;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  font-family: "Roboto", sans-serif;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.25s ease;
-}
-
-.tick-label:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(1.03);
-}
-
-.tick-label input[type="checkbox"] {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 5px;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.tick-label input[type="checkbox"]:checked {
-  background-color: #4caf50;
-  border-color: #4caf50;
-  box-shadow: 0 0 10px #4caf50;
-}
-
-.tick-label input[type="checkbox"]:checked::after {
-  content: "✔";
-  position: absolute;
-  top: 0;
-  left: 4px;
-  font-size: 14px;
-  color: white;
 }
