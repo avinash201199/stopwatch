@@ -547,6 +547,10 @@ body.dark-mode .animated-button span:last-child {
   background-color: #ff6b35 !important;
 }
 
+body.dark-mode .hide {
+  color: orange;
+}
+
 /* Navigation links always dark */
 .nav-link {
   color: #003333 !important;
