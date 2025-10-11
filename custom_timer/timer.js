@@ -79,21 +79,31 @@ function updateProgressBar() {
 }
 
 const setCustomTime = (hours = 0, minutes = 0, seconds = 0) => {
+    hours = Number(hours);
+    minutes = Number(minutes);
+    seconds = Number(seconds);
+
+    if (hours < 0 || minutes < 0 || seconds < 0) {
+        alert("⛔ Please enter positive numbers only!");
+        return;
+    }
+
     paused = true;
     $id('hours').innerHTML = String(hours).padStart(2, '0');
     $id('minutes').innerHTML = String(minutes).padStart(2, '0');
     $id('seconds').innerHTML = String(seconds).padStart(2, '0');
     remainingTime = 0;
-    paused = true;
     $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
     $id('counter-background').classList.remove('inactive');
     $id('counter-background').classList.add('active');
-    customTime.seconds = (Number(hours) * 3600) + (Number(minutes) * 60) + Number(seconds);
-    totalTime = customTime.seconds; // store total
-    updateProgressBar(); // reset bar
+    customTime.seconds = (hours * 3600) + (minutes * 60) + seconds;
+    totalTime = customTime.seconds; 
+    updateProgressBar(); 
+
     $id('secondsInput').value = "";
     $id('minutesInput').value = "";
     $id('hoursInput').value = "";
+
 }
 
 const reset = () => {
