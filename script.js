@@ -1,6 +1,9 @@
-// script.js (updated)
+// script.js - Enhanced Stopwatch with Modern Features
+// Author: Hector JS
 
-// -- state variables -----------------
+// ============================================
+// STATE VARIABLES
+// ============================================
 var hr = 0,
   min = 0,
   sec = 0,
@@ -10,6 +13,7 @@ var prev_hr = 0,
   prev_min = 0,
   prev_sec = 0,
   prev_count = 0;
+
 var diff_hr = 0,
   diff_min = 0,
   diff_sec = 0,
@@ -19,14 +23,30 @@ var timer = false;
 var lapCounter = 1;
 
 let timerInterval = null;
-const tickSound = new Audio("../audio/ticking.mp3");
+
+// ============================================
+// SOUND EFFECTS
+// ============================================
+const tickSound = new Audio("audio/ticking.mp3");
 tickSound.loop = true;
+
+const beepSound = new Audio("audio/beep_cut.mp3");
+const startSound = new Audio("audio/sound_trim.mp3");
 
 let tickToggle = null;
 let isTickEnabled = false;
 
-// Initialize when DOM is loaded
+// ============================================
+// INITIALIZATION & LOCAL STORAGE
+// ============================================
 document.addEventListener("DOMContentLoaded", function () {
+  // Load saved state from localStorage
+  loadStopwatchState();
+  
+  // Load dark mode preference
+  loadDarkModePreference();
+  
+  // Initialize tick toggle
   tickToggle = document.getElementById("tickToggle");
   if (tickToggle) {
     isTickEnabled = tickToggle.checked;
@@ -46,29 +66,123 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+  
+  // Setup dark mode toggle
+  setupDarkModeToggle();
 });
 
-// helper
+// Save stopwatch state to localStorage
+function saveStopwatchState() {
+  const state = {
+    hr: hr,
+    min: min,
+    sec: sec,
+    count: count,
+    timer: timer,
+    lapCounter: lapCounter,
+    timestamp: Date.now()
+  };
+  localStorage.setItem('stopwatchState', JSON.stringify(state));
+}
+
+// Load stopwatch state from localStorage
+function loadStopwatchState() {
+  const savedState = localStorage.getItem('stopwatchState');
+  if (savedState) {
+    try {
+      const state = JSON.parse(savedState);
+      // Only restore if saved within last 24 hours
+      if (Date.now() - state.timestamp < 24 * 60 * 60 * 1000) {
+        hr = state.hr || 0;
+        min = state.min || 0;
+        sec = state.sec || 0;
+        count = state.count || 0;
+        lapCounter = state.lapCounter || 1;
+        
+        // Update display
+        updateDisplay();
+      }
+    } catch (e) {
+      console.log('Error loading saved state:', e);
+    }
+  }
+}
+
+// Update display helper
+function updateDisplay() {
+  if ($id("hr")) $id("hr").innerHTML = hr < 10 ? "0" + hr : "" + hr;
+  if ($id("min")) $id("min").innerHTML = min < 10 ? "0" + min : "" + min;
+  if ($id("sec")) $id("sec").innerHTML = sec < 10 ? "0" + sec : "" + sec;
+  if ($id("count")) $id("count").innerHTML = count < 10 ? "0" + count : "" + count;
+}
+
+// ============================================
+// DARK MODE FUNCTIONALITY
+// ============================================
+function setupDarkModeToggle() {
+  const checkbox = document.getElementById("light");
+  if (checkbox) {
+    checkbox.addEventListener("change", function() {
+      document.body.classList.toggle("dark-mode");
+      // Save preference
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+  }
+}
+
+function loadDarkModePreference() {
+  const darkMode = localStorage.getItem('darkMode');
+  const checkbox = document.getElementById("light");
+  
+  if (darkMode === 'true') {
+    document.body.classList.add('dark-mode');
+    if (checkbox) checkbox.checked = true;
+  }
+}
+
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
 function $id(id) {
   return document.getElementById(id);
 }
 
-// -- Start / Pause toggle ------------
+// Play sound effect
+function playSound(sound) {
+  sound.currentTime = 0;
+  sound.play().catch(() => {});
+}
+
+// ============================================
+// STOPWATCH CONTROLS
+// ============================================
+// Start / Pause toggle
 function start() {
   if (!timer) {
     timer = true;
+    
+    // Play start sound
+    playSound(startSound);
+    
     if (isTickEnabled) {
-      tickSound.play();
+      tickSound.play().catch(() => {});
     }
     if ($id("start"))
       $id("start").innerHTML = '<i class="far fa-pause-circle"></i> Pause';
     stopwatch();
   } else {
     timer = false;
+    
+    // Play beep sound on pause
+    playSound(beepSound);
+    
     tickSound.pause();
     if ($id("start"))
       $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
   }
+  
+  // Save state
+  saveStopwatchState();
 }
 
 // -- Stop (explicit) -----------------
@@ -80,14 +194,21 @@ function stop() {
     $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
 }
 
-// -- Reset --------------------------
+// Reset stopwatch
 function reset() {
   if ($id("record-container")) $id("record-container").style.display = "none";
   timer = false;
+  
+  // Play beep sound on reset
+  playSound(beepSound);
+  
   tickSound.pause();
   tickSound.currentTime = 0;
   if ($id("start"))
     $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
+
+  clearTimeout(timeoutId);
+  clearInterval(countdownInterval);
 
   hr = 0;
   min = 0;
@@ -101,11 +222,18 @@ function reset() {
 
   if ($id("record-table-body")) $id("record-table-body").innerHTML = "";
   lapCounter = 1;
+  
+  // Clear saved state
+  localStorage.removeItem('stopwatchState');
 }
 
+// ============================================
+// STOPWATCH ENGINE
+// ============================================
 let timeoutId;
 function stopwatch() {
   clearTimeout(timeoutId);
+  clearInterval(countdownInterval);
 
   if (timer === true) count = count + 1;
 
@@ -133,10 +261,18 @@ function stopwatch() {
   if ($id("sec")) $id("sec").innerHTML = secString;
   if ($id("count")) $id("count").innerHTML = countString;
 
+  // Save state periodically (every second)
+  if (count % 100 === 0) {
+    saveStopwatchState();
+  }
+
   timeoutId = setTimeout(stopwatch, 10);
 }
 
-// -- lap helper ----------------------
+// ============================================
+// LAP FUNCTIONALITY
+// ============================================
+// Calculate lap time difference
 function getdiff() {
   diff_hr = hr - prev_hr;
   diff_min = min - prev_min;
@@ -161,8 +297,12 @@ function getdiff() {
   prev_hr = hr;
 }
 
+// Record lap time
 function lap() {
   if (timer) {
+    // Play beep sound
+    playSound(beepSound);
+    
     if ($id("record-container"))
       $id("record-container").style.display = "block";
     getdiff();
@@ -198,13 +338,16 @@ function lap() {
   }
 }
 
+// Clear all lap records
 function clearLap() {
   if ($id("record-container")) $id("record-container").style.display = "none";
   if ($id("record-table-body")) $id("record-table-body").innerHTML = "";
   lapCounter = 1;
 }
 
-// -- date ticker (defensive) ---------
+// ============================================
+// DATE DISPLAY
+// ============================================
 setInterval(() => {
   var d = new Date();
   var year = d.getFullYear();
@@ -315,6 +458,8 @@ document.getElementById("start-countdown").addEventListener("click", () => {
   let totalSeconds = minutes * 60;
   clearInterval(countdownInterval);
 
+  if ($id("start"))
+    $id("start").innerHTML = '<i class="far fa-play-circle"></i> Start';
   countdownInterval = setInterval(() => {
     let hrs = Math.floor(totalSeconds / 3600);
     let mins = Math.floor((totalSeconds % 3600) / 60);
