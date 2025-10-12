@@ -284,3 +284,54 @@ $(document).ready(function () {
         }
     });
 });
+
+// Date display functionality
+setInterval(() => {
+  var d = new Date();
+  var year = d.getFullYear();
+
+  var month;
+  switch (d.getMonth()) {
+    case 0:
+      month = "Jan";
+      break;
+    case 1:
+      month = "Feb";
+      break;
+    case 2:
+      month = "Mar";
+      break;
+    case 3:
+      month = "Apr";
+      break;
+    case 4:
+      month = "May";
+      break;
+    case 5:
+      month = "Jun";
+      break;
+    case 6:
+      month = "Jul";
+      break;
+    case 7:
+      month = "Aug";
+      break;
+    case 8:
+      month = "Sep";
+      break;
+    case 9:
+      month = "Oct";
+      break;
+    case 10:
+      month = "Nov";
+      break;
+    case 11:
+      month = "Dec";
+      break;
+  }
+
+  var dayn = d.getDate();
+  var dateStr = dayn + " " + month + " , " + year;
+
+  if ($id("d1")) $id("d1").innerHTML = dateStr;
+}, 1000);
