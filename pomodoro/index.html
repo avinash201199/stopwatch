@@ -153,18 +153,75 @@
                 </div>
             </div>
 
-            <!-- Focus Music Control -->
+            <!-- Enhanced Focus Music Control -->
             <div class="row justify-content-center my-3">
                 <div class="col-10">
-                    <div id="music-controls" style="text-align: center; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                        <h5 style="color: inherit; margin-bottom: 15px;">Focus Music</h5>
-                        <button class="btn btn-outline-primary button-pill px-3" id="music-toggle" onclick="toggleMusic()">
-                            <i class="fas fa-play"></i> <span id="music-status">Play Focus Music</span>
+                    <div id="music-controls" style="text-align: center; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; backdrop-filter: blur(10px);">
+                        <h5 style="color: inherit; margin-bottom: 8px; font-size: 1em;">
+                            <i class="fas fa-music"></i> Focus Music Playlist
+                        </h5>
+                        
+                        <!-- Current Track Display -->
+                        <div id="current-track-display" style="margin-bottom: 8px; padding: 6px; background: rgba(0,0,0,0.2); border-radius: 5px;">
+                            <div id="current-track" style="font-weight: bold; color: inherit; font-size: 0.8em;">1. Rain Sounds</div>
+                        </div>
+                        
+                        <!-- Music Control Buttons -->
+                        <div class="music-controls-row" style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 10px;">
+                            <button class="music-control-btn" id="shuffle-btn" onclick="toggleShuffle()" title="Shuffle">
+                                <i class="fas fa-random"></i>
+                            </button>
+                            <button class="music-control-btn" onclick="playPreviousTrack()" title="Previous Track">
+                                <i class="fas fa-step-backward"></i>
+                            </button>
+                            <button class="btn btn-outline-primary button-pill px-4" id="music-toggle" onclick="toggleMusic()">
+                                <i class="fas fa-play"></i> <span id="music-status">Play Focus Music</span>
+                            </button>
+                            <button class="music-control-btn" onclick="playNextTrack()" title="Next Track">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                            <button class="music-control-btn" id="repeat-btn" onclick="toggleRepeat()" title="Repeat">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Volume Control -->
+                        <div style="margin: 8px 0; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fas fa-volume-down" style="color: inherit; font-size: 0.9em;"></i>
+                            <input type="range" id="volume-slider" min="0" max="100" value="30" 
+                                   style="width: 80px; accent-color: #ff6b35;" 
+                                   oninput="setVolume(this.value / 100)">
+                            <i class="fas fa-volume-up" style="color: inherit; font-size: 0.9em;"></i>
+                        </div>
+                        
+                        <!-- Playlist Toggle -->
+                        <button class="btn btn-sm btn-outline-secondary" onclick="togglePlaylist()" id="playlist-toggle" style="font-size: 0.8em; padding: 4px 8px;">
+                            <i class="fas fa-list"></i> Show Playlist
                         </button>
+                        
+                        <!-- Keyboard Shortcuts Info -->
+                        <div style="margin-top: 8px; font-size: 10px; color: rgba(255,255,255,0.7);">
+                            <small>Shortcuts: M=Play/Pause, N=Next, B=Previous, S=Shuffle, R=Repeat</small>
+                        </div>
+                        
+                        <!-- Debug/Test Buttons -->
+                        <div style="margin-top: 8px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                            <button class="btn btn-sm btn-outline-success" onclick="testDirectPlay()" style="font-size: 0.8em; padding: 4px 8px;">
+                                <i class="fas fa-play"></i> Test Direct Play
+                            </button>
+                            <button class="btn btn-sm btn-outline-info" onclick="shufflePlaylist()" style="font-size: 0.8em; padding: 4px 8px;">
+                                <i class="fas fa-refresh"></i> Shuffle Playlist
+                            </button>
+                        </div>
+                        
+                        <!-- Playlist Container -->
+                        <div id="playlist-container" style="display: none; margin-top: 10px; max-height: 300px; overflow-y: auto; background: rgba(0,0,0,0.1); border-radius: 6px; padding: 8px;">
+                            <!-- Playlist items will be populated by JavaScript -->
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- End Music Control -->
+            <!-- End Enhanced Music Control -->
 
             <div class='row justify-content-center'>
                 <button type="button" class='buttons' id='timer-control' onClick='startPomoCounter()'>
@@ -242,263 +299,266 @@
             </form>
         </div>
     </div>
-    
-    <style>
-    /* Calendar Modal Styles */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.7);
-        backdrop-filter: blur(5px);
-    }
-    
-    .modal-content {
-        background: #1a1a1a;
-        color: #e0e0e0;
-        margin: 5% auto;
-        width: 90%;
-        max-width: 550px;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        border: 1px solid rgba(255,255,255,0.1);
-        animation: modalFadeIn 0.3s ease;
-    }
-    
-    @keyframes modalFadeIn {
-        from {opacity: 0; transform: translateY(-20px);}
-        to {opacity: 1; transform: translateY(0);}
-    }
-    
-    .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 30px;
-        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
-        border-radius: 20px 20px 0 0;
-    }
-    
-    .modal-header h2 {
-        color: white;
-        margin: 0;
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
-    
-    .close {
-        color: white;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    
-    #calendar-form {
-        padding: 30px;
-    }
-    
-    .form-group {
-        margin-bottom: 25px;
-        position: relative;
-    }
-    
-    .form-row {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .form-row .form-group {
-        flex: 1;
-    }
-    
-    .animated-input label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        color: #e0e0e0;
-    }
-    
-    .animated-input i {
-        margin-right: 8px;
-        color: #ff6b6b;
-    }
-    
-    .animated-input input,
-    .animated-input textarea {
-        width: 100%;
-        padding: 12px 15px;
-        border: 2px solid #444;
-        border-radius: 10px;
-        font-size: 15px;
-        background-color: rgba(30, 30, 30, 0.9);
-        color: #e0e0e0;
-        transition: border-color 0.3s ease;
-    }
-    
-    .animated-input input:focus,
-    .animated-input textarea:focus {
-        outline: none;
-        border-color: #ff6b6b;
-    }
-    
-    .input-focus-effect {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: #ff6b6b;
-        transition: width 0.3s ease;
-    }
-    
-    .animated-input input:focus ~ .input-focus-effect,
-    .animated-input textarea:focus ~ .input-focus-effect {
-        width: 100%;
-    }
-    
-    .toggle-container {
-        margin: 20px 0;
-    }
-    
-    .toggle-switch {
-        position: relative;
-        display: inline-block;
-    }
-    
-    .toggle-switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-    
-    .toggle-label {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-    
-    .toggle-inner {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        height: 26px;
-        background-color: #ff6b6b;
-        border-radius: 20px;
-        margin-right: 10px;
-        transition: background-color 0.3s ease;
-    }
-    
-    .toggle-inner:before {
-        content: '';
-        position: absolute;
-        height: 20px;
-        width: 20px;
-        left: 3px;
-        bottom: 3px;
-        background-color: white;
-        border-radius: 50%;
-        transition: transform 0.3s ease;
-    }
-    
-    .toggle-switch input:checked + .toggle-label .toggle-inner {
-        background-color: #ff6b6b;
-    }
-    
-    .toggle-switch input:checked + .toggle-label .toggle-inner:before {
-        transform: translateX(24px);
-    }
-    
-    .toggle-switch-label {
-        font-weight: 500;
-        color: #e0e0e0;
-    }
-    
-    .form-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 30px;
-    }
-    
-    .calendar-btn {
-        padding: 10px 18px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 15px;
-        font-weight: 600;
-        min-width: 150px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .calendar-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    .submit-btn {
-        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
-        color: white;
-    }
-    
-    .cancel-btn {
-        background: linear-gradient(135deg, #333 0%, #555 100%);
-        color: white;
-    }
-    
-    /* Light mode styles */
-    body:not(.dark-mode) .modal-content {
-        background: #f5f5f5;
-        color: #333;
-    }
-    
-    body:not(.dark-mode) .animated-input label {
-        color: #333;
-    }
-    
-    body:not(.dark-mode) .animated-input input,
-    body:not(.dark-mode) .animated-input textarea {
-        background-color: #fff;
-        color: #333;
-        border-color: #ddd;
-    }
-    
-    body:not(.dark-mode) .toggle-switch-label {
-        color: #333;
-    }
-    </style>
-    <!-- FOOTER -->
-  <footer>
-    <div class="container-fluid my-class foot">
-      <div class="container">
-        <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
+<style>
+/* Calendar Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+}
 
-        <div>
-          <ul style="color: white" class="social-links">
-            <li class="hov">
-              <a href="https://github.com/avinash201199">
-                <img class="link" src="../img/GitHub.png" /></a>
-            </li>
-            <li class="hov">
-              <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
-                <img class="link" src="../img/LinkedinLogo.png" /></a>
-            </li>
-            <li class="hov">
-              <a href="https://www.instagram.com/lets__code/">
-                <img class="link" src="../img/Instagram.png" /></a>
-            </li>
-          </ul>
-        </div>
+.modal-content {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    margin: 5% auto;
+    width: 90%;
+    max-width: 550px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-header h2 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#calendar-form {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.animated-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+
+.animated-input i {
+    margin-right: 8px;
+    color: #ff6b6b;
+}
+
+.animated-input input,
+.animated-input textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #444;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #e0e0e0;
+    transition: border-color 0.3s ease;
+}
+
+.animated-input input:focus,
+.animated-input textarea:focus {
+    outline: none;
+    border-color: #ff6b6b;
+}
+
+.input-focus-effect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff6b6b;
+    transition: width 0.3s ease;
+}
+
+.animated-input input:focus ~ .input-focus-effect,
+.animated-input textarea:focus ~ .input-focus-effect {
+    width: 100%;
+}
+
+.toggle-container {
+    margin: 20px 0;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toggle-inner {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    background-color: #ff6b6b;
+    border-radius: 20px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-inner:before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-switch input:checked + .toggle-label .toggle-inner {
+    background-color: #ff6b6b;
+}
+
+.toggle-switch input:checked + .toggle-label .toggle-inner:before {
+    transform: translateX(24px);
+}
+
+.toggle-switch-label {
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.calendar-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    min-width: 150px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calendar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    color: white;
+}
+
+.cancel-btn {
+    background: linear-gradient(135deg, #333 0%, #555 100%);
+    color: white;
+}
+
+/* Light mode styles */
+body:not(.dark-mode) .modal-content {
+    background: #f5f5f5;
+    color: #333;
+}
+
+body:not(.dark-mode) .animated-input label {
+    color: #333;
+}
+
+body:not(.dark-mode) .animated-input input,
+body:not(.dark-mode) .animated-input textarea {
+    background-color: #fff;
+    color: #333;
+    border-color: #ddd;
+}
+
+body:not(.dark-mode) .toggle-switch-label {
+    color: #333;
+}
+</style>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container-fluid my-class foot">
+    <div class="container">
+      <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
+
+      <div>
+        <ul style="color: white" class="social-links">
+          <li class="hov">
+            <a href="https://github.com/avinash201199">
+              <img class="link" src="../img/GitHub.png" />
+            </a>
+          </li>
+          <li class="hov">
+            <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
+              <img class="link" src="../img/LinkedinLogo.png" />
+            </a>
+          </li>
+          <li class="hov">
+            <a href="https://www.instagram.com/lets__code/">
+              <img class="link" src="../img/Instagram.png" />
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-    </container>
-  </footer>
+  </div>
+</footer>
+
   
   <div id="confetti"></div>
     
@@ -511,6 +571,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>

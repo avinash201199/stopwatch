@@ -632,6 +632,9 @@ body {
   overflow-y: auto;
   position: relative;
   background: transparent;
+  transform: scale(0.65);
+  transform-origin: top center;
+  width: 154%; /* Compensate for the scale reduction */
 }
 
 
@@ -695,12 +698,13 @@ body::before {
 }
 
 .button-pill {
-  font-size: 1.2em;
-  border-radius: 40px;
+  font-size: 1em;
+  border-radius: 30px;
+  padding: 8px 16px;
 }
 
 .timer {
-  font-size: 100px;
+  font-size: 60px;
   font-family: 'digital-7';
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   color: white;
@@ -1406,3 +1410,144 @@ body:not(.dark-mode) .cancel-btn {
     transform: translateY(0);
   }
 }
+
+/* === Enhanced Music Controls Styles === */
+.music-control-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 10px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-control-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.music-control-btn.active {
+  background: rgba(255, 107, 53, 0.8);
+  border-color: #ff6b35;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+}
+
+.playlist-category {
+  margin: 15px 0 5px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.playlist-track {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  margin: 3px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
+  font-size: 0.9em;
+  min-height: 35px;
+}
+
+.playlist-track:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+  cursor: pointer;
+}
+
+.playlist-track.active {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: rgba(255, 107, 53, 0.5);
+  color: #ff6b35;
+}
+
+.track-number {
+  font-weight: bold;
+  margin-right: 10px;
+  min-width: 20px;
+  color: #ccc;
+}
+
+.track-title {
+  flex: 1;
+  font-weight: 500;
+}
+
+.track-duration {
+  font-size: 12px;
+  color: #999;
+  margin-left: 10px;
+}
+
+/* Dark mode styles for music controls */
+body.dark-mode .music-control-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+body.dark-mode .music-control-btn:hover {
+  background: rgba(255, 107, 53, 0.3);
+  border-color: #ff6b35;
+}
+
+body.dark-mode .music-control-btn.active {
+  background: rgba(255, 107, 53, 0.8);
+  border-color: #ff6b35;
+  color: white;
+}
+
+body.dark-mode .playlist-track {
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+body.dark-mode .playlist-track:hover {
+  background: rgba(255, 107, 53, 0.1);
+  cursor: pointer;
+}
+
+body.dark-mode .playlist-track.active {
+  background: rgba(255, 107, 53, 0.3);
+  color: #ff6b35;
+}
+
+body.dark-mode .track-number {
+  color: #ccc;
+}
+
+body.dark-mode .track-duration {
+  color: #999;
+}
+
+/* Responsive design for music controls */
+@media (max-width: 768px) {
+  .music-controls-row {
+    flex-wrap: wrap;
+    gap: 8px !important;
+  }
+
+  .music-control-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .playlist-track {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+}
+
