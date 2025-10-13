@@ -10,7 +10,7 @@ const tickSound = new Audio("../audio/ticking.mp3");
 tickSound.loop = true;
 
 //  New: Beep sound when stopwatch stops/resets
-const beepSound = new Audio("../audio/beep.mp3");
+const beepSound = new Audio("../audio/beep_alert.mp3");
 
 let tickToggle = null;
 let isTickEnabled = false;
