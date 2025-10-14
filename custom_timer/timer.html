@@ -37,11 +37,16 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default navbar-expand-lg thinner navcol">
+  <!-- Fullscreen Button (Bottom Right) -->
+  <button id="fullscreen-btn" class="fullscreen-toggle" title="Toggle Fullscreen (F11)">
+    <i class="fas fa-expand"></i>
+  </button>
+
+  <nav class="navbar navbar-default navbar-expand-lg thinner navcol" id="main-navbar">
     <div class="container-fluid-nav">
       <div class="maintitle">
-        <img src="../img/logo.gif" style="height: 3rem; width: 3rem;margin-right:1rem; border-radius: 50%;" alt=""> <span id="title1">Stop
-          Watch</span>
+        <img src="../img/logo.gif" style="height: 3rem; width: 3rem;margin-right:1rem; border-radius: 50%;" alt="">
+        <span id="title1">Stop Watch</span>
       </div>
       <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
         data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -51,8 +56,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item px-4">
-            <a class="nav-link btn secondary " id="link--active" href="../index.html">STOP WATCH</a>
-            <a class="nav-link btn secondary" id="link--active" href="../pomodoro/index.html">POMODORO TIMER</a>
+            <a class="nav-link btn secondary" href="../index.html">STOP WATCH</a>
+            <a class="nav-link btn secondary" href="../pomodoro/index.html">POMODORO TIMER</a>
             <a class="nav-link btn secondary" id="link--active" href="#">CUSTOM TIMER</a>
           </li>
         </ul>
@@ -65,6 +70,7 @@
           </label>
         </div>
       </div>
+    </div>
   </nav>
 
   <div class="row h-100 justify-content-center active" id="counter-background">
@@ -91,14 +97,24 @@
 
     <div class="col-12 my-5" id="timer-container">
       <div class="row justify-content-center">
-        <div class="col-auto my-auto"><p class="timer" id="hours">00</p></div>
-        <div class="col-auto my-auto"><p class="timer">:</p></div>
-        <div class="col-auto my-auto"><p class="timer" id="minutes">00</p></div>
-        <div class="col-auto my-auto"><p class="timer">:</p></div>
-        <div class="col-auto my-auto"><p class="timer" id="seconds">00</p></div>
+        <div class="col-auto my-auto">
+          <p class="timer" id="hours">00</p>
+        </div>
+        <div class="col-auto my-auto">
+          <p class="timer">:</p>
+        </div>
+        <div class="col-auto my-auto">
+          <p class="timer" id="minutes">00</p>
+        </div>
+        <div class="col-auto my-auto">
+          <p class="timer">:</p>
+        </div>
+        <div class="col-auto my-auto">
+          <p class="timer" id="seconds">00</p>
+        </div>
       </div>
 
-      <!-- ✅ Progress Bar Section -->
+      <!-- Progress Bar Section -->
       <div class="row justify-content-center my-4">
         <div class="col-10">
           <div id="progress-container">
@@ -128,26 +144,29 @@
       </div>
     </div>
   </div>
-  
-   <!-- FOOTER -->
-  <footer>
+
+  <!-- FOOTER -->
+  <footer id="main-footer">
     <div class="container-fluid my-class foot">
       <div class="container">
         <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
 
         <div>
           <ul style="color: white" class="social-links">
-            <li class="hov"><a href="https://github.com/avinash201199"><img class="link" src="../img/GitHub.png" /></a></li>
-            <li class="hov"><a href="https://www.linkedin.com/in/avinash-singh-071b79175/"><img class="link" src="../img/LinkedinLogo.png" /></a></li>
-            <li class="hov"><a href="https://www.instagram.com/lets__code/"><img class="link" src="../img/Instagram.png" /></a></li>
+            <li class="hov"><a href="https://github.com/avinash201199"><img class="link" src="../img/GitHub.png" /></a>
+            </li>
+            <li class="hov"><a href="https://www.linkedin.com/in/avinash-singh-071b79175/"><img class="link"
+                  src="../img/LinkedinLogo.png" /></a></li>
+            <li class="hov"><a href="https://www.instagram.com/lets__code/"><img class="link"
+                  src="../img/Instagram.png" /></a></li>
           </ul>
         </div>
       </div>
     </div>
   </footer>
-  
+
   <div id="confetti"></div>
-  
+
   <script src="timer.js" type="text/javascript"></script>
   <script src="../jquery.js" type="text/javascript"></script>
 
@@ -157,9 +176,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
-    <div id="confetti"></div>
 
-  <div id="confetti"></div>
-  <script src="timer.js" type="text/javascript"></script>
+  <script>
+    // F11 key for Fullscreen toggle
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "F11") {
+        event.preventDefault();
+        toggleFullscreen();
+      }
+    });
+  </script>
 </body>
+
 </html>
