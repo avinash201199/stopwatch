@@ -222,6 +222,20 @@ function reset() {
 
   if ($id("record-table-body")) $id("record-table-body").innerHTML = "";
   lapCounter = 1;
+
+    // CLEAR COUNTDOWN INPUT & PRESETS
+  const countdownInput = $id("countdown-minutes");
+  if (countdownInput) {
+    countdownInput.value = "";
+    countdownInput.style.border = "2px solid rgba(255, 255, 255, 0.3)";
+    countdownInput.style.background = "rgba(255, 255, 255, 0.08)";
+    countdownInput.style.color = "white";
+    countdownInput.style.transform = "scale(1)";
+  }
+
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
   
   // Clear saved state
   localStorage.removeItem('stopwatchState');
