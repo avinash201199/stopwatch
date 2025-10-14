@@ -555,3 +555,111 @@ body.dark-mode .animated-button span:last-child {
 .nav-link:hover {
   color: #ff6b35 !important;
 }
+
+
+/* ==================== FULLSCREEN MODE STYLES ==================== */
+body.fullscreen-mode {
+  overflow: hidden;
+}
+
+body.fullscreen-mode #main-navbar,
+body.fullscreen-mode #main-footer,
+body.fullscreen-mode #date-display,
+body.fullscreen-mode #mode-toggle,
+body.fullscreen-mode #countdown-input-container {
+  display: none !important;
+}
+
+body.fullscreen-mode #container {
+  margin-top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+body.fullscreen-mode .digit {
+  font-size: 200px !important;
+  text-shadow: 0 0 30px currentColor;
+}
+
+body.fullscreen-mode .txt {
+  font-size: 60px !important;
+}
+
+body.fullscreen-mode #btn-container {
+  margin-top: 60px;
+  gap: 15px;
+}
+
+body.fullscreen-mode .buttons {
+  width: 180px;
+  height: 60px;
+  font-size: 18px;
+}
+
+body.fullscreen-mode .tick-label {
+  padding: 15px 25px;
+  font-size: 18px;
+}
+
+body.fullscreen-mode #record-container {
+  max-height: 30vh;
+  overflow-y: auto;
+  margin-top: 30px;
+}
+
+body.fullscreen-mode .fullscreen-toggle {
+  display: none !important;
+}
+
+/* Responsive fullscreen adjustments */
+@media screen and (max-width: 1200px) {
+  body.fullscreen-mode .digit {
+    font-size: 150px !important;
+  }
+
+  body.fullscreen-mode .txt {
+    font-size: 45px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body.fullscreen-mode .digit {
+    font-size: 100px !important;
+  }
+
+  body.fullscreen-mode .txt {
+    font-size: 35px !important;
+  }
+
+  body.fullscreen-mode .buttons {
+    width: 140px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  body.fullscreen-mode .fullscreen-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body.fullscreen-mode .digit {
+    font-size: 70px !important;
+  }
+
+  body.fullscreen-mode .txt {
+    font-size: 25px !important;
+  }
+
+  body.fullscreen-mode .buttons {
+    width: 120px;
+    height: 45px;
+    font-size: 14px;
+  }
+}

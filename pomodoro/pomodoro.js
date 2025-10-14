@@ -1119,3 +1119,95 @@ window.addEventListener('load', () => {
         maybeEnableButtons();
     }
 });
+
+
+
+// ==================== FULLSCREEN FUNCTIONALITY ====================
+
+let isFullscreen = false;
+
+// Toggle fullscreen function
+function toggleFullscreen() {
+  if (!isFullscreen) {
+    enterFullscreen();
+  } else {
+    exitFullscreen();
+  }
+}
+
+// Enter fullscreen
+function enterFullscreen() {
+  const elem = document.documentElement;
+  
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+  
+  // Add fullscreen class to body
+  document.body.classList.add('fullscreen-mode');
+  isFullscreen = true;
+  
+  // Change icon to compress
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if (fullscreenBtn) {
+    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+    fullscreenBtn.title = 'Exit Fullscreen (ESC or F11)';
+  }
+}
+
+// Exit fullscreen
+function exitFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+  
+  // Remove fullscreen class from body
+  document.body.classList.remove('fullscreen-mode');
+  isFullscreen = false;
+  
+  // Change icon back to expand
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if (fullscreenBtn) {
+    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+    fullscreenBtn.title = 'Toggle Fullscreen (F11)';
+  }
+}
+
+// Listen for fullscreen change events (when user presses ESC)
+document.addEventListener('fullscreenchange', handleFullscreenChange);
+document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+function handleFullscreenChange() {
+  if (!document.fullscreenElement && 
+      !document.webkitFullscreenElement && 
+      !document.mozFullScreenElement && 
+      !document.msFullscreenElement) {
+    // User exited fullscreen (probably with ESC key)
+    document.body.classList.remove('fullscreen-mode');
+    isFullscreen = false;
+    
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    if (fullscreenBtn) {
+      fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      fullscreenBtn.title = 'Toggle Fullscreen (F11)';
+    }
+  }
+}
+
+// Add click event to fullscreen button
+document.addEventListener('DOMContentLoaded', function() {
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+  }
+});

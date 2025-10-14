@@ -41,8 +41,12 @@
   <div class="video-overlay"
     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: -998;">
   </div>
+  <!-- Fullscreen Button (Top Right) -->
+  <button id="fullscreen-btn" class="fullscreen-toggle" title="Toggle Fullscreen (F11)">
+    <i class="fas fa-expand"></i>
+  </button>
 
-  <nav class="navbar navbar-default navbar-expand-lg thinner navcol">
+  <nav class="navbar navbar-default navbar-expand-lg thinner navcol" id="main-navbar">
     <div class="container-fluid-nav">
       <div class="maintitle">
         <img src="./img/logo.gif"
@@ -156,7 +160,7 @@
             <span class="txt">Ms</span>
           </span>
         </div>
-        <span class="todayDate">
+        <span class="todayDate" id="date-display">
           <h3><span id="d1"></span></h3>
         </span>
       </div>
@@ -234,12 +238,19 @@
         reset();
       }
     });
+    // F11 key for Fullscreen toggle
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "F11") {
+          event.preventDefault();
+          toggleFullscreen();
+        }
+      });
 
   </script>
   <script src="script.js"></script>
 
   <!-- FOOTER -->
-  <footer>
+  <footer id="main-footer">
     <div class="container-fluid my-class foot">
       <div class="container">
         <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>

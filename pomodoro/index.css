@@ -1,7 +1,11 @@
 body {
-  height: 100vh;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  height: auto;
   overflow-x: hidden;
   overflow-y: auto;
+  width: 100%;
 }
 
 #link--active {
@@ -203,6 +207,7 @@ li {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
+}
 .hov {
   width: 40px;
   height: 40px;
@@ -393,14 +398,17 @@ body {
   color: #0c5460;
 }
 body {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: relative;
-  background: transparent;
-  transform: scale(0.65);
-  transform-origin: top center;
-  width: 154%; /* Compensate for the scale reduction */
+  margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #ffffff;
+    position: relative;
+    transform: none;
+    transform-origin: initial;
+    width: 100%;
 }
 
 
@@ -637,6 +645,7 @@ li {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
+}
 .hov {
   width: 40px;
   height: 40px;
@@ -673,12 +682,12 @@ footer {
 }
 
 body {
-  background: #ffffff !important;
-  height: 240px !important;
   background: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(10px);
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  height: auto !important;
 }
 
 
@@ -973,4 +982,176 @@ body.dark-mode .track-duration {
     padding: 6px 8px;
     font-size: 14px;
   }
+/* ==================== FULLSCREEN MODE STYLES ==================== */
+body.fullscreen-mode {
+  overflow: hidden;
+}
+
+body.fullscreen-mode #main-navbar,
+body.fullscreen-mode #main-footer,
+body.fullscreen-mode #date-display,
+body.fullscreen-mode #mode-toggle,
+body.fullscreen-mode #countdown-input-container {
+  display: none !important;
+}
+
+body.fullscreen-mode #container {
+  margin-top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+body.fullscreen-mode .digit {
+  font-size: 200px !important;
+  text-shadow: 0 0 30px currentColor;
+}
+
+body.fullscreen-mode .txt {
+  font-size: 60px !important;
+}
+
+body.fullscreen-mode #btn-container {
+  margin-top: 60px;
+  gap: 15px;
+}
+
+body.fullscreen-mode .buttons {
+  width: 180px;
+  height: 60px;
+  font-size: 18px;
+}
+
+body.fullscreen-mode .tick-label {
+  padding: 15px 25px;
+  font-size: 18px;
+}
+
+body.fullscreen-mode #record-container {
+  max-height: 30vh;
+  overflow-y: auto;
+  margin-top: 30px;
+}
+
+body.fullscreen-mode .fullscreen-toggle {
+  display: none !important;
+}
+
+/* Responsive fullscreen adjustments */
+@media screen and (max-width: 1200px) {
+  body.fullscreen-mode .digit {
+    font-size: 150px !important;
+  }
+
+  body.fullscreen-mode .txt {
+    font-size: 45px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body.fullscreen-mode .digit {
+    font-size: 100px !important;
+  }
+
+  body.fullscreen-mode .txt {
+    font-size: 35px !important;
+  }
+
+  body.fullscreen-mode .buttons {
+    width: 140px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  body.fullscreen-mode .fullscreen-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body.fullscreen-mode .digit {
+    font-size: 70px !important;
+  }
+
+  body.fullscreen-mode .txt {
+    font-size: 25px !important;
+  }
+
+  body.fullscreen-mode .buttons {
+    width: 120px;
+    height: 45px;
+    font-size: 14px;
+  }
+} 
+
+/* ==================== FULLSCREEN BUTTON STYLES ==================== */
+.fullscreen-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.fullscreen-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.fullscreen-toggle:active {
+  transform: scale(0.95);
+}
+
+body.dark-mode .fullscreen-toggle {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: #ff6b35;
+  color: #ff6b35;
+}
+
+body.dark-mode .fullscreen-toggle:hover {
+  background: rgba(255, 107, 53, 0.4);
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+}
+
+/* Additional Pomodoro-specific fullscreen styles */
+body.fullscreen-mode .timer {
+  font-size: 200px !important;
+  text-shadow: 0 0 30px currentColor;
+}
+
+body.fullscreen-mode #mode-display h3 {
+  font-size: 2.5rem !important;
+}
+
+body.fullscreen-mode .btn-outline-primary {
+  display: none !important;
+}
+
+body.fullscreen-mode #music-controls {
+  display: none !important;
+}
+
+body.fullscreen-mode .progress-container {
+  max-width: 600px;
+  margin: 30px auto;
+}
 }
