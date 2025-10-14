@@ -180,4 +180,39 @@ $(document).ready(function ()
             localStorage.setItem("darkmode", true);
         }
     });
+
+    // Fullscreen toggle
+    $(document).on('click', '#fullscreen-toggle', function() {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+            const root = document.documentElement;
+            if (root.requestFullscreen) root.requestFullscreen();
+            else if (root.webkitRequestFullscreen) root.webkitRequestFullscreen();
+            else if (root.msRequestFullscreen) root.msRequestFullscreen();
+        } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            else if (document.msExitFullscreen) document.msExitFullscreen();
+        }
+    });
+
+    // Update fullscreen icon on change
+    function syncFsIcon() {
+        const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+        const $btn = $('#fullscreen-toggle i');
+        if ($btn.length) {
+            if (isFs) {
+                $btn.removeClass('fa-expand').addClass('fa-compress');
+                $('#fullscreen-toggle').attr('aria-label', 'Exit fullscreen').attr('title', 'Exit fullscreen');
+            } else {
+                $btn.removeClass('fa-compress').addClass('fa-expand');
+                $('#fullscreen-toggle').attr('aria-label', 'Enter fullscreen').attr('title', 'Enter fullscreen');
+            }
+        }
+    }
+
+    document.addEventListener('fullscreenchange', syncFsIcon);
+    document.addEventListener('webkitfullscreenchange', syncFsIcon);
+    document.addEventListener('msfullscreenchange', syncFsIcon);
+    // Initial sync
+    syncFsIcon();
 });
