@@ -1,11 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
+/* CSS Reset and Base Styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: black;
   display: block;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Video Background - Enhanced feature, falls back gracefully */
@@ -106,32 +114,39 @@ nav.navbar {
 
 #container {
   color: #d7dfe4;
-  margin-top: 120px;
-  padding-top: 1rem;
-  min-height: 60vh;
+  margin-top: 100px;
+  padding: 1rem;
+  min-height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
 }
 
+/* Mobile First: Timer Display */
 .digit {
-  font-size: 150px;
-  /*font-weight: bold;*/
+  font-size: clamp(2rem, 8vw, 5rem);
   font-family: "digital-7";
+  line-height: 1;
 }
 
 .txt {
-  font-size: 40px;
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
   font-weight: bold;
+  line-height: 1;
 }
 
 #btn-container {
   display: flex;
   width: 100%;
+  max-width: 800px;
   justify-content: center;
-  margin-top: 40px;
+  align-items: center;
+  margin: 2rem auto;
+  gap: 0.5rem;
   flex-wrap: wrap;
+  padding: 0 1rem;
 }
 
 .btn {
@@ -151,80 +166,309 @@ nav.navbar {
 
 #time {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  text-align: center;
 }
 
-@media screen and (max-width: 990px) {
-  #time .digit {
-    font-size: 4.3rem;
-  }
+/* ===== RESPONSIVE DESIGN: MOBILE-FIRST ===== */
 
-  #time .txt {
-    font-size: 2.1rem;
+/* Small phones (320px and up) - Base mobile styles already applied above */
+@media screen and (min-width: 320px) {
+  .buttons {
+    min-width: 100px;
+    font-size: 0.8rem;
+  }
+  
+  #btn-container {
+    gap: 0.25rem;
+  }
+  
+  .digit {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+  
+  .txt {
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
   }
 }
 
-@media screen and (max-width: 991px) {
-  #switch-theme input[type="checkbox"],
-  #switch-theme label {
-    position: relative;
+/* Large phones (480px and up) */
+@media screen and (min-width: 480px) {
+  .buttons {
+    min-width: 110px;
+    font-size: 0.9rem;
   }
-
-  #switch-theme label {
-    margin-top: -1.6rem;
+  
+  #btn-container {
+    gap: 0.5rem;
   }
-
-  #switch-theme {
-    max-width: max-content;
+  
+  .digit {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
   }
-  .maintitle {
-    margin-bottom: 0rem;
+  
+  .txt {
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
   }
-}
-
-@media screen and (max-width: 890px) {
-  #time .digit {
-    font-size: 4rem;
-  }
-
-  #time .txt {
-    font-size: 1.9rem;
-  }
-
-  #time {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  
   #container {
-    display: flex;
+    margin-top: 110px;
+    padding: 1.5rem;
+  }
+}
+
+/* Tablets (768px and up) */
+@media screen and (min-width: 768px) {
+  .buttons {
+    min-width: 130px;
+    font-size: 1rem;
+    flex: 0 1 auto;
+  }
+  
+  #btn-container {
+    gap: 1rem;
+    max-width: 90%;
+  }
+  
+  .digit {
+    font-size: clamp(3rem, 10vw, 4.5rem);
+  }
+  
+  .txt {
+    font-size: clamp(1rem, 3.5vw, 1.8rem);
+  }
+  
+  #container {
+    margin-top: 120px;
+    padding: 2rem;
+  }
+  
+  #time {
+    gap: clamp(1rem, 3vw, 1.5rem);
+  }
+}
+
+/* Large tablets and small desktops (1024px and up) */
+@media screen and (min-width: 1024px) {
+  .buttons {
+    min-width: 150px;
+    font-size: 1.1rem;
+    margin: 0.5rem;
+  }
+  
+  #btn-container {
+    gap: 1.5rem;
+    max-width: 80%;
+  }
+  
+  .digit {
+    font-size: clamp(4rem, 12vw, 6rem);
+  }
+  
+  .txt {
+    font-size: clamp(1.2rem, 4vw, 2.2rem);
+  }
+  
+  #container {
+    margin-top: 130px;
+  }
+  
+  #time {
+    gap: clamp(1.5rem, 4vw, 2rem);
+  }
+}
+
+/* Desktop (1200px and up) */
+@media screen and (min-width: 1200px) {
+  .buttons {
+    min-width: 160px;
+    font-size: 1.2rem;
+  }
+  
+  .digit {
+    font-size: clamp(5rem, 10vw, 7rem);
+  }
+  
+  .txt {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+/* Large desktops (1400px and up) */
+@media screen and (min-width: 1400px) {
+  .digit {
+    font-size: clamp(6rem, 8vw, 8rem);
+  }
+  
+  .txt {
+    font-size: clamp(1.8rem, 2.5vw, 3rem);
+  }
+  
+  .buttons {
+    min-width: 180px;
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile landscape optimization */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+  #container {
+    margin-top: 80px;
+    padding: 0.5rem;
+    min-height: calc(100vh - 160px);
+  }
+  
+  .digit {
+    font-size: clamp(1.5rem, 6vh, 2.5rem);
+  }
+  
+  .txt {
+    font-size: clamp(0.6rem, 2.5vh, 1rem);
+  }
+  
+  #time {
+    gap: clamp(0.5rem, 2vh, 1rem);
+    margin-bottom: 1rem;
+  }
+  
+  .buttons {
+    min-height: 36px;
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  #btn-container {
+    margin: 1rem auto;
+    gap: 0.5rem;
+  }
+}
+
+/* Very small height devices */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  .digit {
+    font-size: clamp(1.2rem, 5vh, 2rem);
+  }
+  
+  .txt {
+    font-size: clamp(0.5rem, 2vh, 0.8rem);
+  }
+  
+  #container {
+    margin-top: 60px;
+    padding: 0.25rem;
+  }
+  
+  .buttons {
+    min-height: 32px;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+/* Button layout improvements for very small screens */
+@media screen and (max-width: 360px) {
+  #btn-container {
     flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
+    max-width: 280px;
+  }
+  
+  .buttons {
+    width: 90%;
+    max-width: 200px;
+    min-width: 140px;
+    flex: none;
   }
 }
 
-@media screen and (max-width: 590px) {
-  #time .digit {
-    font-size: 3rem;
-  }
-
-  #time .txt {
-    font-size: 1.5rem;
-  }
-
+/* Two-column button layout for medium small screens */
+@media screen and (min-width: 361px) and (max-width: 480px) {
   #btn-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    max-width: 400px;
+  }
+  
+  .buttons {
     width: 100%;
-    justify-content: space-around;
+    min-width: auto;
   }
 }
 
-@media screen and (max-width: 490px) {
-  #time .digit {
-    font-size: 2.6rem;
+/* Button hover and active states optimization for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .buttons:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
+  
+  .buttons:active {
+    transform: scale(0.95);
+    transition-duration: 0.1s;
+  }
+}
 
-  #time .txt {
-    font-size: 1.2rem;
+/* High DPI / Retina displays optimization */
+@media screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
+  .digit, .txt {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .buttons {
+    border-width: 1px;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .video-background, .video-overlay {
+    display: none !important;
+  }
+  
+  .buttons, #btn-container {
+    display: none !important;
+  }
+  
+  nav {
+    display: none !important;
+  }
+  
+  footer {
+    display: none !important;
+  }
+  
+  #container {
+    margin-top: 0 !important;
+    padding: 2rem !important;
+  }
+  
+  .digit, .txt {
+    color: black !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .buttons:hover {
+    transform: none !important;
   }
 }
 
@@ -241,16 +485,20 @@ nav.navbar {
 #record-container {
   /* record container is hidden by default */
   display: none;
-
   margin-top: 20px;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  width: 100%;
+  max-width: 800px;
+  overflow-x: auto;
+  padding: 0 1rem;
 }
 
 #record-table {
   width: 100%;
+  min-width: 300px;
   border-collapse: collapse;
-  margin: 50px auto;
+  margin: 2rem auto;
 }
 
 /* tr:nth-of-type(odd) { 
@@ -258,13 +506,13 @@ nav.navbar {
 	} */
 
 #record-table th,
-td,
-tr {
+#record-table td {
   text-align: center;
   border-radius: 3px;
-  padding: 25px 30px;
+  padding: clamp(0.5rem, 3vw, 1.5rem);
   box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
   color: #000;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
 }
 
 tr {
@@ -360,6 +608,13 @@ th {
   display: block;
   text-align: center;
   font-weight: bold;
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.todayDate h3 {
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  margin: 0;
 }
 
 .hov {
@@ -467,23 +722,29 @@ th {
 .buttons {
   color: #fefefe;
   outline: none;
-  height: 50px;
+  min-height: 44px;
+  height: auto;
   text-align: center;
-  width: 150px;
+  min-width: 120px;
+  width: auto;
+  max-width: 200px;
+  flex: 1 1 auto;
   border-radius: 55px;
   background: rgba(228, 15, 15, 0.1);
   letter-spacing: 1px;
   text-shadow: 0;
-  font-size: 16px;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
   font-weight: bold;
   cursor: pointer;
   transition: all 0.25s ease;
-  margin: 10px;
+  margin: 0.25rem;
+  padding: 0.75rem 1rem;
   font-family: "Roboto";
   overflow: hidden;
   border: 2px solid rgba(42, 17, 186, 0.3);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
 }
 
 .buttons:hover {
@@ -751,6 +1012,26 @@ footer {
   font-size: 0.9rem;
 }
 
+/* Footer and social links responsive */
+.social-links {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  gap: clamp(0.5rem, 3vw, 1.5rem);
+  flex-wrap: wrap;
+}
+
+.textfooter {
+  font-size: clamp(1rem, 3vw, 1.2rem) !important;
+  margin: 1rem 0 !important;
+}
+
+.link {
+  width: clamp(2.5rem, 8vw, 4rem);
+  height: clamp(2.5rem, 8vw, 4rem);
+}
+
 /* Video Background Responsive */
 @media (max-width: 768px) {
   .video-background video {
@@ -774,6 +1055,10 @@ footer {
   .footer-brand {
     justify-content: center;
   }
+  
+  .my-class {
+    padding: 1rem !important;
+  }
 }
 
 .navbar-nav {
@@ -791,7 +1076,7 @@ footer {
   -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   border-top: none !important;
-  border-radius: 0 0 25px 25px !important;
+  border-radius: 0 0 clamp(15px, 4vw, 25px) clamp(15px, 4vw, 25px) !important;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
   position: relative !important;
@@ -855,8 +1140,8 @@ footer {
   background-size: 100% !important;
 }
 
-/* Show hamburger on smaller screens */
-@media (max-width: 991.98px) {
+/* Navbar responsive behavior */
+@media screen and (max-width: 991.98px) {
   .navbar-toggler {
     display: block !important;
   }
@@ -866,45 +1151,84 @@ footer {
     top: 100% !important;
     left: 0 !important;
     right: 0 !important;
-    background-color: rgb(94 95 105 / 74%) !important;
-    border-top: 1px solid #dee2e6 !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
     z-index: 999 !important;
-    min-height: 300px !important; /* Increased height */
-    padding: 20px 0 !important; /* Added padding for better spacing */
+    min-height: auto !important;
+    padding: 1rem 0 !important;
+    border-radius: 0 0 15px 15px !important;
   }
 
   .nav-item {
     flex-direction: column !important;
     width: 100% !important;
+    min-height: auto !important;
+    gap: 0.5rem !important;
   }
 
   .nav-item > a {
-    margin: 5px 15px !important;
-    padding: 15px 20px !important;
+    margin: 0.25rem 1rem !important;
+    padding: 0.75rem 1rem !important;
     text-align: center !important;
     display: block !important;
-    background-color: #f8f9fa !important; /* Added background */
+    background: rgba(255, 255, 255, 0.8) !important;
     border-radius: 8px !important;
-    border: 1px solid #e9ecef !important;
+    border: 1px solid rgba(0, 51, 51, 0.2) !important;
     color: #003333 !important;
     text-decoration: none !important;
     transition: all 0.3s ease !important;
+    font-size: 0.9rem !important;
   }
 
   .nav-item > a:hover {
-    background-color: #ffd166 !important; /* Hover effect */
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    background: #ffd166 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
   }
 
   .nav-item > a#link--active {
-    background-color: #ffd166 !important; /* Active item styling */
-    box-shadow: 2.5px 2.5px 0 var(--active) !important;
+    background: #ffd166 !important;
+    box-shadow: 2px 2px 0 var(--active) !important;
   }
+  
   #switch-theme {
-    margin-left: 45%;
-    margin-top: 25%;
+    display: flex !important;
+    justify-content: center !important;
+    margin: 1rem 0 0 0 !important;
+  }
+  
+  .maintitle {
+    margin-bottom: 0 !important;
+  }
+  
+  .maintitle img {
+    height: 2.5rem !important;
+    width: 2.5rem !important;
+  }
+  
+  #title1 {
+    font-size: 1.4rem !important;
+  }
+}
+
+/* Extra small phones */
+@media screen and (max-width: 480px) {
+  .nav-item > a {
+    margin: 0.25rem 0.5rem !important;
+    padding: 0.6rem 0.8rem !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .maintitle img {
+    height: 2rem !important;
+    width: 2rem !important;
+    margin-right: 0.5rem !important;
+  }
+  
+  #title1 {
+    font-size: 1.2rem !important;
   }
 }
 @media (max-width: 480px) {
@@ -920,23 +1244,60 @@ footer {
 #mode-toggle {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .mode-btn {
-  padding: 8px 15px;
-  margin: 0 5px;
-  border: 1px solid #003333;
+  padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.8rem, 3vw, 1.2rem);
+  margin: 0.25rem;
+  border: 2px solid #003333;
   background-color: white;
   cursor: pointer;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .mode-btn.active {
   background-color: #003333;
   color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 51, 51, 0.3);
 }
+
+/* Countdown input responsive styles */
+#countdown-input-container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+#countdown-minutes {
+  min-width: 100px;
+  max-width: 150px;
+  padding: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  text-align: center;
+  color: #333;
+}
+
+#countdown-minutes::placeholder {
+  color: rgba(51, 51, 51, 0.7);
+}
+
+/* #start-countdown inherits from .buttons class */
 
 /* Dark Mode Styles */
 body.dark-mode {
