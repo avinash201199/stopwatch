@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Stopwatch by Hector JS</title>
-  <meta name="description" content="Modern stopwatch with lap timer, dark mode, and keyboard shortcuts" />
+  <title>Stop-Watch</title>
+  <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- External CSS File Link -->
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- External JS File Link -->
 
   <!-- Favicon Icon-->
   <link rel="icon" type="image/png" href="./img/favicon.png" />
@@ -94,10 +96,47 @@
         <button id="countdown-btn" class="mode-btn">Countdown Timer</button>
       </div>
 
-      <div id="countdown-input-container" style="display: none; margin: 10px 0;">
-        <input type="number" id="countdown-minutes" placeholder="Minutes" min="0" style="width: 100px; padding:5px;">
-        <button class="buttons" id="start-countdown">Start Countdown</button>
-      </div>
+      <div id="countdown-input-container" 
+     style="display: none; margin: 20px 0; text-align: center; animation: fadeIn 0.5s ease-in;">
+  
+  <!-- Timer Presets Section -->
+  <div id="timer-presets" style="margin-bottom: 20px;">
+    <h5 style="color: inherit; margin-bottom: 15px; font-weight: 600;">Quick Presets</h5>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 15px;">
+      <button class="preset-btn" onclick="setPresetTimer(5)" data-minutes="5">5 min</button>
+      <button class="preset-btn" onclick="setPresetTimer(10)" data-minutes="10">10 min</button>
+      <button class="preset-btn" onclick="setPresetTimer(15)" data-minutes="15">15 min</button>
+      <button class="preset-btn" onclick="setPresetTimer(30)" data-minutes="30">30 min</button>
+      <button class="preset-btn" onclick="setPresetTimer(60)" data-minutes="60">1 hour</button>
+    </div>
+  </div>
+
+  <input 
+    type="number" 
+    id="countdown-minutes" 
+    placeholder="Enter minutes..." 
+    min="0"
+    style="
+      width: 140px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      outline: none;
+      transition: all 0.3s ease;
+    "
+    onfocus="this.style.border='2px solid #ffb703'"
+    onblur="this.style.border='2px solid rgba(255, 255, 255, 0.3)'"
+  />
+
+  <button id="start-countdown" class="countdown-btn">
+    Start Countdown
+  </button>
+</div>
       <div>
         <div id="time">
           <span>
@@ -133,10 +172,14 @@
         <button class="buttons" id="lap" onclick="lap()">
           <i class="fas fa-stopwatch"></i> Lap
         </button>
-        <button class="buttons" id="clearlap" onclick="clearLap()">
-          <i class="fas fa-trash"></i> Clear Lap
-        </button>
-      </div>
+         <button class="buttons" id="clearlap" onclick="clearLap()">
+           <i class="fas fa-trash"></i> Clear Lap
+         </button>
+         <label class="tick-label">
+           <input type="checkbox" id="tickToggle">
+           Enable Ticking Sound
+         </label>
+       </div>
       <div>
         <div id="record-container">
           <table id="record-table">
@@ -148,48 +191,26 @@
             <tbody id="record-table-body"></tbody>
           </table>
         </div>
+      </div>
+      <hr />
     </div>
   </div>
 
   <script type="text/javascript">
-    // ============================================
-    // KEYBOARD SHORTCUTS
-    // ============================================
-    // Space = Start/Pause
+    // start or stop stopwatch using "spacebar" key
     document.addEventListener("keydown", (event) => {
       if (event.code === "Space") {
         event.preventDefault();
         start();
       }
     });
-
-    // R = Reset
-    document.addEventListener("keydown", (event) => {
-      if (event.code === "KeyR") {
-        event.preventDefault();
-        reset();
-      }
-    });
-
-    // L = Lap
-    document.addEventListener("keydown", (event) => {
-      if (event.code === "KeyL") {
-        event.preventDefault();
-        lap();
-      }
-    });
-
-    // Legacy shortcuts (kept for backward compatibility)
     document.addEventListener("keydown", (event) => {
       if (event.code === "Backspace") {
-        event.preventDefault();
         reset();
       }
     });
-    
     document.addEventListener("keydown", (event) => {
       if (event.code === "Enter") {
-        event.preventDefault();
         lap();
       }
     });
@@ -200,9 +221,17 @@
       }
     });
 
+    // P key for Start/Stop
     document.addEventListener("keydown", (event) => {
       if (event.code === "KeyP") {
         start();
+      }
+    });
+
+    // R key for Reset
+    document.addEventListener("keydown", (event) => {
+      if (event.code === "KeyR") {
+        reset();
       }
     });
 
@@ -237,7 +266,128 @@
   </footer>
 
   <div id="confetti"></div>
-</body>
 
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🌙 Night Mode (default) */
+.countdown-btn {
+  margin-left: 15px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f4a261, #e76f51);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.countdown-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #ffb703, #fb8500);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* ☀️ Day Mode */
+.light-mode .countdown-btn {
+  background: rgb(0, 51, 51);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.light-mode .countdown-btn:hover {
+  background: rgb(0, 77, 77);
+  transform: scale(1.05);
+}
+
+/* 🎯 Timer Preset Buttons - Rectangular Style */
+.preset-btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 18px;
+  border: none;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  min-width: 100px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.preset-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #f4a261, #e76f51);
+  border-color: #ffb703;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.preset-btn:active {
+  transform: scale(0.98);
+}
+
+.preset-btn.active {
+  background: linear-gradient(135deg, #ffb703, #fb8500);
+  color: #000;
+  border-color: #ffb703;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* Dark Mode Preset Buttons */
+body.dark-mode .preset-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 107, 53, 0.3);
+  color: #ff6b35;
+}
+
+body.dark-mode .preset-btn:hover {
+  background: linear-gradient(135deg, #ff6b35, #ff8c42);
+  border-color: #ff6b35;
+  color: #000;
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+}
+
+body.dark-mode .preset-btn.active {
+  background: linear-gradient(135deg, #ff6b35, #ff8c42);
+  color: #000;
+  border-color: #ff6b35;
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.6);
+}
+
+/* Responsive Design for Preset Buttons */
+@media screen and (max-width: 768px) {
+  .preset-btn {
+    min-width: 80px;
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  
+  #timer-presets div {
+    gap: 8px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .preset-btn {
+    min-width: 70px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  #timer-presets div {
+    gap: 6px !important;
+  }
+}
+</style>
+</body>
 
 </html>
