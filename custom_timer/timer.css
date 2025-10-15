@@ -178,22 +178,35 @@ body > .container-fluid {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  margin: 0;
+  gap: 0;
+  margin: 20px 0;
+  letter-spacing: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 15px 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .digit {
-  font-size: 35px;
+  font-size: 80px;
   font-weight: 600;
   color: #ffffff;
-  margin: 0 2px;
+  margin: 0;
   font-family: "digital-7";
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .txt {
-  font-size: 15px;
+  font-size: 60px;
   font-weight: bold;
   color: #ffffff;
+  margin: 0 4px;
+  font-family: "digital-7";
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Button container */
@@ -210,11 +223,12 @@ body > .container-fluid {
 /* Custom timer form */
 #custom-timer-form {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
   margin-bottom: 10px;
   align-items: flex-end;
+  flex-direction: row;
 }
 
 /* Progress section */
@@ -337,11 +351,6 @@ input:focus {
 #reset {
   border-color: #9900ff;
   color: #9900ff;
-}
-
-#lap {
-  border-color: #ffff00;
-  color: #ffff00;
 }
 
 #stop-alarm {
@@ -469,11 +478,18 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
 
 
 /* input fields  */
-.form__group {
+.form__group, .btn-group {
   position: relative;
   padding: 10px 0 0;
-  width: 100%;
-  max-width: 120px;
+  width: auto;
+  max-width: 110px;
+  margin: 0 5px;
+}
+
+.btn-group {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5px;
 }
 
 .form__field {
@@ -487,6 +503,7 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   padding: 5px 0;
   background: transparent;
   transition: border-color 0.2s;
+  min-width: 80px;
 }
 
 .form__field::placeholder {
@@ -494,7 +511,7 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
 }
 
 .form__field:placeholder-shown ~ .form__label {
-  font-size: 14px;
+  font-size: 12px;
   cursor: text;
   top: 20px;
 }
@@ -522,7 +539,7 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   top: 0;
   display: block;
   transition: 0.2s;
-  font-size: 17px;
+  font-size: 14px;
   color: #21f341;
   font-weight: 700;
 }
@@ -538,7 +555,7 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
 .animated-button {
   position: relative;
   display: inline-block;
-  padding: 4px 15px;
+  padding: 6px 15px;
   border: none;
   font-size: 14px;
   background-color: inherit;
@@ -549,6 +566,8 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   cursor: pointer;
   overflow: hidden;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  margin-bottom: 6px;
+  height: 34px;
 }
 
 .animated-button span:last-child {
@@ -590,17 +609,17 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   display: flex !important;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
-  gap: 20px;
+  padding: 5px 0;
+  gap: 15px;
   list-style: none;
-  margin: 1rem 0 2rem;
+  margin: 0.5rem 0 1rem;
 }
 
 li.hov {
-  width: max(4.5vw, 3rem);
-  height: max(4.5vw, 3rem);
+  width: max(4.5vw, 3.5rem);
+  height: max(4.5vw, 3.5rem);
   list-style: none;
-  margin: 8px;
+  margin: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -613,22 +632,21 @@ li.hov {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  background: white;
   color: #333;
-  font-size: 18px;
+  font-size: 22px;
   transition: all 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 209, 102, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   object-fit: contain;
   padding: 8px;
 }
 
 .hov:hover .link {
   transform: scale(1.05);
-  box-shadow: none;
-  border-color: white;
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.7);
+  border-color: rgba(255, 209, 102, 1);
+  filter: brightness(1.1) drop-shadow(0 0 5px rgba(255, 209, 102, 0.5));
 }
 
 .social-container a:hover .social-icon {
@@ -636,17 +654,17 @@ li.hov {
 }
 
 .textfooter {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin: 10px 0;
+  margin: 8px 0;
   text-align: center;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   color: white;
 }
 
-/* Style for red heart */
+/* Style for heart */
 .textfooter .heart {
-  color: #ff4757 !important;
+  color: #ff6584 !important;
   font-size: 1.3rem;
   animation: heartbeat 1.5s ease-in-out infinite;
   margin: 0 3px;
@@ -666,20 +684,22 @@ footer {
   color: white !important;
   background: transparent !important;
   position: relative;
-  width: 100%;
+  width: 30%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .my-class {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
   backdrop-filter: blur(10px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  border-top: 2px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3) !important;
   min-width: 100%;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   margin: 0 auto;
 }
 
@@ -687,19 +707,21 @@ footer {
   display: none !important;
 }
 
-.timer.pulse {
-  animation: pulse 0.6s ease-in-out infinite alternate;
+#time.pulse {
+  animation: pulse 0.8s ease-in-out infinite alternate;
 }
 
 @keyframes pulse {
   from {
     transform: scale(1);
     filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
 
   to {
-    transform: scale(1.06);
-    filter: drop-shadow(0 0 12px rgba(255, 214, 102, 0.8));
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 20px rgba(255, 71, 87, 0.8));
+    box-shadow: 0 0 25px rgba(255, 71, 87, 0.6);
   }
 }
 
@@ -822,14 +844,17 @@ body.dark-mode .social-circle i {
 }
 
 body.dark-mode .link {
-  background-color: #ff6b35 !important;
-  color: white !important;
+  background-color: white !important;
+  color: #333 !important;
+  border: 2px solid rgba(255, 209, 102, 0.2) !important;
+  font-size: 22px;
 }
 
 body.dark-mode .hov:hover .link {
   transform: scale(1.05);
-  box-shadow: 0 0 8px rgba(255, 71, 87, 0.6);
-  border-color: rgba(255, 71, 87, 0.8);
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.7);
+  border-color: rgba(255, 209, 102, 1) !important;
+  filter: brightness(1.1) drop-shadow(0 0 5px rgba(255, 209, 102, 0.5));
 }
 
 body.dark-mode .video-overlay {
@@ -886,21 +911,26 @@ body.dark-mode #progress-bar {
 /* Responsive Design */
 @media screen and (max-width: 990px) {
   .digit {
-    font-size: 32px;
+    font-size: 70px;
   }
 
   .txt {
-    font-size: 14px;
+    font-size: 50px;
+  }
+  
+  #time {
+    max-width: 450px;
+    padding: 12px 0;
   }
 }
 
 @media screen and (max-width: 890px) {
   .digit {
-    font-size: 30px;
+    font-size: 60px;
   }
 
   .txt {
-    font-size: 13px;
+    font-size: 45px;
   }
 
   #container {
@@ -909,15 +939,19 @@ body.dark-mode #progress-bar {
     align-items: center;
     padding: 0;
   }
+  
+  #time {
+    max-width: 400px;
+  }
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 768px) {
   .digit {
-    font-size: 28px;
+    font-size: 50px;
   }
 
   .txt {
-    font-size: 12px;
+    font-size: 40px;
   }
 
   #btn-container {
@@ -926,23 +960,39 @@ body.dark-mode #progress-bar {
   }
 
   #custom-timer-form {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .form__group, .btn-group {
+    margin-bottom: 5px;
+  }
+  
+  #time {
+    max-width: 350px;
+    padding: 10px 0;
   }
 }
 
 @media screen and (max-width: 490px) {
   .digit {
-    font-size: 22px;
+    font-size: 40px;
   }
 
   .txt {
-    font-size: 10px;
+    font-size: 30px;
+    margin: 0 2px;
   }
 
   #container {
     padding: 0;
     margin: 20px auto 0;
+  }
+  
+  #time {
+    max-width: 300px;
+    padding: 8px 0;
   }
 }
 

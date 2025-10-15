@@ -99,39 +99,34 @@
     <div id="container">
       <div id="custom-timer-form">
         <div class="form__group field">
-          <input type="number" placeholder="" id="hoursInput" class="form__field justify-content-between time">
-          <label for="name" class="form__label">Enter Hours</label>
+          <input type="number" placeholder="" id="hoursInput" min="0" max="99" class="form__field justify-content-between time">
+          <label for="hoursInput" class="form__label">Enter Hours</label>
         </div>
         <div class="form__group field">
-          <input type="number" placeholder="" id="minutesInput" class="form__field justify-content-between time">
-          <label for="name" class="form__label">Enter Minutes</label>
+          <input type="number" placeholder="" id="minutesInput" min="0" max="59" class="form__field justify-content-between time">
+          <label for="minutesInput" class="form__label">Enter Minutes</label>
         </div>
         <div class="form__group field">
-          <input type="number" placeholder="" id="secondsInput" class="form__field justify-content-between time">
-          <label for="name" class="form__label">Enter Seconds</label>
+          <input type="number" placeholder="" id="secondsInput" min="0" max="59" class="form__field justify-content-between time">
+          <label for="secondsInput" class="form__label">Enter Seconds</label>
         </div>
 
-        <button type="submit" class="animated-button btn-outline-success button-pill px-3"
-          onClick="setCustomTime(hoursInput.value,minutesInput.value,secondsInput.value)">
-          <span>Make Timer</span>
-          <span></span>
-        </button>
+        <div class="btn-group field">
+          <button type="submit" class="animated-button btn-outline-success button-pill px-3"
+            onClick="setCustomTime(hoursInput.value,minutesInput.value,secondsInput.value)">
+            <span>Make Timer</span>
+            <span></span>
+          </button>
+        </div>
       </div>
 
       <div id="timer-display">
         <div id="time">
-          <span>
-            <span class="digit" id="hours">00</span>
-            <span class="txt">Hr</span>
-          </span>
-          <span>
-            <span class="digit" id="minutes">00</span>
-            <span class="txt">Min</span>
-          </span>
-          <span>
-            <span class="digit" id="seconds">00</span>
-            <span class="txt">Sec</span>
-          </span>
+          <span class="digit" id="hours">00</span>
+          <span class="txt">:</span>
+          <span class="digit" id="minutes">00</span>
+          <span class="txt">:</span>
+          <span class="digit" id="seconds">00</span>
         </div>
         
         <span class="todayDate">
@@ -161,10 +156,6 @@
           <i class="fas fa-undo"></i> Reset
         </button>
 
-        <button type="button" class="round-btn" id="lap">
-          <i class="fas fa-flag"></i> Lap
-        </button>
-
         <button type="button" class="round-btn hidden" id="stop-alarm" onClick="stopAlarm()">
           <i class="fas fa-bell-slash"></i> Stop Alarm
         </button>
@@ -176,7 +167,7 @@
   <footer>
     <div class="container-fluid my-class foot">
       <div class="container">
-        <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
+        <p class="textfooter" style="margin-top: 1rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
 
         <div>
           <ul style="color: white" class="social-links">
@@ -196,6 +187,7 @@
         </div>
       </div>
     </div>
+    </container>
   </footer>
 
   <div id="confetti"></div>
