@@ -174,7 +174,19 @@ nav.navbar {
   text-align: center;
 }
 
-/* ===== RESPONSIVE DESIGN: MOBILE-FIRST ===== */
+#switch-theme {
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-end;
+  position: relative;
+}
+
+@media screen and (max-width: 990px) {
+  #time .digit {
+    font-size: 4.3rem;
+  }
 
 /* Small phones (320px and up) - Base mobile styles already applied above */
 @media screen and (min-width: 320px) {
@@ -282,15 +294,41 @@ nav.navbar {
   }
 }
 
-/* Desktop (1200px and up) */
-@media screen and (min-width: 1200px) {
-  .buttons {
-    min-width: 160px;
-    font-size: 1.2rem;
-  }
-  
-  .digit {
-    font-size: clamp(5rem, 10vw, 7rem);
+/* Fullscreen button - match dark mode toggle aesthetics */
+
+.fs-btn {
+  width: 50px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+  order: -1;
+}
+.fs-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.1);
+}
+.fs-btn i { font-size: 14px; }
+
+/* Light mode variant */
+.light-mode .fs-btn {
+  background: #111;
+  color: #fff;
+  border-color: rgba(255,255,255,0.4);
+}
+.light-mode .fs-btn:hover { background: #222; }
+
+@media screen and (max-width: 890px) {
+  #time .digit {
+    font-size: 4rem;
   }
   
   .txt {
@@ -558,9 +596,9 @@ th {
 
 .checkbox {
   opacity: 0;
-  position: relative;
+  position: absolute;
   top: 0px;
-  right: 27px;
+  right: 0px;
   z-index: 10;
   height: 3rem;
   width: 4rem;
@@ -573,11 +611,10 @@ th {
   background-color: #111;
   display: flex;
   border-radius: 50px;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
-  margin-top: -40px;
-  position: relative;
   transform: scale(1);
 }
 
