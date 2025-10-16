@@ -746,22 +746,8 @@ $(document).ready(function () {
 });
 
 
-
-let calendarMode = 'universal';
-let tokenClient;
-let gapiInited = false;
-let gisInited = false;
-
-const CLIENT_ID = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
-const API_KEY = 'YOUR_API_KEY';
-const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
-const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
-
-function hasAPICredentials() {
-    return !CLIENT_ID.includes('YOUR_CLIENT_ID') && !API_KEY.includes('YOUR_API_KEY');
-}
-
-
+ 
+// === Calendar Integration ===
 function showStatus(message, type = 'info') {
     const statusDiv = $id('calendar-status');
     statusDiv.innerHTML = message;
@@ -773,7 +759,13 @@ function showStatus(message, type = 'info') {
     }, 5000);
 }
 
-function createUniversalCalendarEvent(eventDetails) {
+// Make sure the calendar button is visible
+document.addEventListener('DOMContentLoaded', function() {
+    $id('schedule-btn').style.display = 'inline-block';
+});
+
+function generateICSFile(eventDetails) {
+    // Format dates for iCalendar format (remove dashes and colons)
     const startDate = new Date(eventDetails.startDateTime);
     const endDate = new Date(eventDetails.endDateTime);
     
@@ -784,103 +776,46 @@ function createUniversalCalendarEvent(eventDetails) {
     const startStr = formatDateTime(startDate);
     const endStr = formatDateTime(endDate);
     
-    const baseUrl = 'https://calendar.google.com/calendar/render';
-    const params = new URLSearchParams({
-        action: 'TEMPLATE',
-        text: eventDetails.title,
-        dates: `${startStr}/${endStr}`,
-        details: eventDetails.description || '',
-        location: '',
-        trp: false
-    });
+    // Create the iCalendar content
+    return `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Pomodoro Timer//Calendar Event//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+SUMMARY:${eventDetails.title}
+DESCRIPTION:${eventDetails.description.replace(/\n/g, '\\n')}
+DTSTART:${startStr}
+DTEND:${endStr}
+STATUS:CONFIRMED
+SEQUENCE:0
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
+}
+
+function addEventToCalendar(eventDetails) {
+    // Create a downloadable .ics file for calendar apps
+    const icsContent = generateICSFile(eventDetails);
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
     
-    const calendarUrl = `${baseUrl}?${params.toString()}`;
-    window.open(calendarUrl, '_blank');
+    // Create a download link
+    const downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = `${eventDetails.title.replace(/\s+/g, '_')}.ics`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    
+    // Clean up the URL object
+    setTimeout(() => URL.revokeObjectURL(url), 100);
     
     return true;
-}
-
-function gapiLoaded() {
-    if (hasAPICredentials()) {
-        gapi.load('client', initializeGapiClient);
-    }
-}
-
-async function initializeGapiClient() {
-    try {
-        await gapi.client.init({
-            apiKey: API_KEY,
-            discoveryDocs: [DISCOVERY_DOC],
-        });
-        gapiInited = true;
-        calendarMode = 'api';
-        maybeEnableButtons();
-    } catch (err) {
-        console.error('Error initializing GAPI:', err);
-        calendarMode = 'universal';
-        maybeEnableButtons();
-    }
-}
-
-function gisLoaded() {
-    if (hasAPICredentials()) {
-        tokenClient = google.accounts.oauth2.initTokenClient({
-            client_id: CLIENT_ID,
-            scope: SCOPES,
-            callback: '',
-        });
-        gisInited = true;
-        maybeEnableButtons();
-    }
-}
-
-function maybeEnableButtons() {
-    if (calendarMode === 'universal') {
-        $id('authorize-btn').style.display = 'none';
-        $id('schedule-btn').style.display = 'inline-block';
-        $id('signout-btn').style.display = 'none';
-    } else if (gapiInited && gisInited) {
-        $id('authorize-btn').style.display = 'inline-block';
-    }
-}
-
-function handleAuthClick() {
-    if (calendarMode === 'universal') {
-        openScheduleModal();
-        return;
-    }
-
-    tokenClient.callback = async (resp) => {
-        if (resp.error !== undefined) {
-            throw (resp);
-        }
-        $id('authorize-btn').style.display = 'none';
-        $id('schedule-btn').style.display = 'inline-block';
-        $id('signout-btn').style.display = 'inline-block';
-        showStatus('Connected to Google Calendar!', 'success');
-    };
-
-    if (gapi.client.getToken() === null) {
-        tokenClient.requestAccessToken({prompt: 'consent'});
-    } else {
-        tokenClient.requestAccessToken({prompt: ''});
-    }
-}
-
-function handleSignoutClick() {
-    if (calendarMode === 'universal') {
-        return;
-    }
-    
-    const token = gapi.client.getToken();
-    if (token !== null) {
-        google.accounts.oauth2.revoke(token.access_token);
-        gapi.client.setToken('');
-        $id('authorize-btn').style.display = 'inline-block';
-        $id('schedule-btn').style.display = 'none';
-        $id('signout-btn').style.display = 'none';
-        showStatus('Signed out from Google Calendar', 'info');
-    }
 }
 
 function openScheduleModal() {
@@ -900,40 +835,7 @@ function closeScheduleModal() {
     $id('scheduleModal').style.display = 'none';
 }
 
-async function createCalendarEvent(eventDetails) {
-    try {
-        const event = {
-            'summary': eventDetails.title,
-            'description': eventDetails.description || 'Pomodoro productivity session',
-            'start': {
-                'dateTime': eventDetails.startDateTime,
-                'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-            },
-            'end': {
-                'dateTime': eventDetails.endDateTime,
-                'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-            },
-            'reminders': {
-                'useDefault': false,
-                'overrides': [
-                    {'method': 'popup', 'minutes': 5}
-                ]
-            }
-        };
-
-        const request = await gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': event
-        });
-
-        return request.result;
-    } catch (err) {
-        console.error('Error creating event:', err);
-        throw err;
-    }
-}
-
-$id('calendar-form').addEventListener('submit', async function(e) {
+$id('calendar-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const title = $id('event-title').value;
@@ -961,22 +863,41 @@ $id('calendar-form').addEventListener('submit', async function(e) {
     try {
         showStatus('Creating calendar event...', 'info');
         
-        if (calendarMode === 'universal') {
-            createUniversalCalendarEvent(eventDetails);
-            showStatus('Opening Google Calendar to add your event!', 'success');
-            closeScheduleModal();
-        } else {
-            const event = await createCalendarEvent(eventDetails);
-            showStatus('Event added to your Google Calendar!', 'success');
-            closeScheduleModal();
+        const success = addEventToCalendar(eventDetails);
+        if (success) {
+            // Show success message with animation
+            const successMsg = document.createElement('div');
+            successMsg.style.position = 'fixed';
+            successMsg.style.bottom = '20px';
+            successMsg.style.left = '50%';
+            successMsg.style.transform = 'translateX(-50%)';
+            successMsg.style.backgroundColor = '#4CAF50';
+            successMsg.style.color = 'white';
+            successMsg.style.padding = '15px 25px';
+            successMsg.style.borderRadius = '8px';
+            successMsg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+            successMsg.style.zIndex = '10000';
+            successMsg.style.display = 'flex';
+            successMsg.style.alignItems = 'center';
+            successMsg.style.fontWeight = 'bold';
+            successMsg.style.opacity = '0';
+            successMsg.style.transition = 'opacity 0.3s ease';
+            successMsg.innerHTML = '<i class="fas fa-check-circle" style="margin-right: 10px; font-size: 20px;"></i> Event added to calendar!';
+            document.body.appendChild(successMsg);
             
-            if (event.htmlLink) {
+            setTimeout(() => {
+                successMsg.style.opacity = '1';
+            }, 10);
+            
+            setTimeout(() => {
+                successMsg.style.opacity = '0';
                 setTimeout(() => {
-                    if (confirm('Event created! Would you like to view it in Google Calendar?')) {
-                        window.open(event.htmlLink, '_blank');
-                    }
-                }, 500);
-            }
+                    document.body.removeChild(successMsg);
+                }, 300);
+            }, 3000);
+            
+            showStatus(`Event "${title}" added to your calendar!`, 'success');
+            closeScheduleModal();
         }
     } catch (error) {
         showStatus('Failed to create event. Please try again.', 'error');
@@ -1119,3 +1040,97 @@ window.addEventListener('load', () => {
         maybeEnableButtons();
     }
 });
+
+
+// === Calendar Modal Logic ===
+function openScheduleModal() {
+  const modal = document.getElementById("scheduleModal");
+  if (modal) {
+    // Apply styles directly to ensure visibility
+    modal.style.display = "block";
+    modal.style.position = "fixed";
+    modal.style.zIndex = "9999";
+    modal.style.left = "0";
+    modal.style.top = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.overflow = "auto";
+    modal.style.backgroundColor = "rgba(0,0,0,0.7)";
+    modal.style.backdropFilter = "blur(5px)";
+    
+    // Set default values
+    const today = new Date();
+    const dateStr = today.toISOString().split('T')[0];
+    const timeStr = today.toTimeString().slice(0, 5);
+    
+    document.getElementById("event-title").value = isFocusMode ? "Pomodoro Focus Session" : "Pomodoro Break";
+    document.getElementById("event-date").value = dateStr;
+    document.getElementById("event-time").value = timeStr;
+    
+    // Add animation
+    setTimeout(() => {
+      modal.style.opacity = '1';
+    }, 10);
+    
+    // Ensure modal content is styled properly
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+      modalContent.style.background = "#1a1a1a";
+      modalContent.style.color = "#e0e0e0";
+      modalContent.style.margin = "5% auto";
+      modalContent.style.width = "90%";
+      modalContent.style.maxWidth = "550px";
+      modalContent.style.borderRadius = "20px";
+      modalContent.style.boxShadow = "0 15px 35px rgba(0,0,0,0.5)";
+      modalContent.style.border = "1px solid rgba(255,255,255,0.1)";
+    }
+  }
+}
+
+function closeScheduleModal() {
+  const modal = document.getElementById("scheduleModal");
+  if (modal) {
+    modal.style.opacity = '0';
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300);
+  }
+}
+
+function addEventToCalendar(eventDetails) {
+  try {
+    // Format dates for Google Calendar URL
+    const startDate = new Date(eventDetails.startDateTime);
+    const endDate = new Date(eventDetails.endDateTime);
+    
+    // Format dates for Google Calendar (YYYYMMDDTHHMMSS/YYYYMMDDTHHMMSS)
+    const formatGoogleCalendarDate = (date) => {
+      return date.toISOString().replace(/-|:|\.\d+/g, '');
+    };
+    
+    const startStr = formatGoogleCalendarDate(startDate);
+    const endStr = formatGoogleCalendarDate(endDate);
+    
+    // Create Google Calendar URL with event details
+    const googleCalendarUrl = 'https://calendar.google.com/calendar/render?' + 
+      'action=TEMPLATE' + 
+      `&text=${encodeURIComponent(eventDetails.title)}` + 
+      `&dates=${startStr}/${endStr}` + 
+      `&details=${encodeURIComponent(eventDetails.description)}` + 
+      '&sf=true' + 
+      '&output=xml';
+    
+    // Open Google Calendar in a new tab
+    window.open(googleCalendarUrl, '_blank');
+    
+    return true;
+  } catch (error) {
+    console.error('Error creating calendar event:', error);
+    return false;
+  }
+}
+
+function formatDateForICS(dateTimeStr) {
+  // Convert "YYYY-MM-DDThh:mm:ss" to "YYYYMMDDThhmmssZ"
+  return dateTimeStr.replace(/[-:]/g, '') + 'Z';
+}
