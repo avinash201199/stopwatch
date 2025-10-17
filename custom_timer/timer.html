@@ -40,7 +40,8 @@
   <nav class="navbar navbar-default navbar-expand-lg thinner navcol">
     <div class="container-fluid-nav">
       <div class="maintitle">
-        <img src="../img/logo.gif" style="height: 3rem; width: 3rem;margin-right:1rem; border-radius: 50%;" alt=""> <span id="title1">Stop
+        <img src="../img/logo.gif" style="height: 3rem; width: 3rem;margin-right:1rem; border-radius: 50%;" alt="">
+        <span id="title1">Stop
           Watch</span>
       </div>
       <button class="navbar-toggler" style="background-color: rgb(77, 123, 247);" type="button"
@@ -87,16 +88,38 @@
         <span>Make Timer</span>
         <span></span>
       </button>
+
+    </div>
+
+    <!-- Custom presets -->
+
+    <div id="preset-container">
+      <button class="preset-timer-btn preset-btn" h="0" m="5" s="0">Brush Teeth 5m</button>
+      <button class="preset-timer-btn preset-btn" h="0" m="10" s="0">Meditate 10m</button>
+      <button class="preset-timer-btn preset-btn" h="0" m="15" s="0">Exercise 15m</button>
+      <button class="preset-timer-btn preset-btn" h="0" m="30" s="0">Read Book 30m</button>
+      <button class="preset-timer-btn preset-btn" h="1" m="0" s="0">Study 1h</button>
     </div>
 
     <div class="col-12 my-5" id="timer-container">
       <div class="row justify-content-center">
-        <div class="col-auto my-auto"><p class="timer" id="hours">00</p></div>
-        <div class="col-auto my-auto"><p class="timer">:</p></div>
-        <div class="col-auto my-auto"><p class="timer" id="minutes">00</p></div>
-        <div class="col-auto my-auto"><p class="timer">:</p></div>
-        <div class="col-auto my-auto"><p class="timer" id="seconds">00</p></div>
+        <div class="col-auto my-auto">
+          <p class="timer" id="hours">00</p>
+        </div>
+        <div class="col-auto my-auto">
+          <p class="timer">:</p>
+        </div>
+        <div class="col-auto my-auto">
+          <p class="timer" id="minutes">00</p>
+        </div>
+        <div class="col-auto my-auto">
+          <p class="timer">:</p>
+        </div>
+        <div class="col-auto my-auto">
+          <p class="timer" id="seconds">00</p>
+        </div>
       </div>
+
 
       <!-- ✅ Progress Bar Section -->
       <div class="row justify-content-center my-4">
@@ -128,8 +151,8 @@
       </div>
     </div>
   </div>
-  
-   <!-- FOOTER -->
+
+  <!-- FOOTER -->
   <footer>
     <div class="container-fluid my-class foot">
       <div class="container">
@@ -137,17 +160,20 @@
 
         <div>
           <ul style="color: white" class="social-links">
-            <li class="hov"><a href="https://github.com/avinash201199"><img class="link" src="../img/GitHub.png" /></a></li>
-            <li class="hov"><a href="https://www.linkedin.com/in/avinash-singh-071b79175/"><img class="link" src="../img/LinkedinLogo.png" /></a></li>
-            <li class="hov"><a href="https://www.instagram.com/lets__code/"><img class="link" src="../img/Instagram.png" /></a></li>
+            <li class="hov"><a href="https://github.com/avinash201199"><img class="link" src="../img/GitHub.png" /></a>
+            </li>
+            <li class="hov"><a href="https://www.linkedin.com/in/avinash-singh-071b79175/"><img class="link"
+                  src="../img/LinkedinLogo.png" /></a></li>
+            <li class="hov"><a href="https://www.instagram.com/lets__code/"><img class="link"
+                  src="../img/Instagram.png" /></a></li>
           </ul>
         </div>
       </div>
     </div>
   </footer>
-  
+
   <div id="confetti"></div>
-  
+
   <script src="timer.js" type="text/javascript"></script>
   <script src="../jquery.js" type="text/javascript"></script>
 
@@ -157,9 +183,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
-    <div id="confetti"></div>
+  <div id="confetti"></div>
 
   <div id="confetti"></div>
   <script src="timer.js" type="text/javascript"></script>
 </body>
+
 </html>

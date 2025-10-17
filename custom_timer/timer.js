@@ -1,6 +1,6 @@
 const customTime = {}
 var paused = true
-var minutes
+let minutes
 var timerDate
 var remainingTime = 0
 var darkTheme = false
@@ -67,6 +67,42 @@ function stopAlarm() {
     $id('stop-alarm').classList.add('hidden');
     stopCelebration();
 }
+
+//preset buttons functionality
+document.querySelectorAll('.preset-timer-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const hours = button.getAttribute('h') || 0;
+        const minutes = button.getAttribute('m') || 0;
+        const seconds = button.getAttribute('s') || 0;
+        setCustomTime(hours, minutes, seconds);
+    });
+});
+
+// document.getElementById('add-more-btn').addEventListener('click', () => {
+//     const hours = prompt("Enter hours:", "0");
+//     const minutes = prompt("Enter minutes:", "0");
+//     const seconds = prompt("Enter seconds:", "0");
+//     const name = prompt("Enter Name", "Custom Timer");
+
+//     const newButton = document.createElement('button');
+//     newButton.className = 'preset-timer-btn preset-btn';
+//     newButton.setAttribute('h', hours);
+//     newButton.setAttribute('m', minutes);
+//     newButton.setAttribute('s', seconds);
+//     newButton.innerHTML = name + hours!=0?` ${hours}h`:'' + minutes!=0?` ${minutes}m`:''
+//         + seconds!=0?` ${seconds}s`:'';
+    
+//     document.getElementById('preset-container').insertBefore(newButton, document.getElementById('add-more-btn'));
+
+//     newButton.addEventListener('click', () => {
+//         const hours = button.getAttribute('h') || 0;
+//         const minutes = button.getAttribute('m') || 0;
+//         const seconds = button.getAttribute('s') || 0;
+//         setCustomTime(hours, minutes, seconds);
+//     });
+
+// });
+    
 
 // 🧮 Progress Bar Updater
 function updateProgressBar() {
