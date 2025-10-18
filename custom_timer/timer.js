@@ -119,7 +119,7 @@ function stopAlarm() {
 
 //preset buttons functionality
 
-function createTimerButton(name, hours, minutes, seconds) {
+function createTimerButton(name, hours, minutes, seconds, index) {
 
     const button = document.createElement('button');
     button.className = 'preset-timer-btn preset-btn';
@@ -127,7 +127,16 @@ function createTimerButton(name, hours, minutes, seconds) {
     button.setAttribute('h', hours);
     button.setAttribute('m', minutes);
     button.setAttribute('s', seconds);
+    button.setAttribute('data-index', index);
     button.innerHTML = `${name} ${hours != 0 ? ` ${hours}h` : ''}${minutes != 0 ? ` ${minutes}m` : ''}${seconds != 0 ? ` ${seconds}s` : ''}`;
+
+    // Create delete icon
+    const deleteIcon = document.createElement('span');
+    deleteIcon.className = 'delete-icon';
+    deleteIcon.innerHTML = '<i class="fas fa-trash"></i>';
+    deleteIcon.setAttribute('data-index', index);
+    
+    button.appendChild(deleteIcon);
 
     return button;
 
@@ -146,8 +155,8 @@ function createAddMoreButton() {
 function renderPresetButtons() {
 
     document.getElementById('preset-container').innerHTML = '';
-    timers.forEach(timer => {
-        const button = createTimerButton(timer.name, timer.hours, timer.minutes, timer.seconds);
+    timers.forEach((timer, index) => {
+        const button = createTimerButton(timer.name, timer.hours, timer.minutes, timer.seconds, index);
         document.getElementById('preset-container').appendChild(button);
     });
 
@@ -156,11 +165,27 @@ function renderPresetButtons() {
 
     
     document.querySelectorAll('.preset-timer-btn').forEach(button => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
+            // Don't trigger if clicking delete icon
+            if (e.target.closest('.delete-icon')) return;
+            
             const hours = button.getAttribute('h') || 0;
             const minutes = button.getAttribute('m') || 0;
             const seconds = button.getAttribute('s') || 0;
             setCustomTime(hours, minutes, seconds);
+        });
+    });
+    
+    // Add delete functionality
+    document.querySelectorAll('.delete-icon').forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const index = parseInt(icon.getAttribute('data-index'));
+            
+            timers.splice(index, 1);
+            localStorage.setItem("timers", JSON.stringify(timers));
+            renderPresetButtons();
+            
         });
     });
     
@@ -172,7 +197,7 @@ function renderPresetButtons() {
         const name = prompt("Enter Name", "Custom Timer");
     
         if (hours === null || minutes === null || seconds === null || name === null) {
-            return; // User cancelled the prompt
+            return;
         }
         if(isNaN(hours) || isNaN(minutes) || isNaN(seconds) || hours < 0 || minutes < 0 || seconds < 0){
             alert("⛔ Please enter valid positive numbers for hours, minutes, and seconds!");
