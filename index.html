@@ -8,36 +8,27 @@
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-  <!-- External CSS File Link -->
   <link rel="stylesheet" href="./style.css" />
 
-  <!-- External JS File Link -->
-
-  <!-- Favicon Icon-->
   <link rel="icon" type="image/png" href="./img/favicon.png" />
 
-  <!-- jquery CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script type="text/javascript" src="jquery.js"></script>
 
-  <!-- FontAwesome CDN-->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-  <!-- Video Background -->
   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -999;">
     <video width="100%" height="100%" autoplay muted loop style="object-fit: cover;">
       <source src="lofi.mp4" type="video/mp4">
     </video>
   </div>
 
-  <!-- Video Overlay for Dark Mode -->
   <div class="video-overlay"
     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: -998;">
   </div>
@@ -99,7 +90,6 @@
       <div id="countdown-input-container" 
      style="display: none; margin: 20px 0; text-align: center; animation: fadeIn 0.5s ease-in;">
   
-  <!-- Timer Presets Section -->
   <div id="timer-presets" style="margin-bottom: 20px;">
     <h5 style="color: inherit; margin-bottom: 15px; font-weight: 600;">Quick Presets</h5>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 15px;">
@@ -151,7 +141,6 @@
         <button class="buttons" id="start" onclick="start()">
           <i class="fas fa-play-circle"></i> Start
         </button>
-        <!--   <button class="btn" id="stop" onclick="stop()">Stop</button> -->
         <button class="buttons" id="reset" onclick="reset()">
           <i class="fas fa-undo"></i> Reset
         </button>
@@ -166,7 +155,12 @@
            Enable Ticking Sound
          </label>
        </div>
-      <div>
+       
+       <div id="voice-command-status" 
+            style="color: #43c6ac; font-weight: bold; margin-top: 15px; display: none; text-align: center;">
+            <i class="fas fa-microphone-alt"></i> Voice commands are ready.
+       </div>
+       <div>
         <div id="record-container">
           <table id="record-table">
             <tr>
@@ -224,7 +218,6 @@
   </script>
   <script src="script.js"></script>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container-fluid my-class foot">
       <div class="container">

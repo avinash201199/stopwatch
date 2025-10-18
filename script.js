@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // Setup dark mode toggle
   setupDarkModeToggle();
+  
+  // Initialize voice control (NEW)
+  initializeVoiceControl();
 });
 
 // Save stopwatch state to localStorage
@@ -332,7 +335,7 @@ function lap() {
 
     const table = $id("record-table-body");
     if (table) {
-      const row = table.insertRow(0);
+      const row = table.insertCell(0);
       const no_cell = row.insertCell(0);
       const time_cell = row.insertCell(1);
       const diff_cell = row.insertCell(2);
@@ -530,4 +533,95 @@ function setPresetTimer(minutes) {
     input.style.border = "2px solid rgba(255, 255, 255, 0.3)";
     input.style.color = "white";
   }, 300);
+}
+
+// ============================================
+// VOICE COMMAND CONTROL (NEW FEATURE)
+// ============================================
+
+function initializeVoiceControl() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const voiceStatus = $id('voice-command-status');
+
+    if (!SpeechRecognition) {
+        if (voiceStatus) {
+            voiceStatus.style.display = 'block';
+            voiceStatus.innerHTML = '❌ Voice control not supported in this browser.';
+            voiceStatus.style.color = '#ff0000';
+        }
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = function() {
+        if (voiceStatus) {
+            voiceStatus.style.display = 'block';
+            voiceStatus.innerHTML = '<i class="fas fa-microphone-alt"></i> **LISTENING:** Say "Start", "Stop", "Reset", or "Lap"';
+            voiceStatus.style.color = '#43c6ac';
+        }
+    };
+
+    recognition.onresult = function(event) {
+        const last = event.results.length - 1;
+        const rawCommand = event.results[last][0].transcript.trim();
+        const command = rawCommand.toLowerCase();
+        
+        if (voiceStatus) {
+            voiceStatus.innerHTML = `<i class="fas fa-bullhorn"></i> **COMMAND HEARD:** "${rawCommand}"`;
+            voiceStatus.style.color = '#ffd166';
+        }
+
+        if (mode === 'stopwatch') {
+            if (command.includes('start') || command.includes('stop') || command.includes('pause')) {
+                start();
+                if (voiceStatus) {
+                    const action = timer ? 'Started' : 'Paused';
+                    const icon = timer ? '<i class="fas fa-running"></i>' : '<i class="fas fa-pause-circle"></i>';
+                    voiceStatus.innerHTML = `${icon} **ACTION:** Stopwatch ${action}.`;
+                    voiceStatus.style.color = '#00ff00';
+                }
+            } else if (command.includes('reset')) {
+                reset();
+                if (voiceStatus) {
+                    voiceStatus.innerHTML = '<i class="fas fa-undo"></i> **ACTION:** Stopwatch Reset.';
+                    voiceStatus.style.color = '#00ff00';
+                }
+            } else if (command.includes('lap')) {
+                lap();
+                if (voiceStatus) {
+                    voiceStatus.innerHTML = '<i class="fas fa-stopwatch"></i> **ACTION:** Lap Recorded.';
+                    voiceStatus.style.color = '#00ff00';
+                }
+            } else {
+                 // Reset status for unrecognized command
+                if (voiceStatus) {
+                    voiceStatus.innerHTML = '🤷 **DID NOT RECOGNIZE:** Please try "Start" or "Reset"';
+                    voiceStatus.style.color = '#ff6b35';
+                }
+            }
+        }
+    };
+
+    recognition.onerror = function(event) {
+        if (voiceStatus) {
+            voiceStatus.innerHTML = `⚠️ **ERROR:** Restarting voice service.`;
+            voiceStatus.style.color = '#ff6b35';
+        }
+    };
+
+    recognition.onend = function() {
+        // Automatically restart listening if the mode is still stopwatch
+        if (mode === 'stopwatch') {
+             recognition.start();
+        } else if (voiceStatus) {
+             voiceStatus.innerHTML = '💤 Voice Control is inactive in Countdown Mode.';
+        }
+    };
+
+    // Start recognition automatically
+    recognition.start();
 }
