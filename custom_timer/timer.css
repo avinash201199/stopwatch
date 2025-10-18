@@ -1,5 +1,9 @@
 body {
-  height: 100vh;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
   overflow-x: hidden;
   overflow-y: auto;
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #ff6b9d 100%);
@@ -12,6 +16,274 @@ body {
 @keyframes backgroundShift {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
+}
+
+/* Video Background - Enhanced feature, falls back gracefully */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8; /* Ensure visibility of overlaid content */
+}
+
+/* Overlay to improve readability */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+/* Navbar Styling */
+.thinner {
+  margin-top: 0;
+  margin-bottom: 0px;
+  height: 90px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: transparent !important;
+}
+
+/* Ensure navbar sticks to top */
+nav.navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  max-height: 70px;
+  background: transparent !important;
+}
+
+/* Enhanced Glass-like transparent effect for navcol */
+.navcol {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(15px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-top: none !important;
+  border-radius: 0 0 25px 25px !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  position: relative !important;
+}
+
+.navcol::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  ) !important;
+  border-radius: 0 0 25px 25px !important;
+  pointer-events: none;
+}
+
+.container-fluid {
+  padding: 0.3rem;
+}
+
+/* Main content container styling to match other pages */
+body > .container-fluid {
+  min-height: calc(100vh - 290px);
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container-fluid-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.maintitle {
+  min-height: 60px;
+  max-height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease !important;
+}
+
+#title1 {
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: #ffffff !important;
+}
+
+/* Main content container styling to match other pages */
+body > .container-fluid {
+  min-height: calc(100vh - 200px);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Navigation links always dark - matching main page */
+.nav-link {
+  color: #003333 !important;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #ff6b35 !important;
+}
+
+/* Main container styling to match stopwatch page */
+#container {
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  border-radius: 0 !important;
+  padding: 0;
+  box-shadow: none !important;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin: 30px auto 0;
+  max-width: 800px;
+  width: 90%;
+}
+
+#container:hover {
+  transform: none;
+}
+
+/* Time display styling */
+#time {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin: 20px 0;
+  letter-spacing: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 15px 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.digit {
+  font-size: 80px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  font-family: "digital-7";
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.txt {
+  font-size: 60px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 4px;
+  font-family: "digital-7";
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Button container */
+#btn-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Custom timer form */
+#custom-timer-form {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-end;
+  flex-direction: row;
+}
+
+/* Progress section */
+#progress-section {
+  margin: 5px 0;
+}
+
+#progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 5px auto;
+  max-width: 400px;
+}
+
+#progress-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #21f341, #116399);
+  transition: width 1s linear;
+}
+
+/* Today's date styling */
+.todayDate {
+  margin: 5px 0;
+}
+
+.todayDate h3 {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Focus display */
+#focus-display {
+  margin: 5px 0;
+}
+
+#focus-display h1 {
+  color: #7fe9d4;
+  font-size: 1.5rem;
+  margin: 0;
 }
 
 input:focus {
@@ -64,6 +336,48 @@ input:focus {
   backdrop-filter: blur(15px);
   color: white;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Round buttons for timer controls */
+.round-btn {
+  font-size: 1em;
+  border-radius: 50px;
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  padding: 10px 25px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 110px;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.round-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.round-btn:active {
+  transform: translateY(1px);
+}
+
+#timer-control {
+  border-color: #00ff00;
+  color: #00ff00;
+}
+
+#reset {
+  border-color: #9900ff;
+  color: #9900ff;
+}
+
+#stop-alarm {
+  border-color: #ff0000;
+  color: #ff0000;
 }
 
 .timer {
@@ -299,9 +613,9 @@ button.btn.btn-outline-primary.button-pill.px-3:hover {
   border: none;
   border-bottom: 2px solid rgba(255, 255, 255, 0.6);
   outline: 0;
-  font-size: 17px;
+  font-size: 14px;
   color: #fff;
-  padding: 7px 0;
+  padding: 5px 0;
   background: transparent;
   transition: all 0.3s ease;
   font-weight: 500;
@@ -432,15 +746,21 @@ button.btn.btn-outline-primary.button-pill.px-3:hover {
   display: flex !important;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
-  gap: 20px;
+  padding: 5px 0;
+  gap: 15px;
+  list-style: none;
+  margin: 0.5rem 0 1rem;
+  width: 100%;
 }
 
-li {
-  width: max(4.5vw, 3rem);
-  height: max(4.5vw, 3rem);
+li.hov {
+  width: max(4.5vw, 3.5rem);
+  height: max(4.5vw, 3.5rem);
   list-style: none;
-  margin: 8px;
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .link {
@@ -460,18 +780,19 @@ li {
 }
 
 .textfooter {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin: 10px 0;
+  margin: 8px 0;
   text-align: center;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   color: white !important;
 }
 
 .textfooter .heart {
-  color: #ff4757 !important;
+  color: #ff6584 !important;
   font-size: 1.3rem;
   animation: heartbeat 1.5s ease-in-out infinite;
+  margin: 0 3px;
 }
 
 @keyframes heartbeat {
@@ -503,14 +824,15 @@ footer {
   display: none !important;
 }
 
-.timer.pulse {
-  animation: pulse 0.6s ease-in-out infinite alternate;
+#time.pulse {
+  animation: pulse 0.8s ease-in-out infinite alternate;
 }
 
 @keyframes pulse {
   from {
     transform: scale(1);
     filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
   to {
     transform: scale(1.06);
@@ -682,6 +1004,18 @@ body.dark-mode .buttons:hover {
 
 
 
+body.dark-mode .social-icon {
+  background-color: white !important;
+}
+
+body.dark-mode .social-icon i {
+  color: black !important;
+}
+
+body.dark-mode .social-circle i {
+  color: black !important;
+}
+
 body.dark-mode .link {
   background: rgba(240, 147, 251, 0.3) !important;
   color: white !important;
@@ -711,6 +1045,94 @@ body.dark-mode #progress-container {
 body.dark-mode #progress-bar {
   background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%) !important;
   box-shadow: 0 0 30px rgba(240, 147, 251, 0.8), 0 0 50px rgba(245, 87, 108, 0.4) !important;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 990px) {
+  .digit {
+    font-size: 70px;
+  }
+
+  .txt {
+    font-size: 50px;
+  }
+  
+  #time {
+    max-width: 450px;
+    padding: 12px 0;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .digit {
+    font-size: 60px;
+  }
+
+  .txt {
+    font-size: 45px;
+  }
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  
+  #time {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .digit {
+    font-size: 50px;
+  }
+
+  .txt {
+    font-size: 40px;
+  }
+
+  #btn-container {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  #custom-timer-form {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .form__group, .btn-group {
+    margin-bottom: 5px;
+  }
+  
+  #time {
+    max-width: 350px;
+    padding: 10px 0;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .digit {
+    font-size: 40px;
+  }
+
+  .txt {
+    font-size: 30px;
+    margin: 0 2px;
+  }
+
+  #container {
+    padding: 0;
+    margin: 20px auto 0;
+  }
+  
+  #time {
+    max-width: 300px;
+    padding: 8px 0;
+  }
 }
 
 body.dark-mode .animated-button {
