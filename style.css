@@ -13,7 +13,8 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 /* Video Background - Enhanced feature, falls back gracefully */
@@ -182,15 +183,15 @@ nav.navbar {
     min-width: 100px;
     font-size: 0.8rem;
   }
-  
+
   #btn-container {
     gap: 0.25rem;
   }
-  
+
   .digit {
     font-size: clamp(1.8rem, 7vw, 2.5rem);
   }
-  
+
   .txt {
     font-size: clamp(0.7rem, 2.5vw, 1rem);
   }
@@ -202,19 +203,19 @@ nav.navbar {
     min-width: 110px;
     font-size: 0.9rem;
   }
-  
+
   #btn-container {
     gap: 0.5rem;
   }
-  
+
   .digit {
     font-size: clamp(2.2rem, 8vw, 3.5rem);
   }
-  
+
   .txt {
     font-size: clamp(0.8rem, 3vw, 1.2rem);
   }
-  
+
   #container {
     margin-top: 110px;
     padding: 1.5rem;
@@ -228,25 +229,25 @@ nav.navbar {
     font-size: 1rem;
     flex: 0 1 auto;
   }
-  
+
   #btn-container {
     gap: 1rem;
     max-width: 90%;
   }
-  
+
   .digit {
     font-size: clamp(3rem, 10vw, 4.5rem);
   }
-  
+
   .txt {
     font-size: clamp(1rem, 3.5vw, 1.8rem);
   }
-  
+
   #container {
     margin-top: 120px;
     padding: 2rem;
   }
-  
+
   #time {
     gap: clamp(1rem, 3vw, 1.5rem);
   }
@@ -259,24 +260,24 @@ nav.navbar {
     font-size: 1.1rem;
     margin: 0.5rem;
   }
-  
+
   #btn-container {
     gap: 1.5rem;
     max-width: 80%;
   }
-  
+
   .digit {
     font-size: clamp(4rem, 12vw, 6rem);
   }
-  
+
   .txt {
     font-size: clamp(1.2rem, 4vw, 2.2rem);
   }
-  
+
   #container {
     margin-top: 130px;
   }
-  
+
   #time {
     gap: clamp(1.5rem, 4vw, 2rem);
   }
@@ -288,11 +289,11 @@ nav.navbar {
     min-width: 160px;
     font-size: 1.2rem;
   }
-  
+
   .digit {
     font-size: clamp(5rem, 10vw, 7rem);
   }
-  
+
   .txt {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
   }
@@ -303,11 +304,11 @@ nav.navbar {
   .digit {
     font-size: clamp(6rem, 8vw, 8rem);
   }
-  
+
   .txt {
     font-size: clamp(1.8rem, 2.5vw, 3rem);
   }
-  
+
   .buttons {
     min-width: 180px;
     font-size: 1.3rem;
@@ -321,26 +322,26 @@ nav.navbar {
     padding: 0.5rem;
     min-height: calc(100vh - 160px);
   }
-  
+
   .digit {
     font-size: clamp(1.5rem, 6vh, 2.5rem);
   }
-  
+
   .txt {
     font-size: clamp(0.6rem, 2.5vh, 1rem);
   }
-  
+
   #time {
     gap: clamp(0.5rem, 2vh, 1rem);
     margin-bottom: 1rem;
   }
-  
+
   .buttons {
     min-height: 36px;
     font-size: 0.8rem;
     padding: 0.5rem 0.8rem;
   }
-  
+
   #btn-container {
     margin: 1rem auto;
     gap: 0.5rem;
@@ -352,16 +353,16 @@ nav.navbar {
   .digit {
     font-size: clamp(1.2rem, 5vh, 2rem);
   }
-  
+
   .txt {
     font-size: clamp(0.5rem, 2vh, 0.8rem);
   }
-  
+
   #container {
     margin-top: 60px;
     padding: 0.25rem;
   }
-  
+
   .buttons {
     min-height: 32px;
     font-size: 0.7rem;
@@ -377,7 +378,7 @@ nav.navbar {
     gap: 0.5rem;
     max-width: 280px;
   }
-  
+
   .buttons {
     width: 90%;
     max-width: 200px;
@@ -394,7 +395,7 @@ nav.navbar {
     gap: 0.5rem;
     max-width: 400px;
   }
-  
+
   .buttons {
     width: 100%;
     min-width: auto;
@@ -407,7 +408,7 @@ nav.navbar {
     transform: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
-  
+
   .buttons:active {
     transform: scale(0.95);
     transition-duration: 0.1s;
@@ -416,11 +417,12 @@ nav.navbar {
 
 /* High DPI / Retina displays optimization */
 @media screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
-  .digit, .txt {
+  .digit,
+  .txt {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   .buttons {
     border-width: 1px;
   }
@@ -432,29 +434,32 @@ nav.navbar {
     background: white !important;
     color: black !important;
   }
-  
-  .video-background, .video-overlay {
+
+  .video-background,
+  .video-overlay {
     display: none !important;
   }
-  
-  .buttons, #btn-container {
+
+  .buttons,
+  #btn-container {
     display: none !important;
   }
-  
+
   nav {
     display: none !important;
   }
-  
+
   footer {
     display: none !important;
   }
-  
+
   #container {
     margin-top: 0 !important;
     padding: 2rem !important;
   }
-  
-  .digit, .txt {
+
+  .digit,
+  .txt {
     color: black !important;
   }
 }
@@ -466,7 +471,7 @@ nav.navbar {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .buttons:hover {
     transform: none !important;
   }
@@ -659,7 +664,8 @@ th {
   color: #ffffff;
   background: rgba(153, 102, 204, 0.2);
   border-color: #9966cc;
-  box-shadow: 0 0 4px #9966cc, 0 0 5px #9966cc, 0 0 37px rgba(153, 102, 204, 0.3);
+  box-shadow: 0 0 4px #9966cc, 0 0 5px #9966cc,
+    0 0 37px rgba(153, 102, 204, 0.3);
   transform: translateY(-2px);
   transition-delay: 0.001s;
 }
@@ -928,7 +934,6 @@ footer {
   box-shadow: 0 0 4px hsl(151, 88%, 70%), 0 0 5px hsl(159, 93%, 77%),
     0 0 37px hsl(157, 96%, 72%);
   transition-delay: 0.001s;
-  font-size: large;
 }
 
 /* Footer Styles */
@@ -1055,7 +1060,7 @@ footer {
   .footer-brand {
     justify-content: center;
   }
-  
+
   .my-class {
     padding: 1rem !important;
   }
@@ -1192,22 +1197,22 @@ footer {
     background: #ffd166 !important;
     box-shadow: 2px 2px 0 var(--active) !important;
   }
-  
+
   #switch-theme {
     display: flex !important;
     justify-content: center !important;
     margin: 1rem 0 0 0 !important;
   }
-  
+
   .maintitle {
     margin-bottom: 0 !important;
   }
-  
+
   .maintitle img {
     height: 2.5rem !important;
     width: 2.5rem !important;
   }
-  
+
   #title1 {
     font-size: 1.4rem !important;
   }
@@ -1220,13 +1225,13 @@ footer {
     padding: 0.6rem 0.8rem !important;
     font-size: 0.8rem !important;
   }
-  
+
   .maintitle img {
     height: 2rem !important;
     width: 2rem !important;
     margin-right: 0.5rem !important;
   }
-  
+
   #title1 {
     font-size: 1.2rem !important;
   }
@@ -1290,7 +1295,7 @@ footer {
   background: rgba(255, 255, 255, 0.9);
   font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   text-align: center;
-  color: #333;
+  color: white; /* Changed from orange to white */
 }
 
 #countdown-minutes::placeholder {
