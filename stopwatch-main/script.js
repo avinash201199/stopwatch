@@ -4,8 +4,13 @@ let sec = 0;
 let count = 0;
 let timer = false;
 let timerInterval = null;
+
+// 🎵 Sound setup
 const tickSound = new Audio("../audio/ticking.mp3");
 tickSound.loop = true;
+
+//  New: Beep sound when stopwatch stops/resets
+const beepSound = new Audio("../audio/beep.mp3");
 
 let tickToggle = null;
 let isTickEnabled = false;
@@ -42,7 +47,7 @@ function start() {
 
   timer = true;
   if (isTickEnabled) {
-    tickSound.play();
+    tickSound.play().catch(() => {});
   }
   stopwatch();
 }
@@ -53,8 +58,12 @@ function stop() {
     clearTimeout(timerInterval);
     timerInterval = null;
   }
+
   tickSound.pause();
   tickSound.currentTime = 0;
+
+  // Play beep sound when stopwatch stops
+  beepSound.play().catch(() => {});
 }
 
 function reset() {
@@ -63,7 +72,9 @@ function reset() {
     clearTimeout(timerInterval);
     timerInterval = null;
   }
+
   hr = min = sec = count = 0;
+
   tickSound.pause();
   tickSound.currentTime = 0;
 
@@ -71,6 +82,9 @@ function reset() {
   $id("min").innerHTML = "00";
   $id("sec").innerHTML = "00";
   $id("count").innerHTML = "00";
+
+  // Optional: Play beep when reset
+  beepSound.play().catch(() => {});
 }
 
 function stopwatch() {
@@ -116,9 +130,10 @@ function lap() {
 }
 
 function clearLap() {
-  $id("laps").remove();
+  $id("laps").innerHTML = ""; //  safer than remove()
 }
 
 function getLocalTime() {
   const d = new Date().toLocaleTimeString();
+  return d;
 }
