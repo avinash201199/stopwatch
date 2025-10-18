@@ -531,3 +531,39 @@ function setPresetTimer(minutes) {
     input.style.color = "white";
   }, 300);
 }
+document.addEventListener('keydown', function(event) {
+    switch(event.key.toLowerCase()) {
+        case ' ':
+            event.preventDefault(); // prevent page scroll
+            startPauseStopwatch(); // your existing start/pause function
+            break;
+        case 'r':
+            resetStopwatch(); // your existing reset function
+            break;
+        case 'l':
+            recordLap(); // function to record lap time
+            break;
+        case 'c':
+            startCountdownTimer(); // if you implemented countdown
+            break;
+    }
+});
+function startPauseStopwatch() {
+    start();
+}
+function resetStopwatch() {
+    reset();
+}
+function recordLap() {
+    lap();
+}
+function startCountdownTimer() {
+    if (mode === "countdown") {
+        document.getElementById("start-countdown").click();
+    } else {
+        mode = "countdown";
+        countdownBtn.click();
+        document.getElementById("start-countdown").click();
+    } 
+}
+
