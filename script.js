@@ -222,6 +222,20 @@ function reset() {
 
   if ($id("record-table-body")) $id("record-table-body").innerHTML = "";
   lapCounter = 1;
+
+    // CLEAR COUNTDOWN INPUT & PRESETS
+  const countdownInput = $id("countdown-minutes");
+  if (countdownInput) {
+    countdownInput.value = "";
+    countdownInput.style.border = "2px solid rgba(255, 255, 255, 0.3)";
+    countdownInput.style.background = "rgba(255, 255, 255, 0.08)";
+    countdownInput.style.color = "white";
+    countdownInput.style.transform = "scale(1)";
+  }
+
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
   
   // Clear saved state
   localStorage.removeItem('stopwatchState');
@@ -478,3 +492,78 @@ document.getElementById("start-countdown").addEventListener("click", () => {
     totalSeconds--;
   }, 1000);
 });
+
+// Timer Preset functionality
+let presetSound = new Audio("../audio/beep_cut.mp3");
+presetSound.volume = 0.3;
+
+function setPresetTimer(minutes) {
+  // Play sound feedback
+  presetSound.play().catch(() => {
+    // Ignore audio play errors (browser restrictions)
+  });
+  
+  // Set the input value
+  document.getElementById("countdown-minutes").value = minutes;
+  
+  // Update active preset button
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  // Find and activate the clicked preset
+  const clickedBtn = document.querySelector(`[data-minutes="${minutes}"]`);
+  if (clickedBtn) {
+    clickedBtn.classList.add('active');
+  }
+  
+  // Add visual feedback to input field
+  const input = document.getElementById("countdown-minutes");
+  input.style.border = "2px solid #ffb703";
+  input.style.background = "rgba(255, 183, 3, 0.1)";
+  input.style.color = "white";
+  input.style.transform = "scale(1.02)";
+  
+  setTimeout(() => {
+    input.style.transform = "scale(1)";
+    input.style.background = "rgba(255, 255, 255, 0.08)";
+    input.style.border = "2px solid rgba(255, 255, 255, 0.3)";
+    input.style.color = "white";
+  }, 300);
+}
+document.addEventListener('keydown', function(event) {
+    switch(event.key.toLowerCase()) {
+        case ' ':
+            event.preventDefault(); // prevent page scroll
+            startPauseStopwatch(); // your existing start/pause function
+            break;
+        case 'r':
+            resetStopwatch(); // your existing reset function
+            break;
+        case 'l':
+            recordLap(); // function to record lap time
+            break;
+        case 'c':
+            startCountdownTimer(); // if you implemented countdown
+            break;
+    }
+});
+function startPauseStopwatch() {
+    start();
+}
+function resetStopwatch() {
+    reset();
+}
+function recordLap() {
+    lap();
+}
+function startCountdownTimer() {
+    if (mode === "countdown") {
+        document.getElementById("start-countdown").click();
+    } else {
+        mode = "countdown";
+        countdownBtn.click();
+        document.getElementById("start-countdown").click();
+    } 
+}
+

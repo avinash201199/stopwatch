@@ -1,21 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Test</title>
     <style>
-        body { margin: 0; padding: 20px; }
-        video { width: 100%; max-width: 800px; }
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007acc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .back-link:hover {
+            background: #005a99;
+        }
     </style>
 </head>
 <body>
-    <h1>Video Test Page</h1>
-    <p>Testing if lofi.mp4 can play:</p>
-
-    <video controls>
-        <source src="lofi.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <p>If you can see and play the video above, the file works.</p>
+    <div class="video-container">
+        <h1>🎥 Video Test Page</h1>
+        <p>This page is for testing video playback functionality.</p>
+        
+        <video controls autoplay muted loop>
+            <source src="lofi.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <a href="index.html" class="back-link">← Back to Stopwatch</a>
+    </div>
 </body>
 </html>

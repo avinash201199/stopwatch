@@ -261,50 +261,131 @@ footer {
 
 /* === Calendar Button Styles === */
 .calendar-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #ff6b35, #f9a03f);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
   transition: all 0.3s ease;
-  margin: 10px;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+}
+
+body.dark-mode .calendar-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
 }
 
 .calendar-btn:hover {
+  background: linear-gradient(135deg, #f9a03f, #ff6b35);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 12px rgba(255, 107, 53, 0.4);
+}
+
+body.dark-mode .calendar-btn:hover {
+  background: linear-gradient(135deg, #ff8e53, #ff6b6b);
+  box-shadow: 0 6px 12px rgba(255, 107, 107, 0.4);
+}
+
+.calendar-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(255, 107, 53, 0.3);
 }
 
 .calendar-btn:disabled {
-  opacity: 0.5;
+  background: #cccccc;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* === Modal Styles === */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4);
+  display: none; /* Hidden by default */
+  position: fixed !important;
+  z-index: 1000 !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0,0,0,0.7) !important;
+  backdrop-filter: blur(5px) !important;
+  animation: fadeIn 0.3s ease !important;
+  overflow: auto !important; /* Enable scroll if needed */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   margin: 5% auto;
-  padding: 30px;
-  border-radius: 15px;
+  padding: 0;
+  border-radius: 20px;
   width: 90%;
-  max-width: 500px;
+  max-width: 550px;
   max-height: 85vh;
   overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
   scroll-behavior: smooth;
+  transform: translateY(20px);
+  animation: slideUp 0.4s ease forwards;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.pomodoro-modal {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #e0e0e0;
+}
+
+body:not(.dark-mode) .pomodoro-modal {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  color: #333;
+}
+
+body:not(.dark-mode) .animated-input label {
+  color: #333;
+}
+
+body:not(.dark-mode) .animated-input input,
+body:not(.dark-mode) .animated-input textarea {
+  background-color: #fff;
+  color: #333;
+  border-color: #ccc;
+}
+
+body:not(.dark-mode) .toggle-switch-label {
+  color: #333;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+  border-radius: 20px 20px 0 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.modal-header h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 /* Custom scrollbar styling for modal */
@@ -328,37 +409,190 @@ footer {
 }
 
 .close {
-  color: #aaa;
-  float: right;
+  color: white;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
-.close:hover,
-.close:focus {
-  color: #000;
+.close:hover {
+  color: #fff;
+  transform: rotate(90deg);
+  background: rgba(255,255,255,0.1);
 }
 
 /* === Form Group Styles === */
-.form-group {
+#calendar-form {
+  padding: 30px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
   margin-bottom: 20px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
+.form-row .form-group {
+  flex: 1;
 }
 
-.form-group input,
-.form-group textarea {
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.animated-input label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.animated-input label i {
+  margin-right: 8px;
+  color: #ff6b6b;
+}
+
+.animated-input input,
+.animated-input textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
+  padding: 12px 15px;
+  border: 2px solid #444;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: rgba(30, 30, 30, 0.9);
+  color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.animated-input input:focus,
+.animated-input textarea:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.animated-input input:hover,
+.animated-input textarea:hover {
+  border-color: #666;
+}
+
+/* Input focus effect */
+.input-focus-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ff6b6b;
+  transition: width 0.3s ease;
+}
+
+.animated-input input:focus ~ .input-focus-effect,
+.animated-input textarea:focus ~ .input-focus-effect {
+  width: 100%;
+}
+
+/* Toggle Switch */
+.toggle-container {
+  margin: 20px 0;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-inner {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  background-color: #444;
+  border-radius: 20px;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.toggle-inner:before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ddd;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+input:checked + .toggle-label .toggle-inner {
+  background-color: #ff6b6b;
+}
+
+input:checked + .toggle-label .toggle-inner:before {
+  transform: translateX(24px);
+}
+
+.toggle-switch-label {
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+/* Form Buttons */
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+  min-width: 150px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.cancel-btn {
+  background: linear-gradient(135deg, #333 0%, #555 100%);
+  min-width: 150px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.submit-btn:hover, .cancel-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+}
+
+.submit-btn:active, .cancel-btn:active {
+  transform: translateY(1px);
 }
 
 /* === Calendar Status Styles === */
@@ -803,6 +1037,348 @@ body.dark-mode #progress-bar {
   color: #ff6b35 !important;
 }
 
+/* === Add to Calendar Modal Styling === */
+/* Modal styling with dark/light mode support */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  margin: 5% auto;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.4s ease-out;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode styles */
+body.dark-mode .modal-content.pomodoro-modal {
+  background: #222;
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  box-shadow: 0 5px 30px rgba(255, 107, 107, 0.15);
+}
+
+/* Light mode styles */
+body:not(.dark-mode) .modal-content.pomodoro-modal {
+  background: #fff;
+  color: #333;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  box-shadow: 0 5px 30px rgba(255, 107, 107, 0.15);
+}
+
+.modal-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+/* Dark mode header */
+body.dark-mode .modal-header {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  color: #fff;
+}
+
+/* Light mode header */
+body:not(.dark-mode) .modal-header {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  color: #fff;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.close {
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close:hover {
+  transform: scale(1.1);
+}
+
+/* Form styling */
+#calendar-form {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.form-row .form-group {
+  flex: 1 1 200px;
+}
+
+/* Animated input styling */
+.animated-input label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+/* Dark mode input labels */
+body.dark-mode .animated-input label {
+  color: #ff8e53;
+}
+
+/* Light mode input labels */
+body:not(.dark-mode) .animated-input label {
+  color: #ff6b6b;
+}
+
+.animated-input input,
+.animated-input textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode inputs */
+body.dark-mode .animated-input input,
+body.dark-mode .animated-input textarea {
+  background: #333;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-mode .animated-input input:focus,
+body.dark-mode .animated-input textarea:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+/* Light mode inputs */
+body:not(.dark-mode) .animated-input input,
+body:not(.dark-mode) .animated-input textarea {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+body:not(.dark-mode) .animated-input input:focus,
+body:not(.dark-mode) .animated-input textarea:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+.input-focus-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+  transition: width 0.3s ease;
+  z-index: 2;
+}
+
+.animated-input input:focus ~ .input-focus-effect,
+.animated-input textarea:focus ~ .input-focus-effect {
+  width: 100%;
+}
+
+.input-focus-effect.textarea {
+  bottom: 4px;
+}
+
+/* Toggle switch styling */
+.toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-inner {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 12px;
+  margin-right: 10px;
+  transition: all 0.3s;
+}
+
+/* Dark mode toggle */
+body.dark-mode .toggle-inner {
+  background-color: #444;
+}
+
+body.dark-mode .toggle-inner::before {
+  background-color: #ddd;
+}
+
+/* Light mode toggle */
+body:not(.dark-mode) .toggle-inner {
+  background-color: #ddd;
+}
+
+body:not(.dark-mode) .toggle-inner::before {
+  background-color: #fff;
+}
+
+.toggle-inner::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .toggle-label .toggle-inner {
+  background-color: #ff6b6b;
+}
+
+input:checked + .toggle-label .toggle-inner::before {
+  transform: translateX(26px);
+}
+
+.toggle-switch-label {
+  font-size: 0.9rem;
+}
+
+/* Dark mode toggle label */
+body.dark-mode .toggle-switch-label {
+  color: #e0e0e0;
+}
+
+/* Light mode toggle label */
+body:not(.dark-mode) .toggle-switch-label {
+  color: #555;
+}
+
+/* Form buttons */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.calendar-btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.submit-btn {
+  flex: 1.5;
+}
+
+/* Dark mode buttons */
+body.dark-mode .submit-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+body.dark-mode .cancel-btn {
+  background: #333;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+/* Light mode buttons */
+body:not(.dark-mode) .submit-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+body:not(.dark-mode) .cancel-btn {
+  background: #f5f5f5;
+  color: #555;
+  border: 1px solid #ddd;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.cancel-btn:hover {
+  opacity: 0.9;
+}
+
+.submit-btn:active, .cancel-btn:active {
+  transform: translateY(1px);
+}
+
+/* Animation keyframes */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* === Enhanced Music Controls Styles === */
 .music-control-btn {
   background: rgba(255, 255, 255, 0.1);
@@ -930,13 +1506,13 @@ body.dark-mode .track-duration {
     flex-wrap: wrap;
     gap: 8px !important;
   }
-  
+
   .music-control-btn {
     width: 35px;
     height: 35px;
     font-size: 12px;
   }
-  
+
   .playlist-track {
     padding: 6px 8px;
     font-size: 14px;

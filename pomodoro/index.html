@@ -18,9 +18,8 @@
     <!-- jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-    <!-- Google Calendar API -->
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Calendar functionality -->
+    <!-- No external APIs needed -->
 
     <!-- FontAwesome CDN-->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -237,14 +236,8 @@
            
             <div class='row justify-content-center mt-4'>
                 <div class='col-auto'>
-                    <button class="calendar-btn" id="authorize-btn" onclick="handleAuthClick()" style="display: none;">
-                        <i class="fas fa-calendar-plus"></i> Connect Google Calendar
-                    </button>
-                    <button class="calendar-btn" id="schedule-btn" onclick="openScheduleModal()" style="display: none;">
-                        <i class="fas fa-calendar-check"></i> Add to Google Calendar
-                    </button>
-                    <button class="calendar-btn" id="signout-btn" onclick="handleSignoutClick()" style="display: none;">
-                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    <button id="add-to-calendar" class="calendar-btn" onclick="openScheduleModal()">
+                      <i class="fas fa-calendar-plus"></i> Add to Calendar
                     </button>
                 </div>
             </div>
@@ -257,44 +250,320 @@
     </div>
 
     <div id="scheduleModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeScheduleModal()">&times;</span>
-            <h2 style="color: #333; margin-bottom: 20px;">
-                <i class="fas fa-calendar-plus"></i> Schedule Pomodoro Session
-            </h2>
+        <div class="modal-content pomodoro-modal">
+            <div class="modal-header">
+                <h2>
+                    <i class="fas fa-calendar-plus"></i> Add to Calendar
+                </h2>
+                <span class="close" onclick="closeScheduleModal()">&times;</span>
+            </div>
             <form id="calendar-form">
-                <div class="form-group">
-                    <label for="event-title">Session Title:</label>
+                <div class="form-group animated-input">
+                    <label for="event-title"><i class="fas fa-heading"></i> Session Title</label>
                     <input type="text" id="event-title" placeholder="e.g., Deep Work Session" required>
+                    <span class="input-focus-effect"></span>
                 </div>
-                <div class="form-group">
-                    <label for="event-date">Date:</label>
-                    <input type="date" id="event-date" required>
+                <div class="form-row">
+                    <div class="form-group animated-input">
+                        <label for="event-date"><i class="fas fa-calendar-day"></i> Date</label>
+                        <input type="date" id="event-date" required>
+                        <span class="input-focus-effect"></span>
+                    </div>
+                    <div class="form-group animated-input">
+                        <label for="event-time"><i class="fas fa-clock"></i> Start Time</label>
+                        <input type="time" id="event-time" required>
+                        <span class="input-focus-effect"></span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="event-time">Start Time:</label>
-                    <input type="time" id="event-time" required>
-                </div>
-                <div class="form-group">
-                    <label for="event-description">Description (Optional):</label>
+                <div class="form-group animated-input">
+                    <label for="event-description"><i class="fas fa-align-left"></i> Description (Optional)</label>
                     <textarea id="event-description" rows="3" placeholder="What will you work on?"></textarea>
+                    <span class="input-focus-effect textarea"></span>
                 </div>
-                <div class="form-group" style="display: flex; align-items: center;">
-                    <input type="checkbox" id="include-break" checked style="margin-right: 8px; width: auto;">
-                    <label for="include-break" style="margin: 0; cursor: pointer; font-weight: normal;">Include break time in calendar</label>
+                <div class="form-group toggle-container">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="include-break" checked>
+                        <label for="include-break" class="toggle-label">
+                            <span class="toggle-inner"></span>
+                            <span class="toggle-switch-label">Include break time in calendar</span>
+                        </label>
+                    </div>
                 </div>
-                <div style="text-align: center; margin-top: 20px;">
-                    <button type="submit" class="calendar-btn">
+                <div class="form-buttons">
+                    <button type="submit" class="calendar-btn submit-btn">
                         <i class="fas fa-check"></i> Add to Calendar
                     </button>
-                    <button type="button" class="calendar-btn" onclick="closeScheduleModal()" 
-                            style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        Cancel
+                    <button type="button" class="calendar-btn cancel-btn" onclick="closeScheduleModal()">
+                        <i class="fas fa-times"></i> Cancel
                     </button>
                 </div>
             </form>
         </div>
     </div>
+<style>
+/* Calendar Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    margin: 5% auto;
+    width: 90%;
+    max-width: 550px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-header h2 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#calendar-form {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.animated-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+
+.animated-input i {
+    margin-right: 8px;
+    color: #ff6b6b;
+}
+
+.animated-input input,
+.animated-input textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #444;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #e0e0e0;
+    transition: border-color 0.3s ease;
+}
+
+.animated-input input:focus,
+.animated-input textarea:focus {
+    outline: none;
+    border-color: #ff6b6b;
+}
+
+.input-focus-effect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff6b6b;
+    transition: width 0.3s ease;
+}
+
+.animated-input input:focus ~ .input-focus-effect,
+.animated-input textarea:focus ~ .input-focus-effect {
+    width: 100%;
+}
+
+.toggle-container {
+    margin: 20px 0;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toggle-inner {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    background-color: #ff6b6b;
+    border-radius: 20px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-inner:before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-switch input:checked + .toggle-label .toggle-inner {
+    background-color: #ff6b6b;
+}
+
+.toggle-switch input:checked + .toggle-label .toggle-inner:before {
+    transform: translateX(24px);
+}
+
+.toggle-switch-label {
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.calendar-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    min-width: 150px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calendar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    color: white;
+}
+
+.cancel-btn {
+    background: linear-gradient(135deg, #333 0%, #555 100%);
+    color: white;
+}
+
+/* Light mode styles */
+body:not(.dark-mode) .modal-content {
+    background: #f5f5f5;
+    color: #333;
+}
+
+body:not(.dark-mode) .animated-input label {
+    color: #333;
+}
+
+body:not(.dark-mode) .animated-input input,
+body:not(.dark-mode) .animated-input textarea {
+    background-color: #fff;
+    color: #333;
+    border-color: #ddd;
+}
+
+body:not(.dark-mode) .toggle-switch-label {
+    color: #333;
+}
+</style>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container-fluid my-class foot">
+    <div class="container">
+      <p class="textfooter" style="margin-top: 2rem;">Made with <span class="heart">❤️</span> by Avinash Singh</p>
+      <p class="textfooter" style="margin-top: 1rem;">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:iswarya952@users.noreply.github.com" style="color:white; text-decoration:none;">Contact Me</a>
+      </p>
+
+      <div>
+        <ul style="color: white" class="social-links">
+          <li class="hov">
+            <a href="https://github.com/avinash201199">
+              <img class="link" src="../img/GitHub.png" />
+            </a>
+          </li>
+          <li class="hov">
+            <a href="https://www.linkedin.com/in/avinash-singh-071b79175/">
+              <img class="link" src="../img/LinkedinLogo.png" />
+            </a>
+          </li>
+          <li class="hov">
+            <a href="https://www.instagram.com/lets__code/">
+              <img class="link" src="../img/Instagram.png" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
   
   <div id="confetti"></div>
     

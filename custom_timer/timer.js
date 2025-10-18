@@ -15,12 +15,14 @@ function $id(id) {
 
 // 🎉 Confetti Animation
 function startCelebration() {
-    document.querySelectorAll('.timer').forEach(el => el.classList.add('pulse'));
+    // Add pulse animation to the timer display
+    document.querySelector('#time').classList.add('pulse');
+    // Create confetti animation
     const root = document.getElementById('confetti');
     if (!root) return;
     root.innerHTML = '';
     const colors = ['#FFD166', '#06D6A0', '#EF476F', '#118AB2', '#8338EC', '#FB5607'];
-    const pieceCount = 120;
+    const pieceCount = 150; // Increased for more celebration effect
     const durationMin = 3000;
     const durationMax = 6000;
     for (let i = 0; i < pieceCount; i++) {
@@ -42,21 +44,32 @@ function startCelebration() {
 }
 
 function stopCelebration() {
-    document.querySelectorAll('.timer').forEach(el => el.classList.remove('pulse'));
+    // Remove pulse animation from timer display
+    document.querySelector('#time').classList.remove('pulse');
+    // Clear confetti
     const root = document.getElementById('confetti');
     if (root) root.innerHTML = '';
+    // Reset document title
+    document.title = "Custom Timer";
+    // Reset timer color
+    $id('time').style.color = '';
 }
 
 function onTimerComplete() {
     paused = true;
     clearInterval(interval);
     $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
-    $id('counter-background').classList.remove('inactive');
-    $id('counter-background').classList.add('active');
+    // Hide focus text when timer completes
+    $id('focus').classList.add('hide');
+    // Show alarm stop button
     $id('stop-alarm').classList.remove('hidden');
+    // Play alarm sound
     audio.loop = true;
     audio.currentTime = 0;
-    audio.play().catch(() => {});
+    audio.play().catch(error => {
+        console.log('Error playing alarm sound:', error);
+    });
+    // Start celebration animation
     startCelebration();
 }
 
@@ -87,6 +100,12 @@ const setCustomTime = (hours = 0, minutes = 0, seconds = 0) => {
         alert("⛔ Please enter positive numbers only!");
         return;
     }
+    
+    // Check if at least one field has a value
+    if (hours === 0 && minutes === 0 && seconds === 0) {
+        alert("⛔ Please enter at least one value greater than zero!");
+        return;
+    }
 
     paused = true;
     $id('hours').innerHTML = String(hours).padStart(2, '0');
@@ -94,8 +113,8 @@ const setCustomTime = (hours = 0, minutes = 0, seconds = 0) => {
     $id('seconds').innerHTML = String(seconds).padStart(2, '0');
     remainingTime = 0;
     $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
-    $id('counter-background').classList.remove('inactive');
-    $id('counter-background').classList.add('active');
+    // Hide focus text when setting new time
+    $id('focus').classList.add('hide');
     customTime.seconds = (hours * 3600) + (minutes * 60) + seconds;
     totalTime = customTime.seconds; 
     updateProgressBar(); 
@@ -108,16 +127,50 @@ const setCustomTime = (hours = 0, minutes = 0, seconds = 0) => {
 
 const reset = () => {
     stopAlarm();
-    $id('counter-background').classList.remove('inactive');
-    $id('counter-background').classList.add('active');
+    // Hide focus message
+    $id('focus').classList.add('hide');
+    // Reset button styles
     if (darkTheme) {
-        $('.active').css({ "color": "#7fe9d4", "background": "#191212" })
+        $('#timer-control').css({ "background": "transparent", "color": "#ff6b35" });
     } else {
-        $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
+        $('#timer-control').css({ "background": "transparent", "color": "#00ff00" });
     }
     clearInterval(interval);
-    setCustomTime(0);
+    
+    // Reset all timer displays to 00
+    $id('hours').innerHTML = '00';
+    $id('minutes').innerHTML = '00';
+    $id('seconds').innerHTML = '00';
+    
+    // Clear all input fields
+    $id('hoursInput').value = '';
+    $id('minutesInput').value = '';
+    $id('secondsInput').value = '';
+    
+    // Reset timer values
+    customTime.seconds = 0;
+    totalTime = 0;
+    
+    // Reset progress bar
     $id("progress-bar").style.width = "0%";
+    
+    // Reset timer color and remove any animations
+    $id('time').style.color = '';
+    $id('time').classList.remove('pulse');
+    
+    // Clear any confetti
+    const confettiElem = $id('confetti');
+    if (confettiElem) confettiElem.innerHTML = '';
+    
+    // Reset pause state
+    paused = true;
+    $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+    
+    // Reset document title
+    document.title = 'Custom Timer';
+    
+    // Make sure stop-alarm button is hidden
+    $id('stop-alarm').classList.add('hidden');
 }
 
 var interval = 0;
@@ -126,21 +179,24 @@ const startCustomTimerCounter = () => {
     paused = !paused;
     $id('timer-control').innerHTML = paused ? '<i class="fas fa-play-circle"></i> Play' : '<i class="fas fa-pause-circle"></i> Pause';
     if (!paused) {
-        $id('counter-background').classList.remove('active');
-        $id('counter-background').classList.add('inactive');
-        $id('focus').classList.remove('hidden');
+        // Show focus text when timer is running
+        $id('focus').classList.remove('hide');
         if (darkTheme) {
-            $('.inactive').css({ "background": "black", "color": "white" });
+            // Apply dark theme styles for active timer
+            $('#timer-control').css({ "background": "rgba(255, 107, 53, 0.2)", "color": "#ff6b35" });
         } else {
-            $('.inactive').css({ "background": "rgb(5, 30, 54)", "color": "rgb(169, 188, 214)" });
+            // Apply light theme styles for active timer
+            $('#timer-control').css({ "background": "rgba(0, 255, 0, 0.1)", "color": "#00ff00" });
         }
     } else {
-        $id('counter-background').classList.remove('inactive');
-        $id('counter-background').classList.add('active');
+        // Hide focus text when timer is paused
+        $id('focus').classList.add('hide');
         if (darkTheme) {
-            $('.active').css({ "color": "#7fe9d4", "background": "#191212" });
+            // Reset to default dark theme styles when paused
+            $('#timer-control').css({ "background": "transparent", "color": "#ff6b35" });
         } else {
-            $('.active').css({ "background": "linear-gradient(to right, #191654, #43C6AC)" });
+            // Reset to default light theme styles when paused
+            $('#timer-control').css({ "background": "transparent", "color": "#00ff00" });
         }
     }
     const updateTimer = () => {
@@ -153,12 +209,23 @@ const startCustomTimerCounter = () => {
             $id('minutes').innerHTML = String(minutes).padStart(2, '0');
             $id('seconds').innerHTML = String(seconds).padStart(2, '0');
             updateProgressBar();
+            
+            // Update document title to show remaining time
+            document.title = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} - Custom Timer`;
+            
+            // Check if timer is almost complete to prepare for completion
+            if (customTime.seconds <= 3) {
+                $id('time').style.color = '#ff4757';
+            }
         }
+        
         if (customTime.seconds < 0) {
             alert("Please Enter a positive time value!");
             reset();
         }
-        if (customTime.seconds == 0) {
+        
+        if (customTime.seconds === 0) {
+            document.title = "Time's Up! - Custom Timer";
             onTimerComplete();
         }
     }
@@ -283,4 +350,73 @@ $(document).ready(function () {
             localStorage.setItem("darkmode", true);
         }
     });
+});
+
+// Date display functionality
+setInterval(() => {
+  var d = new Date();
+  var year = d.getFullYear();
+
+  var month;
+  switch (d.getMonth()) {
+    case 0:
+      month = "Jan";
+      break;
+    case 1:
+      month = "Feb";
+      break;
+    case 2:
+      month = "Mar";
+      break;
+    case 3:
+      month = "Apr";
+      break;
+    case 4:
+      month = "May";
+      break;
+    case 5:
+      month = "Jun";
+      break;
+    case 6:
+      month = "Jul";
+      break;
+    case 7:
+      month = "Aug";
+      break;
+    case 8:
+      month = "Sep";
+      break;
+    case 9:
+      month = "Oct";
+      break;
+    case 10:
+      month = "Nov";
+      break;
+    case 11:
+      month = "Dec";
+      break;
+  }
+
+  var dayn = d.getDate();
+  var dateStr = dayn + " " + month + " , " + year;
+
+  if ($id("d1")) $id("d1").innerHTML = dateStr;
+}, 1000);
+
+// Add event listeners for Enter key in input fields
+document.addEventListener('DOMContentLoaded', function() {
+  const inputs = ['hoursInput', 'minutesInput', 'secondsInput'];
+  
+  inputs.forEach(id => {
+    $id(id).addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        setCustomTime(
+          $id('hoursInput').value,
+          $id('minutesInput').value,
+          $id('secondsInput').value
+        );
+      }
+    });
+  });
 });
