@@ -7,6 +7,42 @@ var darkTheme = false
 var totalTime = 0
 
 const audio = new Audio();
+
+const defaultTimers = [
+    {
+        name: "Brush Teeth",
+        hours: 0,
+        minutes: 2,
+        seconds: 0,
+    },
+    {
+        name: "Meditate",
+        hours: 0,
+        minutes: 10,
+        seconds: 0,
+    },
+    {
+        name: "Exercise",
+        hours: 0,
+        minutes: 15,
+        seconds: 0,
+    },
+    {
+        name: "Read Book",
+        hours: 0,
+        minutes: 30,
+        seconds: 0,
+    }
+];
+
+let timers = localStorage.getItem("timers") ? JSON.parse(localStorage.getItem("timers")) : null;
+
+if(timers == null){
+    timers = defaultTimers;
+    localStorage.setItem("timers", JSON.stringify(defaultTimers));
+}
+
+
 audio.src = "../audio/sound_trim.mp3";
 
 function $id(id) {
@@ -82,39 +118,84 @@ function stopAlarm() {
 }
 
 //preset buttons functionality
-document.querySelectorAll('.preset-timer-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const hours = button.getAttribute('h') || 0;
-        const minutes = button.getAttribute('m') || 0;
-        const seconds = button.getAttribute('s') || 0;
-        setCustomTime(hours, minutes, seconds);
-    });
-});
 
-// document.getElementById('add-more-btn').addEventListener('click', () => {
-//     const hours = prompt("Enter hours:", "0");
-//     const minutes = prompt("Enter minutes:", "0");
-//     const seconds = prompt("Enter seconds:", "0");
-//     const name = prompt("Enter Name", "Custom Timer");
+function createTimerButton(name, hours, minutes, seconds) {
 
-//     const newButton = document.createElement('button');
-//     newButton.className = 'preset-timer-btn preset-btn';
-//     newButton.setAttribute('h', hours);
-//     newButton.setAttribute('m', minutes);
-//     newButton.setAttribute('s', seconds);
-//     newButton.innerHTML = name + hours!=0?` ${hours}h`:'' + minutes!=0?` ${minutes}m`:''
-//         + seconds!=0?` ${seconds}s`:'';
+    const button = document.createElement('button');
+    button.className = 'preset-timer-btn preset-btn';
+
+    button.setAttribute('h', hours);
+    button.setAttribute('m', minutes);
+    button.setAttribute('s', seconds);
+    button.innerHTML = `${name} ${hours != 0 ? ` ${hours}h` : ''}${minutes != 0 ? ` ${minutes}m` : ''}${seconds != 0 ? ` ${seconds}s` : ''}`;
+
+    return button;
+
+}
+
+function createAddMoreButton() {
     
-//     document.getElementById('preset-container').insertBefore(newButton, document.getElementById('add-more-btn'));
+    const button = document.createElement('button');
+    button.id = 'add-more-btn';
+    button.className = 'preset-add-btn preset-btn';
+    button.innerHTML = 'Add +';
+    return button;
+    
+}
 
-//     newButton.addEventListener('click', () => {
-//         const hours = button.getAttribute('h') || 0;
-//         const minutes = button.getAttribute('m') || 0;
-//         const seconds = button.getAttribute('s') || 0;
-//         setCustomTime(hours, minutes, seconds);
-//     });
+function renderPresetButtons() {
 
-// });
+    document.getElementById('preset-container').innerHTML = '';
+    timers.forEach(timer => {
+        const button = createTimerButton(timer.name, timer.hours, timer.minutes, timer.seconds);
+        document.getElementById('preset-container').appendChild(button);
+    });
+
+    const addMoreButton = createAddMoreButton();
+    document.getElementById('preset-container').appendChild(addMoreButton);
+
+    
+    document.querySelectorAll('.preset-timer-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const hours = button.getAttribute('h') || 0;
+            const minutes = button.getAttribute('m') || 0;
+            const seconds = button.getAttribute('s') || 0;
+            setCustomTime(hours, minutes, seconds);
+        });
+    });
+    
+    document.getElementById('add-more-btn').addEventListener('click', () => {
+    
+        const hours = prompt("Enter hours:", "0");
+        const minutes = prompt("Enter minutes:", "0");
+        const seconds = prompt("Enter seconds:", "0");
+        const name = prompt("Enter Name", "Custom Timer");
+    
+        if (hours === null || minutes === null || seconds === null || name === null) {
+            return; // User cancelled the prompt
+        }
+        if(isNaN(hours) || isNaN(minutes) || isNaN(seconds) || hours < 0 || minutes < 0 || seconds < 0){
+            alert("⛔ Please enter valid positive numbers for hours, minutes, and seconds!");
+            return;
+        }
+        const newTimer = {
+            name: name,
+            hours: Number(hours),
+            minutes: Number(minutes),
+            seconds: Number(seconds),
+        };
+        timers.push(newTimer);
+
+        localStorage.setItem("timers", JSON.stringify(timers));
+
+        renderPresetButtons();    
+
+    });
+    
+}
+
+renderPresetButtons();
+
     
 
 // 🧮 Progress Bar Updater
