@@ -459,7 +459,7 @@ const setPomoTime = (minutes, skipAudio = false) => {
     $id('seconds').innerHTML = '00';
     currentTime = minutes * 60;
     paused = true;
-    $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+    $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Start';
     $id('counter-background').classList.remove('active');
     $id('counter-background').classList.add('inactive');
     clearInterval(intervalId);
@@ -548,7 +548,7 @@ const startPomoCounter = () => {
         sessionActive = true;
     }
 
-    $id('timer-control').innerHTML = paused ? '<i class="fas fa-play-circle"></i> Play' : '<i class="fas fa-pause-circle"></i> Pause';
+    $id('timer-control').innerHTML = paused ? '<i class="fas fa-play-circle"></i> Start' : '<i class="fas fa-pause-circle"></i> Pause';
 
     if (!paused) {
         $id('counter-background').classList.remove('active');
@@ -563,7 +563,7 @@ const startPomoCounter = () => {
                 clearInterval(intervalId);
                 paused = true;
                 showCompletionNotification();
-                $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+                $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Start';
                 $id('counter-background').classList.remove('inactive');
                 $id('counter-background').classList.add('active');
 
@@ -580,7 +580,7 @@ const startPomoCounter = () => {
         }, 1000);
     } else {
         clearInterval(intervalId);
-        $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Play';
+        $id('timer-control').innerHTML = '<i class="fas fa-play-circle"></i> Start';
         $id('counter-background').classList.remove('inactive');
         $id('counter-background').classList.add('active');
         document.title = originalTitle;//on pause , page title appears
@@ -946,11 +946,11 @@ function updateMusicStatus(isPlaying) {
 
     if (statusElement && toggleButton) {
         if (isPlaying) {
-            statusElement.textContent = "Pause Focus Music";
-            toggleButton.innerHTML = '<i class="fas fa-pause"></i> <span id="music-status">Pause Focus Music</span>';
+            statusElement.textContent = "Pause";
+            toggleButton.innerHTML = '<i class="fas fa-pause"></i> <span id="music-status">Pause</span>';
         } else {
-            statusElement.textContent = "Play Focus Music";
-            toggleButton.innerHTML = '<i class="fas fa-play"></i> <span id="music-status">Play Focus Music</span>';
+            statusElement.textContent = "Play";
+            toggleButton.innerHTML = '<i class="fas fa-play"></i> <span id="music-status">Play</span>';
         }
     }
     
