@@ -603,6 +603,108 @@ button.col-auto.bg-dark.button-pill.py-1.px-4.mx-2.inactive:hover {
   opacity: 1;
 }
 
+/* Preset button styles */
+#preset-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin : 20px 0;
+}
+
+.preset-btn {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  margin: 8px;
+  border: none;
+  font-size: 15px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 0 0 2px #ffffff;
+  cursor: pointer;
+  overflow: visible;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.preset-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  /* background-color: #ffffff; */
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 0;
+}
+
+.preset-btn:hover {
+  box-shadow: 0 0 0 5px #21f35960;
+}
+
+.preset-btn:active {
+  scale: 0.95;
+}
+
+.preset-btn:hover::before {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+
+/* Delete icon for preset buttons */
+.delete-icon {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: #ff4757;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(255, 71, 87, 0.3);
+}
+
+.preset-timer-btn:hover .delete-icon {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: all;
+}
+
+.delete-icon:hover {
+  background-color: #ff6b7a;
+  transform: translateX(-50%) translateY(0) scale(1.1);
+  box-shadow: 0 6px 12px rgba(255, 71, 87, 0.5);
+}
+
+.delete-icon:active {
+  transform: translateX(-50%) translateY(0) scale(0.95);
+}
+
+#preset-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 40px;
+}
+
 /* Footer Styles - Standardized */
 /* Social links for footer */
 .social-links {
@@ -640,7 +742,6 @@ li.hov {
   border: 2px solid rgba(255, 209, 102, 0.3);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   object-fit: contain;
-  padding: 8px;
 }
 
 .hov:hover .link {
@@ -1007,6 +1108,15 @@ body.dark-mode .animated-button:hover {
 
 body.dark-mode .animated-button span:last-child {
   background-color: #ff6b35 !important;
+}
+
+body.dark-mode .preset-btn {
+  color: #ff6b35 !important;
+  box-shadow: 0 0 0 2px #ff6b3520 !important;
+}
+
+body.dark-mode .preset-btn:hover {
+  box-shadow: 0 0 0 5px #ff6b3560 !important;
 }
 
 /* Navigation links always dark */
