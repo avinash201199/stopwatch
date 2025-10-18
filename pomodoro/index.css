@@ -1,8 +1,16 @@
 body {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 80px; 
+    background: transparent; 
 }
+/*
+.active {
+    color: #fff;
+    background: transparent;
+    transition: background-color 0.5s ease;
+}*/
 
 #link--active {
   box-shadow: none;
@@ -19,16 +27,9 @@ body {
   transition: background-color 0.5s ease;
 }
 
-
 .inactive {
   color: rgb(169, 188, 214);
   background: rgb(5, 30, 54);
-  transition: background-color 0.5s ease;
-}
-
-.active {
-  color: #333;
-  background: white;
   transition: background-color 0.5s ease;
 }
 
@@ -43,7 +44,7 @@ body {
 }
 
 .counter-background {
-  background: rgb(1, 47, 99)
+  /*background: transparent;*/
 }
 
 .hide {
@@ -214,10 +215,8 @@ li {
   height: 60px;
 }
 
-body {
-  background: #ffffff !important;
-}
 
+*/
 /* Additional container-fluid styling for footer */
 footer {
   margin-top: auto;
@@ -238,13 +237,6 @@ footer {
   /* max-width: 1400px; */
 }
 
-body {
-  background: #ffffff !important;
-  height: 240px !important;
-  background: #ffffff !important;
-  margin: 0;
-  padding: 0;
-}
 
 
 .my-class {
@@ -626,16 +618,7 @@ input:checked + .toggle-label .toggle-inner:before {
   background-color: #d1ecf1;
   color: #0c5460;
 }
-body {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: relative;
-  background: transparent;
-  transform: scale(0.65);
-  transform-origin: top center;
-  width: 154%; /* Compensate for the scale reduction */
-}
+
 
 
 /* Floating particles effect */
@@ -691,11 +674,7 @@ body::before {
   transition: background-color 0.5s ease;
 }
 
-.active {
-  color: #fff;
-  background: transparent;
-  transition: background-color 0.5s ease;
-}
+
 
 .button-pill {
   font-size: 1em;
@@ -710,9 +689,10 @@ body::before {
   color: white;
 }
 
-.counter-background {
-  background: rgb(1, 47, 99)
-}
+/*.counter-background {
+  background: transparent;
+}*/
+
 
 .hide {
   color: rgb(137, 192, 189)
@@ -882,9 +862,6 @@ li {
   height: 60px;
 }
 
-body {
-  background: transparent !important;
-}
 
 /* Additional container-fluid styling for footer */
 footer {
@@ -904,15 +881,6 @@ footer {
   padding: 1rem 2rem;
   margin: 0 auto;
   /* max-width: 1400px; */
-}
-
-body {
-  background: #ffffff !important;
-  height: 240px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px);
-  margin: 0;
-  padding: 0;
 }
 
 
@@ -1467,7 +1435,7 @@ body:not(.dark-mode) .cancel-btn {
   cursor: pointer;
 }
 
-.playlist-track.active {
+.playlist-trackx` {
   background: rgba(255, 107, 53, 0.2);
   border-color: rgba(255, 107, 53, 0.5);
   color: #ff6b35;
@@ -1551,3 +1519,7 @@ body.dark-mode .track-duration {
   }
 }
 
+/*#counter-background {
+    margin-top: 70px; /* Adjust this value to match your navbar's height */
+}
+*/

@@ -17,7 +17,6 @@
 
     <!-- jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
     <!-- Calendar functionality -->
     <!-- No external APIs needed -->
@@ -153,6 +152,17 @@
                 </div>
             </div>
 
+             <div class='row justify-content-center'>
+                <button type="button" class='buttons' id='timer-control' onClick='startPomoCounter()'>
+                    <i class="fas fa-play-circle"></i> Play
+                </button>
+
+                <button type="button" class='buttons' id='reset' onClick='reset()'>
+                    <i class="fas fa-undo"></i> Reset
+                </button>
+            </div>
+
+
             <!-- Enhanced Focus Music Control -->
             <div class="row justify-content-center my-3">
                 <div class="col-10">
@@ -223,16 +233,7 @@
             </div>
             <!-- End Enhanced Music Control -->
 
-            <div class='row justify-content-center'>
-                <button type="button" class='buttons' id='timer-control' onClick='startPomoCounter()'>
-                    <i class="fas fa-play-circle"></i> Play
-                </button>
-
-                <button type="button" class='buttons' id='reset' onClick='reset()'>
-                    <i class="fas fa-undo"></i> Reset
-                </button>
-            </div>
-
+           
             <div class='row justify-content-center mt-4'>
                 <div class='col-auto'>
                     <button id="add-to-calendar" class="calendar-btn" onclick="openScheduleModal()">
