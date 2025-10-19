@@ -1453,3 +1453,19 @@ body.dark-mode #countdown-minutes {
 body.dark-mode #countdown-minutes::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
+
+/* Focus Music Player Responsive Styles */
+@media (max-width: 600px) {
+  .focus-music-player {
+    flex-direction: column; /* Stack vertically on small screens */
+    width: 100%;
+  }
+  .music-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  /* Adjust specific control widths for smaller display */
+  .play-btn, .pause-btn, .volume-slider {
+    min-width: 40px;
+  }
+}
