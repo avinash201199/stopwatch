@@ -659,3 +659,18 @@ function startCountdownTimer() {
     } 
 }
 
+
+// ===============================
+// KEYBOARD SHORTCUT FEATURE
+// ===============================
+document.addEventListener("keydown", (event) => {
+  const startBtn = document.getElementById("start");
+  const resetBtn = document.getElementById("reset");
+
+  if (event.code === "Space") {
+    event.preventDefault();
+    startBtn.click();
+  } else if (event.key.toLowerCase() === "r") {
+    resetBtn.click();
+  }
+});
